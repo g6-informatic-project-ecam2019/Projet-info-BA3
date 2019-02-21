@@ -6,28 +6,31 @@ using System.Threading.Tasks;
 
 namespace Materials
 {
-    class ClassicDoor : Door
+    class ClassicDoor : Door /*Inheritance of the abstract class door, the classic door*/
     {
         private bool handle;
-        public ClassicDoor(float price, int lenght, string color, int width, bool handle)
+        private string color;
+        public ClassicDoor(float price, int lenght, string color, int width, bool handle) /*builder*/
         {
             this.price = price;
             this.length = length;
             this.color = color;
             this.width = width;
             this.handle = handle;
+            this.type = "ClassicDoor";
         }
-        public override Object GetDescription()
+        public override Object GetDescription()/*Returns a dictionary with all panel information*/
         {
             Dictionary<string, Object> Description = new Dictionary<string, Object>();
             Description.Add("price", price);
             Description.Add("length", length);
-            Description.Add("width",width);
-            Description.Add("color",color);
-            Description.Add("handle",handle);
+            Description.Add("width", width);
+            Description.Add("color", color);
+            Description.Add("handle", handle);
+            Description.Add("type", type);
             return Description;
         }
-        public void SetHandle(bool handle1)
+        public void SetHandle(bool handle1)/*Adds or removes a handle*/
         {
             this.handle = handle1;
         }

@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace Materials
 {
-    abstract class Piece
+    abstract class Piece /*Abstract class that groups all the parts*/
     {
         protected float price;
         protected int length;
-        public void SetPrice(float price)
+        public void SetPrice(float price) 
         {
             this.price = price;
-
         }
         public float GetPrice()
         {

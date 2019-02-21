@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Materials
 {
-    abstract class Door : Piece
+    abstract class Door : Piece /*Abstract class for all types of doors*/
     {
-        
-        protected string color;
         protected int width;
+        protected string type;/*Variable that contains either glassdoor or classicdoor*/
         public override abstract Object GetDescription();
     }
 }

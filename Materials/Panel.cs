@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace Materials
 {
-    class Panel : Piece
+    class Panel : Piece /*Class that groups all panels*/
     {
         private string color;
         private int width;
-        public Panel(float price, int lenght, string color, int width)
+        public Panel(float price, int lenght, string color, int width) /*builder*/
         {
             this.price = price;
             this.length = length;
             this.color = color;
             this.width = width;
         }
-        public override Object GetDescription()
+        public override Object GetDescription()/*Returns a dictionary with all panel information*/
         {
             Dictionary<string, Object> Description = new Dictionary<string, Object>();
             Description.Add("price", price);
