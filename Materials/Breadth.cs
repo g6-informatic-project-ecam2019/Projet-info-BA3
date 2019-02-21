@@ -8,16 +8,16 @@ namespace Materials
 {
     class Breadth : Piece
     {
-        public Breadth(int price, int lenght)
+        public Breadth(float price, int lenght)
         {
             this.price = price;
             this.length = length;
         }
         public override Object GetDescription()
         {
-            List<Object> Description = new List<Object>();
-            Description.Add(price);
-            Description.Add(length);
+            Dictionary<string, Object> Description = new Dictionary<string, Object>();
+            Description.Add("price",price);
+            Description.Add("length",length);
             return Description;
         }
     }

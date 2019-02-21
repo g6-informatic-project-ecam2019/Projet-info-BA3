@@ -9,7 +9,7 @@ namespace Materials
     class ClassicDoor : Door
     {
         private bool handle;
-        public ClassicDoor(int price, int lenght, string color, int width, bool handle)
+        public ClassicDoor(float price, int lenght, string color, int width, bool handle)
         {
             this.price = price;
             this.length = length;
@@ -19,12 +19,12 @@ namespace Materials
         }
         public override Object GetDescription()
         {
-            List<Object> Description = new List<Object>();
-            Description.Add(price);
-            Description.Add(length);
-            Description.Add(width);
-            Description.Add(color);
-            Description.Add(handle);
+            Dictionary<string, Object> Description = new Dictionary<string, Object>();
+            Description.Add("price", price);
+            Description.Add("length", length);
+            Description.Add("width",width);
+            Description.Add("color",color);
+            Description.Add("handle",handle);
             return Description;
         }
         public void SetHandle(bool handle1)

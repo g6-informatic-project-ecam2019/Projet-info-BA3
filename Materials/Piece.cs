@@ -8,14 +8,14 @@ namespace Materials
 {
     abstract class Piece
     {
-        protected int price;
+        protected float price;
         protected int length;
-        public void SetPrice(int price)
+        public void SetPrice(float price)
         {
             this.price = price;
 
         }
-        public int GetPrice()
+        public float GetPrice()
         {
             return price;
         }

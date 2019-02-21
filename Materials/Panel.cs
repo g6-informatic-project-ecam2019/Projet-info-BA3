@@ -10,7 +10,7 @@ namespace Materials
     {
         private string color;
         private int width;
-        public Panel(int price, int lenght, string color, int width)
+        public Panel(float price, int lenght, string color, int width)
         {
             this.price = price;
             this.length = length;
@@ -19,11 +19,11 @@ namespace Materials
         }
         public override Object GetDescription()
         {
-            List<Object> Description = new List<Object>();
-            Description.Add(price);
-            Description.Add(length);
-            Description.Add(width);
-            Description.Add(color);
+            Dictionary<string, Object> Description = new Dictionary<string, Object>();
+            Description.Add("price", price);
+            Description.Add("length", length);
+            Description.Add("width", width);
+            Description.Add("color", color);
             return Description;
         }
     }
