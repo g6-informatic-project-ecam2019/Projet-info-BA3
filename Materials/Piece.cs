@@ -10,7 +10,7 @@ namespace Materials
     {
         protected float price;
         protected int length;
-        public void SetPrice(float price) 
+        public void SetPrice(float price)
         {
             this.price = price;
         }
@@ -19,5 +19,9 @@ namespace Materials
             return price;
         }
         public abstract Object GetDescription();
+        public void GetPriceStock(Stock pricestock)
+        {
+            
+        }
     }
 }
