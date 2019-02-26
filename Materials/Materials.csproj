@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bloc.cs" />
     <Compile Include="Box.cs" />
     <Compile Include="Breadth.cs" />
     <Compile Include="ClassicDoor.cs" />
