@@ -19,7 +19,6 @@ namespace Materials
         private int depth;
         private int width;
 
-
         public Box(Cleat cleat, Breadth breadthGD, Breadth breadthAR, Panel panelGD, Panel panelAR, Door door) /*builder*/
         {
             this.dicCleat = cleat.GetDescription();
@@ -45,7 +44,7 @@ namespace Materials
         }
         public double GetPrice()
         {
-            return Convert.ToDouble(dicCleat["price"])+ Convert.ToDouble(dicPanelGD["price"]) + Convert.ToDouble(dicPanelAR["price"]) + Convert.ToDouble(dicDoor["price"])+ Convert.ToDouble(dicBreadthGD["price"])+ Convert.ToDouble(dicBreadthAR["price"])
+            return Convert.ToDouble(dicCleat["price"]) + Convert.ToDouble(dicPanelGD["price"]) + Convert.ToDouble(dicPanelAR["price"]) + Convert.ToDouble(dicDoor["price"]) + Convert.ToDouble(dicBreadthGD["price"]) + Convert.ToDouble(dicBreadthAR["price"]);
         }
         public object GetDescription()
         {
