@@ -15,7 +15,7 @@ namespace Materials
             this.width = width;
             this.type = "GlassDoor"; /*Door type information(glassdoor or classicdoor)*/
         }
-        public override Object GetDescription()/*Returns a dictionary with all panel information*/
+        public override Dictionary<string, Object> GetDescription()/*Returns a dictionary with all panel information*/
         {
             Dictionary<string, Object> Description = new Dictionary<string, Object>();
             Description.Add("price", price);

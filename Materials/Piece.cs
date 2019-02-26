@@ -18,8 +18,8 @@ namespace Materials
         {
             return price;
         }
-        public abstract Object GetDescription();
-        public void GetPriceStock(Stock pricestock)
+        public abstract Dictionary<string, Object> GetDescription();
+        public void DescriptionRequest(Stock pricestock)
         {
             
         }

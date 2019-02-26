@@ -10,6 +10,6 @@ namespace Materials
     {
         protected int width;
         protected string type;/*Variable that contains either glassdoor or classicdoor*/
-        public override abstract Object GetDescription();
+        public override abstract Dictionary<string, Object> GetDescription();
     }
 }
