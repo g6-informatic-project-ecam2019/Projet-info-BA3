@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Materials
 {
-    class Box
+    class Box : Bloc
     {
         private Dictionary<string, Object> dicCleat;
         private Dictionary<string, Object> dicBreadthGD;
