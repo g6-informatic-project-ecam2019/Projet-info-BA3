@@ -38,7 +38,7 @@ namespace Materials
             this.price = Convert.ToDouble(dicCleat["price"]) * 4 + Convert.ToDouble(dicPanelGD["price"]) * 2 +
                          Convert.ToDouble(dicPanelAR["price"]) * 1 + Convert.ToDouble(dicDoor["price"]) * 1 +
                          Convert.ToDouble(dicBreadthGD["price"]) * 2 + Convert.ToDouble(dicBreadthAR["price"]) * 1 +
-                         Convert.ToDouble(dicBreadthAV["price"]) * 1;
+                         Convert.ToDouble(dicBreadthAV["price"]) * 1; /*Sum of all prices * their numbers*/
         }
         public void SetColor(string color)
         {
@@ -54,7 +54,7 @@ namespace Materials
         {
             return price; /*Demander a bernard l'interet ? */
         }
-        public Dictionary<string, Object> GetDescription()
+        public Dictionary<string, Object> GetDescription()/*Dictionary that contains all the elements of the box*/
         {
             Dictionary<string, Object> Description = new Dictionary<string, Object>();
             Description.Add("height", height);
