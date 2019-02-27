@@ -46,7 +46,7 @@ namespace Materials
             dicPanelAR["color"] = color;
             dicPanelGD["color"] = color; /*Demander a bernard l'interet*/
         }
-        public void SetDimensions(int Dimention)
+        public void SetDimensions(int Dimension)
         {
             /*Demander à bernard a quoi ça sert dans son diagramme*/
         }

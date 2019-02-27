@@ -10,7 +10,7 @@ namespace Materials
     {
         Dictionary<string, Object> GetDescription();
         double GetPrice();
-        void SetDimensions(int Dimention);
+        void SetDimensions(int Dimension);
         void SetColor(string color);
     }
 }

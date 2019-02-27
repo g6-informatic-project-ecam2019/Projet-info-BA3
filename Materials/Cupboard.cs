@@ -18,7 +18,7 @@ namespace Materials
         public Cupboard()/*Builder*/
         {
             ComputeHeight();
-            price = GetPrice();
+            GetPrice();
             ComputeDepth();
             ComputeWidth();
         }
@@ -66,7 +66,7 @@ namespace Materials
                 Erreur();
             }
         }
-        private int ComputeHeight()
+        private void ComputeHeight() /*Compute the height*/
         {
             int i;
             int h = 10;
@@ -79,39 +79,33 @@ namespace Materials
                     h = i;
                 }
             }
-            if (h != 10)
+            if (h == 10)
             {
-                return height;
-            }
-            else
-            {
-                return 0;
+                height = 0;
             }
         }
-        private int ComputeDepth()
+        private void ComputeDepth()/*Compute de depth*/
         {
             if (configuration.Length != null)
             {
                 Dictionary<string, Object> bibliBloc = configuration[0].GetDescription();
-                depth += Convert.ToInt32(bibliBloc["depth"]);
-                return depth;
+                depth = Convert.ToInt32(bibliBloc["depth"]);
             }
             else
             {
-                return 0;
+                depth = 0;
             }
         }
-        private int ComputeWidth()
+        private void ComputeWidth()/*compute the width*/
         {
             if (configuration.Length != null)
             {
                 Dictionary<string, Object> bibliBloc = configuration[0].GetDescription();
-                width += Convert.ToInt32(bibliBloc["width"]);
-                return width;
+                width = Convert.ToInt32(bibliBloc["width"]);
             }
             else
             {
-                return 0;
+                width = 0;
             }
         }
         public Dictionary<string, Object> GetDescription() /*Returns a dico of the whole description*/
