@@ -48,6 +48,7 @@
     <Compile Include="Breadth.cs" />
     <Compile Include="ClassicDoor.cs" />
     <Compile Include="Cleat.cs" />
+    <Compile Include="Cupboard.cs" />
     <Compile Include="Door.cs" />
     <Compile Include="GlassDoor.cs" />
     <Compile Include="Panel.cs" />
