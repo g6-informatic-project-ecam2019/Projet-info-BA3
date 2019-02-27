@@ -17,10 +17,10 @@ namespace Materials
 
         public Cupboard()/*Builder*/
         {
-            height = ComputeHeight();
+            ComputeHeight();
             price = GetPrice();
-            width = ComputeDepth();
-            depth = ComputeWidth();
+            ComputeDepth();
+            ComputeWidth();
         }
         public void AddBloc(Bloc bloc)/*Allows adding a block to the list*/
         {
@@ -66,41 +66,53 @@ namespace Materials
                 Erreur();
             }
         }
-        private int Compute(string name)
+        private int ComputeHeight()
         {
             int i;
-            int var = 0;
             int h = 10;
             for (i = 0; i < configuration.Length; i++)
             {
                 if (configuration[i] != null)
                 {
                     Dictionary<string, Object> bibliBloc = configuration[i].GetDescription();
-                    var += Convert.ToInt32(bibliBloc[name]);
+                    height += Convert.ToInt32(bibliBloc["height"]);
                     h = i;
                 }
             }
-            if (i != 10)
+            if (h != 10)
             {
-                return var;
+                return height;
             }
             else
             {
                 return 0;
             }
-
-        }
-        private int ComputeHeight()
-        {
-            return Compute("height");/*Error, but for now it's okay to rectify*/
         }
         private int ComputeDepth()
         {
-            return Compute("depth");/*Error, but for now it's okay to rectify*/
+            if (configuration.Length != null)
+            {
+                Dictionary<string, Object> bibliBloc = configuration[0].GetDescription();
+                depth += Convert.ToInt32(bibliBloc["depth"]);
+                return depth;
+            }
+            else
+            {
+                return 0;
+            }
         }
         private int ComputeWidth()
         {
-            return Compute("width");/* Error, but for now it's okay to rectify*/
+            if (configuration.Length != null)
+            {
+                Dictionary<string, Object> bibliBloc = configuration[0].GetDescription();
+                width += Convert.ToInt32(bibliBloc["width"]);
+                return width;
+            }
+            else
+            {
+                return 0;
+            }
         }
         public Dictionary<string, Object> GetDescription() /*Returns a dico of the whole description*/
         {
