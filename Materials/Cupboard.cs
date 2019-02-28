@@ -26,11 +26,11 @@ namespace Materials
         {
             int i;
             int h = 0;
-            for (i = 0; i < configuration.Length; i++)/*Browse the list*/
+            for (i = 0; i < this.configuration.Length; i++)/*Browse the list*/
             {
-                if (configuration[i] == null)/*when there is a free slot we add*/
+                if (this.configuration[i] == null)/*when there is a free slot we add*/
                 {
-                    configuration[i] = bloc;
+                    this.configuration[i] = bloc;
                     h = i;
                     break;
                 }
@@ -52,11 +52,11 @@ namespace Materials
         {
             int i;
             int h = 10;
-            for (i = 0; i < configuration.Length; i++)
+            for (i = 0; i < this.configuration.Length; i++)
             {
-                if (configuration[i] == null && i != 0)
+                if (this.configuration[i] == null && i != 0)
                 {
-                    configuration[i - 1] = null;
+                    this.configuration[i - 1] = null;
                     h = i - 1;
                     break;
                 }
@@ -70,18 +70,18 @@ namespace Materials
         {
             int i;
             int h = 10;
-            for (i = 0; i < configuration.Length; i++)
+            for (i = 0; i < this.configuration.Length; i++)
             {
-                if (configuration[i] != null)
+                if (this.configuration[i] != null)
                 {
-                    Dictionary<string, Object> bibliBloc = configuration[i].GetDescription();
-                    height += Convert.ToInt32(bibliBloc["height"]);
+                    Dictionary<string, Object> bibliBloc = this.configuration[i].GetDescription();
+                    this.height += Convert.ToInt32(bibliBloc["height"]);
                     h = i;
                 }
             }
             if (h == 10)
             {
-                height = 0;
+                this.height = 0;
             }
             AddAngle();
         }
@@ -89,29 +89,29 @@ namespace Materials
         public Dictionary<string, Object> GetDescription() /*Returns a dico of the whole description*/
         {
             Dictionary<string, Object> Description = new Dictionary<string, Object>();
-            Description.Add("height", height);
-            Description.Add("depth", depth);
-            Description.Add("width", width);
-            Description.Add("price", price);
-            Description.Add("angleColor", angleColor);
+            Description.Add("height", this.height);
+            Description.Add("depth", this.depth);
+            Description.Add("width", this.width);
+            Description.Add("price", this.price);
+            Description.Add("angleColor", this.angleColor);
             return Description;
         }
         public double GetPrice()/*compute the price*/
         {
             int i;
             int h = 10;
-            for (i = 0; i < configuration.Length; i++)
+            for (i = 0; i < this.configuration.Length; i++)
             {
-                if (configuration[i] != null)
+                if (this.configuration[i] != null)
                 {
-                    Dictionary<string, Object> bibliBloc = configuration[i].GetDescription();
-                    price += Convert.ToDouble(bibliBloc["price"]);
+                    Dictionary<string, Object> bibliBloc = this.configuration[i].GetDescription();
+                    this.price += Convert.ToDouble(bibliBloc["price"]);
                     h = i;
                 }
             }
             if (i != 10)
             {
-                return price;
+                return this.price;
             }
             else
             {

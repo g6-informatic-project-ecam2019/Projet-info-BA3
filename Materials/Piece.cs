@@ -16,7 +16,7 @@ namespace Materials
         }
         public float GetPrice()
         {
-            return price;
+            return this.price;
         }
         public abstract Dictionary<string, Object> GetDescription();
         public void DescriptionRequest(Stock pricestock)

@@ -18,10 +18,10 @@ namespace Materials
         public override Dictionary<string, Object> GetDescription()/*Returns a dictionary with all panel information*/
         {
             Dictionary<string, Object> Description = new Dictionary<string, Object>();
-            Description.Add("price", price);
-            Description.Add("length", length);
-            Description.Add("width", width);
-            Description.Add("type", type);
+            Description.Add("price", this.price);
+            Description.Add("length", this.length);
+            Description.Add("width", this.width);
+            Description.Add("type", this.type);
             return Description;
         }
         public bool Dimention(int lenght)/*Check if the dimension is in the list, so add the measures in the list.*/

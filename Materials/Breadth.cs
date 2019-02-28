@@ -16,8 +16,8 @@ namespace Materials
         public override Dictionary<string, Object> GetDescription()/*Returns a dictionary with all panel information*/
         {
             Dictionary<string, Object> Description = new Dictionary<string, Object>();
-            Description.Add("price",price);
-            Description.Add("length",length);
+            Description.Add("price", this.price);
+            Description.Add("length", this.length);
             return Description;
         }
     }

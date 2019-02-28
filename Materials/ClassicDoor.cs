@@ -16,23 +16,17 @@ namespace Materials
             this.length = length;
             this.color = color;
             this.width = width;
-            
             this.type = "ClassicDoor";
         }
         public override Dictionary<string, Object> GetDescription()/*Returns a dictionary with all panel information*/
         {
             Dictionary<string, Object> Description = new Dictionary<string, Object>();
-            Description.Add("price", price);
-            Description.Add("length", length);
-            Description.Add("width", width);
-            Description.Add("color", color);
-            
-            Description.Add("type", type);
+            Description.Add("price", this.price);
+            Description.Add("length", this.length);
+            Description.Add("width", this.width);
+            Description.Add("color", this.color);
+            Description.Add("type", this.type);
             return Description;
-        }
-        public void SetHandle(bool handle1)/*Adds or removes a handle*/
-        {
-            this.handle = handle1;
         }
     }
 }
