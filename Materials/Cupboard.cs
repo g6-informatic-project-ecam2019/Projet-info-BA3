@@ -11,16 +11,16 @@ namespace Materials
         private string angleColor; /*Demander à bernard*/
         private int width;
         private int depth;
-        private Bloc[] configuration = new Bloc[7]; //block lists
+        private Bloc[] configuration;//block lists
         private int height;
         private double price;
 
-        public Cupboard()/*Builder*/
+        public Cupboard(int depth,int width,string angleColor, int number)/*Builder*/
         {
-            ComputeHeight();
-            GetPrice();
-            ComputeDepth();
-            ComputeWidth();
+            this.depth = depth;
+            this.width = width;
+            this.angleColor = angleColor;
+            this.configuration = new Bloc[number];
         }
         public void AddBloc(Bloc bloc)/*Allows adding a block to the list*/
         {
@@ -44,11 +44,11 @@ namespace Materials
         {
             return "You have a size error";
         }
-        public void CheckDimension(int x, int y)
+        public void AddAngle()
         {
-            /*Demander à bernard ? */
+            
         }
-        public void RemoveBloc()/*To remove a block from the list*/
+        public void RemoveBloc(int number)/*To remove a block from the list*/
         {
             int i;
             int h = 10;
@@ -83,31 +83,9 @@ namespace Materials
             {
                 height = 0;
             }
+            AddAngle();
         }
-        private void ComputeDepth()/*Compute de depth*/
-        {
-            if (configuration.Length != null)
-            {
-                Dictionary<string, Object> bibliBloc = configuration[0].GetDescription();
-                depth = Convert.ToInt32(bibliBloc["depth"]);
-            }
-            else
-            {
-                depth = 0;
-            }
-        }
-        private void ComputeWidth()/*compute the width*/
-        {
-            if (configuration.Length != null)
-            {
-                Dictionary<string, Object> bibliBloc = configuration[0].GetDescription();
-                width = Convert.ToInt32(bibliBloc["width"]);
-            }
-            else
-            {
-                width = 0;
-            }
-        }
+        
         public Dictionary<string, Object> GetDescription() /*Returns a dico of the whole description*/
         {
             Dictionary<string, Object> Description = new Dictionary<string, Object>();

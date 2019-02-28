@@ -8,54 +8,75 @@ namespace Materials
 {
     class Box : Bloc
     {
-        private Dictionary<string, Object> dicCleat;
-        private Dictionary<string, Object> dicBreadthGD;
-        private Dictionary<string, Object> dicBreadthAR;
-        private Dictionary<string, Object> dicBreadthAV;
-        private Dictionary<string, Object> dicPanelGD;
-        private Dictionary<string, Object> dicPanelAR;
-        private Dictionary<string, Object> dicDoor;
         private string pannelsColor;
         private int height;
         private int depth;
         private int width;
+        private bool hasdoor;
+        private string typedoor;
+        private string doorcolor;
+        private Dictionary<string, Object> Cupboard;
         private double price;
+        private Piece[] parts = new Piece[13];
 
-        public Box(Cleat cleat, Breadth breadthGD, Breadth breadthAR, Breadth breadthAV, Panel panelGD, Panel panelAR, Door door) /*builder*/
+        public Box(int height, string pannelsColor, bool hasdoor, Cupboard cupboard, string typedoor= null, string doorcolor = null) /*builder*/
         {
-            this.dicCleat = cleat.GetDescription();
-            this.dicBreadthGD = breadthGD.GetDescription();
-            this.dicBreadthAR = breadthAR.GetDescription();
-            this.dicBreadthAV = breadthAV.GetDescription();
-            this.dicPanelGD = panelGD.GetDescription();
-            this.dicPanelAR = panelAR.GetDescription();
-            this.dicDoor = door.GetDescription();
-
-            this.height = Convert.ToInt32(dicCleat["length"])+2*20; /*The height of a box = at the height of the cleats + 2 * the height of a breadth (2cm)*/
-            this.depth = Convert.ToInt32(dicBreadthGD["length"]); /*the depth is the length of the breadthGD*/
-            this.width = Convert.ToInt32(dicBreadthAR["length"]); /*the depth is the length of the breadthAR*/
-            this.pannelsColor = Convert.ToString(dicPanelGD["color"]); /*Panel color*/
-            this.price = Convert.ToDouble(dicCleat["price"]) * 4 + Convert.ToDouble(dicPanelGD["price"]) * 2 +
-                         Convert.ToDouble(dicPanelAR["price"]) * 1 + Convert.ToDouble(dicDoor["price"]) * 1 +
-                         Convert.ToDouble(dicBreadthGD["price"]) * 2 + Convert.ToDouble(dicBreadthAR["price"]) * 1 +
-                         Convert.ToDouble(dicBreadthAV["price"]) * 1; /*Sum of all prices * their numbers*/
+            this.height = height;
+            this.pannelsColor = pannelsColor;
+            this.hasdoor = hasdoor;
+            this.doorcolor = doorcolor;
+            this.Cupboard = cupboard.GetDescription();
+            this.depth = Convert.ToInt32(Cupboard["depth"]);
+            this.width = Convert.ToInt32(Cupboard["width"]);
+            BuildPieces();
         }
-        public void SetColor(string color)
+        public void BuildPieces()
         {
-            this.pannelsColor = color;
-            dicPanelAR["color"] = color;
-            dicPanelGD["color"] = color; /*Demander a bernard l'interet*/
+            this.parts[0] = new Cleat(5, this.height - 4);/*cleat1*/
+            this.parts[1] = new Cleat(5, this.height - 4);/*cleat2*/
+            this.parts[2] = new Cleat(5, this.height - 4);/*cleat3*/
+            this.parts[3] = new Cleat(5, this.height - 4);/*cleat4*/
+            this.parts[4] = new Breadth(5, this.depth);/*breadthGD1*/
+            this.parts[5] = new Breadth(5, this.depth);/*breadthGD2*/
+            this.parts[6] = new Breadth(5, this.width);/*breadthAR*/
+            this.parts[7] = new Breadth(5, this.width);/*breadthAV*/
+            this.parts[8] = new Panel(5, this.height, this.pannelsColor, this.depth);/*panelGD1*/
+            this.parts[9] = new Panel(5, this.height, this.pannelsColor, this.depth);/*panelGD2*/
+            this.parts[10] = new Panel(5, this.height, this.pannelsColor, this.width);/*panelAR*/
+            if (hasdoor == true)
+            {
+                if (typedoor== "ClassicDoor")
+                {
+                    this.parts[11] = new ClassicDoor(5, this.height, this.doorcolor, this.width);/*classicdoor1*/
+                    this.parts[12] = new ClassicDoor(5, this.height, this.doorcolor, this.width);/*classicdoor2*/
+                }
+                else
+                {
+                    this.parts[11] = new GlassDoor(5, this.height, this.width);/*glassedoor1*/
+                    this.parts[12] = new GlassDoor(5, this.height, this.width);/*glassedoor2*/
+                }
+            }
         }
-        public void SetDimensions(int Dimension)
+        private void ComputePrice()
         {
-            /*Demander à bernard a quoi ça sert dans son diagramme*/
+            int i;
+            for (i = 0; i < this.parts.Length; i++)
+            {
+                if(this.parts[i] != null)
+                {
+                    Dictionary<string, Object> DicDescri = this.parts[i].GetDescription();
+                    this.price += Convert.ToDouble(DicDescri["price"]);
+                }
+            }
         }
         public double GetPrice()
         {
-            return price; /*Demander a bernard l'interet ? */
+            ComputePrice();
+            return price;
         }
         public Dictionary<string, Object> GetDescription()/*Dictionary that contains all the elements of the box*/
         {
+            ComputePrice();
             Dictionary<string, Object> Description = new Dictionary<string, Object>();
             Description.Add("height", height);
             Description.Add("depth", depth);

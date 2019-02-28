@@ -8,15 +8,15 @@ namespace Materials
 {
     class ClassicDoor : Door /*Inheritance of the abstract class door, the classic door*/
     {
-        private bool handle;
+        
         private string color;
-        public ClassicDoor(float price, int lenght, string color, int width, bool handle) /*builder*/
+        public ClassicDoor(float price, int lenght, string color, int width) /*builder*/
         {
             this.price = price;
             this.length = length;
             this.color = color;
             this.width = width;
-            this.handle = handle;
+            
             this.type = "ClassicDoor";
         }
         public override Dictionary<string, Object> GetDescription()/*Returns a dictionary with all panel information*/
@@ -26,7 +26,7 @@ namespace Materials
             Description.Add("length", length);
             Description.Add("width", width);
             Description.Add("color", color);
-            Description.Add("handle", handle);
+            
             Description.Add("type", type);
             return Description;
         }

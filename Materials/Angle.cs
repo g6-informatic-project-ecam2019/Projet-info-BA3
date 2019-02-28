@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Materials
 {
-    interface Bloc
+    class Angle
     {
-        Dictionary<string, Object> GetDescription();
-        double GetPrice();
-        void BuildPieces();
     }
 }
