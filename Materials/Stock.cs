@@ -14,7 +14,7 @@ namespace Materials
         {
             return false;
         }
-        public void orderPieces (Piece* piece)
+        public void orderPieces (Piece[] piece)
         {
 
         }
