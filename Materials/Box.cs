@@ -32,17 +32,19 @@ namespace Materials
         }
         public void BuildPieces()
         {
-            this.parts[0] = new Cleat(5, this.height - 4);/*cleat1*/
-            this.parts[1] = new Cleat(5, this.height - 4);/*cleat2*/
-            this.parts[2] = new Cleat(5, this.height - 4);/*cleat3*/
-            this.parts[3] = new Cleat(5, this.height - 4);/*cleat4*/
-            this.parts[4] = new Breadth(5, this.depth);/*breadthGD1*/
-            this.parts[5] = new Breadth(5, this.depth);/*breadthGD2*/
-            this.parts[6] = new Breadth(5, this.width);/*breadthAR*/
-            this.parts[7] = new Breadth(5, this.width);/*breadthAV*/
-            this.parts[8] = new Panel(5, this.height, this.pannelsColor, this.depth);/*panelGD1*/
-            this.parts[9] = new Panel(5, this.height, this.pannelsColor, this.depth);/*panelGD2*/
-            this.parts[10] = new Panel(5, this.height, this.pannelsColor, this.width);/*panelAR*/
+            for (int i = 0; i < 4; i++)
+            {
+                this.parts[i] = new Cleat(5, this.height - 4);/*cleat1-2-3-4*/
+            }
+            for (int i=4; i<8; i++)
+            {
+                this.parts[i] = new Breadth(5, this.depth);/*breadthGD1-2-AR-AV*/
+            }
+            for (int i = 8; i < 11; i++)
+            {
+                this.parts[i] = new Panel(5, this.height, this.pannelsColor, this.depth);/*panelGD1*/
+            }
+
             if (hasdoor == true)
             {
                 if (typedoor== "ClassicDoor")
