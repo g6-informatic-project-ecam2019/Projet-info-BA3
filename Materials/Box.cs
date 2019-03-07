@@ -36,7 +36,7 @@ namespace Materials
             {
                 this.parts[i] = new Cleat(5, this.height - 4);/*cleat1-4*/
                 this.parts[i+4] = new Breadth(5, this.depth);/*breadthGD1-2-AR-AV*/
-                if (i!= 4)
+                if (i!= 3)
                 {
                     this.parts[i + 8] = new Panel(5, this.height, this.pannelsColor, this.depth);/*panelGD1*/
                 }
@@ -51,8 +51,8 @@ namespace Materials
                 }
                 else
                 {
-                    this.parts[11] = new GlassDoor(5, this.height, this.width);/*glassedoor1*/
-                    this.parts[12] = new GlassDoor(5, this.height, this.width);/*glassedoor2*/
+                    this.parts[11] = new GlassDoor(5, this.height, this.width);/*glassdoor1*/
+                    this.parts[12] = new GlassDoor(5, this.height, this.width);/*glassdoor2*/
                 }
             }
         }
