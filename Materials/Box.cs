@@ -34,15 +34,12 @@ namespace Materials
         {
             for (int i = 0; i < 4; i++)
             {
-                this.parts[i] = new Cleat(5, this.height - 4);/*cleat1-2-3-4*/
-            }
-            for (int i=4; i<8; i++)
-            {
-                this.parts[i] = new Breadth(5, this.depth);/*breadthGD1-2-AR-AV*/
-            }
-            for (int i = 8; i < 11; i++)
-            {
-                this.parts[i] = new Panel(5, this.height, this.pannelsColor, this.depth);/*panelGD1*/
+                this.parts[i] = new Cleat(5, this.height - 4);/*cleat1-4*/
+                this.parts[i+4] = new Breadth(5, this.depth);/*breadthGD1-2-AR-AV*/
+                if (i!= 4)
+                {
+                    this.parts[i + 8] = new Panel(5, this.height, this.pannelsColor, this.depth);/*panelGD1*/
+                }
             }
 
             if (hasdoor == true)
