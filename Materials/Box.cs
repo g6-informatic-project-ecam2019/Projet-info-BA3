@@ -36,7 +36,7 @@ namespace Materials
             {
                 this.parts[i] = new Cleat(5, this.height - 4);/*cleat1-4*/
                 this.parts[i+4] = new Breadth(5, this.depth);/*breadthGD1-2-AR-AV*/
-                if (i!= 3)
+                if (i!= 3)                                  //there are only three pannels in a box (front = door)
                 {
                     this.parts[i + 8] = new Panel(5, this.height, this.pannelsColor, this.depth);/*panelGD1*/
                 }
