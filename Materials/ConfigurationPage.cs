@@ -42,5 +42,15 @@ namespace Materials
         {
             Application.Run(new HomePage()); //opens the Home form
         }
+
+        private void widthTrackBar_Scroll(object sender, EventArgs e)
+        {
+            widthLabel.Text = "" + widthTrackBar.Value;
+        }
+
+        private void depthTrackBar_Scroll(object sender, EventArgs e)
+        {
+
+        }
     }
 }

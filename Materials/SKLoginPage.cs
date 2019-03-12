@@ -17,14 +17,14 @@ namespace Materials
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Home_Click(object sender, EventArgs e)
         {
             System.Threading.Thread monthread = new System.Threading.Thread(new System.Threading.ThreadStart(openHomePage));
             monthread.Start();
             this.Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void ConnectBtn_Click(object sender, EventArgs e)
         {
             if (maskedTextBox1.Text == "12345")
             {
