@@ -1,0 +1,15 @@
+C:\Users\User\Documents\GitHub\Projet-info-BA3\Materials\bin\Debug\Materials.exe.config
+C:\Users\User\Documents\GitHub\Projet-info-BA3\Materials\bin\Debug\Materials.exe
+C:\Users\User\Documents\GitHub\Projet-info-BA3\Materials\bin\Debug\Materials.pdb
+C:\Users\User\Documents\GitHub\Projet-info-BA3\Materials\bin\Debug\MySql.Data.dll
+C:\Users\User\Documents\GitHub\Projet-info-BA3\Materials\obj\Debug\Materials.csprojAssemblyReference.cache
+C:\Users\User\Documents\GitHub\Projet-info-BA3\Materials\obj\Debug\Materials.ConfigurationPage.resources
+C:\Users\User\Documents\GitHub\Projet-info-BA3\Materials\obj\Debug\Materials.ConfirmOrderPage.resources
+C:\Users\User\Documents\GitHub\Projet-info-BA3\Materials\obj\Debug\Materials.HomePage.resources
+C:\Users\User\Documents\GitHub\Projet-info-BA3\Materials\obj\Debug\Materials.SKLoginPage.resources
+C:\Users\User\Documents\GitHub\Projet-info-BA3\Materials\obj\Debug\Materials.SKOrdersPage.resources
+C:\Users\User\Documents\GitHub\Projet-info-BA3\Materials\obj\Debug\Materials.csproj.GenerateResource.cache
+C:\Users\User\Documents\GitHub\Projet-info-BA3\Materials\obj\Debug\Materials.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GitHub\Projet-info-BA3\Materials\obj\Debug\Materials.csproj.CopyComplete
+C:\Users\User\Documents\GitHub\Projet-info-BA3\Materials\obj\Debug\Materials.exe
+C:\Users\User\Documents\GitHub\Projet-info-BA3\Materials\obj\Debug\Materials.pdb
