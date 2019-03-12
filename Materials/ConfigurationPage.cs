@@ -16,5 +16,31 @@ namespace Materials
         {
             InitializeComponent();
         }
+
+        private void HomeBtn_Click(object sender, EventArgs e)
+        {
+            System.Threading.Thread monthread = new System.Threading.Thread(new System.Threading.ThreadStart(openHomePage));
+            monthread.Start();
+            this.Close();
+        }
+
+        private void PrevBlocBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NextBlocBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MkOrdrBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+        public static void openHomePage()
+        {
+            Application.Run(new HomePage()); //opens the Home form
+        }
     }
 }

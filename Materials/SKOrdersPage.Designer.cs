@@ -36,7 +36,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.HomeBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button2
@@ -108,22 +108,22 @@
             this.button1.Text = "Close the order";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // HomeBtn
             // 
-            this.button5.Location = new System.Drawing.Point(32, 61);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(62, 331);
-            this.button5.TabIndex = 52;
-            this.button5.Text = "HOME";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.HomeBtn.Location = new System.Drawing.Point(32, 61);
+            this.HomeBtn.Name = "HomeBtn";
+            this.HomeBtn.Size = new System.Drawing.Size(62, 331);
+            this.HomeBtn.TabIndex = 52;
+            this.HomeBtn.Text = "HOME";
+            this.HomeBtn.UseVisualStyleBackColor = true;
+            this.HomeBtn.Click += new System.EventHandler(this.HomeBtn_Click);
             // 
             // SKOrdersPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(887, 451);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.HomeBtn);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label3);
@@ -149,6 +149,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button HomeBtn;
     }
 }

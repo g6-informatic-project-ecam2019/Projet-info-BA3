@@ -60,6 +60,7 @@
             this.maskedTextBox1.Location = new System.Drawing.Point(153, 78);
             this.maskedTextBox1.Mask = "99999";
             this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.PasswordChar = '*';
             this.maskedTextBox1.Size = new System.Drawing.Size(49, 22);
             this.maskedTextBox1.TabIndex = 7;
             this.maskedTextBox1.ValidatingType = typeof(int);

@@ -17,7 +17,7 @@ namespace Materials
             InitializeComponent();
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void HomeBtn_Click(object sender, EventArgs e)
         {
             System.Threading.Thread monthread = new System.Threading.Thread(new System.Threading.ThreadStart(openHomePage));
             monthread.Start();
