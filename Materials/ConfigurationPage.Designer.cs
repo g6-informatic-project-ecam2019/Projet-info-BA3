@@ -53,6 +53,8 @@
             this.WidthTxt = new System.Windows.Forms.Label();
             this.NextBlocBtn = new System.Windows.Forms.Button();
             this.HomeBtn = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.widthTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.heightTrackBar)).BeginInit();
@@ -100,6 +102,8 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.heightLabel);
             this.panel1.Controls.Add(this.depthLabel);
             this.panel1.Controls.Add(this.widthLabel);
@@ -237,7 +241,7 @@
             "Brown",
             "Black",
             "Galvanized"});
-            this.comboBox2.Location = new System.Drawing.Point(115, 275);
+            this.comboBox2.Location = new System.Drawing.Point(115, 297);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(124, 24);
             this.comboBox2.TabIndex = 26;
@@ -256,7 +260,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label7.Location = new System.Drawing.Point(14, 277);
+            this.label7.Location = new System.Drawing.Point(14, 299);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(88, 17);
             this.label7.TabIndex = 22;
@@ -321,6 +325,27 @@
             this.HomeBtn.UseVisualStyleBackColor = true;
             this.HomeBtn.Click += new System.EventHandler(this.HomeBtn_Click);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "White",
+            "Brown"});
+            this.comboBox1.Location = new System.Drawing.Point(115, 256);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(124, 24);
+            this.comboBox1.TabIndex = 44;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label5.Location = new System.Drawing.Point(14, 258);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(81, 17);
+            this.label5.TabIndex = 43;
+            this.label5.Text = "Panel Color";
+            // 
             // ConfigurationPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -373,5 +398,7 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label5;
     }
 }
