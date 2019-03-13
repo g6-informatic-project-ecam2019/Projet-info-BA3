@@ -52,5 +52,10 @@ namespace Materials
         {
 
         }
+
+        private void heightTrackBar_Scroll(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -13,3 +13,4 @@ C:\Users\User\Documents\GitHub\Projet-info-BA3\Materials\obj\Debug\Materials.csp
 C:\Users\User\Documents\GitHub\Projet-info-BA3\Materials\obj\Debug\Materials.csproj.CopyComplete
 C:\Users\User\Documents\GitHub\Projet-info-BA3\Materials\obj\Debug\Materials.exe
 C:\Users\User\Documents\GitHub\Projet-info-BA3\Materials\obj\Debug\Materials.pdb
+C:\Users\User\Documents\GitHub\Projet-info-BA3\Materials\obj\Debug\Materials.BlocAmountPage.resources

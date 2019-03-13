@@ -199,6 +199,7 @@
             this.heightTrackBar.Name = "heightTrackBar";
             this.heightTrackBar.Size = new System.Drawing.Size(197, 56);
             this.heightTrackBar.TabIndex = 35;
+            this.heightTrackBar.Scroll += new System.EventHandler(this.heightTrackBar_Scroll);
             // 
             // depthTrackBar
             // 

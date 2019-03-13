@@ -19,7 +19,7 @@ namespace Materials
 
         private void button1_Click(object sender, EventArgs e)
         {
-            System.Threading.Thread monthread = new System.Threading.Thread(new System.Threading.ThreadStart(openConfigurationPage));
+            System.Threading.Thread monthread = new System.Threading.Thread(new System.Threading.ThreadStart(openBlocAmountPage));
             monthread.Start();
             this.Close();
         }
@@ -30,9 +30,9 @@ namespace Materials
             monthread.Start();
             this.Close();
         }
-        public static void openConfigurationPage()
+        public static void openBlocAmountPage()
         {
-            Application.Run(new ConfigurationPage()); //opens the first Client form
+            Application.Run(new BlocAmountPage());
         }
 
         public static void openSKLoginPage()

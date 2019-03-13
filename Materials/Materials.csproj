@@ -51,6 +51,12 @@
   <ItemGroup>
     <Compile Include="Angle.cs" />
     <Compile Include="Bloc.cs" />
+    <Compile Include="BlocAmountPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BlocAmountPage.Designer.cs">
+      <DependentUpon>BlocAmountPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Box.cs" />
     <Compile Include="Breadth.cs" />
     <Compile Include="ClassicDoor.cs" />
@@ -98,6 +104,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="BlocAmountPage.resx">
+      <DependentUpon>BlocAmountPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConfigurationPage.resx">
       <DependentUpon>ConfigurationPage.cs</DependentUpon>
     </EmbeddedResource>
