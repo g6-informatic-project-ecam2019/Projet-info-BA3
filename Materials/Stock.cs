@@ -59,6 +59,19 @@ namespace Materials
             connection.Close();
         }
 
+        private Dictionary <string, string> translateInfos (Piece piece)
+        {
+            Dictionary<string, string> infos = new Dictionary<string, string>();
+            if (piece is Panel)
+            {
+                if (piece.GetDescription()["type"]=="GD")
+                {
+
+                }
+            }
+            return infos;
+        }
+
         public Dictionary <string, Object> getPieceDescription (Piece piece)
         {
             /* Pre : recieve a Piece as paramater
@@ -69,21 +82,21 @@ namespace Materials
             int length = (int)piece.GetDescription()["length"];
             int width;
             string color;
-            if ((piece.GetType()==Panel)||(piece.GetType()==Door))
+            if ((piece is Panel)||(piece is Door))
                 {
                     width = (int)piece.GetDescription()["width"];
                 }
-            if ((piece.GetType() == ClassicDoor) || (piece.GetType() == Panel))
+            if ((piece is ClassicDoor) || (piece is Panel))
                 {
                     color = (string)piece.GetDescription()["color"];
                 }
             connect();
 
-            for (int i = 0; i < 400; i++) //A CHANGER =nbre de pièces différentes
+            for (int i = 0; i < 400; i++) //SELECT COUNT(*) FROM pieces
                 {   
-                    if ((piece.GetType() != Panel) || (piece.GetType() != Door))
+                    if (!(piece is Panel) || !(piece is Door))
                     {
-                        this.command.CommandText = String.Format("Select dimension from Piece where ref={}", piece.GetType());
+                        this.command.CommandText = String.Format("Select dimension from pieces where ref={}", piece.GetType());
                         reader = command.ExecuteReader();
                         while (reader.Read())
                         {
@@ -93,7 +106,7 @@ namespace Materials
                             }
                         }
                     }
-                    else if ((piece.GetType() == ClassicDoor) || (piece.GetType() == Panel))
+                    else if ((piece is ClassicDoor) || (piece is Panel))
                     {
                         //find all pieces with same color and width
                     }
