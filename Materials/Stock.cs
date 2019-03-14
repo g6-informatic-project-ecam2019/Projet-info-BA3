@@ -64,9 +64,17 @@ namespace Materials
             Dictionary<string, string> infos = new Dictionary<string, string>();
             if (piece is Panel)
             {
-                if (piece.GetDescription()["type"]=="GD")
+                if (piece.GetDescription()["pos"]=="GD")
                 {
-
+                    infos.Add("type", "Panneau GD");
+                }
+                else if (piece.GetDescription()["pos"]=="HB")
+                {
+                    infos.Add("type", "Panneau HB");
+                }
+                else
+                {
+                    infos.Add("type", "Panneau AR");
                 }
             }
             return infos;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Materials
 {
-    class Angle
+    class Angle : Piece
     {
         private float price;
         private int length;
