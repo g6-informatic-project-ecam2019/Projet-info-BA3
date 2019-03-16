@@ -14,6 +14,7 @@ namespace Materials
             this.price = price;
             this.length = length;
             this.pos = pos;
+            this.name = String.Format("Traverse {0}", pos);
         }
         public override Dictionary<string, Object> GetDescription()/*Returns a dictionary with all panel information*/
         {
@@ -21,6 +22,7 @@ namespace Materials
             Description.Add("price", this.price);
             Description.Add("length", this.length);
             Description.Add("pos", this.pos);
+            Description.Add("ref", this.name);
             return Description;
         }
     }

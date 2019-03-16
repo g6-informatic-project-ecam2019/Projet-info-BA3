@@ -18,6 +18,7 @@ namespace Materials
             this.color = color;
             this.width = width;
             this.position = position;
+            this.name = String.Format("Panneau {0}", this.position);
         }
         public override Dictionary<string, Object> GetDescription()/*Returns a dictionary with all panel information*/
         {
@@ -27,6 +28,7 @@ namespace Materials
             Description.Add("width", this.width);
             Description.Add("color", this.color);
             Description.Add("pos", this.position);
+            Description.Add("ref", this.name);
             return Description;
         }
     }

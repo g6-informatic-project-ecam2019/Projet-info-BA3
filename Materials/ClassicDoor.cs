@@ -17,6 +17,7 @@ namespace Materials
             this.color = color;
             this.width = width;
             this.type = "ClassicDoor";
+            this.name = "porte";
         }
         public override Dictionary<string, Object> GetDescription()/*Returns a dictionary with all panel information*/
         {
@@ -26,6 +27,7 @@ namespace Materials
             Description.Add("width", this.width);
             Description.Add("color", this.color);
             Description.Add("type", this.type);
+            Description.Add("ref", this.name);
             return Description;
         }
     }

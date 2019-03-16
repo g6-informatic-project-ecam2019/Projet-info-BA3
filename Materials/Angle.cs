@@ -8,8 +8,6 @@ namespace Materials
 {
     class Angle : Piece
     {
-        private float price;
-        private int length;
         private string color;
 
         public Angle(float price, int lenght, string color) /*builder*/
@@ -17,6 +15,7 @@ namespace Materials
             this.price = price;
             this.length = length;
             this.color = color;
+            this.name = "Cornieres";
         }
 
         public void SetPrice(float price)
@@ -30,6 +29,7 @@ namespace Materials
             Description.Add("price", this.price);
             Description.Add("length", this.length);
             Description.Add("color", this.color);
+            Description.Add("ref", this.name);
             return Description;
         }
     }

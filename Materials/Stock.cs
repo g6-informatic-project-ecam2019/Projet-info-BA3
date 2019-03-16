@@ -66,59 +66,6 @@ namespace Materials
         }
 
         /************************************************************************************************* 
-         * Pre :  recieve a Piece as parameter                                                           *
-         * Post : returns the correct name, that matches the field in the database                       *
-         *************************************************************************************************/
-        private string translateInfos (Piece piece)
-        {
-            string infos = "";
-            if (piece is Panel)
-            {
-                if (piece.GetDescription()["pos"]=="GD")
-                {
-                    infos = "Panneau GD";
-                }
-                else if (piece.GetDescription()["pos"]=="HB")
-                {
-                    infos = "Panneau HB";
-                }
-                else
-                {
-                    infos = "Panneau Ar";
-                }
-            }
-            else if (piece is Breadth)
-            {
-                if (piece.GetDescription()["pos"]=="Av")
-                {
-                    infos = "Traverse Av";
-                }
-                else if (piece.GetDescription()["pos"] == "Ar")
-                {
-                    infos ="Traverse Ar";
-                }
-                else 
-                {
-                    infos = "Traverse GD";
-                }
-            }
-            else if (piece is Cleat)
-            {
-                infos = "Tasseau";
-            }
-            else if (piece is Angle)
-            {
-                infos = "Cornieres";
-            }
-            else if (piece is Door)
-            {
-                infos = "Porte";
-            }
-            return infos;
-        }
-        
-
-        /************************************************************************************************* 
          * Pre : - recieve a dictionnary containing a part of description and other necessary parameters *
          *       - the piece is not a Panel, nor a door                                                  *
          * Post : edit the dictionnary with informations found in the DB                                 *
@@ -133,7 +80,7 @@ namespace Materials
             {
                 throw new System.ArgumentException("The piece cannot be a door nor a panel in this function");
             }
-            this.command.CommandText = String.Format("SELECT * FROM pieces WHERE ref='{0}'", translateInfos(piece));
+            this.command.CommandText = String.Format("SELECT * FROM pieces WHERE ref='{0}'", piece.GetDescription()["ref"].ToString());
 
             reader = command.ExecuteReader();
             while (reader.Read()) //retrieve all informations about the piece, and put them in the description dictionnary
@@ -179,7 +126,7 @@ namespace Materials
             dic.Add(dimension1, length);
             int width = (int)piece.GetDescription()["width"];
             dic.Add(dimension2, width);
-            command.CommandText = String.Format("SELECT * FROM pieces WHERE ref='{0}'", translateInfos(piece));
+            command.CommandText = String.Format("SELECT * FROM pieces WHERE ref='{0}'", piece.GetDescription()["ref"].ToString());
             reader = command.ExecuteReader();
             while (reader.Read()) //retrieve all informations about the piece, and put them in the description dictionnary
             {
@@ -290,12 +237,11 @@ namespace Materials
         }
 
         /************************************************************************
-         * Pre : 
-         * Post : returns existing dimensions  
-         */
+         * Pre :                                                                *
+         * Post : returns available heights                                     *
+         ************************************************************************/
          public int[] existingHeights()
          {
-            
             connect();
             command.CommandText = String.Format("SELECT * FROM pieces WHERE ref='Tasseau'"); //height of a box is given by cleat's length + 4 cm
             reader = command.ExecuteReader();
@@ -311,7 +257,7 @@ namespace Materials
             counter = 0;
             while (reader.Read())
             {
-                heights[counter] = (int) reader["height"];
+                heights[counter] = (int) reader["height"] + 4;
                 counter++;
             }
             return heights;

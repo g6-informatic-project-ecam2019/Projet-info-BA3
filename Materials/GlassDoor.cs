@@ -14,6 +14,7 @@ namespace Materials
             this.length = length;
             this.width = width;
             this.type = "GlassDoor"; /*Door type information(glassdoor or classicdoor)*/
+            this.name = "porte";
         }
         public override Dictionary<string, Object> GetDescription()/*Returns a dictionary with all panel information*/
         {
@@ -22,6 +23,7 @@ namespace Materials
             Description.Add("length", this.length);
             Description.Add("width", this.width);
             Description.Add("type", this.type);
+            Description.Add("ref", this.name);
             return Description;
         }
         public bool Dimention(int lenght)/*Check if the dimension is in the list, so add the measures in the list.*/
