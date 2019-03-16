@@ -15,13 +15,16 @@ namespace Materials
         private string connString;
         private MySqlConnection connection;
         private MySqlCommand command;
+        private MySqlCommand command2;
         private MySqlDataReader reader;
+        private MySqlDataReader reader2;
 
         public Stock(string connString)
         {
             this.connString = connString; //"Server=localhost;Port=3306;Database=mykitbox;Uid=root;Pwd="
             connection = new MySqlConnection(this.connString);
             command = connection.CreateCommand();
+            command2 = connection.CreateCommand();
             //command.CommandText = "SELECT * FROM pieces WHERE ref='Porte'"; //this is a "select" command, replace tableName and number
             connect();
             connection.Close();
@@ -121,42 +124,35 @@ namespace Materials
             Dictionary<string, Object> description = new Dictionary<string, Object>();
             int length = (int)piece.GetDescription()["length"];
             int width;
-            string color;
+            string color="";
             if ((piece is Panel)||(piece is Door))
                 {
                     width = (int)piece.GetDescription()["width"];
                 }
-            if ((piece is ClassicDoor) || (piece is Panel))
+            if ((piece is ClassicDoor) || (piece is Panel) || (piece is Angle))
                 {
                     color = (string)piece.GetDescription()["color"];
                 }
             connect();
 
-            for (int i = 0; i < 400; i++) //SELECT COUNT(*) FROM pieces
-                {   
-                    if (!(piece is Panel) || !(piece is Door))
+            //since the determining dimension is different following the type of piece, we have to make a different criterea for each type
+            if (piece is Angle)
+            {
+                this.command.CommandText = String.Format("SELECT * FROM pieces WHERE ref='{0}'", translateInfos(piece));
+                
+                reader = command.ExecuteReader();
+                while (reader.Read()) //retrieve all informations about the piece, and put them in the description dictionnary
+                {
+                    if ((int)reader["height"] == length)
                     {
-                        this.command.CommandText = String.Format("SELECT * FROM pieces WHERE ref='{0}'", translateInfos(piece));
-                        reader = command.ExecuteReader();
-                        while (reader.Read())
+                        if (reader["color"].ToString()== color)
                         {
-                            if ((int)reader["dimension"] == length)
-                            {
-                                //retrieve all informations about the piece, and put them in the description dictionnary
-                            }
+                            description.Add("code", reader["code"].ToString());
+                            description.Add("client price", (int) reader["client_price"]);
                         }
                     }
-                    else if ((piece is ClassicDoor) || (piece is Panel))
-                    {
-                        //find all pieces with same color and width
-                    }
-                    else
-                    {
-                        //find all pieces with same width
-                    }
-
                 }
-
+            }
             connection.Close();
             return description;
         }
