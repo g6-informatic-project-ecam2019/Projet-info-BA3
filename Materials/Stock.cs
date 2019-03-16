@@ -19,10 +19,10 @@ namespace Materials
 
         public Stock(string connString)
         {
-            this.connString = connString; //connection data = server adress, port and password
+            this.connString = connString; //"Server=localhost;Port=3306;Database=mykitbox;Uid=root;Pwd="
             connection = new MySqlConnection(this.connString);
             command = connection.CreateCommand();
-            //command.CommandText = "Select text from tableName where id=number"; //this is a "select" command, replace tableName and number
+            //command.CommandText = "SELECT * FROM pieces WHERE ref='Porte'"; //this is a "select" command, replace tableName and number
             connect();
             connection.Close();
         }
@@ -39,6 +39,7 @@ namespace Materials
             }
         }
 
+        /*--------------------------------------------------------------------------*/
         public bool isAvailable (Piece piece)
         {
             connect();
@@ -46,6 +47,7 @@ namespace Materials
             return false;
         }
 
+        /*--------------------------------------------------------------------------*/
         public void orderPieces (Piece[] piece) //when the storekeeper refills the stock
         {
             connect();
@@ -53,33 +55,63 @@ namespace Materials
             connection.Close();
         }
 
+        /*--------------------------------------------------------------------------*/
         public void removePiece (Piece piece)
         {
             connect();
             connection.Close();
         }
 
-        private Dictionary <string, string> translateInfos (Piece piece)
+        /*--------------------------------------------------------------------------*/
+        private string translateInfos (Piece piece)
         {
-            Dictionary<string, string> infos = new Dictionary<string, string>();
+            string infos = "";
             if (piece is Panel)
             {
                 if (piece.GetDescription()["pos"]=="GD")
                 {
-                    infos.Add("type", "Panneau GD");
+                    infos = "Panneau GD";
                 }
                 else if (piece.GetDescription()["pos"]=="HB")
                 {
-                    infos.Add("type", "Panneau HB");
+                    infos = "Panneau HB";
                 }
                 else
                 {
-                    infos.Add("type", "Panneau AR");
+                    infos = "Panneau Ar";
                 }
+            }
+            else if (piece is Breadth)
+            {
+                if (piece.GetDescription()["pos"]=="Av")
+                {
+                    infos = "Traverse Av";
+                }
+                else if (piece.GetDescription()["pos"] == "Ar")
+                {
+                    infos ="Traverse Ar";
+                }
+                else 
+                {
+                    infos = "Traverse GD";
+                }
+            }
+            else if (piece is Cleat)
+            {
+                infos = "Tasseau";
+            }
+            else if (piece is Angle)
+            {
+                infos = "Cornieres";
+            }
+            else if (piece is Door)
+            {
+                infos = "Porte";
             }
             return infos;
         }
 
+        /*----------------------------------------------------------------------------*/
         public Dictionary <string, Object> getPieceDescription (Piece piece)
         {
             /* Pre : recieve a Piece as paramater
@@ -104,7 +136,7 @@ namespace Materials
                 {   
                     if (!(piece is Panel) || !(piece is Door))
                     {
-                        this.command.CommandText = String.Format("Select dimension from pieces where ref={}", piece.GetType());
+                        this.command.CommandText = String.Format("SELECT * FROM pieces WHERE ref='{0}'", translateInfos(piece));
                         reader = command.ExecuteReader();
                         while (reader.Read())
                         {
