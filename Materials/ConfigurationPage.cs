@@ -52,7 +52,7 @@ namespace Materials
                 listPanel[--index].Visible = true;
             }
             StaticMesure();
-            TextBox();
+            TextBox(Number());
         }
         
         private void NextBlocBtn_Click(object sender, EventArgs e)
@@ -60,7 +60,7 @@ namespace Materials
             Refrechmesure();
             Number();
             StaticMesure();
-            TextBox();
+            TextBox(Number());
             
             if (index < 6)
             {
@@ -440,9 +440,9 @@ namespace Materials
             listPanel[6].Visible = true;
             index = 6;
         }
-        private void TextBox()
+        private void TextBox(int i)
         {
-            if (Number() == 0)
+            if (i == 0)
             {
                 textBoxx1.Text = "";
                 textBoxx2.Text = "";
@@ -452,7 +452,7 @@ namespace Materials
                 textBoxx6.Text = "";
                 textBoxx7.Text = "";
             }
-            if (Number() == 1)
+            if (i == 1)
             {
                 textBoxx1.Text ="Bloc 1: "+this.height[0]+"cm";
                 textBoxx2.Text = "";
@@ -462,8 +462,9 @@ namespace Materials
                 textBoxx6.Text = "";
                 textBoxx7.Text = "";
             }
-            if (Number() == 2)
+            if (i == 2)
             {
+                textBoxx1.Text = "Bloc 1: " + this.height[0] + "cm";
                 textBoxx2.Text = "Bloc 2: " + this.height[1] + "cm";
                 textBoxx3.Text = "";
                 textBoxx4.Text = "";
@@ -471,34 +472,54 @@ namespace Materials
                 textBoxx6.Text = "";
                 textBoxx7.Text = "";
             }
-            if (Number() == 3)
+            if (i == 3)
             {
+                textBoxx1.Text = "Bloc 1: " + this.height[0] + "cm";
+                textBoxx2.Text = "Bloc 2: " + this.height[1] + "cm";
                 textBoxx3.Text = "Bloc 3: " + this.height[2] + "cm";
                 textBoxx4.Text = "";
                 textBoxx5.Text = "";
                 textBoxx6.Text = "";
                 textBoxx7.Text = "";
             }
-            if (Number() == 4)
+            if (i == 4)
             {
+                textBoxx1.Text = "Bloc 1: " + this.height[0] + "cm";
+                textBoxx2.Text = "Bloc 2: " + this.height[1] + "cm";
+                textBoxx3.Text = "Bloc 3: " + this.height[2] + "cm";
                 textBoxx4.Text = "Bloc 4: " + this.height[3] + "cm";
                 textBoxx5.Text = "";
                 textBoxx6.Text = "";
                 textBoxx7.Text = "";
             }
-            if (Number() == 5)
+            if (i == 5)
             {
+                textBoxx1.Text = "Bloc 1: " + this.height[0] + "cm";
+                textBoxx2.Text = "Bloc 2: " + this.height[1] + "cm";
+                textBoxx3.Text = "Bloc 3: " + this.height[2] + "cm";
+                textBoxx4.Text = "Bloc 4: " + this.height[3] + "cm";
                 textBoxx5.Text = "Bloc 5: " + this.height[4] + "cm";
                 textBoxx6.Text = "";
                 textBoxx7.Text = "";
             }
-            if (Number() == 6)
+            if (i == 6)
             {
+                textBoxx1.Text = "Bloc 1: " + this.height[0] + "cm";
+                textBoxx2.Text = "Bloc 2: " + this.height[1] + "cm";
+                textBoxx3.Text = "Bloc 3: " + this.height[2] + "cm";
+                textBoxx4.Text = "Bloc 4: " + this.height[3] + "cm";
+                textBoxx5.Text = "Bloc 5: " + this.height[4] + "cm";
                 textBoxx6.Text = "Bloc 6: " + this.height[5] + "cm";
                 textBoxx7.Text = "";
             }
-            if (Number() == 7)
+            if (i == 7)
             {
+                textBoxx1.Text = "Bloc 1: " + this.height[0] + "cm";
+                textBoxx2.Text = "Bloc 2: " + this.height[1] + "cm";
+                textBoxx3.Text = "Bloc 3: " + this.height[2] + "cm";
+                textBoxx4.Text = "Bloc 4: " + this.height[3] + "cm";
+                textBoxx5.Text = "Bloc 5: " + this.height[4] + "cm";
+                textBoxx6.Text = "Bloc 6: " + this.height[5] + "cm";
                 textBoxx7.Text = "Bloc 7: " + this.height[6] + "cm";
             }
             TotalHeight();
@@ -590,7 +611,7 @@ namespace Materials
                 this.door[Number() - 1] = this.door[i];
                 Refrechforcopy(Number()-1);
                 StaticMesure();
-                TextBox();
+                TextBox(Number());
     }
             else if (Number() == 7)
             {
@@ -756,7 +777,7 @@ namespace Materials
                 PanelColorBox7.Text = "";
                 DoorBox7.Text = "";
             }
-            TextBox();
+            TextBox(Number());
         }
         private void DeleteBox1_Click(object sender, EventArgs e)
         {
