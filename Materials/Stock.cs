@@ -19,22 +19,15 @@ namespace Materials
 
         public Stock(string connString)
         {
-            this.connString = connString; //server adress, port and password
+            this.connString = connString; //connection data = server adress, port and password
             connection = new MySqlConnection(this.connString);
             command = connection.CreateCommand();
-            command.CommandText = "Select text from tableName where id=number"; //this is a "select" command, replace tableName and number
-            try
-            {
-                connection.Open();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            reader = command.ExecuteReader();
+            //command.CommandText = "Select text from tableName where id=number"; //this is a "select" command, replace tableName and number
+            connect();
+            connection.Close();
         }
 
-        public bool isAvailable (Piece piece)
+        private void connect()
         {
             try
             {
@@ -44,57 +37,94 @@ namespace Materials
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        public bool isAvailable (Piece piece)
+        {
+            connect();
             connection.Close();
             return false;
         }
 
         public void orderPieces (Piece[] piece) //when the storekeeper refills the stock
         {
-            try
-            {
-                connection.Open();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            connect();
 
             connection.Close();
         }
 
         public void removePiece (Piece piece)
         {
-            try
-            {
-                connection.Open();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            connect();
             connection.Close();
         }
 
-        public string getPieceDescription (Piece piece)
+        private Dictionary <string, string> translateInfos (Piece piece)
+        {
+            Dictionary<string, string> infos = new Dictionary<string, string>();
+            if (piece is Panel)
+            {
+                if (piece.GetDescription()["pos"]=="GD")
+                {
+                    infos.Add("type", "Panneau GD");
+                }
+                else if (piece.GetDescription()["pos"]=="HB")
+                {
+                    infos.Add("type", "Panneau HB");
+                }
+                else
+                {
+                    infos.Add("type", "Panneau AR");
+                }
+            }
+            return infos;
+        }
+
+        public Dictionary <string, Object> getPieceDescription (Piece piece)
         {
             /* Pre : recieve a Piece as paramater
-             * Post : Uses the piece dimensions to select the correct piece from DB and return its complete description
-             * 
+             * Post : Returns the piece's complete description
+             * Uses the piece characteristics to find the piece in the DB 
              */
-            string description="";
-            try
-            {
-                connection.Open();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            Dictionary<string, Object> description = new Dictionary<string, Object>();
+            int length = (int)piece.GetDescription()["length"];
+            int width;
+            string color;
+            if ((piece is Panel)||(piece is Door))
+                {
+                    width = (int)piece.GetDescription()["width"];
+                }
+            if ((piece is ClassicDoor) || (piece is Panel))
+                {
+                    color = (string)piece.GetDescription()["color"];
+                }
+            connect();
 
-            while (reader.Read())
-            {
-                description += reader["text"].ToString();
-            }
+            for (int i = 0; i < 400; i++) //SELECT COUNT(*) FROM pieces
+                {   
+                    if (!(piece is Panel) || !(piece is Door))
+                    {
+                        this.command.CommandText = String.Format("Select dimension from pieces where ref={}", piece.GetType());
+                        reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            if ((int)reader["dimension"] == length)
+                            {
+                                //retrieve all informations about the piece, and put them in the description dictionnary
+                            }
+                        }
+                    }
+                    else if ((piece is ClassicDoor) || (piece is Panel))
+                    {
+                        //find all pieces with same color and width
+                    }
+                    else
+                    {
+                        //find all pieces with same width
+                    }
+
+                }
+
             connection.Close();
             return description;
         }
