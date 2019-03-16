@@ -230,6 +230,7 @@
             this.textBoxx5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxx5.Multiline = true;
             this.textBoxx5.Name = "textBoxx5";
+            this.textBoxx5.ReadOnly = true;
             this.textBoxx5.Size = new System.Drawing.Size(228, 34);
             this.textBoxx5.TabIndex = 46;
             this.textBoxx5.TextChanged += new System.EventHandler(this.textBoxx5_TextChanged);
@@ -1355,6 +1356,7 @@
             this.CopyBox1.Size = new System.Drawing.Size(33, 34);
             this.CopyBox1.TabIndex = 54;
             this.CopyBox1.UseVisualStyleBackColor = true;
+            this.CopyBox1.Click += new System.EventHandler(this.CopyBox1_Click);
             // 
             // CopyBox2
             // 
@@ -1363,6 +1365,7 @@
             this.CopyBox2.Size = new System.Drawing.Size(33, 34);
             this.CopyBox2.TabIndex = 56;
             this.CopyBox2.UseVisualStyleBackColor = true;
+            this.CopyBox2.Click += new System.EventHandler(this.CopyBox2_Click);
             // 
             // ModifBloc2
             // 
@@ -1380,6 +1383,7 @@
             this.CopyBox3.Size = new System.Drawing.Size(33, 34);
             this.CopyBox3.TabIndex = 58;
             this.CopyBox3.UseVisualStyleBackColor = true;
+            this.CopyBox3.Click += new System.EventHandler(this.CopyBox3_Click);
             // 
             // ModifBloc3
             // 
@@ -1397,6 +1401,7 @@
             this.CopyBox6.Size = new System.Drawing.Size(33, 34);
             this.CopyBox6.TabIndex = 64;
             this.CopyBox6.UseVisualStyleBackColor = true;
+            this.CopyBox6.Click += new System.EventHandler(this.CopyBox6_Click);
             // 
             // ModifBloc6
             // 
@@ -1414,6 +1419,7 @@
             this.CopyBox5.Size = new System.Drawing.Size(33, 34);
             this.CopyBox5.TabIndex = 62;
             this.CopyBox5.UseVisualStyleBackColor = true;
+            this.CopyBox5.Click += new System.EventHandler(this.CopyBox5_Click);
             // 
             // ModifBloc5
             // 
@@ -1431,6 +1437,7 @@
             this.CopyBox4.Size = new System.Drawing.Size(33, 34);
             this.CopyBox4.TabIndex = 60;
             this.CopyBox4.UseVisualStyleBackColor = true;
+            this.CopyBox4.Click += new System.EventHandler(this.CopyBox4_Click);
             // 
             // ModifBloc4
             // 
@@ -1448,6 +1455,7 @@
             this.CopyBox7.Size = new System.Drawing.Size(33, 34);
             this.CopyBox7.TabIndex = 66;
             this.CopyBox7.UseVisualStyleBackColor = true;
+            this.CopyBox7.Click += new System.EventHandler(this.CopyBox7_Click);
             // 
             // ModifBloc7
             // 
@@ -1886,6 +1894,7 @@
             this.textBoxx6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxx6.Multiline = true;
             this.textBoxx6.Name = "textBoxx6";
+            this.textBoxx6.ReadOnly = true;
             this.textBoxx6.Size = new System.Drawing.Size(228, 34);
             this.textBoxx6.TabIndex = 68;
             // 
@@ -1895,6 +1904,7 @@
             this.textBoxx7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxx7.Multiline = true;
             this.textBoxx7.Name = "textBoxx7";
+            this.textBoxx7.ReadOnly = true;
             this.textBoxx7.Size = new System.Drawing.Size(228, 34);
             this.textBoxx7.TabIndex = 69;
             // 
@@ -1904,6 +1914,7 @@
             this.textBoxx4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxx4.Multiline = true;
             this.textBoxx4.Name = "textBoxx4";
+            this.textBoxx4.ReadOnly = true;
             this.textBoxx4.Size = new System.Drawing.Size(228, 34);
             this.textBoxx4.TabIndex = 70;
             // 
@@ -1913,6 +1924,7 @@
             this.textBoxx3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxx3.Multiline = true;
             this.textBoxx3.Name = "textBoxx3";
+            this.textBoxx3.ReadOnly = true;
             this.textBoxx3.Size = new System.Drawing.Size(228, 34);
             this.textBoxx3.TabIndex = 71;
             this.textBoxx3.TextChanged += new System.EventHandler(this.textBoxx3_TextChanged);
@@ -1923,6 +1935,7 @@
             this.textBoxx2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxx2.Multiline = true;
             this.textBoxx2.Name = "textBoxx2";
+            this.textBoxx2.ReadOnly = true;
             this.textBoxx2.Size = new System.Drawing.Size(228, 34);
             this.textBoxx2.TabIndex = 72;
             this.textBoxx2.TextChanged += new System.EventHandler(this.textBoxx2_TextChanged);
@@ -1933,6 +1946,7 @@
             this.textBoxx1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxx1.Multiline = true;
             this.textBoxx1.Name = "textBoxx1";
+            this.textBoxx1.ReadOnly = true;
             this.textBoxx1.Size = new System.Drawing.Size(228, 34);
             this.textBoxx1.TabIndex = 73;
             this.textBoxx1.TextChanged += new System.EventHandler(this.textBoxx1_TextChanged);
@@ -1954,6 +1968,7 @@
             this.texttotalheigth.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.texttotalheigth.Multiline = true;
             this.texttotalheigth.Name = "texttotalheigth";
+            this.texttotalheigth.ReadOnly = true;
             this.texttotalheigth.Size = new System.Drawing.Size(73, 36);
             this.texttotalheigth.TabIndex = 75;
             // 
@@ -2008,6 +2023,7 @@
             this.DeleteBox7.Size = new System.Drawing.Size(33, 34);
             this.DeleteBox7.TabIndex = 85;
             this.DeleteBox7.UseVisualStyleBackColor = true;
+            this.DeleteBox7.Click += new System.EventHandler(this.DeleteBox7_Click);
             // 
             // DeleteBox6
             // 
@@ -2016,6 +2032,7 @@
             this.DeleteBox6.Size = new System.Drawing.Size(33, 34);
             this.DeleteBox6.TabIndex = 84;
             this.DeleteBox6.UseVisualStyleBackColor = true;
+            this.DeleteBox6.Click += new System.EventHandler(this.DeleteBox6_Click);
             // 
             // DeleteBox5
             // 
@@ -2024,6 +2041,7 @@
             this.DeleteBox5.Size = new System.Drawing.Size(33, 34);
             this.DeleteBox5.TabIndex = 83;
             this.DeleteBox5.UseVisualStyleBackColor = true;
+            this.DeleteBox5.Click += new System.EventHandler(this.DeleteBox5_Click);
             // 
             // DeleteBox4
             // 
@@ -2032,6 +2050,7 @@
             this.DeleteBox4.Size = new System.Drawing.Size(33, 34);
             this.DeleteBox4.TabIndex = 82;
             this.DeleteBox4.UseVisualStyleBackColor = true;
+            this.DeleteBox4.Click += new System.EventHandler(this.DeleteBox4_Click);
             // 
             // DeleteBox3
             // 
@@ -2040,6 +2059,7 @@
             this.DeleteBox3.Size = new System.Drawing.Size(33, 34);
             this.DeleteBox3.TabIndex = 81;
             this.DeleteBox3.UseVisualStyleBackColor = true;
+            this.DeleteBox3.Click += new System.EventHandler(this.DeleteBox3_Click);
             // 
             // DeleteBox2
             // 
@@ -2048,6 +2068,7 @@
             this.DeleteBox2.Size = new System.Drawing.Size(33, 34);
             this.DeleteBox2.TabIndex = 80;
             this.DeleteBox2.UseVisualStyleBackColor = true;
+            this.DeleteBox2.Click += new System.EventHandler(this.DeleteBox2_Click);
             // 
             // DeleteBox1
             // 
@@ -2056,6 +2077,7 @@
             this.DeleteBox1.Size = new System.Drawing.Size(33, 34);
             this.DeleteBox1.TabIndex = 79;
             this.DeleteBox1.UseVisualStyleBackColor = true;
+            this.DeleteBox1.Click += new System.EventHandler(this.DeleteBox1_Click);
             // 
             // ConfigurationPage
             // 

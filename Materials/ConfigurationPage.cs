@@ -27,8 +27,8 @@ namespace Materials
         int index=0;
         public ConfigurationPage()
         {
-            
-            
+           
+
             InitializeComponent();
         }
 
@@ -143,30 +143,44 @@ namespace Materials
             if (index == 0)
             {
                 height[0] = Convert.ToInt32(heightBox1.Text);
+                panelsColor[0] = PanelColorBox1.Text;
+                door[0] = DoorBox1.Text;
             }
             if (index == 1)
             {
                 height[1] = Convert.ToInt32(heightBox2.Text);
+                panelsColor[1] = PanelColorBox2.Text;
+                door[1] = DoorBox2.Text;
             }
             if (index == 2)
             {
                 height[2] = Convert.ToInt32(heightBox3.Text);
+                panelsColor[2] = PanelColorBox3.Text;
+                door[2] = DoorBox3.Text;
             }
             if (index == 3)
             {
                 height[3] = Convert.ToInt32(heightBox4.Text);
+                panelsColor[3] = PanelColorBox4.Text;
+                door[3] = DoorBox4.Text;
             }
             if (index == 4)
             {
                 height[4] = Convert.ToInt32(heightBox5.Text);
+                panelsColor[4] = PanelColorBox5.Text;
+                door[4] = DoorBox5.Text;
             }
             if (index == 5)
             {
                 height[5] = Convert.ToInt32(heightBox6.Text);
+                panelsColor[5] = PanelColorBox6.Text;
+                door[5] = DoorBox6.Text;
             }
             if (index == 6)
             {
                 height[6] = Convert.ToInt32(heightBox7.Text);
+                panelsColor[6] = PanelColorBox7.Text;
+                door[6] = DoorBox7.Text;
             }
         }
         private void StaticMesure()
@@ -522,6 +536,261 @@ namespace Materials
         private void textBoxx3_TextChanged(object sender, EventArgs e)
         {
 
+        }
+        private void Refrechforcopy(int i)
+        {
+            
+            if (i == 1)
+            {
+                this.height[i-1] = Convert.ToInt32(heightBox1.Text);
+                this.panelsColor[i-1] = PanelColorBox1.Text;
+                this.door[i-1] = DoorBox1.Text;
+                heightBox2.Text = Convert.ToString(this.height[i]);
+                PanelColorBox2.Text = this.panelsColor[i];
+                DoorBox2.Text = this.door[i];
+
+            }
+            else if (i == 2)
+            {
+                heightBox3.Text = Convert.ToString(this.height[i]);
+                PanelColorBox3.Text = this.panelsColor[i];
+                DoorBox3.Text = this.door[i];
+            }
+            else if (i == 3)
+            {
+                heightBox4.Text = Convert.ToString(this.height[i]);
+                PanelColorBox4.Text = this.panelsColor[i];
+                DoorBox4.Text = this.door[i];
+            }
+            else if (i == 4)
+            {
+                heightBox5.Text = Convert.ToString(this.height[i]);
+                PanelColorBox5.Text = this.panelsColor[i];
+                DoorBox5.Text = this.door[i];
+            }
+            else if (i == 5)
+            {
+                heightBox6.Text = Convert.ToString(height[i]);
+                PanelColorBox6.Text = panelsColor[i];
+                DoorBox6.Text = door[i];
+            }
+            else if (i == 6)
+            {
+                heightBox7.Text = Convert.ToString(this.height[i]);
+                PanelColorBox7.Text = this.panelsColor[i];
+                DoorBox7.Text = this.door[i];
+            }
+        }
+        private void CopyboxClick(int i)
+        {
+            if (Number() >i &Number()<7)
+            {
+                this.height[Number()] = this.height[i];
+                this.panelsColor[Number() - 1] = this.panelsColor[i];
+                this.door[Number() - 1] = this.door[i];
+                Refrechforcopy(Number()-1);
+                StaticMesure();
+                TextBox();
+    }
+            else if (Number() == 7)
+            {
+                MessageBox.Show("You have configured all blocks");
+            }
+            else
+            {
+                MessageBox.Show("Bloc "+(i+1)+" is not configured");
+            }
+        }
+        private void CopyBox1_Click(object sender, EventArgs e)
+        {
+
+            CopyboxClick(0);
+        }
+
+        private void CopyBox2_Click(object sender, EventArgs e)
+        {
+            CopyboxClick(1);
+        }
+
+        private void CopyBox3_Click(object sender, EventArgs e)
+        {
+            CopyboxClick(2);
+        }
+
+        private void CopyBox4_Click(object sender, EventArgs e)
+        {
+            CopyboxClick(3);
+        }
+
+        private void CopyBox5_Click(object sender, EventArgs e)
+        {
+            CopyboxClick(4);
+        }
+
+        private void CopyBox6_Click(object sender, EventArgs e)
+        {
+            CopyboxClick(5);
+        }
+
+        private void CopyBox7_Click(object sender, EventArgs e)
+        {
+            CopyboxClick(6);
+        }
+        private void DeleteClick(int i)
+        {
+
+            for (int h=i; h < 7; h++)
+            {
+                this.height[h] = 0;
+                this.panelsColor[h] = "";
+                this.door[h] = "";
+            }
+            if (i == 0)
+            {
+                heightBox1.Text = "";
+                heightBox2.Text = "";
+                heightBox3.Text = "";
+                heightBox4.Text = "";
+                heightBox5.Text = "";
+                heightBox6.Text = "";
+                heightBox7.Text = "";
+                PanelColorBox1.Text = "";
+                PanelColorBox2.Text = "";
+                PanelColorBox3.Text = "";
+                PanelColorBox4.Text = "";
+                PanelColorBox5.Text = "";
+                PanelColorBox6.Text = "";
+                PanelColorBox7.Text = "";
+                DoorBox1.Text = "";
+                DoorBox2.Text = "";
+                DoorBox3.Text = "";
+                DoorBox4.Text = "";
+                DoorBox5.Text = "";
+                DoorBox6.Text = "";
+                DoorBox7.Text = "";
+                this.width = 0;
+                this.depth = 0;
+                DepthBox1.Text = "";
+                widthBox1.Text = "";
+                StaticMesure();
+
+            }
+            if (i == 1)
+            {
+                heightBox2.Text = "";
+                heightBox3.Text = "";
+                heightBox4.Text = "";
+                heightBox5.Text = "";
+                heightBox6.Text = "";
+                heightBox7.Text = "";
+                PanelColorBox2.Text = "";
+                PanelColorBox3.Text = "";
+                PanelColorBox4.Text = "";
+                PanelColorBox5.Text = "";
+                PanelColorBox6.Text = "";
+                PanelColorBox7.Text = "";
+                DoorBox2.Text = "";
+                DoorBox3.Text = "";
+                DoorBox4.Text = "";
+                DoorBox5.Text = "";
+                DoorBox6.Text = "";
+                DoorBox7.Text = "";
+            }
+            if (i == 2)
+            {
+                heightBox3.Text = "";
+                heightBox4.Text = "";
+                heightBox5.Text = "";
+                heightBox6.Text = "";
+                heightBox7.Text = "";
+                PanelColorBox3.Text = "";
+                PanelColorBox4.Text = "";
+                PanelColorBox5.Text = "";
+                PanelColorBox6.Text = "";
+                PanelColorBox7.Text = "";
+                DoorBox3.Text = "";
+                DoorBox4.Text = "";
+                DoorBox5.Text = "";
+                DoorBox6.Text = "";
+                DoorBox7.Text = "";
+            }
+            if (i == 3)
+            {
+                heightBox4.Text = "";
+                heightBox5.Text = "";
+                heightBox6.Text = "";
+                heightBox7.Text = "";
+                PanelColorBox4.Text = "";
+                PanelColorBox5.Text = "";
+                PanelColorBox6.Text = "";
+                PanelColorBox7.Text = "";
+                DoorBox4.Text = "";
+                DoorBox5.Text = "";
+                DoorBox6.Text = "";
+                DoorBox7.Text = "";
+            }
+            if (i == 4)
+            {
+                heightBox5.Text = "";
+                heightBox6.Text = "";
+                heightBox7.Text = "";
+                PanelColorBox5.Text = "";
+                PanelColorBox6.Text = "";
+                PanelColorBox7.Text = "";
+                DoorBox5.Text = "";
+                DoorBox6.Text = "";
+                DoorBox7.Text = "";
+            }
+            if (i == 5)
+            {
+                heightBox6.Text = "";
+                heightBox7.Text = "";
+                PanelColorBox6.Text = "";
+                PanelColorBox7.Text = "";
+                DoorBox6.Text = "";
+                DoorBox7.Text = "";
+            }
+            if (i == 6)
+            {
+                heightBox7.Text = "";
+                PanelColorBox7.Text = "";
+                DoorBox7.Text = "";
+            }
+            TextBox();
+        }
+        private void DeleteBox1_Click(object sender, EventArgs e)
+        {
+            DeleteClick(0);
+        }
+
+        private void DeleteBox2_Click(object sender, EventArgs e)
+        {
+            DeleteClick(1);
+        }
+
+        private void DeleteBox3_Click(object sender, EventArgs e)
+        {
+            DeleteClick(2);
+        }
+
+        private void DeleteBox4_Click(object sender, EventArgs e)
+        {
+            DeleteClick(3);
+        }
+
+        private void DeleteBox5_Click(object sender, EventArgs e)
+        {
+            DeleteClick(4);
+        }
+
+        private void DeleteBox6_Click(object sender, EventArgs e)
+        {
+            DeleteClick(5);
+        }
+
+        private void DeleteBox7_Click(object sender, EventArgs e)
+        {
+            DeleteClick(6);
         }
     }
 }
