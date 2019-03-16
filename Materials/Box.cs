@@ -17,7 +17,7 @@ namespace Materials
         private string doorcolor;
         private Dictionary<string, Object> Cupboard;
         private double price;
-        private Piece[] parts = new Piece[13];
+        private Piece[] parts = new Piece[15];
 
         public Box(int height, string pannelsColor, bool hasdoor, Cupboard cupboard, string typedoor, string doorcolor) /*builder*/
         {
@@ -35,26 +35,28 @@ namespace Materials
             for (int i = 0; i < 4; i++)
             {
                 this.parts[i] = new Cleat(5, this.height - 4);/*cleat1-4*/
-                this.parts[i+4] = new Breadth(5, this.depth);/*breadthGD1-2-AR-AV*/
                 if (i < 2)                                  //there are only three pannels in a box (front = door)
                 {
+                    this.parts[i+4]  = new Breadth(5, this.depth, "GD");
                     this.parts[i+8] = new Panel(5, this.height, this.pannelsColor, this.depth,"GD");/*panelGD1*/
-                    this.parts[i+10] = this.parts[10] = new Panel(5, this.height, this.pannelsColor, this.depth, "HB");
-                    this.parts[i+12] = this.parts[12] = new Panel(5, this.height, this.pannelsColor, this.depth, "AR");
+                    this.parts[i+10] = new Panel(5, this.height, this.pannelsColor, this.depth, "HB");
                 }
             }
+            this.parts[6] = new Breadth(5, this.depth, "Av");
+            this.parts[7] = new Breadth(5, this.depth, "Ar");
+            this.parts[12] = new Panel(5, this.height, this.pannelsColor, this.depth, "AR");
 
             if (hasdoor == true)
             {
                 if (typedoor== "ClassicDoor")
                 {
-                    this.parts[11] = new ClassicDoor(5, this.height, this.doorcolor, this.width);/*classicdoor1*/
-                    this.parts[12] = new ClassicDoor(5, this.height, this.doorcolor, this.width);/*classicdoor2*/
+                    this.parts[13] = new ClassicDoor(5, this.height, this.doorcolor, this.width);/*classicdoor1*/
+                    this.parts[14] = new ClassicDoor(5, this.height, this.doorcolor, this.width);/*classicdoor2*/
                 }
                 else
                 {
-                    this.parts[11] = new GlassDoor(5, this.height, this.width);/*glassdoor1*/
-                    this.parts[12] = new GlassDoor(5, this.height, this.width);/*glassdoor2*/
+                    this.parts[13] = new GlassDoor(5, this.height, this.width);/*glassdoor1*/
+                    this.parts[14] = new GlassDoor(5, this.height, this.width);/*glassdoor2*/
                 }
             }
         }
