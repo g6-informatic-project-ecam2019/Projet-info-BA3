@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Materials
 {
-    class Angle
+    class Angle : Piece
     {
         private float price;
         private int length;
@@ -24,7 +24,7 @@ namespace Materials
             this.price = price;
         }
 
-        public Dictionary<string, Object> GetDescription()/*Returns a dictionary with all panel information*/
+        public override Dictionary<string, Object> GetDescription()/*Returns a dictionary with all panel information*/
         {
             Dictionary<string, Object> Description = new Dictionary<string, Object>();
             Description.Add("price", this.price);
