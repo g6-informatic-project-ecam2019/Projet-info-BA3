@@ -233,7 +233,7 @@
             this.textBoxx5.ReadOnly = true;
             this.textBoxx5.Size = new System.Drawing.Size(228, 34);
             this.textBoxx5.TabIndex = 46;
-            this.textBoxx5.TextChanged += new System.EventHandler(this.textBoxx5_TextChanged);
+            
             // 
             // PrevBlocBtn
             // 
@@ -248,6 +248,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.SystemColors.Control;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.heightBox1);
             this.panel1.Controls.Add(this.widthBox1);
@@ -468,7 +469,7 @@
             this.label4.Size = new System.Drawing.Size(67, 25);
             this.label4.TabIndex = 7;
             this.label4.Text = "Width";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+            
             // 
             // WidthTxt
             // 
@@ -479,10 +480,11 @@
             this.WidthTxt.Size = new System.Drawing.Size(74, 25);
             this.WidthTxt.TabIndex = 6;
             this.WidthTxt.Text = "Height";
-            this.WidthTxt.Click += new System.EventHandler(this.WidthTxt_Click);
+            
             // 
             // panel3
             // 
+            this.panel3.BackColor = System.Drawing.SystemColors.Control;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.AnglesColorBox3);
             this.panel3.Controls.Add(this.DepthBox3);
@@ -692,6 +694,7 @@
             // 
             // panel4
             // 
+            this.panel4.BackColor = System.Drawing.SystemColors.Control;
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.AnglesColorBox4);
             this.panel4.Controls.Add(this.DepthBox4);
@@ -901,6 +904,7 @@
             // 
             // panel5
             // 
+            this.panel5.BackColor = System.Drawing.SystemColors.Control;
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel5.Controls.Add(this.AnglesColorBox5);
             this.panel5.Controls.Add(this.DepthBox5);
@@ -1028,7 +1032,7 @@
             this.label49.Size = new System.Drawing.Size(74, 27);
             this.label49.TabIndex = 31;
             this.label49.Text = "Bloc 5";
-            this.label49.Click += new System.EventHandler(this.label49_Click);
+            
             // 
             // DoorBox5
             // 
@@ -1111,6 +1115,7 @@
             // 
             // panel6
             // 
+            this.panel6.BackColor = System.Drawing.SystemColors.Control;
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel6.Controls.Add(this.AnglesColorBox6);
             this.panel6.Controls.Add(this.DepthBox6);
@@ -1468,6 +1473,7 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.SystemColors.Control;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.AnglesColorBox2);
             this.panel2.Controls.Add(this.DepthBox2);
@@ -1509,7 +1515,7 @@
             this.DepthBox2.ReadOnly = true;
             this.DepthBox2.Size = new System.Drawing.Size(184, 31);
             this.DepthBox2.TabIndex = 49;
-            this.DepthBox2.TextChanged += new System.EventHandler(this.DepthBox2_TextChanged);
+            
             // 
             // widthBox2
             // 
@@ -1519,7 +1525,7 @@
             this.widthBox2.ReadOnly = true;
             this.widthBox2.Size = new System.Drawing.Size(184, 31);
             this.widthBox2.TabIndex = 48;
-            this.widthBox2.TextChanged += new System.EventHandler(this.widthBox2_TextChanged);
+            
             // 
             // heightBox2
             // 
@@ -1679,6 +1685,7 @@
             // 
             // panel7
             // 
+            this.panel7.BackColor = System.Drawing.SystemColors.Control;
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel7.Controls.Add(this.AnglesColorBox7);
             this.panel7.Controls.Add(this.DepthBox7);
@@ -1729,7 +1736,7 @@
             this.widthBox7.ReadOnly = true;
             this.widthBox7.Size = new System.Drawing.Size(184, 31);
             this.widthBox7.TabIndex = 49;
-            this.widthBox7.TextChanged += new System.EventHandler(this.widthBox2_TextChanged);
+            
             // 
             // heightBox7
             // 
@@ -1927,7 +1934,7 @@
             this.textBoxx3.ReadOnly = true;
             this.textBoxx3.Size = new System.Drawing.Size(228, 34);
             this.textBoxx3.TabIndex = 71;
-            this.textBoxx3.TextChanged += new System.EventHandler(this.textBoxx3_TextChanged);
+            
             // 
             // textBoxx2
             // 
@@ -1938,7 +1945,7 @@
             this.textBoxx2.ReadOnly = true;
             this.textBoxx2.Size = new System.Drawing.Size(228, 34);
             this.textBoxx2.TabIndex = 72;
-            this.textBoxx2.TextChanged += new System.EventHandler(this.textBoxx2_TextChanged);
+            
             // 
             // textBoxx1
             // 
@@ -1949,7 +1956,7 @@
             this.textBoxx1.ReadOnly = true;
             this.textBoxx1.Size = new System.Drawing.Size(228, 34);
             this.textBoxx1.TabIndex = 73;
-            this.textBoxx1.TextChanged += new System.EventHandler(this.textBoxx1_TextChanged);
+            
             // 
             // label78
             // 
@@ -2083,6 +2090,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1224, 748);
             this.Controls.Add(this.label82);
             this.Controls.Add(this.DeleteBox7);
@@ -2123,13 +2131,13 @@
             this.Controls.Add(this.textBoxx5);
             this.Controls.Add(this.PrevBlocBtn);
             this.Controls.Add(this.NextBlocBtn);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel4);
-            this.Controls.Add(this.panel2);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ConfigurationPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -25,11 +25,11 @@ namespace Materials
         private Cupboard cupboard1;
         List<System.Windows.Forms.Panel> listPanel = new List<System.Windows.Forms.Panel>();
         int index=0;
+        ConfirmOrderPage configpage;
         public ConfigurationPage()
         {
-           
-
             InitializeComponent();
+            configpage = new ConfirmOrderPage(this);
         }
 
         private void HomeBtn_Click(object sender, EventArgs e)
@@ -83,9 +83,9 @@ namespace Materials
             {
                 cupboard1.AddBloc(new Box(height[i], panelsColor[i], hasdoor[i], cupboard1, typedoor[i], doorcolor[i]));
             }
-            
-            
-            this.Close();
+            configpage.Show();
+
+            this.Hide(); 
         }
         private void TotalHeight()
         {
@@ -119,7 +119,6 @@ namespace Materials
                     doorcolor[i] = door[i];
                 }
             }
-            
         }
         private int Number()
         {
@@ -134,9 +133,6 @@ namespace Materials
                 
             }
             return h;
-            
-            
-            
         }
         private void Refrechmesure()
         {
@@ -331,41 +327,6 @@ namespace Materials
             heightBox7.Text = "0";
 
         }
-
-        
-
-        
-
-        private void WidthTxt_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxx5_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void label12_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label49_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel7_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void ConfigurationPage_MouseClick(object sender, MouseEventArgs e)
         {
             
@@ -525,39 +486,6 @@ namespace Materials
             TotalHeight();
             texttotalheigth.Text = Convert.ToString(totalheight);
         }
-        private void widthBox2_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void DepthBox2_TextChanged(object sender, EventArgs e)
-        {
-            
-
-
-        }
-
-        private void widthBox7_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        
-
-        private void textBoxx1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxx2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxx3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         private void Refrechforcopy(int i)
         {
             
@@ -691,8 +619,10 @@ namespace Materials
                 DoorBox7.Text = "";
                 this.width = 0;
                 this.depth = 0;
+                this.angleColor = "";
                 DepthBox1.Text = "";
                 widthBox1.Text = "";
+                AnglesColorBox1.Text = "";
                 StaticMesure();
 
             }
