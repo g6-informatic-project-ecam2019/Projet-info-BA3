@@ -12,8 +12,23 @@ namespace Materials
 {
     public partial class ConfigurationPage : Form
     {
+        private int depth;
+        private int width;
+        private int totalheight;
+        private int[] height = new int[] { 0, 0, 0, 0, 0, 0 ,0};
+        private string angleColor;
+        private string[] panelsColor = new string[7];
+        private string[] door = new string[7];
+        private bool[] hasdoor = new bool[7];
+        private string[] typedoor = new string[7];
+        private string[] doorcolor = new string[7];
+        private Cupboard cupboard1;
+        List<System.Windows.Forms.Panel> listPanel = new List<System.Windows.Forms.Panel>();
+        int index=0;
         public ConfigurationPage()
         {
+            
+            
             InitializeComponent();
         }
 
@@ -26,34 +41,485 @@ namespace Materials
 
         private void PrevBlocBtn_Click(object sender, EventArgs e)
         {
-
+            Refrechmesure();
+            Number();
+            if (index >0)
+            {
+                for (int i = 0; i < 7; i++)
+                {
+                    listPanel[i].Visible = false;
+                }
+                listPanel[--index].Visible = true;
+            }
+            StaticMesure();
+            TextBox();
         }
-
+        
         private void NextBlocBtn_Click(object sender, EventArgs e)
         {
-
+            Refrechmesure();
+            Number();
+            StaticMesure();
+            TextBox();
+            
+            if (index < 6)
+            {
+                for (int i = 0; i < 7; i++)
+                {
+                    listPanel[i].Visible = false;
+                }
+                listPanel[++index].Visible = true;
+                
+            }
         }
 
         private void MkOrdrBtn_Click(object sender, EventArgs e)
         {
-
+            
+            cupboard1 = new Cupboard(depth,width,angleColor,Number());
+            Door();
+            int i;
+            for (i = 0; i < Number(); i++)
+            {
+                cupboard1.AddBloc(new Box(height[i], panelsColor[i], hasdoor[i], cupboard1, typedoor[i], doorcolor[i]));
+            }
+            
+            
+            this.Close();
+        }
+        private void TotalHeight()
+        {
+            totalheight = 0;
+            int i;
+            for (i = 0; i <7; i++)
+            {
+                totalheight += height[i];
+            }
+        }
+        private void Door()
+        {
+            int i;
+            for (i=0;i<Number();i++)
+            {
+                hasdoor[i] = true;
+                if (door[i] == "No door")
+                {
+                    hasdoor[i] = false;
+                    typedoor[i] = null;
+                    doorcolor[i] = null;
+                }
+                else if (door[i] == "Glass")
+                {
+                    typedoor[i] = "GlassDoor";
+                    doorcolor[i] = null;
+                }
+                else
+                {
+                    typedoor[i] = "ClassicDoor";
+                    doorcolor[i] = door[i];
+                }
+            }
+            
+        }
+        private int Number()
+        {
+            int i;
+            int h=0;
+            for (i = 0; i < 7; i++)
+            {
+                if (height[i] != 0)
+                {
+                    h++;
+                }
+                
+            }
+            return h;
+            
+            
+            
+        }
+        private void Refrechmesure()
+        {
+            if (index == 0)
+            {
+                height[0] = Convert.ToInt32(heightBox1.Text);
+            }
+            if (index == 1)
+            {
+                height[1] = Convert.ToInt32(heightBox2.Text);
+            }
+            if (index == 2)
+            {
+                height[2] = Convert.ToInt32(heightBox3.Text);
+            }
+            if (index == 3)
+            {
+                height[3] = Convert.ToInt32(heightBox4.Text);
+            }
+            if (index == 4)
+            {
+                height[4] = Convert.ToInt32(heightBox5.Text);
+            }
+            if (index == 5)
+            {
+                height[5] = Convert.ToInt32(heightBox6.Text);
+            }
+            if (index == 6)
+            {
+                height[6] = Convert.ToInt32(heightBox7.Text);
+            }
+        }
+        private void StaticMesure()
+        {
+            widthBox2.Text = Convert.ToString(this.width);
+            DepthBox2.Text = Convert.ToString(this.depth);
+            AnglesColorBox2.Text = this.angleColor;
+            widthBox5.Text = Convert.ToString(this.width);
+            DepthBox5.Text = Convert.ToString(this.depth);
+            AnglesColorBox5.Text = this.angleColor;
+            widthBox3.Text = Convert.ToString(this.width);
+            DepthBox3.Text = Convert.ToString(this.depth);
+            AnglesColorBox3.Text = this.angleColor;
+            widthBox4.Text = Convert.ToString(this.width);
+            DepthBox4.Text = Convert.ToString(this.depth);
+            AnglesColorBox4.Text = this.angleColor;
+            widthBox6.Text = Convert.ToString(this.width);
+            DepthBox6.Text = Convert.ToString(this.depth);
+            AnglesColorBox6.Text = this.angleColor;
+            widthBox7.Text = Convert.ToString(this.width);
+            DepthBox7.Text = Convert.ToString(this.depth);
+            AnglesColorBox7.Text = this.angleColor;
         }
         public static void openHomePage()
         {
             Application.Run(new HomePage()); //opens the Home form
         }
-
-        private void widthTrackBar_Scroll(object sender, EventArgs e)
+        private void heightBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            widthLabel.Text = "" + widthTrackBar.Value;
+            height[0] = Convert.ToInt32(heightBox1.Text);
+        }
+        private void widthBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            width = Convert.ToInt32(widthBox1.Text);
+        }
+        private void DepthBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            depth = Convert.ToInt32(DepthBox1.Text);
+        }
+        private void PanelColorBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            panelsColor[0]=(PanelColorBox1.Text);
+        }
+        private void AnglesColorBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            angleColor = AnglesColorBox1.Text;
+        }
+        private void DoorBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            door[0]=(DoorBox1.Text);
+        }
+        private void heightBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            height[1] = Convert.ToInt32(heightBox2.Text);
+        }
+        private void PanelColorBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            panelsColor[1] = (PanelColorBox2.Text);
+        }
+        private void DoorBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            door[1] = (DoorBox2.Text);
+        }
+        private void heightBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            height[2] = Convert.ToInt32(heightBox3.Text);
+        }
+        private void PanelColorBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            panelsColor[2] = (PanelColorBox3.Text);
+        }
+        private void DoorBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            door[2] = (DoorBox3.Text);
+        }
+        private void heightBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            height[3] = Convert.ToInt32(heightBox4.Text);
+        }
+        private void PanelColorBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            panelsColor[3] = (PanelColorBox4.Text);
+        }
+        private void DoorBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            door[3] = (DoorBox4.Text);
+        }
+        private void heightBox5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            height[4] = Convert.ToInt32(heightBox5.Text);
+        }
+        private void PanelColorBox5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            panelsColor[4] = (PanelColorBox5.Text);
+        }
+        private void DoorBox5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            door[4] = (DoorBox5.Text);
+        }
+        private void heightBox6_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            height[5] = Convert.ToInt32(heightBox6.Text);
+        }
+        private void PanelColorBox6_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            panelsColor[5] = (PanelColorBox6.Text);
+        }
+        private void DoorBox6_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            door[5] = (DoorBox6.Text);
+        }
+        private void heightBox7_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            height[6] = Convert.ToInt32(heightBox7.Text);
+        }
+        private void PanelColorBox7_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            panelsColor[6] = (PanelColorBox7.Text);
+        }
+        private void DoorBox7_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            door[6] = (DoorBox7.Text);
+        }
+        private void ConfigurationPage_Load(object sender, EventArgs e)
+        {
+
+            listPanel.Add(panel1);
+            listPanel.Add(panel2);
+            listPanel.Add(panel3);
+            listPanel.Add(panel4);
+            listPanel.Add(panel5);
+            listPanel.Add(panel6);
+            listPanel.Add(panel7);
+            for (int i = 0;i<listPanel.Count;i++)
+            {
+                listPanel[i].Parent = panel1.Parent;
+                listPanel[i].Top=panel1.Top;
+                listPanel[i].Left = panel1.Left;
+                listPanel[i].Visible = false;
+            }
+            listPanel[index].Visible=true;
+            heightBox1.Text = "0";
+            heightBox2.Text = "0";
+            heightBox3.Text = "0";
+            heightBox4.Text = "0";
+            heightBox5.Text = "0";
+            heightBox6.Text = "0";
+            heightBox7.Text = "0";
+
         }
 
-        private void depthTrackBar_Scroll(object sender, EventArgs e)
+        
+
+        
+
+        private void WidthTxt_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void heightTrackBar_Scroll(object sender, EventArgs e)
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxx5_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label49_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel7_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void ConfigurationPage_MouseClick(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void ModifBloc1_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < listPanel.Count; i++)
+            {
+                listPanel[i].Visible = false;
+            }
+            listPanel[0].Visible = true;
+            index = 0;
+        }
+
+        private void ModifBloc2_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < listPanel.Count; i++)
+            {
+                listPanel[i].Visible = false;
+            }
+            listPanel[1].Visible = true;
+            index = 1;
+        }
+
+        private void ModifBloc3_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < listPanel.Count; i++)
+            {
+                listPanel[i].Visible = false;
+            }
+            listPanel[2].Visible = true;
+            index = 2;
+        }
+
+        private void ModifBloc4_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < listPanel.Count; i++)
+            {
+                listPanel[i].Visible = false;
+            }
+            listPanel[3].Visible = true;
+            index = 3;
+        }
+
+        private void ModifBloc5_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < listPanel.Count; i++)
+            {
+                listPanel[i].Visible = false;
+            }
+            listPanel[4].Visible = true;
+            index = 4;
+
+        }
+        private void ModifBloc6_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < listPanel.Count; i++)
+            {
+                listPanel[i].Visible = false;
+            }
+            listPanel[5].Visible = true;
+            index = 5;
+        }
+
+        private void ModifBloc7_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < listPanel.Count; i++)
+            {
+                listPanel[i].Visible = false;
+            }
+            listPanel[6].Visible = true;
+            index = 6;
+        }
+        private void TextBox()
+        {
+            if (Number() == 0)
+            {
+                textBoxx1.Text = "";
+                textBoxx2.Text = "";
+                textBoxx3.Text = "";
+                textBoxx4.Text = "";
+                textBoxx5.Text = "";
+                textBoxx6.Text = "";
+                textBoxx7.Text = "";
+            }
+            if (Number() == 1)
+            {
+                textBoxx1.Text ="Bloc 1: "+this.height[0]+"cm";
+                textBoxx2.Text = "";
+                textBoxx3.Text = "";
+                textBoxx4.Text = "";
+                textBoxx5.Text = "";
+                textBoxx6.Text = "";
+                textBoxx7.Text = "";
+            }
+            if (Number() == 2)
+            {
+                textBoxx2.Text = "Bloc 2: " + this.height[1] + "cm";
+                textBoxx3.Text = "";
+                textBoxx4.Text = "";
+                textBoxx5.Text = "";
+                textBoxx6.Text = "";
+                textBoxx7.Text = "";
+            }
+            if (Number() == 3)
+            {
+                textBoxx3.Text = "Bloc 3: " + this.height[2] + "cm";
+                textBoxx4.Text = "";
+                textBoxx5.Text = "";
+                textBoxx6.Text = "";
+                textBoxx7.Text = "";
+            }
+            if (Number() == 4)
+            {
+                textBoxx4.Text = "Bloc 4: " + this.height[3] + "cm";
+                textBoxx5.Text = "";
+                textBoxx6.Text = "";
+                textBoxx7.Text = "";
+            }
+            if (Number() == 5)
+            {
+                textBoxx5.Text = "Bloc 5: " + this.height[4] + "cm";
+                textBoxx6.Text = "";
+                textBoxx7.Text = "";
+            }
+            if (Number() == 6)
+            {
+                textBoxx6.Text = "Bloc 6: " + this.height[5] + "cm";
+                textBoxx7.Text = "";
+            }
+            if (Number() == 7)
+            {
+                textBoxx7.Text = "Bloc 7: " + this.height[6] + "cm";
+            }
+            TotalHeight();
+            texttotalheigth.Text = Convert.ToString(totalheight);
+        }
+        private void widthBox2_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void DepthBox2_TextChanged(object sender, EventArgs e)
+        {
+            
+
+
+        }
+
+        private void widthBox7_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
+
+        private void textBoxx1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxx2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxx3_TextChanged(object sender, EventArgs e)
         {
 
         }

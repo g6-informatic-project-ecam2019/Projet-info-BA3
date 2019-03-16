@@ -19,7 +19,7 @@ namespace Materials
         private double price;
         private Piece[] parts = new Piece[13];
 
-        public Box(int height, string pannelsColor, bool hasdoor, Cupboard cupboard, string typedoor= null, string doorcolor = null) /*builder*/
+        public Box(int height, string pannelsColor, bool hasdoor, Cupboard cupboard, string typedoor, string doorcolor) /*builder*/
         {
             this.height = height;
             this.pannelsColor = pannelsColor;

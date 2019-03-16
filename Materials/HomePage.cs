@@ -10,18 +10,21 @@ using System.Windows.Forms;
 
 namespace Materials
 {
+
     public partial class HomePage : Form
     {
+        ConfigurationPage config;
         public HomePage()
         {
             InitializeComponent();
+            config = new ConfigurationPage();
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            System.Threading.Thread monthread = new System.Threading.Thread(new System.Threading.ThreadStart(openBlocAmountPage));
-            monthread.Start();
-            this.Close();
+            this.Hide();
+            config.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -30,11 +33,6 @@ namespace Materials
             monthread.Start();
             this.Close();
         }
-        public static void openBlocAmountPage()
-        {
-            Application.Run(new BlocAmountPage());
-        }
-
         public static void openSKLoginPage()
         {
             Application.Run(new SKLoginPage()); //opens the SKLoginPage
