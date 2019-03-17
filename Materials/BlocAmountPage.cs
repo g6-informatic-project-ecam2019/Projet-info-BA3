@@ -12,9 +12,13 @@ namespace Materials
 {
     public partial class BlocAmountPage : Form
     {
+        public int number;
+        
+        ConfigurationPage configpage;
         public BlocAmountPage()
         {
             InitializeComponent();
+            configpage = new ConfigurationPage();
         }
 
         private void homeBtn_Click(object sender, EventArgs e)
@@ -23,31 +27,27 @@ namespace Materials
             monthread.Start();
             this.Close();
         }
-
-        private void nextBtn_Click(object sender, EventArgs e)
-        {
-            System.Threading.Thread monthread = new System.Threading.Thread(new System.Threading.ThreadStart(openConfigurationPage));
-            monthread.Start();
-            this.Close();
-        }
-
-        private void blocsTrackBar_Scroll(object sender, EventArgs e)
-        {
-            label2.Text = "" + blocsTrackBar.Value;
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-            
-        }
         public static void openHomePage()
         {
             Application.Run(new HomePage()); //opens the Home form
         }
 
-        public static void openConfigurationPage()
+        private void nextBtn_Click(object sender, EventArgs e)
         {
-            Application.Run(new ConfigurationPage()); //opens the first Client form
+            this.Hide();
+            configpage.ShowDialog();
+
+        }
+
+        private void blocsTrackBar_Scroll(object sender, EventArgs e)
+        {
+            label2.Text = "" + blocsTrackBar.Value;
+            number = blocsTrackBar.Value; 
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

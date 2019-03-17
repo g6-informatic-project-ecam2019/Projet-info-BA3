@@ -13,7 +13,8 @@ namespace Materials
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new HomePage());
+            HomePage homepage = new HomePage();
+            Application.Run(homepage);
         }
     }
 }

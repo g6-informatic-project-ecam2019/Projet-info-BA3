@@ -40,6 +40,10 @@ namespace Materials
                 Erreur();
             }
         }
+        public Bloc[] GetBloc()
+        {
+            return configuration;
+        }
         private string Erreur()/**/
         {
             return "You have a size error";

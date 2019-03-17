@@ -10,6 +10,7 @@ namespace Materials
     {
         protected float price;
         protected int length;
+        protected string name;
         public void SetPrice(float price)
         {
             this.price = price;
