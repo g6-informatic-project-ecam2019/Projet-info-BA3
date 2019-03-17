@@ -11,6 +11,8 @@ namespace Materials
         private string color;
         private int width;
         private string position;
+        private string determDim1;
+        private string determDim2;
         public Panel(float price, int lenght, string color, int width, string position) /*builder*/
         {
             this.price = price;
@@ -19,6 +21,21 @@ namespace Materials
             this.width = width;
             this.position = position;
             this.name = String.Format("Panneau {0}", this.position);
+            if (this.position == "GD")
+            {
+                this.determDim1 = "heigth";
+                this.determDim2 = "depth";
+            }
+            else if (this.position == "HB")
+            {
+                this.determDim1 = "depth";
+                this.determDim2 = "width";
+            }
+            else
+            {
+                this.determDim1 = "heigth";
+                this.determDim2 = "width";
+            }
         }
         public override Dictionary<string, Object> GetDescription()/*Returns a dictionary with all panel information*/
         {
@@ -29,6 +46,8 @@ namespace Materials
             Description.Add("color", this.color);
             Description.Add("pos", this.position);
             Description.Add("ref", this.name);
+            Description.Add("dim1", this.determDim1);
+            Description.Add("dim2", this.determDim2);
             return Description;
         }
     }

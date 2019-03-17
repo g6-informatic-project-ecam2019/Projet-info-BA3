@@ -24,6 +24,8 @@ namespace Materials
             Description.Add("width", this.width);
             Description.Add("type", this.type);
             Description.Add("ref", this.name);
+            Description.Add("dim1", this.determDim1);
+            Description.Add("dim2", this.determDim2);
             return Description;
         }
         public bool Dimention(int lenght)/*Check if the dimension is in the list, so add the measures in the list.*/

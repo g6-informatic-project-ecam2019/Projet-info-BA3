@@ -72,11 +72,12 @@ namespace Materials
          * Raise : - if the piece is a Panel or a Door                                                   *
          *         - 
          *************************************************************************************************/
-        private void retrieveInfos (Dictionary <string, Object> dic, Piece piece, string dimension, string color, string code)  //function only used internally, by getDescription() => private function
+        private void retrieveInfos (Dictionary <string, Object> dic, Piece piece, string dimension, string color)  //function only used internally, by getDescription() => private function
         {                                                                                                                       //dimension is the determining dimension in the DB (height depth or width)
 
             connect();
-            int length = (int)piece.GetDescription()["length"];
+            string code = "";
+            int length = (int) piece.GetDescription()["length"];
             dic.Add(dimension, length);
             if ((piece is Door) || (piece is Panel))
             {
@@ -120,10 +121,11 @@ namespace Materials
         /************************************************************************************************* 
          *                Same as retrieve info, but with 2 determining dimensions                       *
          *************************************************************************************************/
-        private void retrieveInfos2D(Dictionary<string, Object> dic, Piece piece, string dimension1, string dimension2, string color, string code) //dimension is the determining dimension in the DB (height depth or width)
+        private void retrieveInfos2D(Dictionary<string, Object> dic, Piece piece, string dimension1, string dimension2, string color) //dimension is the determining dimension in the DB (height depth or width)
         {
 
             connect();
+            string code = "";
             int length = (int)piece.GetDescription()["length"];
             dic.Add(dimension1, length);
             int width = (int)piece.GetDescription()["width"];
@@ -188,58 +190,29 @@ namespace Materials
             }
 
             //since the determining dimension in DB differs following the type of piece, we have to make a different criterea for each type
-            if (piece is Angle) //criterea is heigth
-            {
-                retrieveInfos(description, piece, "height", color, code);
-            }
-
-            else if (piece is Breadth)
-            {
-                if ((piece.GetDescription()["pos"].ToString() == "Av") || (piece.GetDescription()["pos"].ToString() == "Ar"))
-                {
-                    retrieveInfos(description, piece, "width", color, code);
-                }
-                else
-                {
-                    retrieveInfos(description, piece, "depth", color, code);
-                }
-            }
-            else if (piece is Cleat)
-            {
-                retrieveInfos(description, piece, "heigth", color, code);
-            }
-            else if (piece is Panel) 
-            {
-                if (piece.GetDescription()["pos"].ToString() == "GD") //critereas are heigth and depth
-                {
-                    retrieveInfos2D(description, piece, "heigth", "depth", color, code);
-                }
-                else if (piece.GetDescription()["pos"].ToString() == "HB")
-                {
-                    retrieveInfos2D(description, piece, "depth", "width", color, code);
-                }
-                else
-                {
-                    retrieveInfos2D(description, piece, "heigth", "width", color, code);
-                }
-            }
-            else if (piece is Door)
+            try
             {
                 if (piece is GlassDoor)
                 {
-                    retrieveInfos2D(description, piece, "heigth", "width", "Verre", code); //in the DB, glass door are marked as glass colored
+                    retrieveInfos2D(description, piece, piece.GetDescription()["dim1"].ToString(), piece.GetDescription()["dim2"].ToString(), "verre");
                 }
                 else
                 {
-                    retrieveInfos2D(description, piece, "heigth", "width", color, code);
+                    retrieveInfos2D(description, piece, piece.GetDescription()["dim1"].ToString(), piece.GetDescription()["dim2"].ToString(), color);
                 }
+                
             }
-
+            catch
+            {
+                retrieveInfos(description, piece, piece.GetDescription()["dim"].ToString(), color);
+            }
+            
             return description;
         }
 
         /************************************************************************
-         * Pre : recieve the dimension to list and the piece that sets it       *
+         * Pre : recieve the dimension (string) to list and the piece (string)  *
+         *       that sets it                                                   *
          * Post : returns available heights for boxes                           *
          * Raise : uncorrect dimension name will raise an error                 *
          *  Function will not raise any error if determiningPiece is not correct*

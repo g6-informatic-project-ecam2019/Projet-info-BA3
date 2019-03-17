@@ -8,6 +8,7 @@ namespace Materials
 {
     class Cleat : Piece  /* Class that groups all cleats*/
     {
+        private string determiningDimension = "heigth";
         public Cleat(float price, int lenght) /*builder*/
         {
             this.price = price;
@@ -20,6 +21,7 @@ namespace Materials
             Description.Add("price", this.price);
             Description.Add("length", this.length);
             Description.Add("ref", this.name);
+            Description.Add("dim", this.determiningDimension);
             return Description;
         }
     }
