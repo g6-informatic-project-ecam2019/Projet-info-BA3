@@ -1,0 +1,13 @@
+C:\Users\Christos\Desktop\TestMySql\TestMySql\bin\Debug\netcoreapp2.1\TestMySql.deps.json
+C:\Users\Christos\Desktop\TestMySql\TestMySql\bin\Debug\netcoreapp2.1\TestMySql.runtimeconfig.json
+C:\Users\Christos\Desktop\TestMySql\TestMySql\bin\Debug\netcoreapp2.1\TestMySql.runtimeconfig.dev.json
+C:\Users\Christos\Desktop\TestMySql\TestMySql\bin\Debug\netcoreapp2.1\TestMySql.dll
+C:\Users\Christos\Desktop\TestMySql\TestMySql\bin\Debug\netcoreapp2.1\TestMySql.pdb
+C:\Users\Christos\Desktop\TestMySql\TestMySql\bin\Debug\netcoreapp2.1\MySql.Data.dll
+C:\Users\Christos\Desktop\TestMySql\TestMySql\obj\Debug\netcoreapp2.1\TestMySql.csprojAssemblyReference.cache
+C:\Users\Christos\Desktop\TestMySql\TestMySql\obj\Debug\netcoreapp2.1\TestMySql.csproj.CoreCompileInputs.cache
+C:\Users\Christos\Desktop\TestMySql\TestMySql\obj\Debug\netcoreapp2.1\TestMySql.AssemblyInfoInputs.cache
+C:\Users\Christos\Desktop\TestMySql\TestMySql\obj\Debug\netcoreapp2.1\TestMySql.AssemblyInfo.cs
+C:\Users\Christos\Desktop\TestMySql\TestMySql\obj\Debug\netcoreapp2.1\TestMySql.csproj.CopyComplete
+C:\Users\Christos\Desktop\TestMySql\TestMySql\obj\Debug\netcoreapp2.1\TestMySql.dll
+C:\Users\Christos\Desktop\TestMySql\TestMySql\obj\Debug\netcoreapp2.1\TestMySql.pdb
