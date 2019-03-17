@@ -69,6 +69,8 @@ namespace Materials
          * Pre : - recieve a dictionnary containing a part of description and other necessary parameters *
          *       - the piece is not a Panel, nor a door                                                  *
          * Post : edit the dictionnary with informations found in the DB                                 *
+         * Raise : - if the piece is a Panel or a Door                                                   *
+         *         - 
          *************************************************************************************************/
         private void retrieveInfos (Dictionary <string, Object> dic, Piece piece, string dimension, string color, string code)  //function only used internally, by getDescription() => private function
         {                                                                                                                       //dimension is the determining dimension in the DB (height depth or width)
@@ -164,12 +166,12 @@ namespace Materials
         }
 
         /*****************************************************************************
-         * Pre : recieve a Piece as paramater                                        *
+         * Pre : recieves a Piece as paramater                                        *
          * Post : - Returns the piece's complete description.                        *
          *          Dictionnary contains the following keys : heigth, depth, width   *
          *          color, code, client price, supplier price  (there may be more    *
          *          than one) and n suppliers, the number of suppliers that offer    *
-         *          the piece. The dimension(s) are present or not following the     *
+         *          the piece. The dimension(s) are present -or not- following the   *
          *          piece's type                                                     *
          * Uses the piece characteristics to find the piece in the DB                *
          *****************************************************************************/
@@ -185,8 +187,8 @@ namespace Materials
                 description.Add("color", color);
             }
 
-            //since the determining dimension in DB is different following the type of piece, we have to make a different criterea for each type
-            if (piece is Angle) //criteria is heigth
+            //since the determining dimension in DB differs following the type of piece, we have to make a different criterea for each type
+            if (piece is Angle) //criterea is heigth
             {
                 retrieveInfos(description, piece, "height", color, code);
             }
@@ -208,7 +210,7 @@ namespace Materials
             }
             else if (piece is Panel) 
             {
-                if (piece.GetDescription()["pos"].ToString() == "GD") //criteria is heigth and depth
+                if (piece.GetDescription()["pos"].ToString() == "GD") //critereas are heigth and depth
                 {
                     retrieveInfos2D(description, piece, "heigth", "depth", color, code);
                 }
@@ -237,13 +239,16 @@ namespace Materials
         }
 
         /************************************************************************
-         * Pre :                                                                *
-         * Post : returns available heights                                     *
+         * Pre : recieve the dimension to list and the piece that sets it       *
+         * Post : returns available heights for boxes                           *
+         * Raise : uncorrect dimension name will raise an error                 *
+         *  Function will not raise any error if determiningPiece is not correct*
+         *  but a log will appear                                               *
          ************************************************************************/
-         public int[] existingHeights()
+         public int[] existingDimension(string dim, string determiningPiece)
          {
             connect();
-            command.CommandText = String.Format("SELECT * FROM pieces WHERE ref='Tasseau'"); //height of a box is given by cleat's length + 4 cm
+            command.CommandText = String.Format("SELECT * FROM pieces WHERE ref='{0}'", determiningPiece); //height of a box is given by cleat's length + 4 cm
             reader = command.ExecuteReader();
             int counter = 0;
             while (reader.Read())
@@ -251,16 +256,36 @@ namespace Materials
                 counter++;
             }
             connection.Close();
-            int[] heights = new int[counter];
+            if (counter == 0)
+            {
+                Console.WriteLine(String.Format("No piece of that name found. Is this a correct name ? {0}", determiningPiece));
+            }
+            int[] dimensions = new int[counter];
             connect();
             reader = command.ExecuteReader();
-            counter = 0;
+            int i = 0;
             while (reader.Read())
             {
-                heights[counter] = (int) reader["height"] + 4;
-                counter++;
+                try
+                {
+                    if (dim == "height")
+                    {
+                        dimensions[i] = (int)reader[dim] + 4;
+                    }
+                    else
+                    {
+                        dimensions[i] = (int)reader[dim];
+                    }
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    Console.WriteLine("Uncorrect specified dimension");
+                }
+                i++;
             }
-            return heights;
+            connection.Close();
+            return dimensions; 
          }
+
     }
 }
