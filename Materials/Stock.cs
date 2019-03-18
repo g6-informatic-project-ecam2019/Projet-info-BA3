@@ -46,6 +46,98 @@ namespace Materials
         public bool isAvailable (Piece piece)
         {
             connect();
+            command.CommandText = String.Format("SELECT * FROM pieces WHERE ref={0}", piece.GetDescription()["ref"]);
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                try
+                {
+                    if (((int)reader[piece.GetDescription()["dim1"].ToString()] == (int)piece.GetDescription()["length"]) && (((int)reader[piece.GetDescription()["dim2"].ToString()] == (int)piece.GetDescription()["width"])))
+                    {
+                        try
+                        {
+                            if (reader["color"].ToString() == piece.GetDescription()["color"].ToString())
+                            {
+                                if ((int)reader["real_quantity"] != 0)
+                                {
+                                    return true;
+                                }
+                                else
+                                {
+                                    return false;
+                                }
+                            }
+                            else if ((reader["color"].ToString() == "verre") && (piece is GlassDoor))
+                            {
+                                if ((int)reader["real_quantity"] != 0)
+                                {
+                                    return true;
+                                }
+                                else
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                        catch (KeyNotFoundException) //no color specified in description
+                        {
+                            if ((reader["color"].ToString() == "verre") && (piece is GlassDoor))
+                            {
+                                if ((int)reader["real_quantity"] != 0)
+                                {
+                                    return true;
+                                }
+                                else
+                                {
+                                    return false;
+                                }
+                            }
+                            if ((int)reader["real_quantity"] != 0)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+                catch (KeyNotFoundException) //one dimension piece
+                {
+                    if ((int) reader[piece.GetDescription()["dim"].ToString()] == (int) piece.GetDescription()["length"])
+                    {
+                        try
+                        {
+                            if (reader["color"].ToString() == piece.GetDescription()["color"].ToString())
+                            {
+                                if ((int)reader["real_quantity"] != 0)
+                                {
+                                    return true;
+                                }
+                                else
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                        catch (KeyNotFoundException) //no color specified in description
+                        {
+                            if (reader["color"].ToString() == piece.GetDescription()["color"].ToString())
+                            {
+                                if ((int)reader["real_quantity"] != 0)
+                                {
+                                    return true;
+                                }
+                                else
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             connection.Close();
             return false;
         }
@@ -181,7 +273,6 @@ namespace Materials
         {
             
             Dictionary<string, Object> description = new Dictionary<string, Object>();
-            string code="";
             string color="";
             if ((piece is ClassicDoor) || (piece is Panel) || (piece is Angle))
             {
@@ -202,7 +293,7 @@ namespace Materials
                 }
                 
             }
-            catch
+            catch (KeyNotFoundException) //an error is raised if dim1-dim2 are not in piece description => there is only one dim
             {
                 retrieveInfos(description, piece, piece.GetDescription()["dim"].ToString(), color);
             }
@@ -259,6 +350,5 @@ namespace Materials
             connection.Close();
             return dimensions; 
          }
-
     }
 }
