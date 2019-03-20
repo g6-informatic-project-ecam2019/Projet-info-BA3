@@ -9,6 +9,7 @@ namespace Materials
     class Angle : Piece
     {
         private string color;
+        private string determiningDimension = "height";
 
         public Angle(float price, int lenght, string color) /*builder*/
         {
@@ -30,6 +31,7 @@ namespace Materials
             Description.Add("length", this.length);
             Description.Add("color", this.color);
             Description.Add("ref", this.name);
+            Description.Add("dim", this.determiningDimension);
             return Description;
         }
     }
