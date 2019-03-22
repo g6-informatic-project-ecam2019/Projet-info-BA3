@@ -42,7 +42,10 @@ namespace Materials
             }
         }
 
-        /*--------------------------------------------------------------------------*/
+        /***************************************************************************
+         * Pre : recieve a piece as parameter                                      *
+         * Post : returns true if the piece is available, false otherwise          *
+         ***************************************************************************/
         public bool isAvailable (Piece piece)
         {
             connect();
@@ -67,7 +70,7 @@ namespace Materials
                                     return false;
                                 }
                             }
-                            else if ((reader["color"].ToString() == "verre") && (piece is GlassDoor))
+                            else if ((reader["color"].ToString() == "verre") && (piece is GlassDoor)) //ref is already checked as "porte" (door) so if color is "verre", we are sure that it is a glass door
                             {
                                 if ((int)reader["real_quantity"] != 0)
                                 {
@@ -151,9 +154,32 @@ namespace Materials
         }
 
         /*--------------------------------------------------------------------------*/
-        public void removePiece (Piece piece)
+        public void orderPiece (Piece piece)
         {
             connect();
+
+            connection.Close();
+        }
+
+        /*****************************************************************************
+         * Pre :                                                                     *
+         * Post :                                                                    *
+         * Raise :                                                                   *
+         *****************************************************************************/
+        public void makeOrder (Cupboard cupboard)
+        {
+            connect();
+            for (int b = 0; b < cupboard.GetBloc().Length; b++)
+            {
+                Bloc bloc = cupboard.GetBloc()[b];
+                for (int p = 0; p < bloc.GetPieces().Length; p++)
+                {
+                    Piece piece = bloc.GetPieces()[p]; 
+                    orderPiece(piece);                //piece is counted as ordered 
+
+                }
+
+            }
             connection.Close();
         }
 
@@ -230,7 +256,7 @@ namespace Materials
                 {
                     if ((int)reader[dimension2] == width)
                     {
-                        if (color == "")
+                        if (color == "") //piece has no color specified
                         {
                             code = reader["code"].ToString();
                             dic.Add("code", code);
