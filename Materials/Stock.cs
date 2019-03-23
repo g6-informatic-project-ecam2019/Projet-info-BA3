@@ -154,21 +154,51 @@ namespace Materials
         }
 
         /*--------------------------------------------------------------------------*/
-        //public void orderPiece (Piece piece)
-        //{
-        //    connect();
-        //    this.command.CommandText = String.Format("SELECT * FROM piece WHERE ref='{0}', ", piece.GetDescription()["ref"]);
-        //    int newQuantity = 0;
-        //    if (isAvailable(piece))
-        //    {
-        //        this.command.CommandText = String.Format("INSERT INTO piece (ref,real_quantity) VALUES ('{0}','{1}')", piece.GetDescription()["ref"], newQuantity);
-        //    }
-        //    else
-        //    {
+        public void orderPiece(Piece piece)
+        {
+            string code;
+            int quantity = 0;
+            int newQuantity = 0;
+            try
+            {
+                string dimension1 = piece.GetDescription()["dim1"].ToString();
+                string dimension2 = piece.GetDescription()["dim2"].ToString();
+                if (piece is GlassDoor)
+                {
+                    code = selectPiece2D(piece, dimension1, dimension2, "verre");
+                }
+                else
+                {
+                    code = selectPiece2D(piece, dimension1, dimension2, piece.GetDescription()["color"].ToString());
+                }
+            }
+            catch (KeyNotFoundException) //an error is raised if dim1-dim2 are not in piece description => there is only one dim
+            {
+                string dimension = piece.GetDescription()["dim"].ToString();
+                code = selectPiece(piece, piece.GetDescription()["dim"].ToString(), piece.GetDescription()["color"].ToString());
+            }
+            this.command.CommandText = String.Format("SELECT * FROM piece WHERE code='{0}'", code);
+            connect();
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                quantity = (int)reader["virual_quantity"];
+            }
+            if (quantity != 0)
+            {
+                newQuantity = quantity - 1;
+            }
+            connection.Close();
+            if (isAvailable(piece))
+            {
+                this.command.CommandText = String.Format("INSERT INTO piece (code,virtual_quantity) VALUES ('{0}','{1}')", code, newQuantity);
+            }
+            else
+            {
 
-        //    }
-        //    connection.Close();
-        //}
+            }
+            connection.Close();
+        }
 
         /*****************************************************************************
          * Pre :                                                                     *
