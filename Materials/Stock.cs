@@ -189,15 +189,19 @@ namespace Materials
                 newQuantity = quantity - 1;
             }
             connection.Close();
-            if (isAvailable(piece))
+             if (newQuantity != 0)
+             {
+                    this.command.CommandText = String.Format("UPDATE piece SET virtual_quantity='{0}' WHERE code='{1}'",  newQuantity, code);
+                
+             }
+            connect();
+            int l = command.ExecuteNonQuery(); 
+            if (l != 1) 
             {
-                this.command.CommandText = String.Format("INSERT INTO piece (code,virtual_quantity) VALUES ('{0}','{1}')", code, newQuantity);
-            }
-            else
-            {
-
+                Console.WriteLine(String.Format("WARNING : database was not edited correctly : {0} lines were modified instead of one.", l));
             }
             connection.Close();
+            
         }
 
         /*****************************************************************************
@@ -205,22 +209,29 @@ namespace Materials
          * Post :                                                                    *
          * Raise :                                                                   *
          *****************************************************************************/
-        //public void makeOrder (Cupboard cupboard)
-        //{
-        //    connect();
-        //    for (int b = 0; b < cupboard.GetBloc().Length; b++)
-        //    {
-        //        Bloc bloc = cupboard.GetBloc()[b];
-        //        for (int p = 0; p < bloc.GetPieces().Length; p++)
-        //        {
-        //            Piece piece = bloc.GetPieces()[p]; 
-        //            orderPiece(piece);                //piece is counted as ordered 
+        public void makeOrder(Cupboard cupboard)
+        {
+            connect();
+            this.command.CommandText = "SELECT MAX(idcom) FROM client_piecescommand";
+            int idCom = (int)command.ExecuteScalar() + 1;
+            connection.Close();
+            List<string> codes = new List<string>(); //maximum number of pieces in a cupboard is (7 boxes * 15 pieces) + 4 angles = 109
+            for (int b = 0; b < cupboard.GetBloc().Length; b++)
+            {
+                Bloc bloc = cupboard.GetBloc()[b];
+                for (int p = 0; p < bloc.GetPieces().Length; p++)
+                {
+                    Piece piece = bloc.GetPieces()[p];
+                    string code = piece.GetDescription()["code"].ToString();
+                    orderPiece(piece);                //piece is counted as ordered 
+                    codes.Add(code);
+                    this.command.CommandText = String.Format("INSERT INTO client_piecescommand VALUES ('{0}', '{1}', '{2}')", idCom, code, );
+                }
 
-        //        }
-
-        //    }
-        //    connection.Close();
-        //}
+            }
+            connection.Close();
+            
+        }
 
         /*****************************************************************************
          * Pre : recieve a piece, its main dimension and color                       *
