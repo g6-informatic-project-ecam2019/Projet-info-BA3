@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3305
--- Généré le :  jeu. 14 mars 2019 à 11:52
+-- Généré le :  mer. 20 mars 2019 à 14:50
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -31,11 +31,11 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `client`;
 CREATE TABLE IF NOT EXISTS `client` (
   `idclient` int(11) NOT NULL AUTO_INCREMENT,
-  `firstname` varchar(30) NOT NULL,
-  `lastname` varchar(30) NOT NULL,
+  `firstname` varchar(40) NOT NULL,
+  `lastname` varchar(40) NOT NULL,
   `adress` varchar(50) NOT NULL,
-  `zip` int(10) NOT NULL,
-  `phonenumber` int(20) NOT NULL,
+  `zip` varchar(15) NOT NULL,
+  `phonenumber` varchar(20) NOT NULL,
   PRIMARY KEY (`idclient`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -47,65 +47,60 @@ CREATE TABLE IF NOT EXISTS `client` (
 
 DROP TABLE IF EXISTS `client_command`;
 CREATE TABLE IF NOT EXISTS `client_command` (
-  `idcomclient` int(11) NOT NULL AUTO_INCREMENT,
-  `id` int(11) NOT NULL,
-  `startdate` date NOT NULL,
-  `status` varchar(15) NOT NULL DEFAULT 'En Cours',
+  `idcom` int(11) NOT NULL AUTO_INCREMENT,
   `idclient` int(11) NOT NULL,
-  PRIMARY KEY (`idcomclient`),
-  KEY `id` (`id`),
+  `date` date NOT NULL,
+  `description` varchar(150) NOT NULL,
+  `command_status` varchar(30) NOT NULL DEFAULT 'Commandée',
+  `payment_status` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`idcom`),
   KEY `idclient` (`idclient`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `client_command_historic`
+-- Structure de la table `client_piecescommand`
 --
 
-DROP TABLE IF EXISTS `client_command_historic`;
-CREATE TABLE IF NOT EXISTS `client_command_historic` (
-  `idhist` int(11) NOT NULL AUTO_INCREMENT,
-  `idcomclient` int(11) NOT NULL,
+DROP TABLE IF EXISTS `client_piecescommand`;
+CREATE TABLE IF NOT EXISTS `client_piecescommand` (
+  `idcom` int(11) NOT NULL,
   `code` varchar(20) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `enddate` date NOT NULL,
-  `idclient` int(11) NOT NULL,
-  PRIMARY KEY (`idhist`),
-  KEY `idcomclient` (`idcomclient`),
-  KEY `code` (`code`),
-  KEY `idclient` (`idclient`)
+  KEY `idcom` (`idcom`),
+  KEY `code` (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `pieces`
+-- Structure de la table `piece`
 --
 
-DROP TABLE IF EXISTS `pieces`;
-CREATE TABLE IF NOT EXISTS `pieces` (
+DROP TABLE IF EXISTS `piece`;
+CREATE TABLE IF NOT EXISTS `piece` (
   `code` varchar(20) NOT NULL,
   `ref` varchar(20) NOT NULL,
-  `dimension` varchar(25) NOT NULL,
-  `height` int(3) NOT NULL,
-  `depth` int(2) NOT NULL,
-  `width` int(3) NOT NULL,
-  `color` varchar(20) NOT NULL,
-  `min_stock` int(4) NOT NULL,
-  `real_quantity` int(4) NOT NULL,
-  `virtual_quantity` int(4) NOT NULL,
-  `command_quantity` int(4) NOT NULL,
+  `dimension` varchar(20) NOT NULL,
+  `height` int(11) NOT NULL,
+  `depth` int(11) NOT NULL,
+  `width` int(11) NOT NULL,
+  `color` varchar(30) NOT NULL,
+  `min_stock` int(11) NOT NULL,
+  `real_quantity` int(11) NOT NULL,
+  `virtual_quantity` int(11) NOT NULL,
+  `command_quantity` int(11) NOT NULL,
   `client_price` float NOT NULL,
-  `num_piece_box` int(2) NOT NULL,
+  `box_number` int(2) NOT NULL,
   PRIMARY KEY (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `pieces`
+-- Déchargement des données de la table `piece`
 --
 
-INSERT INTO `pieces` (`code`, `ref`, `dimension`, `height`, `depth`, `width`, `color`, `min_stock`, `real_quantity`, `virtual_quantity`, `command_quantity`, `client_price`, `num_piece_box`) VALUES
+INSERT INTO `piece` (`code`, `ref`, `dimension`, `height`, `depth`, `width`, `color`, `min_stock`, `real_quantity`, `virtual_quantity`, `command_quantity`, `client_price`, `box_number`) VALUES
 ('COR100BLDEC', 'Cornieres', '100(h)decoupee', 100, 0, 0, 'Blanc', 32, 85, 85, 0, 1.72, 4),
 ('COR100BRDEC', 'Cornieres', '100(h)decoupee', 100, 0, 0, 'Brun', 32, 84, 84, 0, 1.38, 4),
 ('COR100GLDEC', 'Cornieres', '100(h)decoupee', 100, 0, 0, 'Galvanise', 32, 84, 84, 0, 1.72, 4),
@@ -418,36 +413,18 @@ INSERT INTO `pieces` (`code`, `ref`, `dimension`, `height`, `depth`, `width`, `c
 -- --------------------------------------------------------
 
 --
--- Structure de la table `piece_command`
+-- Structure de la table `piececommand`
 --
 
-DROP TABLE IF EXISTS `piece_command`;
-CREATE TABLE IF NOT EXISTS `piece_command` (
+DROP TABLE IF EXISTS `piececommand`;
+CREATE TABLE IF NOT EXISTS `piececommand` (
   `num` int(11) NOT NULL AUTO_INCREMENT,
-  `idsupp` int(11) NOT NULL,
   `code` varchar(20) NOT NULL,
-  `commanddate` date NOT NULL,
-  `quantity` int(4) NOT NULL,
-  `status` varchar(20) NOT NULL DEFAULT 'En cours',
+  `idsupp` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `status` varchar(30) NOT NULL DEFAULT 'Commandée',
   PRIMARY KEY (`num`),
-  KEY `idsupp` (`idsupp`),
-  KEY `code` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `piece_command_historic`
---
-
-DROP TABLE IF EXISTS `piece_command_historic`;
-CREATE TABLE IF NOT EXISTS `piece_command_historic` (
-  `numhist` int(11) NOT NULL AUTO_INCREMENT,
-  `idsupp` int(11) NOT NULL,
-  `code` varchar(20) NOT NULL,
-  `delivrateddate` date NOT NULL,
-  `quantity` int(4) NOT NULL,
-  PRIMARY KEY (`numhist`),
   KEY `idsupp` (`idsupp`),
   KEY `code` (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -463,7 +440,7 @@ CREATE TABLE IF NOT EXISTS `prices` (
   `idsupp` int(11) NOT NULL,
   `code` varchar(20) NOT NULL,
   `supplier_price` float NOT NULL,
-  `time_limit` int(2) NOT NULL,
+  `reprieve` int(11) NOT NULL,
   KEY `idsupp` (`idsupp`),
   KEY `code` (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -472,7 +449,7 @@ CREATE TABLE IF NOT EXISTS `prices` (
 -- Déchargement des données de la table `prices`
 --
 
-INSERT INTO `prices` (`idsupp`, `code`, `supplier_price`, `time_limit`) VALUES
+INSERT INTO `prices` (`idsupp`, `code`, `supplier_price`, `reprieve`) VALUES
 (1, 'COR36BL', 0.3, 3),
 (1, 'COR46BL', 0.37, 12),
 (1, 'COR56BL', 0.46, 3),
@@ -1099,10 +1076,10 @@ INSERT INTO `prices` (`idsupp`, `code`, `supplier_price`, `time_limit`) VALUES
 DROP TABLE IF EXISTS `supplier`;
 CREATE TABLE IF NOT EXISTS `supplier` (
   `idsupp` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `adress` varchar(50) NOT NULL,
-  `zip` int(10) NOT NULL,
-  `city` varchar(30) NOT NULL,
+  `zip` int(11) NOT NULL,
+  `city` varchar(50) NOT NULL,
   PRIMARY KEY (`idsupp`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
@@ -1112,22 +1089,7 @@ CREATE TABLE IF NOT EXISTS `supplier` (
 
 INSERT INTO `supplier` (`idsupp`, `name`, `adress`, `zip`, `city`) VALUES
 (1, 'Les Artisans du Bois', 'Parc industriel 9', 6124, 'MARBEHAN'),
-(2, 'Ebénistes réunis', 'Chemin des 2 Maisons, 140', 5150, 'Floriffoux');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `worker`
---
-
-DROP TABLE IF EXISTS `worker`;
-CREATE TABLE IF NOT EXISTS `worker` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `firstname` varchar(25) NOT NULL,
-  `lastname` varchar(30) NOT NULL,
-  `phonenumber` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+(2, 'Ebénistes réunis', 'Chemin des 2 Maisons 140', 5150, 'Floriffoux');
 
 --
 -- Contraintes pour les tables déchargées
@@ -1137,37 +1099,28 @@ CREATE TABLE IF NOT EXISTS `worker` (
 -- Contraintes pour la table `client_command`
 --
 ALTER TABLE `client_command`
-  ADD CONSTRAINT `client_command_ibfk_1` FOREIGN KEY (`id`) REFERENCES `worker` (`id`),
-  ADD CONSTRAINT `client_command_ibfk_2` FOREIGN KEY (`idclient`) REFERENCES `client` (`idclient`);
+  ADD CONSTRAINT `client_command_ibfk_1` FOREIGN KEY (`idclient`) REFERENCES `client` (`idclient`);
 
 --
--- Contraintes pour la table `client_command_historic`
+-- Contraintes pour la table `client_piecescommand`
 --
-ALTER TABLE `client_command_historic`
-  ADD CONSTRAINT `client_command_historic_ibfk_1` FOREIGN KEY (`idcomclient`) REFERENCES `client_command` (`idcomclient`),
-  ADD CONSTRAINT `client_command_historic_ibfk_2` FOREIGN KEY (`code`) REFERENCES `pieces` (`code`),
-  ADD CONSTRAINT `client_command_historic_ibfk_3` FOREIGN KEY (`idclient`) REFERENCES `client` (`idclient`);
+ALTER TABLE `client_piecescommand`
+  ADD CONSTRAINT `client_piecescommand_ibfk_1` FOREIGN KEY (`idcom`) REFERENCES `client_command` (`idcom`),
+  ADD CONSTRAINT `client_piecescommand_ibfk_2` FOREIGN KEY (`code`) REFERENCES `piece` (`code`);
 
 --
--- Contraintes pour la table `piece_command`
+-- Contraintes pour la table `piececommand`
 --
-ALTER TABLE `piece_command`
-  ADD CONSTRAINT `piece_command_ibfk_2` FOREIGN KEY (`idsupp`) REFERENCES `supplier` (`idsupp`),
-  ADD CONSTRAINT `piece_command_ibfk_3` FOREIGN KEY (`code`) REFERENCES `pieces` (`code`);
-
---
--- Contraintes pour la table `piece_command_historic`
---
-ALTER TABLE `piece_command_historic`
-  ADD CONSTRAINT `piece_command_historic_ibfk_2` FOREIGN KEY (`idsupp`) REFERENCES `supplier` (`idsupp`),
-  ADD CONSTRAINT `piece_command_historic_ibfk_3` FOREIGN KEY (`code`) REFERENCES `pieces` (`code`);
+ALTER TABLE `piececommand`
+  ADD CONSTRAINT `piececommand_ibfk_1` FOREIGN KEY (`idsupp`) REFERENCES `supplier` (`idsupp`),
+  ADD CONSTRAINT `piececommand_ibfk_2` FOREIGN KEY (`code`) REFERENCES `piece` (`code`);
 
 --
 -- Contraintes pour la table `prices`
 --
 ALTER TABLE `prices`
-  ADD CONSTRAINT `prices_ibfk_2` FOREIGN KEY (`idsupp`) REFERENCES `supplier` (`idsupp`),
-  ADD CONSTRAINT `prices_ibfk_3` FOREIGN KEY (`code`) REFERENCES `pieces` (`code`);
+  ADD CONSTRAINT `prices_ibfk_1` FOREIGN KEY (`idsupp`) REFERENCES `supplier` (`idsupp`),
+  ADD CONSTRAINT `prices_ibfk_2` FOREIGN KEY (`code`) REFERENCES `piece` (`code`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

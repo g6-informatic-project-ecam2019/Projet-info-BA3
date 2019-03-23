@@ -72,6 +72,10 @@ namespace Materials
                 }
             }
         }
+        public Piece[] GetPieces()
+        {
+            return parts;
+        }
         public double GetPrice()
         {
             ComputePrice();

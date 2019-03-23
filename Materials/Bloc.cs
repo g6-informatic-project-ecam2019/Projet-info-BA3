@@ -11,5 +11,6 @@ namespace Materials
         Dictionary<string, Object> GetDescription();
         double GetPrice();
         void BuildPieces();
+        Piece[] GetPieces();
     }
 }

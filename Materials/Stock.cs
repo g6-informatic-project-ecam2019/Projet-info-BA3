@@ -42,16 +42,111 @@ namespace Materials
             }
         }
 
-        /*--------------------------------------------------------------------------*/
+        /***************************************************************************
+         * Pre : recieve a piece as parameter                                      *
+         * Post : returns true if the piece is available, false otherwise          *
+         ***************************************************************************/
         public bool isAvailable (Piece piece)
         {
             connect();
+            command.CommandText = String.Format("SELECT * FROM pieces WHERE ref={0}", piece.GetDescription()["ref"]);
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                try
+                {
+                    if (((int)reader[piece.GetDescription()["dim1"].ToString()] == (int)piece.GetDescription()["length"]) && (((int)reader[piece.GetDescription()["dim2"].ToString()] == (int)piece.GetDescription()["width"])))
+                    {
+                        try
+                        {
+                            if (reader["color"].ToString() == piece.GetDescription()["color"].ToString())
+                            {
+                                if ((int)reader["real_quantity"] != 0)
+                                {
+                                    return true;
+                                }
+                                else
+                                {
+                                    return false;
+                                }
+                            }
+                            else if ((reader["color"].ToString() == "verre") && (piece is GlassDoor)) //ref is already checked as "porte" (door) so if color is "verre", we are sure that it is a glass door
+                            {
+                                if ((int)reader["real_quantity"] != 0)
+                                {
+                                    return true;
+                                }
+                                else
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                        catch (KeyNotFoundException) //no color specified in description
+                        {
+                            if ((reader["color"].ToString() == "verre") && (piece is GlassDoor))
+                            {
+                                if ((int)reader["real_quantity"] != 0)
+                                {
+                                    return true;
+                                }
+                                else
+                                {
+                                    return false;
+                                }
+                            }
+                            if ((int)reader["real_quantity"] != 0)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+                catch (KeyNotFoundException) //one dimension piece
+                {
+                    if ((int) reader[piece.GetDescription()["dim"].ToString()] == (int) piece.GetDescription()["length"])
+                    {
+                        try
+                        {
+                            if (reader["color"].ToString() == piece.GetDescription()["color"].ToString())
+                            {
+                                if ((int)reader["real_quantity"] != 0)
+                                {
+                                    return true;
+                                }
+                                else
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                        catch (KeyNotFoundException) //no color specified in description
+                        {
+                            if (reader["color"].ToString() == piece.GetDescription()["color"].ToString())
+                            {
+                                if ((int)reader["real_quantity"] != 0)
+                                {
+                                    return true;
+                                }
+                                else
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             connection.Close();
             return false;
         }
 
         /*--------------------------------------------------------------------------*/
-        public void orderPieces (Piece[] piece) //when the storekeeper refills the stock
+        public void refillStock (Piece[] piece) //when the storekeeper refills the stock
         {
             connect();
 
@@ -59,26 +154,54 @@ namespace Materials
         }
 
         /*--------------------------------------------------------------------------*/
-        public void removePiece (Piece piece)
+        //public void orderPiece (Piece piece)
+        //{
+        //    connect();
+        //    this.command.CommandText = String.Format("SELECT * FROM piece WHERE ref='{0}', ", piece.GetDescription()["ref"]);
+        //    int newQuantity = 0;
+        //    if (isAvailable(piece))
+        //    {
+        //        this.command.CommandText = String.Format("INSERT INTO piece (ref,real_quantity) VALUES ('{0}','{1}')", piece.GetDescription()["ref"], newQuantity);
+        //    }
+        //    else
+        //    {
+
+        //    }
+        //    connection.Close();
+        //}
+
+        /*****************************************************************************
+         * Pre :                                                                     *
+         * Post :                                                                    *
+         * Raise :                                                                   *
+         *****************************************************************************/
+        //public void makeOrder (Cupboard cupboard)
+        //{
+        //    connect();
+        //    for (int b = 0; b < cupboard.GetBloc().Length; b++)
+        //    {
+        //        Bloc bloc = cupboard.GetBloc()[b];
+        //        for (int p = 0; p < bloc.GetPieces().Length; p++)
+        //        {
+        //            Piece piece = bloc.GetPieces()[p]; 
+        //            orderPiece(piece);                //piece is counted as ordered 
+
+        //        }
+
+        //    }
+        //    connection.Close();
+        //}
+
+        /*****************************************************************************
+         * Pre : recieve a piece, its main dimension and color                       *
+         * Post : returns the unique code of the wanted piece                        *
+         * Raise : raises an error if the piece has is a door or a panel             *
+         *****************************************************************************/
+        private string selectPiece(Piece piece, string dimension, string color)
         {
             connect();
-            connection.Close();
-        }
-
-        /************************************************************************************************* 
-         * Pre : - recieve a dictionnary containing a part of description and other necessary parameters *
-         *       - the piece is not a Panel, nor a door                                                  *
-         * Post : edit the dictionnary with informations found in the DB                                 *
-         * Raise : - if the piece is a Panel or a Door                                                   *
-         *         - 
-         *************************************************************************************************/
-        private void retrieveInfos (Dictionary <string, Object> dic, Piece piece, string dimension, string color)  //function only used internally, by getDescription() => private function
-        {                                                                                                                       //dimension is the determining dimension in the DB (height depth or width)
-
-            connect();
             string code = "";
-            int length = (int) piece.GetDescription()["length"];
-            dic.Add(dimension, length);
+            int length = (int)piece.GetDescription()["length"];
             if ((piece is Door) || (piece is Panel))
             {
                 throw new System.ArgumentException("The piece cannot be a door nor a panel in this function");
@@ -90,46 +213,27 @@ namespace Materials
             {
                 if ((int)reader[dimension] == length)
                 {
-                    if  (color == "")
+                    if (color == "")
                     {
                         code = reader["code"].ToString();
-                        dic.Add("code", code);
-                        dic.Add("client price", (int)reader["client_price"]);
                     }
                     else if (reader["color"].ToString() == color)
                     {
                         code = reader["code"].ToString();
-                        dic.Add("code", code);
-                        dic.Add("client price", (int)reader["client_price"]);
                     }
                 }
             }
             connection.Close();
-            connect();
-            this.command.CommandText = String.Format("SELECT * FROM prices WHERE code='{0}'", code);
-            reader = command.ExecuteReader();
-            int i = 0;
-            while (reader.Read())
-            {
-                i++;
-                dic.Add(String.Format("supplier price {0}", i), (int)reader["supplier_price"]); //add different prices from each suppliers    
-            }
-            dic.Add("n suppliers", i);
-            connection.Close();
+            return code;
         }
 
-        /************************************************************************************************* 
-         *                Same as retrieve info, but with 2 determining dimensions                       *
-         *************************************************************************************************/
-        private void retrieveInfos2D(Dictionary<string, Object> dic, Piece piece, string dimension1, string dimension2, string color) //dimension is the determining dimension in the DB (height depth or width)
+        /*same as selectPiece(), but with 2 main dimensions*/
+        private string selectPiece2D (Piece piece, string dimension1, string dimension2, string color)
         {
-
             connect();
             string code = "";
             int length = (int)piece.GetDescription()["length"];
-            dic.Add(dimension1, length);
             int width = (int)piece.GetDescription()["width"];
-            dic.Add(dimension2, width);
             command.CommandText = String.Format("SELECT * FROM pieces WHERE ref='{0}'", piece.GetDescription()["ref"].ToString());
             reader = command.ExecuteReader();
             while (reader.Read()) //retrieve all informations about the piece, and put them in the description dictionnary
@@ -138,33 +242,19 @@ namespace Materials
                 {
                     if ((int)reader[dimension2] == width)
                     {
-                        if (color == "")
+                        if (color == "") //piece has no color specified
                         {
                             code = reader["code"].ToString();
-                            dic.Add("code", code);
-                            dic.Add("client price", (float)reader["client_price"]);
                         }
                         else if (reader["color"].ToString() == color)
                         {
                             code = reader["code"].ToString();
-                            dic.Add("code", code);
-                            dic.Add("client price", (float)reader["client_price"]);
                         }
-                    }  
+                    }
                 }
             }
             connection.Close();
-            connect();
-            this.command.CommandText = String.Format("SELECT * FROM prices WHERE code='{0}'", code);
-            reader = command.ExecuteReader();
-            int i = 0;
-            while (reader.Read())
-            {
-                i++;
-                dic.Add(String.Format("supplier price {0}", i), (float)reader["supplier_price"]); //add different prices from each suppliers    
-            }
-            dic.Add("n suppliers", i);
-            connection.Close();
+            return code;
         }
 
         /*****************************************************************************
@@ -181,8 +271,10 @@ namespace Materials
         {
             
             Dictionary<string, Object> description = new Dictionary<string, Object>();
-            string code="";
             string color="";
+            string code;
+            int length = (int)piece.GetDescription()["length"];
+            int width = (int)piece.GetDescription()["width"];
             if ((piece is ClassicDoor) || (piece is Panel) || (piece is Angle))
             {
                 color = (string)piece.GetDescription()["color"];
@@ -192,21 +284,55 @@ namespace Materials
             //since the determining dimension in DB differs following the type of piece, we have to make a different criterea for each type
             try
             {
+                string dimension1 = piece.GetDescription()["dim1"].ToString();
+                string dimension2 = piece.GetDescription()["dim2"].ToString();
+
                 if (piece is GlassDoor)
                 {
-                    retrieveInfos2D(description, piece, piece.GetDescription()["dim1"].ToString(), piece.GetDescription()["dim2"].ToString(), "verre");
+                    code = selectPiece2D (piece, dimension1, dimension2, "verre");
                 }
                 else
                 {
-                    retrieveInfos2D(description, piece, piece.GetDescription()["dim1"].ToString(), piece.GetDescription()["dim2"].ToString(), color);
+                    code = selectPiece2D(piece, dimension1, dimension2, color);
                 }
-                
+                description.Add("code", code);
+                description.Add(dimension1, length);
+                description.Add(dimension2, width);
+                command.CommandText = String.Format("SELECT * FROM pieces WHERE code='{0}'",code);
+                connect();
+                reader = command.ExecuteReader();
+                while (reader.Read()) //retrieve all informations about the piece, and put them in the description dictionnary
+                {
+                    description.Add("client price", (float)reader["client_price"]); //code is a unique identifier
+                }
+                connection.Close();
             }
-            catch
+            catch (KeyNotFoundException) //an error is raised if dim1-dim2 are not in piece description => there is only one dim
             {
-                retrieveInfos(description, piece, piece.GetDescription()["dim"].ToString(), color);
+                string dimension = piece.GetDescription()["dim"].ToString();
+                code = selectPiece(piece, piece.GetDescription()["dim"].ToString(), color);
+                description.Add("code", code);
+                this.command.CommandText = String.Format("SELECT * FROM pieces WHERE code='{0}'", code);
+                reader = command.ExecuteReader();
+                while (reader.Read()) //retrieve all informations about the piece, and put them in the description dictionnary
+                {
+                    description.Add("client price", (int)reader["client_price"]); //code is a unique identifier
+                }
+            connection.Close();
             }
-            
+
+            connect();
+            this.command.CommandText = String.Format("SELECT * FROM prices WHERE code='{0}'", code);
+            reader = command.ExecuteReader();
+            int i = 0;
+            while (reader.Read())
+            {
+                i++;
+                description.Add(String.Format("supplier price {0}", i), (float)reader["supplier_price"]); //add different prices from each suppliers    
+            }
+            description.Add("n suppliers", i);
+            connection.Close();
+
             return description;
         }
 
@@ -259,6 +385,5 @@ namespace Materials
             connection.Close();
             return dimensions; 
          }
-
     }
 }
