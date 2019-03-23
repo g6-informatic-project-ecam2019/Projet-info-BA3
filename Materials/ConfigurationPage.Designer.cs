@@ -206,7 +206,7 @@
             // 
             this.label24.AutoSize = true;
             this.label24.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label24.Location = new System.Drawing.Point(853, 137);
+            this.label24.Location = new System.Drawing.Point(736, 71);
             this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(146, 25);
@@ -215,7 +215,7 @@
             // 
             // MkOrdrBtn
             // 
-            this.MkOrdrBtn.Location = new System.Drawing.Point(898, 661);
+            this.MkOrdrBtn.Location = new System.Drawing.Point(870, 661);
             this.MkOrdrBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MkOrdrBtn.Name = "MkOrdrBtn";
             this.MkOrdrBtn.Size = new System.Drawing.Size(174, 36);
@@ -226,18 +226,17 @@
             // 
             // textBoxx5
             // 
-            this.textBoxx5.Location = new System.Drawing.Point(818, 339);
+            this.textBoxx5.Location = new System.Drawing.Point(741, 290);
             this.textBoxx5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxx5.Multiline = true;
             this.textBoxx5.Name = "textBoxx5";
             this.textBoxx5.ReadOnly = true;
-            this.textBoxx5.Size = new System.Drawing.Size(228, 34);
+            this.textBoxx5.Size = new System.Drawing.Size(235, 34);
             this.textBoxx5.TabIndex = 46;
-            
             // 
             // PrevBlocBtn
             // 
-            this.PrevBlocBtn.Location = new System.Drawing.Point(796, 589);
+            this.PrevBlocBtn.Location = new System.Drawing.Point(741, 535);
             this.PrevBlocBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PrevBlocBtn.Name = "PrevBlocBtn";
             this.PrevBlocBtn.Size = new System.Drawing.Size(174, 36);
@@ -469,7 +468,6 @@
             this.label4.Size = new System.Drawing.Size(67, 25);
             this.label4.TabIndex = 7;
             this.label4.Text = "Width";
-            
             // 
             // WidthTxt
             // 
@@ -480,7 +478,6 @@
             this.WidthTxt.Size = new System.Drawing.Size(74, 25);
             this.WidthTxt.TabIndex = 6;
             this.WidthTxt.Text = "Height";
-            
             // 
             // panel3
             // 
@@ -1032,7 +1029,6 @@
             this.label49.Size = new System.Drawing.Size(74, 27);
             this.label49.TabIndex = 31;
             this.label49.Text = "Bloc 5";
-            
             // 
             // DoorBox5
             // 
@@ -1325,7 +1321,7 @@
             // 
             // NextBlocBtn
             // 
-            this.NextBlocBtn.Location = new System.Drawing.Point(1011, 589);
+            this.NextBlocBtn.Location = new System.Drawing.Point(995, 534);
             this.NextBlocBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.NextBlocBtn.Name = "NextBlocBtn";
             this.NextBlocBtn.Size = new System.Drawing.Size(174, 36);
@@ -1347,127 +1343,141 @@
             // 
             // ModifBloc1
             // 
-            this.ModifBloc1.Location = new System.Drawing.Point(1063, 179);
+            this.ModifBloc1.Location = new System.Drawing.Point(900, 595);
             this.ModifBloc1.Name = "ModifBloc1";
-            this.ModifBloc1.Size = new System.Drawing.Size(33, 34);
+            this.ModifBloc1.Size = new System.Drawing.Size(37, 37);
             this.ModifBloc1.TabIndex = 53;
+            this.ModifBloc1.Text = "1";
             this.ModifBloc1.UseVisualStyleBackColor = true;
             this.ModifBloc1.Click += new System.EventHandler(this.ModifBloc1_Click);
             // 
             // CopyBox1
             // 
-            this.CopyBox1.Location = new System.Drawing.Point(1121, 179);
+            this.CopyBox1.Location = new System.Drawing.Point(1020, 130);
             this.CopyBox1.Name = "CopyBox1";
-            this.CopyBox1.Size = new System.Drawing.Size(33, 34);
+            this.CopyBox1.Size = new System.Drawing.Size(34, 34);
             this.CopyBox1.TabIndex = 54;
+            this.CopyBox1.Text = "+";
             this.CopyBox1.UseVisualStyleBackColor = true;
             this.CopyBox1.Click += new System.EventHandler(this.CopyBox1_Click);
             // 
             // CopyBox2
             // 
-            this.CopyBox2.Location = new System.Drawing.Point(1121, 219);
+            this.CopyBox2.Location = new System.Drawing.Point(1020, 170);
             this.CopyBox2.Name = "CopyBox2";
-            this.CopyBox2.Size = new System.Drawing.Size(33, 34);
+            this.CopyBox2.Size = new System.Drawing.Size(34, 34);
             this.CopyBox2.TabIndex = 56;
+            this.CopyBox2.Text = "+";
             this.CopyBox2.UseVisualStyleBackColor = true;
             this.CopyBox2.Click += new System.EventHandler(this.CopyBox2_Click);
             // 
             // ModifBloc2
             // 
-            this.ModifBloc2.Location = new System.Drawing.Point(1063, 219);
+            this.ModifBloc2.Location = new System.Drawing.Point(939, 595);
             this.ModifBloc2.Name = "ModifBloc2";
-            this.ModifBloc2.Size = new System.Drawing.Size(33, 34);
+            this.ModifBloc2.Size = new System.Drawing.Size(37, 37);
             this.ModifBloc2.TabIndex = 55;
+            this.ModifBloc2.Text = "2";
             this.ModifBloc2.UseVisualStyleBackColor = true;
             this.ModifBloc2.Click += new System.EventHandler(this.ModifBloc2_Click);
             // 
             // CopyBox3
             // 
-            this.CopyBox3.Location = new System.Drawing.Point(1121, 259);
+            this.CopyBox3.Location = new System.Drawing.Point(1020, 210);
             this.CopyBox3.Name = "CopyBox3";
-            this.CopyBox3.Size = new System.Drawing.Size(33, 34);
+            this.CopyBox3.Size = new System.Drawing.Size(34, 34);
             this.CopyBox3.TabIndex = 58;
+            this.CopyBox3.Text = "+";
             this.CopyBox3.UseVisualStyleBackColor = true;
             this.CopyBox3.Click += new System.EventHandler(this.CopyBox3_Click);
             // 
             // ModifBloc3
             // 
-            this.ModifBloc3.Location = new System.Drawing.Point(1063, 259);
+            this.ModifBloc3.Location = new System.Drawing.Point(978, 595);
             this.ModifBloc3.Name = "ModifBloc3";
-            this.ModifBloc3.Size = new System.Drawing.Size(33, 34);
+            this.ModifBloc3.Size = new System.Drawing.Size(37, 37);
             this.ModifBloc3.TabIndex = 57;
+            this.ModifBloc3.Text = "3";
             this.ModifBloc3.UseVisualStyleBackColor = true;
             this.ModifBloc3.Click += new System.EventHandler(this.ModifBloc3_Click);
             // 
             // CopyBox6
             // 
-            this.CopyBox6.Location = new System.Drawing.Point(1121, 379);
+            this.CopyBox6.Location = new System.Drawing.Point(1020, 330);
             this.CopyBox6.Name = "CopyBox6";
-            this.CopyBox6.Size = new System.Drawing.Size(33, 34);
+            this.CopyBox6.Size = new System.Drawing.Size(34, 34);
             this.CopyBox6.TabIndex = 64;
+            this.CopyBox6.Text = "+";
             this.CopyBox6.UseVisualStyleBackColor = true;
             this.CopyBox6.Click += new System.EventHandler(this.CopyBox6_Click);
             // 
             // ModifBloc6
             // 
-            this.ModifBloc6.Location = new System.Drawing.Point(1063, 379);
+            this.ModifBloc6.Location = new System.Drawing.Point(1093, 594);
             this.ModifBloc6.Name = "ModifBloc6";
-            this.ModifBloc6.Size = new System.Drawing.Size(33, 34);
+            this.ModifBloc6.Size = new System.Drawing.Size(37, 37);
             this.ModifBloc6.TabIndex = 63;
+            this.ModifBloc6.Text = "6";
             this.ModifBloc6.UseVisualStyleBackColor = true;
             this.ModifBloc6.Click += new System.EventHandler(this.ModifBloc6_Click);
             // 
             // CopyBox5
             // 
-            this.CopyBox5.Location = new System.Drawing.Point(1121, 339);
+            this.CopyBox5.Location = new System.Drawing.Point(1020, 290);
             this.CopyBox5.Name = "CopyBox5";
-            this.CopyBox5.Size = new System.Drawing.Size(33, 34);
+            this.CopyBox5.Size = new System.Drawing.Size(34, 34);
             this.CopyBox5.TabIndex = 62;
+            this.CopyBox5.Text = "+";
             this.CopyBox5.UseVisualStyleBackColor = true;
             this.CopyBox5.Click += new System.EventHandler(this.CopyBox5_Click);
             // 
             // ModifBloc5
             // 
-            this.ModifBloc5.Location = new System.Drawing.Point(1063, 339);
+            this.ModifBloc5.Location = new System.Drawing.Point(1056, 594);
             this.ModifBloc5.Name = "ModifBloc5";
-            this.ModifBloc5.Size = new System.Drawing.Size(33, 34);
+            this.ModifBloc5.Size = new System.Drawing.Size(37, 37);
             this.ModifBloc5.TabIndex = 61;
+            this.ModifBloc5.Text = "5";
             this.ModifBloc5.UseVisualStyleBackColor = true;
             this.ModifBloc5.Click += new System.EventHandler(this.ModifBloc5_Click);
             // 
             // CopyBox4
             // 
-            this.CopyBox4.Location = new System.Drawing.Point(1121, 299);
+            this.CopyBox4.Location = new System.Drawing.Point(1020, 250);
             this.CopyBox4.Name = "CopyBox4";
-            this.CopyBox4.Size = new System.Drawing.Size(33, 34);
+            this.CopyBox4.Size = new System.Drawing.Size(34, 34);
             this.CopyBox4.TabIndex = 60;
+            this.CopyBox4.Text = "+";
             this.CopyBox4.UseVisualStyleBackColor = true;
             this.CopyBox4.Click += new System.EventHandler(this.CopyBox4_Click);
             // 
             // ModifBloc4
             // 
-            this.ModifBloc4.Location = new System.Drawing.Point(1063, 299);
+            this.ModifBloc4.Location = new System.Drawing.Point(1017, 594);
             this.ModifBloc4.Name = "ModifBloc4";
-            this.ModifBloc4.Size = new System.Drawing.Size(33, 34);
+            this.ModifBloc4.Size = new System.Drawing.Size(37, 37);
             this.ModifBloc4.TabIndex = 59;
+            this.ModifBloc4.Text = "4";
             this.ModifBloc4.UseVisualStyleBackColor = true;
             this.ModifBloc4.Click += new System.EventHandler(this.ModifBloc4_Click);
             // 
             // CopyBox7
             // 
-            this.CopyBox7.Location = new System.Drawing.Point(1121, 419);
+            this.CopyBox7.Location = new System.Drawing.Point(1020, 370);
             this.CopyBox7.Name = "CopyBox7";
-            this.CopyBox7.Size = new System.Drawing.Size(33, 34);
+            this.CopyBox7.Size = new System.Drawing.Size(34, 34);
             this.CopyBox7.TabIndex = 66;
+            this.CopyBox7.Text = "+";
             this.CopyBox7.UseVisualStyleBackColor = true;
             this.CopyBox7.Click += new System.EventHandler(this.CopyBox7_Click);
             // 
             // ModifBloc7
             // 
-            this.ModifBloc7.Location = new System.Drawing.Point(1063, 419);
+            this.ModifBloc7.Location = new System.Drawing.Point(1132, 594);
             this.ModifBloc7.Name = "ModifBloc7";
-            this.ModifBloc7.Size = new System.Drawing.Size(33, 34);
+            this.ModifBloc7.Size = new System.Drawing.Size(37, 37);
             this.ModifBloc7.TabIndex = 65;
+            this.ModifBloc7.Text = "7";
             this.ModifBloc7.UseVisualStyleBackColor = true;
             this.ModifBloc7.Click += new System.EventHandler(this.ModifBloc7_Click);
             // 
@@ -1515,7 +1525,6 @@
             this.DepthBox2.ReadOnly = true;
             this.DepthBox2.Size = new System.Drawing.Size(184, 31);
             this.DepthBox2.TabIndex = 49;
-            
             // 
             // widthBox2
             // 
@@ -1525,7 +1534,6 @@
             this.widthBox2.ReadOnly = true;
             this.widthBox2.Size = new System.Drawing.Size(184, 31);
             this.widthBox2.TabIndex = 48;
-            
             // 
             // heightBox2
             // 
@@ -1736,7 +1744,6 @@
             this.widthBox7.ReadOnly = true;
             this.widthBox7.Size = new System.Drawing.Size(184, 31);
             this.widthBox7.TabIndex = 49;
-            
             // 
             // heightBox7
             // 
@@ -1897,72 +1904,69 @@
             // 
             // textBoxx6
             // 
-            this.textBoxx6.Location = new System.Drawing.Point(818, 379);
+            this.textBoxx6.Location = new System.Drawing.Point(741, 330);
             this.textBoxx6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxx6.Multiline = true;
             this.textBoxx6.Name = "textBoxx6";
             this.textBoxx6.ReadOnly = true;
-            this.textBoxx6.Size = new System.Drawing.Size(228, 34);
+            this.textBoxx6.Size = new System.Drawing.Size(235, 34);
             this.textBoxx6.TabIndex = 68;
             // 
             // textBoxx7
             // 
-            this.textBoxx7.Location = new System.Drawing.Point(818, 419);
+            this.textBoxx7.Location = new System.Drawing.Point(741, 370);
             this.textBoxx7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxx7.Multiline = true;
             this.textBoxx7.Name = "textBoxx7";
             this.textBoxx7.ReadOnly = true;
-            this.textBoxx7.Size = new System.Drawing.Size(228, 34);
+            this.textBoxx7.Size = new System.Drawing.Size(235, 34);
             this.textBoxx7.TabIndex = 69;
             // 
             // textBoxx4
             // 
-            this.textBoxx4.Location = new System.Drawing.Point(818, 299);
+            this.textBoxx4.Location = new System.Drawing.Point(741, 250);
             this.textBoxx4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxx4.Multiline = true;
             this.textBoxx4.Name = "textBoxx4";
             this.textBoxx4.ReadOnly = true;
-            this.textBoxx4.Size = new System.Drawing.Size(228, 34);
+            this.textBoxx4.Size = new System.Drawing.Size(235, 34);
             this.textBoxx4.TabIndex = 70;
             // 
             // textBoxx3
             // 
-            this.textBoxx3.Location = new System.Drawing.Point(818, 259);
+            this.textBoxx3.Location = new System.Drawing.Point(741, 210);
             this.textBoxx3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxx3.Multiline = true;
             this.textBoxx3.Name = "textBoxx3";
             this.textBoxx3.ReadOnly = true;
-            this.textBoxx3.Size = new System.Drawing.Size(228, 34);
+            this.textBoxx3.Size = new System.Drawing.Size(235, 34);
             this.textBoxx3.TabIndex = 71;
-            
             // 
             // textBoxx2
             // 
-            this.textBoxx2.Location = new System.Drawing.Point(818, 219);
+            this.textBoxx2.Location = new System.Drawing.Point(741, 170);
             this.textBoxx2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxx2.Multiline = true;
             this.textBoxx2.Name = "textBoxx2";
             this.textBoxx2.ReadOnly = true;
-            this.textBoxx2.Size = new System.Drawing.Size(228, 34);
+            this.textBoxx2.Size = new System.Drawing.Size(235, 34);
             this.textBoxx2.TabIndex = 72;
-            
             // 
             // textBoxx1
             // 
-            this.textBoxx1.Location = new System.Drawing.Point(818, 179);
+            this.textBoxx1.Location = new System.Drawing.Point(741, 130);
             this.textBoxx1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxx1.Multiline = true;
             this.textBoxx1.Name = "textBoxx1";
             this.textBoxx1.ReadOnly = true;
-            this.textBoxx1.Size = new System.Drawing.Size(228, 34);
+            this.textBoxx1.Size = new System.Drawing.Size(235, 34);
             this.textBoxx1.TabIndex = 73;
-            
             // 
             // label78
             // 
             this.label78.AutoSize = true;
             this.label78.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label78.Location = new System.Drawing.Point(862, 479);
+            this.label78.Location = new System.Drawing.Point(736, 446);
             this.label78.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label78.Name = "label78";
             this.label78.Size = new System.Drawing.Size(137, 25);
@@ -1971,7 +1975,7 @@
             // 
             // texttotalheigth
             // 
-            this.texttotalheigth.Location = new System.Drawing.Point(997, 476);
+            this.texttotalheigth.Location = new System.Drawing.Point(875, 443);
             this.texttotalheigth.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.texttotalheigth.Multiline = true;
             this.texttotalheigth.Name = "texttotalheigth";
@@ -1983,7 +1987,7 @@
             // 
             this.label79.AutoSize = true;
             this.label79.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label79.Location = new System.Drawing.Point(1078, 479);
+            this.label79.Location = new System.Drawing.Point(956, 446);
             this.label79.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label79.Name = "label79";
             this.label79.Size = new System.Drawing.Size(40, 25);
@@ -1994,18 +1998,18 @@
             // 
             this.label80.AutoSize = true;
             this.label80.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label80.Location = new System.Drawing.Point(1046, 151);
+            this.label80.Location = new System.Drawing.Point(736, 599);
             this.label80.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label80.Name = "label80";
-            this.label80.Size = new System.Drawing.Size(66, 25);
+            this.label80.Size = new System.Drawing.Size(157, 25);
             this.label80.TabIndex = 77;
-            this.label80.Text = "Selec";
+            this.label80.Text = "Block selection";
             // 
             // label81
             // 
             this.label81.AutoSize = true;
             this.label81.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label81.Location = new System.Drawing.Point(1106, 151);
+            this.label81.Location = new System.Drawing.Point(1002, 94);
             this.label81.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label81.Name = "label81";
             this.label81.Size = new System.Drawing.Size(62, 25);
@@ -2016,73 +2020,80 @@
             // 
             this.label82.AutoSize = true;
             this.label82.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label82.Location = new System.Drawing.Point(1176, 151);
+            this.label82.Location = new System.Drawing.Point(1108, 96);
             this.label82.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label82.Name = "label82";
-            this.label82.Size = new System.Drawing.Size(44, 25);
+            this.label82.Size = new System.Drawing.Size(79, 25);
             this.label82.TabIndex = 87;
-            this.label82.Text = "Del";
+            this.label82.Text = "Cancel";
             // 
             // DeleteBox7
             // 
-            this.DeleteBox7.Location = new System.Drawing.Point(1179, 419);
+            this.DeleteBox7.Location = new System.Drawing.Point(1135, 370);
             this.DeleteBox7.Name = "DeleteBox7";
-            this.DeleteBox7.Size = new System.Drawing.Size(33, 34);
+            this.DeleteBox7.Size = new System.Drawing.Size(34, 34);
             this.DeleteBox7.TabIndex = 85;
+            this.DeleteBox7.Text = "x";
             this.DeleteBox7.UseVisualStyleBackColor = true;
             this.DeleteBox7.Click += new System.EventHandler(this.DeleteBox7_Click);
             // 
             // DeleteBox6
             // 
-            this.DeleteBox6.Location = new System.Drawing.Point(1179, 379);
+            this.DeleteBox6.Location = new System.Drawing.Point(1135, 330);
             this.DeleteBox6.Name = "DeleteBox6";
-            this.DeleteBox6.Size = new System.Drawing.Size(33, 34);
+            this.DeleteBox6.Size = new System.Drawing.Size(34, 34);
             this.DeleteBox6.TabIndex = 84;
+            this.DeleteBox6.Text = "x";
             this.DeleteBox6.UseVisualStyleBackColor = true;
             this.DeleteBox6.Click += new System.EventHandler(this.DeleteBox6_Click);
             // 
             // DeleteBox5
             // 
-            this.DeleteBox5.Location = new System.Drawing.Point(1179, 339);
+            this.DeleteBox5.Location = new System.Drawing.Point(1135, 290);
             this.DeleteBox5.Name = "DeleteBox5";
-            this.DeleteBox5.Size = new System.Drawing.Size(33, 34);
+            this.DeleteBox5.Size = new System.Drawing.Size(34, 34);
             this.DeleteBox5.TabIndex = 83;
+            this.DeleteBox5.Text = "x";
             this.DeleteBox5.UseVisualStyleBackColor = true;
             this.DeleteBox5.Click += new System.EventHandler(this.DeleteBox5_Click);
             // 
             // DeleteBox4
             // 
-            this.DeleteBox4.Location = new System.Drawing.Point(1179, 299);
+            this.DeleteBox4.Location = new System.Drawing.Point(1135, 250);
             this.DeleteBox4.Name = "DeleteBox4";
-            this.DeleteBox4.Size = new System.Drawing.Size(33, 34);
+            this.DeleteBox4.Size = new System.Drawing.Size(34, 34);
             this.DeleteBox4.TabIndex = 82;
+            this.DeleteBox4.Text = "x";
             this.DeleteBox4.UseVisualStyleBackColor = true;
             this.DeleteBox4.Click += new System.EventHandler(this.DeleteBox4_Click);
             // 
             // DeleteBox3
             // 
-            this.DeleteBox3.Location = new System.Drawing.Point(1179, 259);
+            this.DeleteBox3.Location = new System.Drawing.Point(1135, 210);
             this.DeleteBox3.Name = "DeleteBox3";
-            this.DeleteBox3.Size = new System.Drawing.Size(33, 34);
+            this.DeleteBox3.Size = new System.Drawing.Size(34, 34);
             this.DeleteBox3.TabIndex = 81;
+            this.DeleteBox3.Text = "x";
             this.DeleteBox3.UseVisualStyleBackColor = true;
             this.DeleteBox3.Click += new System.EventHandler(this.DeleteBox3_Click);
             // 
             // DeleteBox2
             // 
-            this.DeleteBox2.Location = new System.Drawing.Point(1179, 219);
+            this.DeleteBox2.Location = new System.Drawing.Point(1135, 170);
             this.DeleteBox2.Name = "DeleteBox2";
-            this.DeleteBox2.Size = new System.Drawing.Size(33, 34);
+            this.DeleteBox2.Size = new System.Drawing.Size(34, 34);
             this.DeleteBox2.TabIndex = 80;
+            this.DeleteBox2.Text = "x";
             this.DeleteBox2.UseVisualStyleBackColor = true;
             this.DeleteBox2.Click += new System.EventHandler(this.DeleteBox2_Click);
             // 
             // DeleteBox1
             // 
-            this.DeleteBox1.Location = new System.Drawing.Point(1179, 179);
+            this.DeleteBox1.Location = new System.Drawing.Point(1135, 130);
             this.DeleteBox1.Name = "DeleteBox1";
-            this.DeleteBox1.Size = new System.Drawing.Size(33, 34);
+            this.DeleteBox1.Size = new System.Drawing.Size(34, 34);
             this.DeleteBox1.TabIndex = 79;
+            this.DeleteBox1.Text = "x";
             this.DeleteBox1.UseVisualStyleBackColor = true;
             this.DeleteBox1.Click += new System.EventHandler(this.DeleteBox1_Click);
             // 
@@ -2091,7 +2102,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1224, 748);
+            this.ClientSize = new System.Drawing.Size(1260, 781);
             this.Controls.Add(this.label82);
             this.Controls.Add(this.DeleteBox7);
             this.Controls.Add(this.DeleteBox6);
@@ -2131,13 +2142,13 @@
             this.Controls.Add(this.textBoxx5);
             this.Controls.Add(this.PrevBlocBtn);
             this.Controls.Add(this.NextBlocBtn);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel7);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel7);
-            this.Controls.Add(this.panel4);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ConfigurationPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
