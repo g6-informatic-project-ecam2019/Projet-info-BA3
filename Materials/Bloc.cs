@@ -9,7 +9,7 @@ namespace Materials
     interface Bloc
     {
         Dictionary<string, Object> GetDescription();
-        double GetPrice();
+        float GetPrice();
         void BuildPieces();
         Piece[] GetPieces();
     }

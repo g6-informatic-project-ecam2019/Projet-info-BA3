@@ -89,6 +89,7 @@ namespace Materials
             {
                 cupboard1.AddBloc(new Box(height[i], panelsColor[i], hasdoor[i], cupboard1, typedoor[i], doorcolor[i]));
             }
+            MessageBox.Show(String.Format("total price is : {0}",cupboard1.GetPrice()));
             configpage.Show();
 
             this.Hide(); 

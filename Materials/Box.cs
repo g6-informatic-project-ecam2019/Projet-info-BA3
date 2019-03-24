@@ -16,7 +16,7 @@ namespace Materials
         private string typedoor;
         private string doorcolor;
         private Dictionary<string, Object> Cupboard;
-        private double price;
+        private float price;
         private Piece[] parts = new Piece[15];
         private Stock stock;
 
@@ -31,6 +31,7 @@ namespace Materials
             this.width = Convert.ToInt32(Cupboard["width"]);
             this.stock = new Stock("Server=localhost;Port=3306;Database=mykitbox;Uid=root;Pwd=");
             BuildPieces();
+            ComputePrice();
         }
         public void BuildPieces()
         {
@@ -61,7 +62,7 @@ namespace Materials
                     this.parts[14] = new GlassDoor(5, this.height, this.width);/*glassdoor2*/
                 }
             }
-            for (int p = 0; p < this.parts.Length; p++)
+            for (int p = 0; p < this.parts.Length; p++) //after pieces are built, 
             {
                 this.parts[p].DescriptionRequest(this.stock);
             }
@@ -73,8 +74,7 @@ namespace Materials
             {
                 if(this.parts[i] != null)
                 {
-                    Dictionary<string, Object> DicDescri = this.parts[i].GetDescription();
-                    this.price += Convert.ToDouble(DicDescri["price"]);
+                    this.price += (float)this.parts[i].GetPrice();
                 }
             }
         }
@@ -82,10 +82,9 @@ namespace Materials
         {
             return parts;
         }
-        public double GetPrice()
+        public float GetPrice()
         {
-            ComputePrice();
-            return price;
+            return price; 
         }
         public Dictionary<string, Object> GetDescription()/*Dictionary that contains all the elements of the box*/
         {

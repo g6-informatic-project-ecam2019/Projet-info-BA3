@@ -13,7 +13,7 @@ namespace Materials
         private int depth;
         private Bloc[] configuration;//block lists
         private int height;
-        private double price;
+        private float price;
 
         public Cupboard(int depth,int width,string angleColor, int number)/*Builder*/
         {
@@ -100,7 +100,7 @@ namespace Materials
             Description.Add("angleColor", this.angleColor);
             return Description;
         }
-        public double GetPrice()/*compute the price*/
+        public float GetPrice()/*compute the price*/
         {
             int i;
             int h = 10;
@@ -108,18 +108,18 @@ namespace Materials
             {
                 if (this.configuration[i] != null)
                 {
-                    Dictionary<string, Object> bibliBloc = this.configuration[i].GetDescription();
-                    this.price += Convert.ToDouble(bibliBloc["price"]);
+                    this.price += (float) this.configuration[i].GetPrice();
                     h = i;
                 }
             }
-            if (i != 10)
+            if (h != 10)
             {
                 return this.price;
             }
             else
             {
                 return 0;
+                Console.WriteLine("No boxes in configuration");
             }
         }
     }

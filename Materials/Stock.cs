@@ -230,7 +230,7 @@ namespace Materials
 
             }
 
-            this.command.CommandText = String.Format("INSERT INTO client_piecescommand VALUES ('{0}', '{1}', '{2}')", idCom, code, );
+            //this.command.CommandText = String.Format("INSERT INTO client_piecescommand VALUES ('{0}', '{1}', '{2}')", idCom, code, );
             connection.Close();
             
         }
@@ -249,7 +249,7 @@ namespace Materials
             {
                 throw new System.ArgumentException("The piece cannot be a door nor a panel in this function");
             }
-            this.command.CommandText = String.Format("SELECT * FROM pieces WHERE ref='{0}'", piece.GetDescription()["ref"].ToString());
+            this.command.CommandText = String.Format("SELECT * FROM piece WHERE ref='{0}'", piece.GetDescription()["ref"].ToString());
 
             reader = command.ExecuteReader();
             while (reader.Read()) //retrieve all informations about the piece, and put them in the description dictionnary
@@ -277,7 +277,7 @@ namespace Materials
             string code = "";
             int length = (int)piece.GetDescription()["length"];
             int width = (int)piece.GetDescription()["width"];
-            command.CommandText = String.Format("SELECT * FROM pieces WHERE ref='{0}'", piece.GetDescription()["ref"].ToString());
+            command.CommandText = String.Format("SELECT * FROM piece WHERE ref='{0}'", piece.GetDescription()["ref"].ToString());
             reader = command.ExecuteReader();
             while (reader.Read()) //retrieve all informations about the piece, and put them in the description dictionnary
             {
@@ -316,8 +316,17 @@ namespace Materials
             Dictionary<string, Object> description = new Dictionary<string, Object>();
             string color="";
             string code;
+            int width = -1;
             int length = (int)piece.GetDescription()["length"];
-            int width = (int)piece.GetDescription()["width"];
+            try
+            {
+                width = (int)piece.GetDescription()["width"];
+            }
+            catch (KeyNotFoundException)
+            {
+                Console.WriteLine("");
+            }
+            
             if ((piece is ClassicDoor) || (piece is Panel) || (piece is Angle))
             {
                 color = (string)piece.GetDescription()["color"];
@@ -340,8 +349,12 @@ namespace Materials
                 }
                 description.Add("code", code);
                 description.Add(dimension1, length);
+                if (width >0)
+                {
+                    description.Add(dimension2, width);
+                }
                 description.Add(dimension2, width);
-                command.CommandText = String.Format("SELECT * FROM pieces WHERE code='{0}'",code);
+                command.CommandText = String.Format("SELECT * FROM piece WHERE code='{0}'",code);
                 connect();
                 reader = command.ExecuteReader();
                 while (reader.Read()) //retrieve all informations about the piece, and put them in the description dictionnary
@@ -355,7 +368,7 @@ namespace Materials
                 string dimension = piece.GetDescription()["dim"].ToString();
                 code = selectPiece(piece, piece.GetDescription()["dim"].ToString(), color);
                 description.Add("code", code);
-                this.command.CommandText = String.Format("SELECT * FROM pieces WHERE code='{0}'", code);
+                this.command.CommandText = String.Format("SELECT * FROM piece WHERE code='{0}'", code);
                 reader = command.ExecuteReader();
                 while (reader.Read()) //retrieve all informations about the piece, and put them in the description dictionnary
                 {
@@ -390,7 +403,7 @@ namespace Materials
          public int[] existingDimension(string dim, string determiningPiece)
          {
             connect();
-            command.CommandText = String.Format("SELECT * FROM pieces WHERE ref='{0}'", determiningPiece); //height of a box is given by cleat's length + 4 cm
+            command.CommandText = String.Format("SELECT * FROM piece WHERE ref='{0}'", determiningPiece); //height of a box is given by cleat's length + 4 cm
             reader = command.ExecuteReader();
             int counter = 0;
             while (reader.Read())

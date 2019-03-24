@@ -30,3 +30,20 @@ C:\Users\timna\Documents\GitHub\Projet-info-BA3\Materials\bin\Debug\Materials.ex
 C:\Users\timna\Documents\GitHub\Projet-info-BA3\Materials\bin\Debug\Materials.pdb
 C:\Users\timna\Documents\GitHub\Projet-info-BA3\Materials\bin\Debug\MySql.Data.dll
 C:\Users\timna\Documents\GitHub\Projet-info-BA3\Materials\obj\Debug\Materials.csproj.CopyComplete
+D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.csprojAssemblyReference.cache
+D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.BlocAmountPage.resources
+D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.ConfigurationPage.resources
+D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.ConfirmOrderPage.resources
+D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.HomePage.resources
+D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.SKLoginPage.resources
+D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.SKOrdersPage.resources
+D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.csproj.GenerateResource.cache
+D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.csproj.CoreCompileInputs.cache
+D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.exe
+D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.pdb
+D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\bin\Debug\Materials.exe.config
+D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\bin\Debug\Materials.exe
+D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\bin\Debug\Materials.pdb
+D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\bin\Debug\MySql.Data.dll
+D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\bin\Debug\Google.Protobuf.dll
+D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.csproj.CopyComplete
