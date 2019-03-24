@@ -33,11 +33,11 @@ namespace Materials
             BuildPieces();
             ComputePrice();
         }
-        public void BuildPieces()
+        public void BuildPieces() /* !!!!!!!!!!!!!!!!! CORRECTION TO BE MADE 4 LINES BELOW !!!!!!!!!!!!!!!!!!!!!!!!!! */
         {
             for (int i = 0; i < 4; i++)
             {
-                this.parts[i] = new Cleat(5, this.height - 4);/*cleat1-4*/
+                this.parts[i] = new Cleat(5, this.height );/*cleat1-4*/ //add -4 when options in graphical interface is corrected 
                 if (i < 2)                                  //there are only three pannels in a box (front = door)
                 {
                     this.parts[i+4]  = new Breadth(5, this.depth, "GD");

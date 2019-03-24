@@ -10,7 +10,7 @@ namespace Materials
     {
         
         private string color;
-        public ClassicDoor(float price, int lenght, string color, int width) /*builder*/
+        public ClassicDoor(float price, int length, string color, int width) /*builder*/
         {
             this.price = price;
             this.length = length;
@@ -25,7 +25,7 @@ namespace Materials
             Description.Add("price", this.price);
             Description.Add("length", this.length);
             Description.Add("width", this.width);
-            Description.Add("color", this.color);
+            Description.Add("color", "Blanc");
             Description.Add("type", this.type);
             Description.Add("ref", this.name);
             Description.Add("dim1", this.determDim1);

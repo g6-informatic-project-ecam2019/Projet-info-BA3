@@ -78,8 +78,7 @@ namespace Materials
             {
                 if (this.configuration[i] != null)
                 {
-                    Dictionary<string, Object> bibliBloc = this.configuration[i].GetDescription();
-                    this.height += Convert.ToInt32(bibliBloc["height"]);
+                    this.height += (int)this.configuration[i].GetDescription()["heigth"];
                     h = i;
                 }
             }

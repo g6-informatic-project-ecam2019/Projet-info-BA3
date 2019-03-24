@@ -8,7 +8,7 @@ namespace Materials
 {
     class GlassDoor : Door /*/Inheritance of the abstract class door, the glass door*/
     {
-        public GlassDoor(float price, int lenght, int width) //builder
+        public GlassDoor(float price, int length, int width) //builder
         {
             this.price = price;
             this.length = length;

@@ -10,7 +10,7 @@ namespace Materials
     {
         private string pos;
         private string determiningDimension;
-        public Breadth(float price, int lenght, string pos)/*builder*/
+        public Breadth(float price, int length, string pos)/*builder*/
         {
             this.price = price;
             this.length = length;

@@ -23,8 +23,8 @@ namespace Materials
         public Stock(string connString)
         {
             this.connString = connString; //"Server=localhost;Port=3306;Database=mykitbox;Uid=root;Pwd="
-            connection = new MySqlConnection(this.connString);
-            command = connection.CreateCommand();
+            //connection = new MySqlConnection(this.connString);
+            //command = connection.CreateCommand();
             //command.CommandText = "SELECT * FROM pieces WHERE ref='Porte'"; //this is a "select" command, replace tableName and number
             connect();
             connection.Close();
@@ -32,6 +32,8 @@ namespace Materials
 
         private void connect()
         {
+            connection = new MySqlConnection(this.connString);
+            command = connection.CreateCommand();
             try
             {
                 connection.Open();
@@ -49,7 +51,7 @@ namespace Materials
         public bool isAvailable (Piece piece)
         {
             connect();
-            command.CommandText = String.Format("SELECT * FROM pieces WHERE ref={0}", piece.GetDescription()["ref"]);
+            command.CommandText = String.Format("SELECT * FROM piece WHERE ref='{0}'", piece.GetDescription()["ref"]);
             reader = command.ExecuteReader();
             while (reader.Read())
             {
@@ -126,17 +128,15 @@ namespace Materials
                         }
                         catch (KeyNotFoundException) //no color specified in description
                         {
-                            if (reader["color"].ToString() == piece.GetDescription()["color"].ToString())
-                            {
-                                if ((int)reader["real_quantity"] != 0)
-                                {
-                                    return true;
-                                }
-                                else
-                                {
-                                    return false;
-                                }
-                            }
+                             if ((int)reader["real_quantity"] != 0)
+                             {
+                                return true;
+                             }
+                             else
+                             {
+                                return false;
+                             }
+                         
                         }
                     }
                 }
@@ -177,8 +177,8 @@ namespace Materials
                 string dimension = piece.GetDescription()["dim"].ToString();
                 code = selectPiece(piece, piece.GetDescription()["dim"].ToString(), piece.GetDescription()["color"].ToString());
             }
-            this.command.CommandText = String.Format("SELECT * FROM piece WHERE code='{0}'", code);
             connect();
+            this.command.CommandText = String.Format("SELECT * FROM piece WHERE code='{0}'", code);
             reader = command.ExecuteReader();
             while (reader.Read())
             {
@@ -189,12 +189,12 @@ namespace Materials
                 newQuantity = quantity - 1;
             }
             connection.Close();
-             if (newQuantity != 0)
+            connect();
+            if (newQuantity != 0)
              {
                     this.command.CommandText = String.Format("UPDATE piece SET virtual_quantity='{0}' WHERE code='{1}'",  newQuantity, code);
                 
              }
-            connect();
             int l = command.ExecuteNonQuery(); 
             if (l != 1) 
             {
@@ -231,7 +231,7 @@ namespace Materials
             }
 
             //this.command.CommandText = String.Format("INSERT INTO client_piecescommand VALUES ('{0}', '{1}', '{2}')", idCom, code, );
-            connection.Close();
+            //connection.Close();
             
         }
 
@@ -266,6 +266,11 @@ namespace Materials
                     }
                 }
             }
+            if (code == "")
+            {
+                Console.WriteLine("No fitting piece found.");
+                return null;
+            }
             connection.Close();
             return code;
         }
@@ -295,6 +300,11 @@ namespace Materials
                         }
                     }
                 }
+            }
+            if (code == "")
+            {
+                Console.WriteLine("No fitting piece found.");
+                return null;
             }
             connection.Close();
             return code;
@@ -341,21 +351,23 @@ namespace Materials
 
                 if (piece is GlassDoor)
                 {
-                    code = selectPiece2D (piece, dimension1, dimension2, "verre");
+                    code = selectPiece2D (piece, dimension1, dimension2, "Verre");
                 }
                 else
                 {
+                    Console.WriteLine(color);
                     code = selectPiece2D(piece, dimension1, dimension2, color);
                 }
                 description.Add("code", code);
-                description.Add(dimension1, length);
+                //description.Add(dimension1, length);
                 if (width >0)
                 {
-                    description.Add(dimension2, width);
+                    //description.Add(dimension2, width);
                 }
-                description.Add(dimension2, width);
-                command.CommandText = String.Format("SELECT * FROM piece WHERE code='{0}'",code);
+                //description.Add(dimension2, width);
                 connect();
+                command.CommandText = String.Format("SELECT * FROM piece WHERE code='{0}'",code);
+                Console.WriteLine(String.Format("code of this piece is {0}", code));
                 reader = command.ExecuteReader();
                 while (reader.Read()) //retrieve all informations about the piece, and put them in the description dictionnary
                 {
@@ -367,14 +379,16 @@ namespace Materials
             {
                 string dimension = piece.GetDescription()["dim"].ToString();
                 code = selectPiece(piece, piece.GetDescription()["dim"].ToString(), color);
+                Console.WriteLine(String.Format("code of this piece is {0}", code));
                 description.Add("code", code);
+                connect();
                 this.command.CommandText = String.Format("SELECT * FROM piece WHERE code='{0}'", code);
                 reader = command.ExecuteReader();
                 while (reader.Read()) //retrieve all informations about the piece, and put them in the description dictionnary
                 {
-                    description.Add("client price", (int)reader["client_price"]); //code is a unique identifier
+                    description.Add("client price", (float)reader["client_price"]); //code is a unique identifier
                 }
-            connection.Close();
+                connection.Close();
             }
 
             connect();

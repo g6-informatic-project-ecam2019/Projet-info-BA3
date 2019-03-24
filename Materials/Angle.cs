@@ -11,17 +11,12 @@ namespace Materials
         private string color;
         private string determiningDimension = "height";
 
-        public Angle(float price, int lenght, string color) /*builder*/
+        public Angle(float price, int length, string color) /*builder*/
         {
             this.price = price;
             this.length = length;
             this.color = color;
             this.name = "Cornieres";
-        }
-
-        public void SetPrice(float price)
-        {
-            this.price = price;
         }
 
         public override Dictionary<string, Object> GetDescription()/*Returns a dictionary with all panel information*/

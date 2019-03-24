@@ -13,7 +13,7 @@ namespace Materials
         private string position;
         private string determDim1;
         private string determDim2;
-        public Panel(float price, int lenght, string color, int width, string position) /*builder*/
+        public Panel(float price, int length, string color, int width, string position) /*builder*/
         {
             this.price = price;
             this.length = length;
@@ -43,7 +43,7 @@ namespace Materials
             Description.Add("price", this.price);
             Description.Add("length", this.length);
             Description.Add("width", this.width);
-            Description.Add("color", this.color);
+            Description.Add("color", "Blanc");
             Description.Add("pos", this.position);
             Description.Add("ref", this.name);
             Description.Add("dim1", this.determDim1);

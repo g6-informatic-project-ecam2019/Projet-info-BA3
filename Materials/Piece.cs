@@ -24,8 +24,11 @@ namespace Materials
         public abstract Dictionary<string, Object> GetDescription();
         public void DescriptionRequest(Stock pricestock)
         {
-            SetPrice((float)pricestock.getPieceDescription(this)["client price"]);
+            Console.WriteLine(String.Format("name of this piece is {0}", this.name));
             this.code = pricestock.getPieceDescription(this)["code"].ToString();
+            Console.WriteLine(String.Format("code of this piece is {0}", code));
+            SetPrice((float)pricestock.getPieceDescription(this)["client price"]);
+            
             this.available = pricestock.isAvailable(this);
         }
     }
