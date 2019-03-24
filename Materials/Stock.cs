@@ -225,10 +225,12 @@ namespace Materials
                     string code = piece.GetDescription()["code"].ToString();
                     orderPiece(piece);                //piece is counted as ordered 
                     codes.Add(code);
-                    this.command.CommandText = String.Format("INSERT INTO client_piecescommand VALUES ('{0}', '{1}', '{2}')", idCom, code, );
+                    
                 }
 
             }
+
+            this.command.CommandText = String.Format("INSERT INTO client_piecescommand VALUES ('{0}', '{1}', '{2}')", idCom, code, );
             connection.Close();
             
         }
