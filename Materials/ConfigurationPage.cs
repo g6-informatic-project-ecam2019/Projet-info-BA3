@@ -61,16 +61,22 @@ namespace Materials
             Number();
             StaticMesure();
             TextBox(Number());
-            
-            if (index < 6)
+            if (height[index]!=0 )
             {
-                for (int i = 0; i < 7; i++)
+                if (index < 6)
                 {
-                    listPanel[i].Visible = false;
+                    for (int i = 0; i < 7; i++)
+                    {
+                        listPanel[i].Visible = false;
+                    }
+                    listPanel[++index].Visible = true;
                 }
-                listPanel[++index].Visible = true;
-                
             }
+            else
+            {
+                MessageBox.Show("The previous block is not configured");
+            }
+            
         }
 
         private void MkOrdrBtn_Click(object sender, EventArgs e)
@@ -331,9 +337,10 @@ namespace Materials
         {
             
         }
-
+        
         private void ModifBloc1_Click(object sender, EventArgs e)
         {
+
             for (int i = 0; i < listPanel.Count; i++)
             {
                 listPanel[i].Visible = false;
@@ -344,62 +351,105 @@ namespace Materials
 
         private void ModifBloc2_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < listPanel.Count; i++)
+            if(height[0]!=0)
             {
-                listPanel[i].Visible = false;
+                for (int i = 0; i < listPanel.Count; i++)
+                {
+                    listPanel[i].Visible = false;
+                }
+                listPanel[1].Visible = true;
+                index = 1;
             }
-            listPanel[1].Visible = true;
-            index = 1;
+            else
+            {
+                MessageBox.Show("The previous block is not configured");
+            }
         }
 
         private void ModifBloc3_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < listPanel.Count; i++)
+            if (height[1] != 0)
             {
-                listPanel[i].Visible = false;
+                for (int i = 0; i < listPanel.Count; i++)
+                {
+                    listPanel[i].Visible = false;
+                }
+                listPanel[2].Visible = true;
+                index = 2;
             }
-            listPanel[2].Visible = true;
-            index = 2;
+            else
+            {
+                MessageBox.Show("The previous block is not configured");
+            }
+            
         }
 
         private void ModifBloc4_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < listPanel.Count; i++)
+            if (height[2] != 0)
             {
-                listPanel[i].Visible = false;
+                for (int i = 0; i < listPanel.Count; i++)
+                {
+                    listPanel[i].Visible = false;
+                }
+                listPanel[3].Visible = true;
+                index = 3;
             }
-            listPanel[3].Visible = true;
-            index = 3;
+            else
+            {
+                MessageBox.Show("The previous block is not configured");
+            }
         }
 
         private void ModifBloc5_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < listPanel.Count; i++)
+            if (height[3] != 0)
             {
-                listPanel[i].Visible = false;
+                for (int i = 0; i < listPanel.Count; i++)
+                {
+                    listPanel[i].Visible = false;
+                }
+                listPanel[4].Visible = true;
+                index = 4;
             }
-            listPanel[4].Visible = true;
-            index = 4;
+            else
+            {
+                MessageBox.Show("The previous block is not configured");
+            }
 
         }
         private void ModifBloc6_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < listPanel.Count; i++)
+            if (height[4] != 0)
             {
-                listPanel[i].Visible = false;
+                for (int i = 0; i < listPanel.Count; i++)
+                {
+                    listPanel[i].Visible = false;
+                }
+                listPanel[5].Visible = true;
+                index = 5;
             }
-            listPanel[5].Visible = true;
-            index = 5;
+            else
+            {
+                MessageBox.Show("The previous block is not configured");
+            }
         }
 
         private void ModifBloc7_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < listPanel.Count; i++)
+            if (height[5] != 0)
             {
-                listPanel[i].Visible = false;
+                for (int i = 0; i < listPanel.Count; i++)
+                {
+                    listPanel[i].Visible = false;
+                }
+                listPanel[6].Visible = true;
+                index = 6;
             }
-            listPanel[6].Visible = true;
-            index = 6;
+            else
+            {
+                MessageBox.Show("The previous block is not configured");
+            }
         }
         private void TextBox(int i)
         {
