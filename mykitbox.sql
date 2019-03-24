@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3305
--- Généré le :  mer. 20 mars 2019 à 14:50
+-- Généré le :  sam. 23 mars 2019 à 19:24
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -34,10 +34,10 @@ CREATE TABLE IF NOT EXISTS `client` (
   `firstname` varchar(40) NOT NULL,
   `lastname` varchar(40) NOT NULL,
   `adress` varchar(50) NOT NULL,
-  `zip` varchar(15) NOT NULL,
-  `phonenumber` varchar(20) NOT NULL,
+  `zip` int(15) NOT NULL,
+  `phonenumber` int(20) NOT NULL,
   PRIMARY KEY (`idclient`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -49,13 +49,13 @@ DROP TABLE IF EXISTS `client_command`;
 CREATE TABLE IF NOT EXISTS `client_command` (
   `idcom` int(11) NOT NULL AUTO_INCREMENT,
   `idclient` int(11) NOT NULL,
-  `date` date NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `description` varchar(150) NOT NULL,
   `command_status` varchar(30) NOT NULL DEFAULT 'Commandée',
   `payment_status` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`idcom`),
   KEY `idclient` (`idclient`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -421,7 +421,7 @@ CREATE TABLE IF NOT EXISTS `piececommand` (
   `num` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(20) NOT NULL,
   `idsupp` int(11) NOT NULL,
-  `date` date NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `quantity` int(11) NOT NULL,
   `status` varchar(30) NOT NULL DEFAULT 'Commandée',
   PRIMARY KEY (`num`),
