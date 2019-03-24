@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3305
--- Généré le :  sam. 23 mars 2019 à 19:24
+-- Généré le :  Dim 24 mars 2019 à 15:45
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -54,8 +54,8 @@ CREATE TABLE IF NOT EXISTS `client_command` (
   `command_status` varchar(30) NOT NULL DEFAULT 'Commandée',
   `payment_status` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`idcom`),
-  KEY `idclient` (`idclient`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  KEY `client_command_ibfk_1` (`idclient`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -68,8 +68,8 @@ CREATE TABLE IF NOT EXISTS `client_piecescommand` (
   `idcom` int(11) NOT NULL,
   `code` varchar(20) NOT NULL,
   `quantity` int(11) NOT NULL,
-  KEY `idcom` (`idcom`),
-  KEY `code` (`code`)
+  KEY `client_piecescommand_ibfk_1` (`idcom`),
+  KEY `client_piecescommand_ibfk_2` (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -425,8 +425,8 @@ CREATE TABLE IF NOT EXISTS `piececommand` (
   `quantity` int(11) NOT NULL,
   `status` varchar(30) NOT NULL DEFAULT 'Commandée',
   PRIMARY KEY (`num`),
-  KEY `idsupp` (`idsupp`),
-  KEY `code` (`code`)
+  KEY `piececommand_ibfk_1` (`idsupp`),
+  KEY `piececommand_ibfk_2` (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -441,8 +441,8 @@ CREATE TABLE IF NOT EXISTS `prices` (
   `code` varchar(20) NOT NULL,
   `supplier_price` float NOT NULL,
   `reprieve` int(11) NOT NULL,
-  KEY `idsupp` (`idsupp`),
-  KEY `code` (`code`)
+  KEY `prices_ibfk_1` (`idsupp`),
+  KEY `prices_ibfk_2` (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1099,28 +1099,28 @@ INSERT INTO `supplier` (`idsupp`, `name`, `adress`, `zip`, `city`) VALUES
 -- Contraintes pour la table `client_command`
 --
 ALTER TABLE `client_command`
-  ADD CONSTRAINT `client_command_ibfk_1` FOREIGN KEY (`idclient`) REFERENCES `client` (`idclient`);
+  ADD CONSTRAINT `client_command_ibfk_1` FOREIGN KEY (`idclient`) REFERENCES `client` (`idclient`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `client_piecescommand`
 --
 ALTER TABLE `client_piecescommand`
-  ADD CONSTRAINT `client_piecescommand_ibfk_1` FOREIGN KEY (`idcom`) REFERENCES `client_command` (`idcom`),
-  ADD CONSTRAINT `client_piecescommand_ibfk_2` FOREIGN KEY (`code`) REFERENCES `piece` (`code`);
+  ADD CONSTRAINT `client_piecescommand_ibfk_1` FOREIGN KEY (`idcom`) REFERENCES `client_command` (`idcom`) ON DELETE CASCADE,
+  ADD CONSTRAINT `client_piecescommand_ibfk_2` FOREIGN KEY (`code`) REFERENCES `piece` (`code`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `piececommand`
 --
 ALTER TABLE `piececommand`
-  ADD CONSTRAINT `piececommand_ibfk_1` FOREIGN KEY (`idsupp`) REFERENCES `supplier` (`idsupp`),
-  ADD CONSTRAINT `piececommand_ibfk_2` FOREIGN KEY (`code`) REFERENCES `piece` (`code`);
+  ADD CONSTRAINT `piececommand_ibfk_1` FOREIGN KEY (`idsupp`) REFERENCES `supplier` (`idsupp`) ON DELETE CASCADE,
+  ADD CONSTRAINT `piececommand_ibfk_2` FOREIGN KEY (`code`) REFERENCES `piece` (`code`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `prices`
 --
 ALTER TABLE `prices`
-  ADD CONSTRAINT `prices_ibfk_1` FOREIGN KEY (`idsupp`) REFERENCES `supplier` (`idsupp`),
-  ADD CONSTRAINT `prices_ibfk_2` FOREIGN KEY (`code`) REFERENCES `piece` (`code`);
+  ADD CONSTRAINT `prices_ibfk_1` FOREIGN KEY (`idsupp`) REFERENCES `supplier` (`idsupp`) ON DELETE CASCADE,
+  ADD CONSTRAINT `prices_ibfk_2` FOREIGN KEY (`code`) REFERENCES `piece` (`code`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
