@@ -11,6 +11,8 @@ namespace Materials
         protected float price;
         protected int length;
         protected string name;
+        protected string code;
+        protected bool available;
         public void SetPrice(float price)
         {
             this.price = price;
@@ -22,7 +24,9 @@ namespace Materials
         public abstract Dictionary<string, Object> GetDescription();
         public void DescriptionRequest(Stock pricestock)
         {
-            
+            SetPrice((float)pricestock.getPieceDescription(this)["client price"]);
+            this.code = pricestock.getPieceDescription(this)["code"].ToString();
+            this.available = pricestock.isAvailable(this);
         }
     }
 }

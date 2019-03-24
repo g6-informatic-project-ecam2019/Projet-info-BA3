@@ -18,6 +18,7 @@ namespace Materials
         private Dictionary<string, Object> Cupboard;
         private double price;
         private Piece[] parts = new Piece[15];
+        private Stock stock;
 
         public Box(int height, string pannelsColor, bool hasdoor, Cupboard cupboard, string typedoor, string doorcolor) /*builder*/
         {
@@ -28,6 +29,7 @@ namespace Materials
             this.Cupboard = cupboard.GetDescription();
             this.depth = Convert.ToInt32(Cupboard["depth"]);
             this.width = Convert.ToInt32(Cupboard["width"]);
+            this.stock = new Stock("Server=localhost;Port=3306;Database=mykitbox;Uid=root;Pwd=");
             BuildPieces();
         }
         public void BuildPieces()
@@ -58,6 +60,10 @@ namespace Materials
                     this.parts[13] = new GlassDoor(5, this.height, this.width);/*glassdoor1*/
                     this.parts[14] = new GlassDoor(5, this.height, this.width);/*glassdoor2*/
                 }
+            }
+            for (int p = 0; p < this.parts.Length; p++)
+            {
+                this.parts[p].DescriptionRequest(this.stock);
             }
         }
         private void ComputePrice()
