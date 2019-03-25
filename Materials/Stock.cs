@@ -313,7 +313,7 @@ namespace Materials
         /*****************************************************************************
          * Pre : recieves a Piece as paramater                                        *
          * Post : - Returns the piece's complete description.                        *
-         *          Dictionnary contains the following keys : heigth, depth, width   *
+         *          Dictionnary contains the following keys : height, depth, width   *
          *          color, code, client price, supplier price  (there may be more    *
          *          than one) and n suppliers, the number of suppliers that offer    *
          *          the piece. The dimension(s) are present -or not- following the   *
@@ -431,6 +431,7 @@ namespace Materials
             }
             int[] dimensions = new int[counter];
             connect();
+            command.CommandText = String.Format("SELECT * FROM piece WHERE ref='{0}'", determiningPiece);
             reader = command.ExecuteReader();
             int i = 0;
             while (reader.Read())
@@ -439,14 +440,14 @@ namespace Materials
                 {
                     if (dim == "height")
                     {
-                        dimensions[i] = (int)reader[dim] + 4;
+                        dimensions[i] = (int)reader[dim];//+4
                     }
                     else
                     {
                         dimensions[i] = (int)reader[dim];
                     }
                 }
-                catch (IndexOutOfRangeException)
+                catch (KeyNotFoundException)
                 {
                     Console.WriteLine("Uncorrect specified dimension");
                 }

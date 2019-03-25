@@ -362,7 +362,7 @@ namespace Materials
             this.heightBox7.Items.AddRange(dimheightokstring);
 
             //Width
-            int[] dimwidthok = stock.existingDimension("width", "Traverse AR");
+            int[] dimwidthok = stock.existingDimension("width", "Traverse Ar");
             string[] dimwidthokstring = new string[dimwidthok.Length];
             for (int i = 0; i < dimwidthok.Length; i++)
             {

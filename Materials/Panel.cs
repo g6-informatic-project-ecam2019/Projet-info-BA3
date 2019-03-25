@@ -23,7 +23,7 @@ namespace Materials
             this.name = String.Format("Panneau {0}", this.position);
             if (this.position == "GD")
             {
-                this.determDim1 = "heigth";
+                this.determDim1 = "height";
                 this.determDim2 = "depth";
             }
             else if (this.position == "HB")
@@ -33,7 +33,7 @@ namespace Materials
             }
             else
             {
-                this.determDim1 = "heigth";
+                this.determDim1 = "height";
                 this.determDim2 = "width";
             }
         }

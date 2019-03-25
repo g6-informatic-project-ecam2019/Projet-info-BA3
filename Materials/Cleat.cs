@@ -8,7 +8,7 @@ namespace Materials
 {
     class Cleat : Piece  /* Class that groups all cleats*/
     {
-        private string determiningDimension = "heigth";
+        private string determiningDimension = "height";
         public Cleat(float price, int length) /*builder*/
         {
             this.price = price;
