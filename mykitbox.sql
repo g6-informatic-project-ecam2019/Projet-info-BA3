@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3305
--- Généré le :  Dim 24 mars 2019 à 17:59
+-- Généré le :  lun. 25 mars 2019 à 15:12
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `piece` (
   `code` varchar(20) NOT NULL,
   `ref` varchar(20) NOT NULL,
   `dimension` varchar(20) NOT NULL,
-  `heigth` int(11) NOT NULL,
+  `height` int(11) NOT NULL,
   `depth` int(11) NOT NULL,
   `width` int(11) NOT NULL,
   `color` varchar(30) NOT NULL,
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `piece` (
 -- Déchargement des données de la table `piece`
 --
 
-INSERT INTO `piece` (`code`, `ref`, `dimension`, `heigth`, `depth`, `width`, `color`, `min_stock`, `real_quantity`, `virtual_quantity`, `command_quantity`, `client_price`, `box_number`) VALUES
+INSERT INTO `piece` (`code`, `ref`, `dimension`, `height`, `depth`, `width`, `color`, `min_stock`, `real_quantity`, `virtual_quantity`, `command_quantity`, `client_price`, `box_number`) VALUES
 ('COR100BLDEC', 'Cornieres', '100(h)decoupee', 100, 0, 0, 'Blanc', 32, 85, 85, 0, 1.72, 4),
 ('COR100BRDEC', 'Cornieres', '100(h)decoupee', 100, 0, 0, 'Brun', 32, 84, 84, 0, 1.38, 4),
 ('COR100GLDEC', 'Cornieres', '100(h)decoupee', 100, 0, 0, 'Galvanise', 32, 84, 84, 0, 1.72, 4),
