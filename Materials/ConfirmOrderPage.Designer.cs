@@ -78,6 +78,8 @@
             this.textBox2Out = new System.Windows.Forms.TextBox();
             this.textBox1Out = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.panelOut.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -398,6 +400,8 @@
             // 
             // panelOut
             // 
+            this.panelOut.Controls.Add(this.textBox8);
+            this.panelOut.Controls.Add(this.label13);
             this.panelOut.Controls.Add(this.button2);
             this.panelOut.Controls.Add(this.button1);
             this.panelOut.Controls.Add(this.textBoxTotalPayment);
@@ -447,7 +451,7 @@
             // 
             // textBoxTotalPayment
             // 
-            this.textBoxTotalPayment.Location = new System.Drawing.Point(467, 640);
+            this.textBoxTotalPayment.Location = new System.Drawing.Point(633, 418);
             this.textBoxTotalPayment.Name = "textBoxTotalPayment";
             this.textBoxTotalPayment.ReadOnly = true;
             this.textBoxTotalPayment.Size = new System.Drawing.Size(53, 31);
@@ -456,7 +460,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(300, 643);
+            this.label12.Location = new System.Drawing.Point(466, 421);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(160, 25);
@@ -643,6 +647,24 @@
             this.label6.TabIndex = 127;
             this.label6.Text = "Last Name : *";
             // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(633, 379);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
+            this.textBox8.Size = new System.Drawing.Size(53, 31);
+            this.textBox8.TabIndex = 150;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(466, 382);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(156, 25);
+            this.label13.TabIndex = 149;
+            this.label13.Text = "Rest payment :";
+            // 
             // ConfirmOrderPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -741,5 +763,7 @@
         private System.Windows.Forms.TextBox textBoxLname;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.Label label13;
     }
 }

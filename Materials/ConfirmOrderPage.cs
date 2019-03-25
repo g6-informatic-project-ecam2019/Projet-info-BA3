@@ -55,6 +55,12 @@ namespace Materials
             Dictionary<string, Object> Description = bloc[num-1].GetDescription();
             return "Bloc "+num+":                            height: "+ Description["height"] +" cm, door: "+ Description["door"] + ", color panel: "+ Description["panel"];
         }
+        private string detailpriceBlocNoStock(int num)
+        {
+            Bloc[] bloc = cupboard.GetBloc();
+            Dictionary<string, Object> Description = bloc[num - 1].GetDescription();
+            return "Box "+num+" "+"out of stock"+" Price: "+ Description["price"] + "$";
+        }
         private void ConfirmOrderPage_Load(object sender, EventArgs e)
         {
             panelOut.Visible = false;
@@ -76,6 +82,15 @@ namespace Materials
             BoxWidth.Text = detailwidth();
             BoxDepth.Text = detaildepth();
             BoxTotalPrice.Text = detailprice();
+            textBox1Out.Text = detailpriceBlocNoStock(1);
+            textBox2Out.Text = detailpriceBlocNoStock(2);
+            textBox3Out.Text = detailpriceBlocNoStock(3);
+            textBox4Out.Text = detailpriceBlocNoStock(4);
+            textBox5Out.Text = detailpriceBlocNoStock(5);
+            textBox6Out.Text = detailpriceBlocNoStock(6);
+            textBox7Out.Text = detailpriceBlocNoStock(7);
+            textBoxTotalPayment.Text = detailprice();
+            textBoxAdvance.Text = Convert.ToString(Convert.ToInt32(detailprice())*0.30);
         }
         private void buttonConfirm_Click(object sender, EventArgs e)
         {
