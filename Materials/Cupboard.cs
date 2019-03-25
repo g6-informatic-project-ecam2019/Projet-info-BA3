@@ -14,6 +14,7 @@ namespace Materials
         private Bloc[] configuration;//block lists
         private int height;
         private float price;
+        private Stock stock = new Stock("Server = localhost; Port = 3306; Database = mykitbox; Uid = root; Pwd =");
 
         public Cupboard(int depth,int width,string angleColor, int number)/*Builder*/
         {
@@ -39,6 +40,19 @@ namespace Materials
             {
                 Erreur();
             }
+        }
+        public bool BlocStock(int num)
+        {
+            bool ok = true;
+            Piece[] piece = configuration[num - 1].GetPieces();
+            for(int i = 0; i < piece.Length; i++)
+            {
+                if (!(stock.isAvailable(piece[num-1])) )
+                {
+                    ok = false;
+                }
+            }
+            return ok;
         }
         public Bloc[] GetBloc()
         {

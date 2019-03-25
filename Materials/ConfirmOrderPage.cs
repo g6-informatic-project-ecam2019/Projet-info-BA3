@@ -46,20 +46,52 @@ namespace Materials
         private string detailpriceBloc(int num)
         {
             Bloc[] bloc = cupboard.GetBloc();
-            Dictionary<string, Object> Description = bloc[num - 1].GetDescription();
-            return "Out of stock"+"    Price: " + Description["price"] + "$";
+            if (num < bloc.Length)
+            {
+                Dictionary<string, Object> Description = bloc[num - 1].GetDescription();
+                if (cupboard.BlocStock(num))
+                {
+                    return "In stock" + "    Price: " + Description["price"] + "$";
+                }
+                else
+                {
+                    return "Out of stock" + "    Price: " + Description["price"] + "$";
+                }
+                
+            }
+            else return "";
         }
         private string detailbloc(int num)
         {
+            
             Bloc[] bloc = cupboard.GetBloc();
-            Dictionary<string, Object> Description = bloc[num-1].GetDescription();
-            return "Bloc "+num+":                            height: "+ Description["height"] +" cm, door: "+ Description["door"] + ", color panel: "+ Description["panel"];
+            if (num < bloc.Length)
+            {
+                Dictionary<string, Object> Description = bloc[num - 1].GetDescription();
+                return "Bloc " + num + ":                            height: " + Description["height"] + " cm, door: " + Description["door"] + ", color panel: " + Description["panel"];
+            }
+            else return "";
         }
+               
         private string detailpriceBlocNoStock(int num)
         {
+            
             Bloc[] bloc = cupboard.GetBloc();
-            Dictionary<string, Object> Description = bloc[num - 1].GetDescription();
-            return "Box "+num+" "+"out of stock"+" Price: "+ Description["price"] + "$";
+            if (num < bloc.Length)
+            {
+                Dictionary<string, Object> Description = bloc[num - 1].GetDescription();
+                if (cupboard.BlocStock(num))
+                {
+                    return "Box " + num + " " + "in stock" + " Price: " + Description["price"] + "$";
+                }
+                else
+                {
+                    return "Box " + num + " " + "out of stock" + " Price: " + Description["price"] + "$";
+                }
+                
+            }
+            else return "";
+            
         }
         private void ConfirmOrderPage_Load(object sender, EventArgs e)
         {
@@ -91,6 +123,8 @@ namespace Materials
             textBox7Out.Text = detailpriceBlocNoStock(7);
             textBoxTotalPayment.Text = detailprice();
             textBoxAdvance.Text = Convert.ToString(Convert.ToInt32(detailprice())*0.30);
+            textBoxAdvance.Text = Convert.ToString(Convert.ToInt32(detailprice()) * 0.30);
+            textBox8.Text = Convert.ToString(Convert.ToInt32(detailprice())-(Convert.ToInt32(detailprice()) * 0.30));
         }
         private void buttonConfirm_Click(object sender, EventArgs e)
         {

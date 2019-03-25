@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Materials
 {
-    interface Bloc
+    public interface Bloc
     {
         Dictionary<string, Object> GetDescription();
         float GetPrice();

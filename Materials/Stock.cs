@@ -13,7 +13,7 @@ using MySql.Data.MySqlClient;
 namespace Materials
 {
    
-    class Stock 
+    public class Stock 
     {
         private string connString;
         private MySqlConnection connection;

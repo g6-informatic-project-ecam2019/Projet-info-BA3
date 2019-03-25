@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Materials
 {
-    abstract class Piece /*Abstract class that groups all the parts*/
+    public abstract class Piece /*Abstract class that groups all the parts*/
     {
         protected float price;
         protected int length;
