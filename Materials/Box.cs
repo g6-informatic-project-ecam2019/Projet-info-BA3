@@ -94,6 +94,23 @@ namespace Materials
             Description.Add("depth", depth);
             Description.Add("width", width);
             Description.Add("price", price);
+            Description.Add("panel", this.pannelsColor);
+            if (this.hasdoor == true)
+            {
+                if (this.typedoor == "ClassicDoor")
+                {
+                    Description.Add("door", this.doorcolor);
+                }
+                else
+                {
+                    Description.Add("door","Glass door");
+                }    
+            }
+            else
+            {
+                Description.Add("door", "No door");
+            }
+                
             return Description;
         }
     }

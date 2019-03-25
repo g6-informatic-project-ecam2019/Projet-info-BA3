@@ -15,15 +15,67 @@ namespace Materials
         private string Lname;
         private string Fname;
         ConfigurationPage configpage;
+        Cupboard cupboard;
         
         public ConfirmOrderPage(ConfigurationPage configpage)
         {
+            this.cupboard=configpage.cupboard1;
             this.configpage = configpage;
             InitializeComponent();
+        }
+        private string detailheight()
+        {
+            Dictionary<string, Object> Description = cupboard.GetDescription();
+            return ""+Description["height"];
+        }
+        private string detailwidth()
+        {
+            Dictionary<string, Object> Description = cupboard.GetDescription();
+            return "" + Description["width"];
+        }
+        private string detaildepth()
+        {
+            Dictionary<string, Object> Description = cupboard.GetDescription();
+            return "" + Description["depth"];
+        }
+        private string detailprice()
+        {
+            Dictionary<string, Object> Description = cupboard.GetDescription();
+            return "" + Description["price"];
+        }
+        private string detailpriceBloc(int num)
+        {
+            Bloc[] bloc = cupboard.GetBloc();
+            Dictionary<string, Object> Description = bloc[num - 1].GetDescription();
+            return "Out of stock"+"    Price: " + Description["price"] + "$";
+        }
+        private string detailbloc(int num)
+        {
+            Bloc[] bloc = cupboard.GetBloc();
+            Dictionary<string, Object> Description = bloc[num-1].GetDescription();
+            return "Bloc "+num+":                            height: "+ Description["height"] +" cm, door: "+ Description["door"] + ", color panel: "+ Description["panel"];
         }
         private void ConfirmOrderPage_Load(object sender, EventArgs e)
         {
             panelOut.Visible = false;
+            textBox1.Text = detailbloc(1);
+            textBox2.Text = detailbloc(2);
+            textBox3.Text = detailbloc(3);
+            textBox4.Text = detailbloc(4);
+            textBox5.Text = detailbloc(5);
+            textBox6.Text = detailbloc(6);
+            textBox7.Text = detailbloc(7);
+            PrixBox1.Text = detailpriceBloc(1);
+            prixBox2.Text = detailpriceBloc(2);
+            PrixBox3.Text = detailpriceBloc(3);
+            PrixBox4.Text = detailpriceBloc(4);
+            PrixBox5.Text = detailpriceBloc(5);
+            PrixBox6.Text = detailpriceBloc(6);
+            PrixBox7.Text = detailpriceBloc(7);
+            BoxTotalheight.Text = detailheight();
+            BoxWidth.Text = detailwidth();
+            BoxDepth.Text = detaildepth();
+            BoxTotalPrice.Text = detailprice();
         }
         private void buttonConfirm_Click(object sender, EventArgs e)
         {

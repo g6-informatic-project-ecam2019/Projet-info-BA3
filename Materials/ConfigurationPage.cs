@@ -22,21 +22,26 @@ namespace Materials
         private bool[] hasdoor = new bool[7];
         private string[] typedoor = new string[7];
         private string[] doorcolor = new string[7];
-        private Cupboard cupboard1;
+        public Cupboard cupboard1;
+        
         List<System.Windows.Forms.Panel> listPanel = new List<System.Windows.Forms.Panel>();
         int index=0;
-        ConfirmOrderPage configpage;
+        private ConfirmOrderPage configpage;
+        private Stock stock = new Stock("Server = localhost; Port = 3306; Database = mykitbox; Uid = root; Pwd =");
         public ConfigurationPage()
         {
             InitializeComponent();
-            configpage = new ConfirmOrderPage(this);
+            configpage = new ConfirmOrderPage( this);
+            
         }
-
+        
+            
         private void HomeBtn_Click(object sender, EventArgs e)
         {
             System.Threading.Thread monthread = new System.Threading.Thread(new System.Threading.ThreadStart(openHomePage));
             monthread.Start();
             this.Close();
+            
         }
 
         private void PrevBlocBtn_Click(object sender, EventArgs e)
@@ -332,6 +337,47 @@ namespace Materials
             heightBox6.Text = "0";
             heightBox7.Text = "0";
 
+            DataDim();
+            
+            //cupboard1.GetPrice();
+            
+
+
+        }
+        private void DataDim()
+        {
+            //height
+            int[] dimheightok = stock.existingDimension("height", "Tasseau");
+            string[] dimheightokstring = new string[dimheightok.Length];
+            for (int i = 0; i < dimheightok.Length; i++)
+            {
+                dimheightokstring[i] = Convert.ToString(dimheightok[i]);
+            }
+            this.heightBox1.Items.AddRange(dimheightokstring);
+            this.heightBox2.Items.AddRange(dimheightokstring);
+            this.heightBox3.Items.AddRange(dimheightokstring);
+            this.heightBox4.Items.AddRange(dimheightokstring);
+            this.heightBox5.Items.AddRange(dimheightokstring);
+            this.heightBox6.Items.AddRange(dimheightokstring);
+            this.heightBox7.Items.AddRange(dimheightokstring);
+
+            //Width
+            int[] dimwidthok = stock.existingDimension("width", "Traverse AR");
+            string[] dimwidthokstring = new string[dimwidthok.Length];
+            for (int i = 0; i < dimwidthok.Length; i++)
+            {
+                dimwidthokstring[i] = Convert.ToString(dimwidthok[i]);
+            }
+            this.widthBox1.Items.AddRange(dimwidthokstring);
+
+            //Depth
+            int[] dimdepthok = stock.existingDimension("depth", "Traverse GD");
+            string[] dimdepthokstring = new string[dimdepthok.Length];
+            for (int i = 0; i < dimdepthok.Length; i++)
+            {
+                dimdepthokstring[i] = Convert.ToString(dimdepthok[i]);
+            }
+            this.DepthBox1.Items.AddRange(dimdepthokstring);
         }
         private void ConfigurationPage_MouseClick(object sender, MouseEventArgs e)
         {

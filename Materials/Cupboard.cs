@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Materials
 {
-    class Cupboard
+    public class Cupboard
     {
         private string angleColor; /*Demander à bernard*/
         private int width;

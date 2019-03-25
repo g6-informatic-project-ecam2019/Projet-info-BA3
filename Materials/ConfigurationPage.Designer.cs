@@ -275,10 +275,6 @@
             // heightBox1
             // 
             this.heightBox1.FormattingEnabled = true;
-            this.heightBox1.Items.AddRange(new object[] {
-            "32",
-            "42",
-            "52"});
             this.heightBox1.Location = new System.Drawing.Point(172, 97);
             this.heightBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.heightBox1.Name = "heightBox1";
