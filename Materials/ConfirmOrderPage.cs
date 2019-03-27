@@ -20,6 +20,9 @@ namespace Materials
         public ConfirmOrderPage(ConfigurationPage configpage)
         {
             this.cupboard=configpage.cupboard1;
+            Console.WriteLine("\n \n \n got cupboard from configpage");
+            Console.WriteLine(this.cupboard.GetBloc()[0].GetPieces());
+
             this.configpage = configpage;
             InitializeComponent();
         }

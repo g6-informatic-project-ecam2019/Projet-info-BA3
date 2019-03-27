@@ -25,7 +25,7 @@ namespace Materials
             Description.Add("price", this.price);
             Description.Add("length", this.length);
             Description.Add("width", this.width);
-            Description.Add("color", "Blanc");
+            Description.Add("color", this.color);
             Description.Add("type", this.type);
             Description.Add("ref", this.name);
             Description.Add("dim1", this.determDim1);
