@@ -269,6 +269,10 @@ namespace Materials
             if (code == "")
             {
                 Console.WriteLine("No fitting piece found.");
+                Console.WriteLine(piece.GetDescription()["ref"].ToString());
+                Console.WriteLine(piece.GetDescription()["color"].ToString());
+                Console.WriteLine(piece.GetDescription()["length"].ToString());
+                Console.WriteLine(piece.GetDescription()["width"].ToString());
                 return null;
             }
             connection.Close();
@@ -304,6 +308,10 @@ namespace Materials
             if (code == "")
             {
                 Console.WriteLine("No fitting piece found.");
+                Console.WriteLine(piece.GetDescription()["ref"].ToString());
+                Console.WriteLine(piece.GetDescription()["color"].ToString());
+                Console.WriteLine(piece.GetDescription()["length"].ToString());
+                Console.WriteLine(piece.GetDescription()["width"].ToString());
                 return null;
             }
             connection.Close();
@@ -339,7 +347,7 @@ namespace Materials
             
             if ((piece is ClassicDoor) || (piece is Panel) || (piece is Angle))
             {
-                color = (string)piece.GetDescription()["color"];
+                color = piece.GetDescription()["color"].ToString();
                 description.Add("color", color);
             }
 
@@ -355,7 +363,6 @@ namespace Materials
                 }
                 else
                 {
-                    Console.WriteLine(color);
                     code = selectPiece2D(piece, dimension1, dimension2, color);
                 }
                 description.Add("code", code);
@@ -367,7 +374,7 @@ namespace Materials
                 //description.Add(dimension2, width);
                 connect();
                 command.CommandText = String.Format("SELECT * FROM piece WHERE code='{0}'",code);
-                Console.WriteLine(String.Format("code of this piece is {0}", code));
+                //Console.WriteLine(String.Format("code of this piece is {0}", code));
                 reader = command.ExecuteReader();
                 while (reader.Read()) //retrieve all informations about the piece, and put them in the description dictionnary
                 {
@@ -379,7 +386,7 @@ namespace Materials
             {
                 string dimension = piece.GetDescription()["dim"].ToString();
                 code = selectPiece(piece, piece.GetDescription()["dim"].ToString(), color);
-                Console.WriteLine(String.Format("code of this piece is {0}", code));
+                //Console.WriteLine(String.Format("code of this piece is {0}", code));
                 description.Add("code", code);
                 connect();
                 this.command.CommandText = String.Format("SELECT * FROM piece WHERE code='{0}'", code);
