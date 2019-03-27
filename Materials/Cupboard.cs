@@ -60,7 +60,7 @@ namespace Materials
             {
                 return configuration;
             }
-            else
+            else//Test
             {
                 Bloc[] bloc = new Bloc[7];
                 return bloc;

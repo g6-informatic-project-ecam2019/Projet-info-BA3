@@ -43,7 +43,10 @@ namespace Materials
             this.Close();
             
         }
-
+        public Cupboard EnvoieCup()
+        {
+            return cupboard1;
+        }
         private void PrevBlocBtn_Click(object sender, EventArgs e)
         {
             Refrechmesure();

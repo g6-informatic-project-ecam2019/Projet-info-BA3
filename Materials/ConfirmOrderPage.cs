@@ -21,7 +21,7 @@ namespace Materials
         {
             
             this.configpage = configpage;
-            this.cupboard = this.configpage.cupboard1;
+            this.cupboard = this.configpage.EnvoieCup();
             InitializeComponent();
         }
         private string detailheight()
