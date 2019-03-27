@@ -56,7 +56,15 @@ namespace Materials
         }
         public Bloc[] GetBloc()
         {
-            return configuration;
+            if (configuration.Length != 0)
+            {
+                return configuration;
+            }
+            else
+            {
+                Bloc[] bloc = new Bloc[7];
+                return bloc;
+            }
         }
         private string Erreur()/**/
         {

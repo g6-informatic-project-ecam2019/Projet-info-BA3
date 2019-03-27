@@ -86,17 +86,23 @@ namespace Materials
 
         private void MkOrdrBtn_Click(object sender, EventArgs e)
         {
-            
-            cupboard1 = new Cupboard(depth,width,angleColor,Number());
-            Door();
-            int i;
-            for (i = 0; i < Number(); i++)
+            if (height[0] != 0)
             {
-                cupboard1.AddBloc(new Box(height[i], panelsColor[i], hasdoor[i], cupboard1, typedoor[i], doorcolor[i]));
-            }
-            configpage.Show();
+                cupboard1 = new Cupboard(depth, width, angleColor, Number());
+                Door();
+                int i;
+                for (i = 0; i < Number(); i++)
+                {
+                    cupboard1.AddBloc(new Box(height[i], panelsColor[i], hasdoor[i], cupboard1, typedoor[i], doorcolor[i]));
+                }
+                configpage.Show();
 
-            this.Hide(); 
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("You have not set up the cupboard");
+            }
         }
         private void TotalHeight()
         {

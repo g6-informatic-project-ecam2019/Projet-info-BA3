@@ -19,8 +19,9 @@ namespace Materials
         
         public ConfirmOrderPage(ConfigurationPage configpage)
         {
-            this.cupboard=configpage.cupboard1;
+            
             this.configpage = configpage;
+            this.cupboard = this.configpage.cupboard1;
             InitializeComponent();
         }
         private string detailheight()
