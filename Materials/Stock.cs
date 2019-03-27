@@ -437,12 +437,19 @@ namespace Materials
                 Console.WriteLine(String.Format("No piece of that name found. Is this a correct name ? {0}", determiningPiece));
             }
             int[] dimensions = new int[counter];
+            List<string> references = new List<string>;
             connect();
             command.CommandText = String.Format("SELECT * FROM piece WHERE ref='{0}'", determiningPiece);
             reader = command.ExecuteReader();
             int i = 0;
             while (reader.Read())
             {
+                references.Add(reader["ref"].ToString());
+                //if (reader["ref"] in references)
+                //{
+
+                //}
+
                 try
                 {
                     if (dim == "height")
@@ -463,5 +470,48 @@ namespace Materials
             connection.Close();
             return dimensions; 
          }
+        // public string[] getExistingcolors (Piece piece)
+        //{
+        //    connect();
+        //    string reference = piece.GetDescription()["ref"].ToString();
+        //    command.CommandText = String.Format("SELECT * FROM piece WHERE ref='{0}'", reference); //height of a box is given by cleat's length + 4 cm
+        //    reader = command.ExecuteReader();
+        //    int counter = 0;
+        //    while (reader.Read())
+        //    {
+        //        counter++;
+        //    }
+        //    connection.Close();
+        //    if (counter == 0)
+        //    {
+        //        Console.WriteLine(String.Format("No piece of that name found. Is this a correct name ? {0}", reference));
+        //    }
+        //    string[] colors = new string[counter];
+        //    connect();
+        //    command.CommandText = String.Format("SELECT * FROM piece WHERE ref='{0}'", determiningPiece);
+        //    reader = command.ExecuteReader();
+        //    int i = 0;
+        //    while (reader.Read())
+        //    {
+        //        try
+        //        {
+        //            if (dim == "height")
+        //            {
+        //                dimensions[i] = (int)reader[dim];//+4
+        //            }
+        //            else
+        //            {
+        //                dimensions[i] = (int)reader[dim];
+        //            }
+        //        }
+        //        catch (KeyNotFoundException)
+        //        {
+        //            Console.WriteLine("Uncorrect specified dimension");
+        //        }
+        //        i++;
+        //    }
+        //    connection.Close();
+        //    return dimensions;
+        //}
     }
 }
