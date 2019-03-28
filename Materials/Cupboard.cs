@@ -100,7 +100,7 @@ namespace Materials
             {
                 if (this.configuration[i] != null)
                 {
-                    this.height += (int)this.configuration[i].GetDescription()["heigth"];
+                    this.height += (int)this.configuration[i].GetDescription()["height"];
                     h = i;
                 }
             }
@@ -113,6 +113,8 @@ namespace Materials
         
         public Dictionary<string, Object> GetDescription() /*Returns a dico of the whole description*/
         {
+            ComputeHeight();
+            GetPrice();
             Dictionary<string, Object> Description = new Dictionary<string, Object>();
             Description.Add("height", this.height);
             Description.Add("depth", this.depth);

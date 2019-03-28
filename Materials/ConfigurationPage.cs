@@ -31,7 +31,7 @@ namespace Materials
         public ConfigurationPage()
         {
             InitializeComponent();
-            configpage = new ConfirmOrderPage(this);
+            
             
         }
         
@@ -100,6 +100,7 @@ namespace Materials
                 }
                 Console.WriteLine("\n cupboard built");
                 Console.WriteLine(cupboard1.GetDescription().ToString());
+                configpage = new ConfirmOrderPage(this, cupboard1);
                 configpage.Show();
 
                 this.Hide();

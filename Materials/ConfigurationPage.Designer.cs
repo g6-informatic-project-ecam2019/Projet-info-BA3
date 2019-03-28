@@ -124,20 +124,13 @@
             this.label66 = new System.Windows.Forms.Label();
             this.NextBlocBtn = new System.Windows.Forms.Button();
             this.HomeBtn = new System.Windows.Forms.Button();
-            this.ModifBloc1 = new System.Windows.Forms.Button();
             this.CopyBox1 = new System.Windows.Forms.Button();
             this.CopyBox2 = new System.Windows.Forms.Button();
-            this.ModifBloc2 = new System.Windows.Forms.Button();
             this.CopyBox3 = new System.Windows.Forms.Button();
-            this.ModifBloc3 = new System.Windows.Forms.Button();
             this.CopyBox6 = new System.Windows.Forms.Button();
-            this.ModifBloc6 = new System.Windows.Forms.Button();
             this.CopyBox5 = new System.Windows.Forms.Button();
-            this.ModifBloc5 = new System.Windows.Forms.Button();
             this.CopyBox4 = new System.Windows.Forms.Button();
-            this.ModifBloc4 = new System.Windows.Forms.Button();
             this.CopyBox7 = new System.Windows.Forms.Button();
-            this.ModifBloc7 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.AnglesColorBox2 = new System.Windows.Forms.TextBox();
             this.DepthBox2 = new System.Windows.Forms.TextBox();
@@ -183,7 +176,6 @@
             this.label78 = new System.Windows.Forms.Label();
             this.texttotalheigth = new System.Windows.Forms.TextBox();
             this.label79 = new System.Windows.Forms.Label();
-            this.label80 = new System.Windows.Forms.Label();
             this.label81 = new System.Windows.Forms.Label();
             this.label82 = new System.Windows.Forms.Label();
             this.DeleteBox7 = new System.Windows.Forms.Button();
@@ -215,7 +207,7 @@
             // 
             // MkOrdrBtn
             // 
-            this.MkOrdrBtn.Location = new System.Drawing.Point(870, 661);
+            this.MkOrdrBtn.Location = new System.Drawing.Point(865, 640);
             this.MkOrdrBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MkOrdrBtn.Name = "MkOrdrBtn";
             this.MkOrdrBtn.Size = new System.Drawing.Size(174, 36);
@@ -233,10 +225,11 @@
             this.textBoxx5.ReadOnly = true;
             this.textBoxx5.Size = new System.Drawing.Size(235, 34);
             this.textBoxx5.TabIndex = 46;
+            this.textBoxx5.Click += new System.EventHandler(this.ModifBloc5_Click);
             // 
             // PrevBlocBtn
             // 
-            this.PrevBlocBtn.Location = new System.Drawing.Point(741, 535);
+            this.PrevBlocBtn.Location = new System.Drawing.Point(741, 562);
             this.PrevBlocBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PrevBlocBtn.Name = "PrevBlocBtn";
             this.PrevBlocBtn.Size = new System.Drawing.Size(174, 36);
@@ -1317,7 +1310,7 @@
             // 
             // NextBlocBtn
             // 
-            this.NextBlocBtn.Location = new System.Drawing.Point(995, 534);
+            this.NextBlocBtn.Location = new System.Drawing.Point(995, 562);
             this.NextBlocBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.NextBlocBtn.Name = "NextBlocBtn";
             this.NextBlocBtn.Size = new System.Drawing.Size(174, 36);
@@ -1336,16 +1329,6 @@
             this.HomeBtn.Text = "HOME";
             this.HomeBtn.UseVisualStyleBackColor = true;
             this.HomeBtn.Click += new System.EventHandler(this.HomeBtn_Click);
-            // 
-            // ModifBloc1
-            // 
-            this.ModifBloc1.Location = new System.Drawing.Point(900, 595);
-            this.ModifBloc1.Name = "ModifBloc1";
-            this.ModifBloc1.Size = new System.Drawing.Size(37, 37);
-            this.ModifBloc1.TabIndex = 53;
-            this.ModifBloc1.Text = "1";
-            this.ModifBloc1.UseVisualStyleBackColor = true;
-            this.ModifBloc1.Click += new System.EventHandler(this.ModifBloc1_Click);
             // 
             // CopyBox1
             // 
@@ -1367,16 +1350,6 @@
             this.CopyBox2.UseVisualStyleBackColor = true;
             this.CopyBox2.Click += new System.EventHandler(this.CopyBox2_Click);
             // 
-            // ModifBloc2
-            // 
-            this.ModifBloc2.Location = new System.Drawing.Point(939, 595);
-            this.ModifBloc2.Name = "ModifBloc2";
-            this.ModifBloc2.Size = new System.Drawing.Size(37, 37);
-            this.ModifBloc2.TabIndex = 55;
-            this.ModifBloc2.Text = "2";
-            this.ModifBloc2.UseVisualStyleBackColor = true;
-            this.ModifBloc2.Click += new System.EventHandler(this.ModifBloc2_Click);
-            // 
             // CopyBox3
             // 
             this.CopyBox3.Location = new System.Drawing.Point(1020, 210);
@@ -1386,16 +1359,6 @@
             this.CopyBox3.Text = "+";
             this.CopyBox3.UseVisualStyleBackColor = true;
             this.CopyBox3.Click += new System.EventHandler(this.CopyBox3_Click);
-            // 
-            // ModifBloc3
-            // 
-            this.ModifBloc3.Location = new System.Drawing.Point(978, 595);
-            this.ModifBloc3.Name = "ModifBloc3";
-            this.ModifBloc3.Size = new System.Drawing.Size(37, 37);
-            this.ModifBloc3.TabIndex = 57;
-            this.ModifBloc3.Text = "3";
-            this.ModifBloc3.UseVisualStyleBackColor = true;
-            this.ModifBloc3.Click += new System.EventHandler(this.ModifBloc3_Click);
             // 
             // CopyBox6
             // 
@@ -1407,16 +1370,6 @@
             this.CopyBox6.UseVisualStyleBackColor = true;
             this.CopyBox6.Click += new System.EventHandler(this.CopyBox6_Click);
             // 
-            // ModifBloc6
-            // 
-            this.ModifBloc6.Location = new System.Drawing.Point(1093, 594);
-            this.ModifBloc6.Name = "ModifBloc6";
-            this.ModifBloc6.Size = new System.Drawing.Size(37, 37);
-            this.ModifBloc6.TabIndex = 63;
-            this.ModifBloc6.Text = "6";
-            this.ModifBloc6.UseVisualStyleBackColor = true;
-            this.ModifBloc6.Click += new System.EventHandler(this.ModifBloc6_Click);
-            // 
             // CopyBox5
             // 
             this.CopyBox5.Location = new System.Drawing.Point(1020, 290);
@@ -1426,16 +1379,6 @@
             this.CopyBox5.Text = "+";
             this.CopyBox5.UseVisualStyleBackColor = true;
             this.CopyBox5.Click += new System.EventHandler(this.CopyBox5_Click);
-            // 
-            // ModifBloc5
-            // 
-            this.ModifBloc5.Location = new System.Drawing.Point(1056, 594);
-            this.ModifBloc5.Name = "ModifBloc5";
-            this.ModifBloc5.Size = new System.Drawing.Size(37, 37);
-            this.ModifBloc5.TabIndex = 61;
-            this.ModifBloc5.Text = "5";
-            this.ModifBloc5.UseVisualStyleBackColor = true;
-            this.ModifBloc5.Click += new System.EventHandler(this.ModifBloc5_Click);
             // 
             // CopyBox4
             // 
@@ -1447,16 +1390,6 @@
             this.CopyBox4.UseVisualStyleBackColor = true;
             this.CopyBox4.Click += new System.EventHandler(this.CopyBox4_Click);
             // 
-            // ModifBloc4
-            // 
-            this.ModifBloc4.Location = new System.Drawing.Point(1017, 594);
-            this.ModifBloc4.Name = "ModifBloc4";
-            this.ModifBloc4.Size = new System.Drawing.Size(37, 37);
-            this.ModifBloc4.TabIndex = 59;
-            this.ModifBloc4.Text = "4";
-            this.ModifBloc4.UseVisualStyleBackColor = true;
-            this.ModifBloc4.Click += new System.EventHandler(this.ModifBloc4_Click);
-            // 
             // CopyBox7
             // 
             this.CopyBox7.Location = new System.Drawing.Point(1020, 370);
@@ -1466,16 +1399,6 @@
             this.CopyBox7.Text = "+";
             this.CopyBox7.UseVisualStyleBackColor = true;
             this.CopyBox7.Click += new System.EventHandler(this.CopyBox7_Click);
-            // 
-            // ModifBloc7
-            // 
-            this.ModifBloc7.Location = new System.Drawing.Point(1132, 594);
-            this.ModifBloc7.Name = "ModifBloc7";
-            this.ModifBloc7.Size = new System.Drawing.Size(37, 37);
-            this.ModifBloc7.TabIndex = 65;
-            this.ModifBloc7.Text = "7";
-            this.ModifBloc7.UseVisualStyleBackColor = true;
-            this.ModifBloc7.Click += new System.EventHandler(this.ModifBloc7_Click);
             // 
             // panel2
             // 
@@ -1907,6 +1830,7 @@
             this.textBoxx6.ReadOnly = true;
             this.textBoxx6.Size = new System.Drawing.Size(235, 34);
             this.textBoxx6.TabIndex = 68;
+            this.textBoxx6.Click += new System.EventHandler(this.ModifBloc6_Click);
             // 
             // textBoxx7
             // 
@@ -1917,6 +1841,7 @@
             this.textBoxx7.ReadOnly = true;
             this.textBoxx7.Size = new System.Drawing.Size(235, 34);
             this.textBoxx7.TabIndex = 69;
+            this.textBoxx7.Click += new System.EventHandler(this.ModifBloc7_Click);
             // 
             // textBoxx4
             // 
@@ -1927,6 +1852,7 @@
             this.textBoxx4.ReadOnly = true;
             this.textBoxx4.Size = new System.Drawing.Size(235, 34);
             this.textBoxx4.TabIndex = 70;
+            this.textBoxx4.Click += new System.EventHandler(this.ModifBloc4_Click);
             // 
             // textBoxx3
             // 
@@ -1937,6 +1863,7 @@
             this.textBoxx3.ReadOnly = true;
             this.textBoxx3.Size = new System.Drawing.Size(235, 34);
             this.textBoxx3.TabIndex = 71;
+            this.textBoxx3.Click += new System.EventHandler(this.ModifBloc3_Click);
             // 
             // textBoxx2
             // 
@@ -1947,6 +1874,7 @@
             this.textBoxx2.ReadOnly = true;
             this.textBoxx2.Size = new System.Drawing.Size(235, 34);
             this.textBoxx2.TabIndex = 72;
+            this.textBoxx2.Click += new System.EventHandler(this.ModifBloc2_Click);
             // 
             // textBoxx1
             // 
@@ -1957,6 +1885,7 @@
             this.textBoxx1.ReadOnly = true;
             this.textBoxx1.Size = new System.Drawing.Size(235, 34);
             this.textBoxx1.TabIndex = 73;
+            this.textBoxx1.Click += new System.EventHandler(this.ModifBloc1_Click);
             // 
             // label78
             // 
@@ -1989,17 +1918,6 @@
             this.label79.Size = new System.Drawing.Size(40, 25);
             this.label79.TabIndex = 76;
             this.label79.Text = "cm";
-            // 
-            // label80
-            // 
-            this.label80.AutoSize = true;
-            this.label80.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label80.Location = new System.Drawing.Point(736, 599);
-            this.label80.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label80.Name = "label80";
-            this.label80.Size = new System.Drawing.Size(157, 25);
-            this.label80.TabIndex = 77;
-            this.label80.Text = "Block selection";
             // 
             // label81
             // 
@@ -2108,7 +2026,6 @@
             this.Controls.Add(this.DeleteBox2);
             this.Controls.Add(this.DeleteBox1);
             this.Controls.Add(this.label81);
-            this.Controls.Add(this.label80);
             this.Controls.Add(this.label79);
             this.Controls.Add(this.texttotalheigth);
             this.Controls.Add(this.label78);
@@ -2119,19 +2036,12 @@
             this.Controls.Add(this.textBoxx7);
             this.Controls.Add(this.textBoxx6);
             this.Controls.Add(this.CopyBox7);
-            this.Controls.Add(this.ModifBloc7);
             this.Controls.Add(this.CopyBox6);
-            this.Controls.Add(this.ModifBloc6);
             this.Controls.Add(this.CopyBox5);
-            this.Controls.Add(this.ModifBloc5);
             this.Controls.Add(this.CopyBox4);
-            this.Controls.Add(this.ModifBloc4);
             this.Controls.Add(this.CopyBox3);
-            this.Controls.Add(this.ModifBloc3);
             this.Controls.Add(this.CopyBox2);
-            this.Controls.Add(this.ModifBloc2);
             this.Controls.Add(this.CopyBox1);
-            this.Controls.Add(this.ModifBloc1);
             this.Controls.Add(this.HomeBtn);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.MkOrdrBtn);
@@ -2264,20 +2174,13 @@
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.Button ModifBloc1;
         private System.Windows.Forms.Button CopyBox1;
         private System.Windows.Forms.Button CopyBox2;
-        private System.Windows.Forms.Button ModifBloc2;
         private System.Windows.Forms.Button CopyBox3;
-        private System.Windows.Forms.Button ModifBloc3;
         private System.Windows.Forms.Button CopyBox6;
-        private System.Windows.Forms.Button ModifBloc6;
         private System.Windows.Forms.Button CopyBox5;
-        private System.Windows.Forms.Button ModifBloc5;
         private System.Windows.Forms.Button CopyBox4;
-        private System.Windows.Forms.Button ModifBloc4;
         private System.Windows.Forms.Button CopyBox7;
-        private System.Windows.Forms.Button ModifBloc7;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox DepthBox2;
         private System.Windows.Forms.TextBox widthBox2;
@@ -2327,7 +2230,6 @@
         private System.Windows.Forms.Label label78;
         private System.Windows.Forms.TextBox texttotalheigth;
         private System.Windows.Forms.Label label79;
-        private System.Windows.Forms.Label label80;
         private System.Windows.Forms.Label label81;
         private System.Windows.Forms.Label label82;
         private System.Windows.Forms.Button DeleteBox7;

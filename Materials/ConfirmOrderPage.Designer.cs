@@ -56,6 +56,8 @@
             this.PrixBox5 = new System.Windows.Forms.TextBox();
             this.PrixBox7 = new System.Windows.Forms.TextBox();
             this.panelOut = new System.Windows.Forms.Panel();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.textBoxTotalPayment = new System.Windows.Forms.TextBox();
@@ -78,8 +80,6 @@
             this.textBox2Out = new System.Windows.Forms.TextBox();
             this.textBox1Out = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.panelOut.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -153,7 +153,7 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(296, 77);
+            this.textBox1.Size = new System.Drawing.Size(296, 87);
             this.textBox1.TabIndex = 80;
             this.textBox1.Text = "Bloc 1:                            height: 42 cm, door: No door, color panel: whi" +
     "te";
@@ -161,12 +161,12 @@
             // textBox2
             // 
             this.textBox2.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox2.Location = new System.Drawing.Point(218, 169);
+            this.textBox2.Location = new System.Drawing.Point(218, 170);
             this.textBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(296, 77);
+            this.textBox2.Size = new System.Drawing.Size(296, 87);
             this.textBox2.TabIndex = 81;
             this.textBox2.Text = "Bloc 2:                            height: 42 cm, door: No door, color panel: whi" +
     "te";
@@ -174,12 +174,12 @@
             // textBox3
             // 
             this.textBox3.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox3.Location = new System.Drawing.Point(218, 256);
+            this.textBox3.Location = new System.Drawing.Point(218, 257);
             this.textBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(296, 77);
+            this.textBox3.Size = new System.Drawing.Size(296, 87);
             this.textBox3.TabIndex = 82;
             this.textBox3.Text = "Bloc 3:                            height: 42 cm, door: No door, color panel: whi" +
     "te";
@@ -192,7 +192,7 @@
             this.textBox6.Multiline = true;
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(296, 77);
+            this.textBox6.Size = new System.Drawing.Size(296, 87);
             this.textBox6.TabIndex = 85;
             this.textBox6.Text = "Bloc 6:                            height: 42 cm, door: No door, color panel: whi" +
     "te";
@@ -205,7 +205,7 @@
             this.textBox5.Multiline = true;
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(296, 77);
+            this.textBox5.Size = new System.Drawing.Size(296, 87);
             this.textBox5.TabIndex = 84;
             this.textBox5.Text = "Bloc 5:                            height: 42 cm, door: No door, color panel: whi" +
     "te";
@@ -218,7 +218,7 @@
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(296, 77);
+            this.textBox4.Size = new System.Drawing.Size(296, 87);
             this.textBox4.TabIndex = 83;
             this.textBox4.Text = "Bloc 4:                            height: 42 cm, door: No door, color panel: whi" +
     "te";
@@ -231,7 +231,7 @@
             this.textBox7.Multiline = true;
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(296, 77);
+            this.textBox7.Size = new System.Drawing.Size(296, 87);
             this.textBox7.TabIndex = 86;
             this.textBox7.Text = "Bloc 7:                            height: 42 cm, door: No door, color panel: whi" +
     "te";
@@ -322,19 +322,19 @@
             this.PrixBox1.Multiline = true;
             this.PrixBox1.Name = "PrixBox1";
             this.PrixBox1.ReadOnly = true;
-            this.PrixBox1.Size = new System.Drawing.Size(161, 77);
+            this.PrixBox1.Size = new System.Drawing.Size(161, 87);
             this.PrixBox1.TabIndex = 94;
             this.PrixBox1.Text = "Out of stock    Price: 30$";
             // 
             // prixBox2
             // 
             this.prixBox2.BackColor = System.Drawing.SystemColors.Window;
-            this.prixBox2.Location = new System.Drawing.Point(522, 169);
+            this.prixBox2.Location = new System.Drawing.Point(522, 170);
             this.prixBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.prixBox2.Multiline = true;
             this.prixBox2.Name = "prixBox2";
             this.prixBox2.ReadOnly = true;
-            this.prixBox2.Size = new System.Drawing.Size(161, 77);
+            this.prixBox2.Size = new System.Drawing.Size(161, 87);
             this.prixBox2.TabIndex = 95;
             this.prixBox2.Text = "In Stock            Price: 30$";
             // 
@@ -346,19 +346,19 @@
             this.PrixBox4.Multiline = true;
             this.PrixBox4.Name = "PrixBox4";
             this.PrixBox4.ReadOnly = true;
-            this.PrixBox4.Size = new System.Drawing.Size(161, 77);
+            this.PrixBox4.Size = new System.Drawing.Size(161, 87);
             this.PrixBox4.TabIndex = 97;
             this.PrixBox4.Text = "In Stock            Price: 30$";
             // 
             // PrixBox3
             // 
             this.PrixBox3.BackColor = System.Drawing.SystemColors.Window;
-            this.PrixBox3.Location = new System.Drawing.Point(522, 256);
+            this.PrixBox3.Location = new System.Drawing.Point(522, 257);
             this.PrixBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PrixBox3.Multiline = true;
             this.PrixBox3.Name = "PrixBox3";
             this.PrixBox3.ReadOnly = true;
-            this.PrixBox3.Size = new System.Drawing.Size(161, 77);
+            this.PrixBox3.Size = new System.Drawing.Size(161, 87);
             this.PrixBox3.TabIndex = 96;
             this.PrixBox3.Text = "In Stock            Price: 30$";
             // 
@@ -370,7 +370,7 @@
             this.PrixBox6.Multiline = true;
             this.PrixBox6.Name = "PrixBox6";
             this.PrixBox6.ReadOnly = true;
-            this.PrixBox6.Size = new System.Drawing.Size(161, 77);
+            this.PrixBox6.Size = new System.Drawing.Size(161, 87);
             this.PrixBox6.TabIndex = 99;
             this.PrixBox6.Text = "Out of Stock       Price: 30$";
             // 
@@ -382,7 +382,7 @@
             this.PrixBox5.Multiline = true;
             this.PrixBox5.Name = "PrixBox5";
             this.PrixBox5.ReadOnly = true;
-            this.PrixBox5.Size = new System.Drawing.Size(161, 77);
+            this.PrixBox5.Size = new System.Drawing.Size(161, 87);
             this.PrixBox5.TabIndex = 98;
             this.PrixBox5.Text = "Out of Stock      Price: 30$";
             // 
@@ -394,7 +394,7 @@
             this.PrixBox7.Multiline = true;
             this.PrixBox7.Name = "PrixBox7";
             this.PrixBox7.ReadOnly = true;
-            this.PrixBox7.Size = new System.Drawing.Size(161, 77);
+            this.PrixBox7.Size = new System.Drawing.Size(161, 87);
             this.PrixBox7.TabIndex = 100;
             this.PrixBox7.Text = "Out of Stock       Price: 30$";
             // 
@@ -429,6 +429,24 @@
             this.panelOut.Size = new System.Drawing.Size(1011, 688);
             this.panelOut.TabIndex = 101;
             // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(633, 379);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
+            this.textBox8.Size = new System.Drawing.Size(80, 31);
+            this.textBox8.TabIndex = 150;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(466, 382);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(156, 25);
+            this.label13.TabIndex = 149;
+            this.label13.Text = "Rest payment :";
+            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(718, 527);
@@ -454,7 +472,7 @@
             this.textBoxTotalPayment.Location = new System.Drawing.Point(633, 418);
             this.textBoxTotalPayment.Name = "textBoxTotalPayment";
             this.textBoxTotalPayment.ReadOnly = true;
-            this.textBoxTotalPayment.Size = new System.Drawing.Size(53, 31);
+            this.textBoxTotalPayment.Size = new System.Drawing.Size(80, 31);
             this.textBoxTotalPayment.TabIndex = 146;
             // 
             // label12
@@ -472,7 +490,7 @@
             this.textBoxAdvance.Location = new System.Drawing.Point(633, 339);
             this.textBoxAdvance.Name = "textBoxAdvance";
             this.textBoxAdvance.ReadOnly = true;
-            this.textBoxAdvance.Size = new System.Drawing.Size(53, 31);
+            this.textBoxAdvance.Size = new System.Drawing.Size(82, 31);
             this.textBoxAdvance.TabIndex = 144;
             // 
             // label11
@@ -646,24 +664,6 @@
             this.label6.Size = new System.Drawing.Size(141, 25);
             this.label6.TabIndex = 127;
             this.label6.Text = "Last Name : *";
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(633, 379);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(53, 31);
-            this.textBox8.TabIndex = 150;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(466, 382);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(156, 25);
-            this.label13.TabIndex = 149;
-            this.label13.Text = "Rest payment :";
             // 
             // ConfirmOrderPage
             // 

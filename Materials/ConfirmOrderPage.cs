@@ -16,12 +16,13 @@ namespace Materials
         private string Fname;
         ConfigurationPage configpage;
         Cupboard cupboard;
+        float price=0;
         
-        public ConfirmOrderPage(ConfigurationPage configpage)
+        public ConfirmOrderPage(ConfigurationPage configpage, Cupboard cup)
         {
             
             this.configpage = configpage;
-            this.cupboard = this.configpage.EnvoieCup();
+            this.cupboard = cup as Cupboard;
             InitializeComponent();
         }
         private string detailheight()
@@ -39,15 +40,15 @@ namespace Materials
             Dictionary<string, Object> Description = cupboard.GetDescription();
             return "" + Description["depth"];
         }
-        private string detailprice()
+        private void detailprice()
         {
             Dictionary<string, Object> Description = cupboard.GetDescription();
-            return "" + Description["price"];
+            this.price = (float)Description["price"];
         }
         private string detailpriceBloc(int num)
         {
             Bloc[] bloc = cupboard.GetBloc();
-            if (num < bloc.Length)
+            if (num <= bloc.Length)
             {
                 Dictionary<string, Object> Description = bloc[num - 1].GetDescription();
                 if (cupboard.BlocStock(num))
@@ -66,7 +67,7 @@ namespace Materials
         {
             
             Bloc[] bloc = cupboard.GetBloc();
-            if (num < bloc.Length)
+            if (num <= bloc.Length)
             {
                 Dictionary<string, Object> Description = bloc[num - 1].GetDescription();
                 return "Bloc " + num + ":                            height: " + Description["height"] + " cm, door: " + Description["door"] + ", color panel: " + Description["panel"];
@@ -78,7 +79,7 @@ namespace Materials
         {
             
             Bloc[] bloc = cupboard.GetBloc();
-            if (num < bloc.Length)
+            if (num <= bloc.Length)
             {
                 Dictionary<string, Object> Description = bloc[num - 1].GetDescription();
                 if (cupboard.BlocStock(num))
@@ -96,6 +97,7 @@ namespace Materials
         }
         private void ConfirmOrderPage_Load(object sender, EventArgs e)
         {
+            detailprice();
             panelOut.Visible = false;
             textBox1.Text = detailbloc(1);
             textBox2.Text = detailbloc(2);
@@ -114,7 +116,7 @@ namespace Materials
             BoxTotalheight.Text = detailheight();
             BoxWidth.Text = detailwidth();
             BoxDepth.Text = detaildepth();
-            BoxTotalPrice.Text = detailprice();
+            BoxTotalPrice.Text = Convert.ToString(this.price);
             textBox1Out.Text = detailpriceBlocNoStock(1);
             textBox2Out.Text = detailpriceBlocNoStock(2);
             textBox3Out.Text = detailpriceBlocNoStock(3);
@@ -122,10 +124,9 @@ namespace Materials
             textBox5Out.Text = detailpriceBlocNoStock(5);
             textBox6Out.Text = detailpriceBlocNoStock(6);
             textBox7Out.Text = detailpriceBlocNoStock(7);
-            textBoxTotalPayment.Text = detailprice();
-            textBoxAdvance.Text = Convert.ToString(Convert.ToInt32(detailprice())*0.30);
-            textBoxAdvance.Text = Convert.ToString(Convert.ToInt32(detailprice()) * 0.30);
-            textBox8.Text = Convert.ToString(Convert.ToInt32(detailprice())-(Convert.ToInt32(detailprice()) * 0.30));
+            textBoxTotalPayment.Text = Convert.ToString(this.price);
+            textBoxAdvance.Text = Convert.ToString(this.price *0.30);
+            textBox8.Text = Convert.ToString((this.price)-(this.price * 0.30));
         }
         private void buttonConfirm_Click(object sender, EventArgs e)
         {
