@@ -31,7 +31,7 @@ namespace Materials
         public ConfigurationPage()
         {
             InitializeComponent();
-            configpage = new ConfirmOrderPage( this);
+            configpage = new ConfirmOrderPage(this);
             
         }
         
@@ -98,6 +98,8 @@ namespace Materials
                 {
                     cupboard1.AddBloc(new Box(height[i], panelsColor[i], hasdoor[i], cupboard1, typedoor[i], doorcolor[i]));
                 }
+                Console.WriteLine("\n cupboard built");
+                Console.WriteLine(cupboard1.GetDescription().ToString());
                 configpage.Show();
 
                 this.Hide();
@@ -375,6 +377,7 @@ namespace Materials
             string[] dimwidthokstring = new string[dimwidthok.Length];
             for (int i = 0; i < dimwidthok.Length; i++)
             {
+                Console.WriteLine(dimwidthok[i]);
                 dimwidthokstring[i] = Convert.ToString(dimwidthok[i]);
             }
             this.widthBox1.Items.AddRange(dimwidthokstring);

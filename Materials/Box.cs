@@ -64,7 +64,17 @@ namespace Materials
             }
             for (int p = 0; p < this.parts.Length; p++) //after pieces are built, 
             {
-                this.parts[p].DescriptionRequest(this.stock);
+                if (parts[p] != null)
+                {
+                    this.parts[p].DescriptionRequest(this.stock);
+                }
+                else
+                {
+                    if ((p != 13)||(p!= 14)) //if part is null and p is 13 or 14, it just means that there is no door
+                    {
+                        Console.WriteLine("there seem to be a missing piece");
+                    }
+                }
             }
         }
         private void ComputePrice()

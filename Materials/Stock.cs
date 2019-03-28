@@ -437,35 +437,33 @@ namespace Materials
                 Console.WriteLine(String.Format("No piece of that name found. Is this a correct name ? {0}", determiningPiece));
             }
             int[] dimensions = new int[counter];
-            List<string> references = new List<string>;
+            List<int> references = new List<int>();
             connect();
             command.CommandText = String.Format("SELECT * FROM piece WHERE ref='{0}'", determiningPiece);
             reader = command.ExecuteReader();
             int i = 0;
             while (reader.Read())
             {
-                references.Add(reader["ref"].ToString());
-                //if (reader["ref"] in references)
-                //{
-
-                //}
-
-                try
+                if (!(references.Contains((int)reader[dim])))
                 {
-                    if (dim == "height")
+                    try
                     {
-                        dimensions[i] = (int)reader[dim];//+4
+                        if (dim == "height")
+                        {
+                            dimensions[i] = (int)reader[dim];//+4
+                        }
+                        else
+                        {
+                            dimensions[i] = (int)reader[dim];
+                        }
                     }
-                    else
+                    catch (KeyNotFoundException)
                     {
-                        dimensions[i] = (int)reader[dim];
+                        Console.WriteLine("Uncorrect specified dimension");
                     }
+                    i++;
                 }
-                catch (KeyNotFoundException)
-                {
-                    Console.WriteLine("Uncorrect specified dimension");
-                }
-                i++;
+                references.Add((int)reader[dim]);
             }
             connection.Close();
             return dimensions; 

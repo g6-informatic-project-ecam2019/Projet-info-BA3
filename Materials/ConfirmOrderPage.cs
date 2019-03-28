@@ -27,7 +27,7 @@ namespace Materials
         private string detailheight()
         {
             Dictionary<string, Object> Description = cupboard.GetDescription();
-            return ""+Description["height"];
+            return "" + Description["height"];
         }
         private string detailwidth()
         {
