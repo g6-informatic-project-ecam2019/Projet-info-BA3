@@ -184,17 +184,11 @@ namespace Materials
             {
                 quantity = (int)reader["virual_quantity"];
             }
-            if (quantity != 0)
-            {
-                newQuantity = quantity - 1;
-            }
+            newQuantity = quantity - 1; //NOTE : newQuantity CAN BE NEGATIVE
+            
             connection.Close();
             connect();
-            if (newQuantity != 0)
-             {
-                    this.command.CommandText = String.Format("UPDATE piece SET virtual_quantity='{0}' WHERE code='{1}'",  newQuantity, code);
-                
-             }
+            this.command.CommandText = String.Format("UPDATE piece SET virtual_quantity='{0}' WHERE code='{1}'",  newQuantity, code); //virtual quantity can be negative
             int l = command.ExecuteNonQuery(); 
             if (l != 1) 
             {
@@ -209,13 +203,11 @@ namespace Materials
          * Post :                                                                    *
          * Raise :                                                                   *
          *****************************************************************************/
-        public void makeOrder(Cupboard cupboard)
+        public Dictionary<string, int>  makeOrder(Cupboard cupboard)
         {
-            connect();
-            this.command.CommandText = "SELECT MAX(idcom) FROM client_piecescommand";
-            int idCom = (int)command.ExecuteScalar() + 1;
-            connection.Close();
-            List<string> codes = new List<string>(); //maximum number of pieces in a cupboard is (7 boxes * 15 pieces) + 4 angles = 109
+            
+            //maximum number of pieces in a cupboard is (7 boxes * 15 pieces) + 4 angles = 109
+            Dictionary<string, int> quantities = new Dictionary<string, int>();
             for (int b = 0; b < cupboard.GetBloc().Length; b++)
             {
                 Bloc bloc = cupboard.GetBloc()[b];
@@ -223,17 +215,89 @@ namespace Materials
                 {
                     Piece piece = bloc.GetPieces()[p];
                     string code = piece.GetDescription()["code"].ToString();
-                    orderPiece(piece);                //piece is counted as ordered 
-                    codes.Add(code);
-                    
-                }
-
+                    orderPiece(piece);                //piece is counted as ordered
+                    if (quantities.ContainsKey(code))
+                    {
+                        quantities[code] += 1;
+                    }
+                    else
+                    {
+                        quantities.Add(code, 1);
+                    }  
+                } 
             }
-
-            //this.command.CommandText = String.Format("INSERT INTO client_piecescommand VALUES ('{0}', '{1}', '{2}')", idCom, code, );
-            //connection.Close();
+            return quantities;
             
+
         }
+
+        /*****************************************************************************
+         * Pre :                                                                     *
+         * Post :                                                                    *
+         * Raise :                                                                   *
+         *****************************************************************************/
+        public string findClient (string clientFirstName, string clientLastName)
+        {
+            string idClient = "";
+            connect();
+            command.CommandText = String.Format("SELECT * FROM client WHERE lastname={0}", clientLastName);
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                if (reader["firstname"].ToString() == clientFirstName)
+                {
+                    idClient = reader["idclient"].ToString();
+                }
+            }
+            connection.Close();
+            return idClient;
+        }
+
+        /*****************************************************************************
+         * Pre :                                                                     *
+         * Post :                                                                    *
+         * Raise :                                                                   *
+         *****************************************************************************/
+        public void confirmOrder (string clientFirstName, string clientLastName, string adress, string zip, string phoneNumber, Cupboard cupboard)
+        {
+            connect();
+            this.command.CommandText = "SELECT MAX(idcom) FROM client_piecescommand";
+            int idCom = (int)command.ExecuteScalar() + 1;   //id of the command
+            connection.Close();
+            string idClient = findClient(clientFirstName, clientLastName);
+            if (idClient =="")      //if the client was not found in the db, that means he has to be created
+            {
+                command.CommandText = "SELECT MAX(idclient) FROM client";
+                connect();
+                idClient = ((int)command.ExecuteScalar() + 1).ToString();
+                connection.Close();
+                command.CommandText = String.Format("INSERT INTO client(idclient, firstname, lastname, adress, zip, phonenumber) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}');", idClient, clientFirstName, clientLastName, adress, zip, phoneNumber);
+                connect();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+            command.CommandText = String.Format("INSERT INTO client_command(idcom, idclient, description) VALUES ('{0}', '{1}', '{2}');", idCom, idClient, cupboard.GetDescription());
+
+            Dictionary<string, int> pieces = makeOrder(cupboard);
+            int c = 1;
+            foreach (string code in pieces.Keys)
+            {
+                if (c < pieces.Count)
+                {
+                    command.CommandText += String.Format("INSERT INTO client_piecescommand VALUES ('{0}', '{1}', '{2}');", idCom, code, pieces[code]);
+                }
+                else
+                {
+                    command.CommandText += String.Format("INSERT INTO client_piecescommand VALUES ('{0}', '{1}', '{2}')", idCom, code, pieces[code]); //no ; if it is the last piece => the end of the querry
+                }
+            }
+            connect();
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+
+
+
 
         /*****************************************************************************
          * Pre : recieve a piece, its main dimension and color                       *
