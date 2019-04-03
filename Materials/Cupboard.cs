@@ -82,10 +82,12 @@ namespace Materials
             for (i = 0; i < this.configuration.Length; i++)
             {
                 int blockHeight = (int)configuration[i].GetDescription()["height"];
+                float blockPrice = configuration[i].GetPrice();
                 if (this.configuration[i] == null && i != 0)
                 {
                     this.configuration[i - 1] = null;
                     height -= blockHeight;
+                    price -= blockPrice;
                     h = i - 1;
                     break;
                 }

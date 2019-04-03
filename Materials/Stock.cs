@@ -525,7 +525,7 @@ namespace Materials
                     {
                         if (dim == "height")
                         {
-                            dimensions[i] = (int)reader[dim];//+4
+                            dimensions[i] = (int)reader[dim] + 4;
                         }
                         else
                         {
