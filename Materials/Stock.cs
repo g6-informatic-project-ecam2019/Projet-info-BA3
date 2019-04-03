@@ -50,29 +50,47 @@ namespace Materials
          ***************************************************************************/
         public bool isAvailable (Piece piece)
         {
+            string dimension1 = "";
+            string dimension2 = "";
+            string dimension = "";
+            string color = "";
+            int length = -1;
+            int width = -1;
+            try
+            {
+                dimension1 = piece.GetDescription()["dim1"].ToString();
+                dimension2 = piece.GetDescription()["dim2"].ToString();
+                length = (int)piece.GetDescription()["length"];
+                width = (int)piece.GetDescription()["width"];
+            }
+            catch (KeyNotFoundException)
+            {
+                dimension = piece.GetDescription()["dim"].ToString();
+                length = (int)piece.GetDescription()["length"];
+            }
+            try
+            {
+                color = piece.GetDescription()["color"].ToString();
+            }
+            catch (KeyNotFoundException)
+            {
+                if (piece is GlassDoor)
+                {
+                    color = "verre";
+                }
+            }
             connect();
             command.CommandText = String.Format("SELECT * FROM piece WHERE ref='{0}'", piece.GetDescription()["ref"]);
             reader = command.ExecuteReader();
             while (reader.Read())
             {
-                try
+                if (dimension1 != "")
                 {
-                    if (((int)reader[piece.GetDescription()["dim1"].ToString()] == (int)piece.GetDescription()["length"]) && (((int)reader[piece.GetDescription()["dim2"].ToString()] == (int)piece.GetDescription()["width"])))
+                    if (((int)reader[dimension1] == length) && ((int)reader[dimension2] == width))
                     {
-                        try
+                        if (color != "")
                         {
-                            if (reader["color"].ToString() == piece.GetDescription()["color"].ToString())
-                            {
-                                if ((int)reader["real_quantity"] != 0)
-                                {
-                                    return true;
-                                }
-                                else
-                                {
-                                    return false;
-                                }
-                            }
-                            else if ((reader["color"].ToString() == "verre") && (piece is GlassDoor)) //ref is already checked as "porte" (door) so if color is "verre", we are sure that it is a glass door
+                            if (reader["color"].ToString() == color)
                             {
                                 if ((int)reader["real_quantity"] != 0)
                                 {
@@ -84,19 +102,8 @@ namespace Materials
                                 }
                             }
                         }
-                        catch (KeyNotFoundException) //no color specified in description
+                        else
                         {
-                            if ((reader["color"].ToString() == "verre") && (piece is GlassDoor))
-                            {
-                                if ((int)reader["real_quantity"] != 0)
-                                {
-                                    return true;
-                                }
-                                else
-                                {
-                                    return false;
-                                }
-                            }
                             if ((int)reader["real_quantity"] != 0)
                             {
                                 return true;
@@ -108,13 +115,13 @@ namespace Materials
                         }
                     }
                 }
-                catch (KeyNotFoundException) //one dimension piece
+                else
                 {
-                    if ((int) reader[piece.GetDescription()["dim"].ToString()] == (int) piece.GetDescription()["length"])
+                    if ((int)reader[dimension] == length)
                     {
-                        try
+                        if (color != "")
                         {
-                            if (reader["color"].ToString() == piece.GetDescription()["color"].ToString())
+                            if(reader["color"].ToString() == color)
                             {
                                 if ((int)reader["real_quantity"] != 0)
                                 {
@@ -126,20 +133,19 @@ namespace Materials
                                 }
                             }
                         }
-                        catch (KeyNotFoundException) //no color specified in description
+                        else
                         {
-                             if ((int)reader["real_quantity"] != 0)
-                             {
+                            if ((int)reader["real_quantity"] != 0)
+                            {
                                 return true;
-                             }
-                             else
-                             {
+                            }
+                            else
+                            {
                                 return false;
-                             }
-                         
+                            }
                         }
                     }
-                }
+                }   
             }
             connection.Close();
             return false;

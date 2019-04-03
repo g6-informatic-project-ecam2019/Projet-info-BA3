@@ -21,6 +21,10 @@ namespace Materials
         {
             return this.price;
         }
+        public bool isAvailable()
+        {
+            return available;
+        }
         public abstract Dictionary<string, Object> GetDescription();
         public void DescriptionRequest(Stock pricestock)
         {

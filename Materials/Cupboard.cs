@@ -43,16 +43,15 @@ namespace Materials
         }
         public bool BlocStock(int num)
         {
-            bool ok = true;
-            Piece[] piece = configuration[num - 1].GetPieces();
-            for(int i = 0; i < piece.Length; i++)
+            Piece[] pieces = configuration[num - 1].GetPieces();
+            for(int i = 0; i < pieces.Length; i++)
             {
-                if (!(stock.isAvailable(piece[num-1])) )
+                if (!(pieces[num-1].isAvailable()) )
                 {
-                    ok = false;
+                    return false;
                 }
             }
-            return ok;
+            return true;
         }
         public Bloc[] GetBloc()
         {
