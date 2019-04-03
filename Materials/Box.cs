@@ -80,6 +80,7 @@ namespace Materials
         private void ComputePrice()
         {
             int i;
+            this.price = 0;
             for (i = 0; i < this.parts.Length; i++)
             {
                 if(this.parts[i] != null)

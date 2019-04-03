@@ -437,13 +437,20 @@ namespace Materials
                 }
                 //description.Add(dimension2, width);
                 connect();
-                command.CommandText = String.Format("SELECT * FROM piece WHERE code='{0}'",code);
+                command.CommandText = String.Format("SELECT * FROM piece INNER JOIN prices ON piece.code=prices.code WHERE piece.code='{0}'", code);
                 //Console.WriteLine(String.Format("code of this piece is {0}", code));
                 reader = command.ExecuteReader();
+                int i = 0;
                 while (reader.Read()) //retrieve all informations about the piece, and put them in the description dictionnary
                 {
-                    description.Add("client price", (float)reader["client_price"]); //code is a unique identifier
+                    if (i==0)
+                    {
+                        description.Add("client price", (float)reader["client_price"]); //code is a unique identifier
+                    }
+                    i++;
+                    description.Add(String.Format("supplier price {0}", i), (float)reader["supplier_price"]);
                 }
+                description.Add("n suppliers", i);
                 connection.Close();
             }
             catch (KeyNotFoundException) //an error is raised if dim1-dim2 are not in piece description => there is only one dim
@@ -453,27 +460,25 @@ namespace Materials
                 //Console.WriteLine(String.Format("code of this piece is {0}", code));
                 description.Add("code", code);
                 connect();
-                this.command.CommandText = String.Format("SELECT * FROM piece WHERE code='{0}'", code);
+                this.command.CommandText = String.Format("SELECT * FROM piece INNER JOIN prices ON piece.code=prices.code WHERE piece.code='{0}'", code);
                 reader = command.ExecuteReader();
+                int i = 0;
                 while (reader.Read()) //retrieve all informations about the piece, and put them in the description dictionnary
                 {
-                    description.Add("client price", (float)reader["client_price"]); //code is a unique identifier
+                    if (i == 0)
+                    {
+                        description.Add("client price", (float)reader["client_price"]); //code is a unique identifier
+                    }
+                    i++;
+                    description.Add(String.Format("supplier price {0}", i), (float)reader["supplier_price"]);
                 }
+                description.Add("n suppliers", i);
                 connection.Close();
             }
-
-            connect();
-            this.command.CommandText = String.Format("SELECT * FROM prices WHERE code='{0}'", code);
-            reader = command.ExecuteReader();
-            int i = 0;
-            while (reader.Read())
+            foreach (string key in description.Keys)
             {
-                i++;
-                description.Add(String.Format("supplier price {0}", i), (float)reader["supplier_price"]); //add different prices from each suppliers    
+                Console.WriteLine(String.Format("value of {0} is : {1}",key.ToString(), description[key].ToString()));
             }
-            description.Add("n suppliers", i);
-            connection.Close();
-
             return description;
         }
 
