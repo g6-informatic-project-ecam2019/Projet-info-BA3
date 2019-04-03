@@ -76,6 +76,7 @@ namespace Materials
                     }
                 }
             }
+            ComputePrice();
         }
         private void ComputePrice()
         {
@@ -99,7 +100,6 @@ namespace Materials
         }
         public Dictionary<string, Object> GetDescription()/*Dictionary that contains all the elements of the box*/
         {
-            ComputePrice();
             Dictionary<string, Object> Description = new Dictionary<string, Object>();
             Description.Add("height", height);
             Description.Add("depth", depth);

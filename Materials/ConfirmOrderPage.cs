@@ -28,17 +28,18 @@ namespace Materials
         private string detailheight()
         {
             Dictionary<string, Object> Description = cupboard.GetDescription();
-            return "" + Description["height"];
+            Console.WriteLine(String.Format("total height is {0}",((int)Description["height"]).ToString()));
+            return ((int)Description["height"]).ToString();
         }
         private string detailwidth()
         {
             Dictionary<string, Object> Description = cupboard.GetDescription();
-            return "" + Description["width"];
+            return ((int)Description["width"]).ToString();
         }
         private string detaildepth()
         {
             Dictionary<string, Object> Description = cupboard.GetDescription();
-            return "" + Description["depth"];
+            return ((int)Description["depth"]).ToString();
         }
         private void detailprice()
         {
@@ -53,11 +54,11 @@ namespace Materials
                 Dictionary<string, Object> Description = bloc[num - 1].GetDescription();
                 if (cupboard.BlocStock(num))
                 {
-                    return "In stock" + "    Price: " + Description["price"] + "$";
+                    return "In stock" + "    Price: " + Description["price"] + "€";
                 }
                 else
                 {
-                    return "Out of stock" + "    Price: " + Description["price"] + "$";
+                    return "Out of stock" + "    Price: " + Description["price"] + "€";
                 }
                 
             }
@@ -84,11 +85,11 @@ namespace Materials
                 Dictionary<string, Object> Description = bloc[num - 1].GetDescription();
                 if (cupboard.BlocStock(num))
                 {
-                    return "Box " + num + " " + "in stock" + " Price: " + Description["price"] + "$";
+                    return "Box " + num + " " + "in stock" + " Price: " + Description["price"] + "€";
                 }
                 else
                 {
-                    return "Box " + num + " " + "out of stock" + " Price: " + Description["price"] + "$";
+                    return "Box " + num + " " + "out of stock" + " Price: " + Description["price"] + "€";
                 }
                 
             }
@@ -116,7 +117,7 @@ namespace Materials
             BoxTotalheight.Text = detailheight();
             BoxWidth.Text = detailwidth();
             BoxDepth.Text = detaildepth();
-            BoxTotalPrice.Text = Convert.ToString(this.price);
+            BoxTotalPrice.Text = price.ToString();
             textBox1Out.Text = detailpriceBlocNoStock(1);
             textBox2Out.Text = detailpriceBlocNoStock(2);
             textBox3Out.Text = detailpriceBlocNoStock(3);

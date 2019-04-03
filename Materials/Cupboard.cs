@@ -33,6 +33,8 @@ namespace Materials
                 {
                     this.configuration[i] = bloc;
                     h = i;
+                    this.height += (int) bloc.GetDescription()["height"];
+                    this.price += bloc.GetPrice();
                     break;
                 }
             }
@@ -79,9 +81,11 @@ namespace Materials
             int h = 10;
             for (i = 0; i < this.configuration.Length; i++)
             {
+                int blockHeight = (int)configuration[i].GetDescription()["height"];
                 if (this.configuration[i] == null && i != 0)
                 {
                     this.configuration[i - 1] = null;
+                    height -= blockHeight;
                     h = i - 1;
                     break;
                 }
@@ -91,29 +95,28 @@ namespace Materials
                 Erreur();
             }
         }
-        private void ComputeHeight() /*Compute the height*/
-        {
-            int i;
-            int h = 10;
-            for (i = 0; i < this.configuration.Length; i++)
-            {
-                if (this.configuration[i] != null)
-                {
-                    this.height += (int)this.configuration[i].GetDescription()["height"];
-                    h = i;
-                }
-            }
-            if (h == 10)
-            {
-                this.height = 0;
-            }
-            AddAngle();
-        }
+        //private void ComputeHeight() /*Compute the height*/
+        //{
+        //    int i;
+        //    int h = 10;
+        //    for (i = 0; i < this.configuration.Length; i++)
+        //    {
+        //        if (this.configuration[i] != null)
+        //        {
+        //            this.height += (int)this.configuration[i].GetDescription()["height"];
+        //            h = i;
+        //        }
+        //    }
+        //    if (h == 10)
+        //    {
+        //        this.height = 0;
+        //    }
+        //    AddAngle();
+        //    Console.WriteLine(String.Format("total height of cupboard is : {0}", this.height));
+        //}
         
         public Dictionary<string, Object> GetDescription() /*Returns a dico of the whole description*/
         {
-            ComputeHeight();
-            GetPrice();
             Dictionary<string, Object> Description = new Dictionary<string, Object>();
             Description.Add("height", this.height);
             Description.Add("depth", this.depth);
@@ -124,25 +127,7 @@ namespace Materials
         }
         public float GetPrice()/*compute the price*/
         {
-            int i;
-            int h = 10;
-            for (i = 0; i < this.configuration.Length; i++)
-            {
-                if (this.configuration[i] != null)
-                {
-                    this.price += (float) this.configuration[i].GetPrice();
-                    h = i;
-                }
-            }
-            if (h != 10)
-            {
-                return this.price;
-            }
-            else
-            {
-                return 0;
-                Console.WriteLine("No boxes in configuration");
-            }
+            return this.price;
         }
     }
 }
