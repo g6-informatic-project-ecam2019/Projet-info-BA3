@@ -12,8 +12,10 @@ namespace Materials
 {
     public partial class SKGridPage : Form
     {
-        public SKGridPage()
+        SKOrdersPage page;
+        public SKGridPage(SKOrdersPage page)
         {
+            this.page = page;
             InitializeComponent();
         }
     }

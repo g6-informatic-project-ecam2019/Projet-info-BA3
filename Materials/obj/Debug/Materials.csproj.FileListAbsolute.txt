@@ -48,3 +48,4 @@ D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\bin\Debug\MySql
 D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\bin\Debug\Google.Protobuf.dll
 D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.csproj.CopyComplete
 C:\Users\timna\Documents\GitHub\Projet-info-BA3\Materials\bin\Debug\Google.Protobuf.dll
+C:\Users\timna\Documents\GitHub\Projet-info-BA3\Materials\obj\Debug\Materials.SKGridPage.resources
