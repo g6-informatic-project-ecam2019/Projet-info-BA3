@@ -27,9 +27,10 @@ namespace Materials
         List<System.Windows.Forms.Panel> listPanel = new List<System.Windows.Forms.Panel>();
         int index=0;
         private ConfirmOrderPage configpage;
-        private Stock stock = new Stock("Server = localhost; Port = 3306; Database = mykitbox; Uid = root; Pwd =");
+        private Stock stock=new Stock("Server = localhost; Port = 3306; Database = mykitbox; Uid = root; Pwd =");
         public ConfigurationPage()
         {
+            
             InitializeComponent();
             
             
@@ -42,10 +43,6 @@ namespace Materials
             monthread.Start();
             this.Close();
             
-        }
-        public Cupboard EnvoieCup()
-        {
-            return cupboard1;
         }
         private void PrevBlocBtn_Click(object sender, EventArgs e)
         {
@@ -93,8 +90,16 @@ namespace Materials
             {
                 if (this.cupboard1 != null)
                 {
+                    for(int x = 0; x < 7; x++)
+                    {
+                        cupboard1.RemoveBloc(x);
+                    }
+                    
+                    
                     this.cupboard1 = null;//Tentative de correction de bug quand on back
                     this.configpage = null;//Tentative de correction de bug quand on back
+
+                    this.stock= new Stock("Server = localhost; Port = 3306; Database = mykitbox; Uid = root; Pwd =");
                     System.GC.Collect();//Tentative de correction de bug quand on back
                 }
                 cupboard1 = new Cupboard(depth, width, angleColor, Number());
@@ -110,7 +115,6 @@ namespace Materials
                 Console.WriteLine("\n cupboard built");
                 configpage = new ConfirmOrderPage(this, cupboard1);
                 configpage.Show();
-
                 this.Hide();
             }
             else
@@ -366,6 +370,8 @@ namespace Materials
         }
         private void DataDim()
         {
+            
+            
             //height
             int[] dimheightok = stock.existingDimension("height", "Tasseau");
             string[] dimheightokstring = new string[dimheightok.Length];

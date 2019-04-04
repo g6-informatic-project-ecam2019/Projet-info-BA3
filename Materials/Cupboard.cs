@@ -14,7 +14,7 @@ namespace Materials
         private Bloc[] configuration;//block lists
         private int height;
         private float price;
-        private Stock stock = new Stock("Server = localhost; Port = 3306; Database = mykitbox; Uid = root; Pwd =");
+        //private Stock stock = new Stock("Server = localhost; Port = 3306; Database = mykitbox; Uid = root; Pwd =");
 
         public Cupboard(int depth,int width,string angleColor, int number)/*Builder*/
         {
@@ -42,6 +42,10 @@ namespace Materials
             {
                 Erreur();
             }
+        }
+        public void deletBloc()
+        {
+            configuration = null;
         }
         public bool BlocStock(int num)
         {
