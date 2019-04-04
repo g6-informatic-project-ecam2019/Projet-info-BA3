@@ -131,7 +131,7 @@ namespace Materials
         }
         private void buttonConfirm_Click(object sender, EventArgs e)
         {
-            if (Stock())
+            if (!(Stock()))
             {
                 panelOut.Visible = true;
             }
@@ -159,10 +159,20 @@ namespace Materials
         private void buttonBack_Click(object sender, EventArgs e)
         {
             this.configpage.Show();
-            this.Hide();
+            this.cupboard = null; //Tentative de correction de bug quand on back
+            this.Close();
+            //this.Hide();
         }
         private bool Stock()
         {
+            Bloc[] bloc = cupboard.GetBloc();
+            for (int i = 0; i < bloc.Length; i++)
+            {
+                if (!(cupboard.BlocStock(i + 1)))
+                {
+                    return false;
+                }
+            }
             return true;
         }
 

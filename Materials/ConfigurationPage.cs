@@ -91,6 +91,12 @@ namespace Materials
         {
             if (height[0] != 0)
             {
+                if (this.cupboard1 != null)
+                {
+                    this.cupboard1 = null;//Tentative de correction de bug quand on back
+                    this.configpage = null;//Tentative de correction de bug quand on back
+                    System.GC.Collect();//Tentative de correction de bug quand on back
+                }
                 cupboard1 = new Cupboard(depth, width, angleColor, Number());
                 Door();
                 int i;
