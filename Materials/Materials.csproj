@@ -82,10 +82,35 @@
     <Compile Include="HomePage.Designer.cs">
       <DependentUpon>HomePage.cs</DependentUpon>
     </Compile>
+    <Compile Include="mykitboxDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>mykitboxDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="mykitboxDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>mykitboxDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="mykitboxDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>mykitboxDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="mykitboxDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>mykitboxDataSet3.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Panel.cs" />
     <Compile Include="Piece.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="SKGridPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +133,54 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="mykitboxDataSet.xsc">
+      <DependentUpon>mykitboxDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="mykitboxDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>mykitboxDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="mykitboxDataSet.xss">
+      <DependentUpon>mykitboxDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="mykitboxDataSet1.xsc">
+      <DependentUpon>mykitboxDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="mykitboxDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>mykitboxDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="mykitboxDataSet1.xss">
+      <DependentUpon>mykitboxDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="mykitboxDataSet2.xsc">
+      <DependentUpon>mykitboxDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="mykitboxDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>mykitboxDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="mykitboxDataSet2.xss">
+      <DependentUpon>mykitboxDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="mykitboxDataSet3.xsc">
+      <DependentUpon>mykitboxDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="mykitboxDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>mykitboxDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="mykitboxDataSet3.xss">
+      <DependentUpon>mykitboxDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BlocAmountPage.resx">
