@@ -14,9 +14,33 @@ namespace Materials
     public partial class SKGridPage : Form
     {
         SKOrdersPage page;
+        private DataGridViewColumn name;
+        private DataGridViewColumn lastname;
+        private DataGridViewColumn firstname;
+
         public SKGridPage(SKOrdersPage page)
         {
             this.page = page;
+
+            name = new DataGridViewColumn
+            {
+                Name = "name",
+                CellTemplate = new DataGridViewTextBoxCell()
+            };
+
+            lastname = new DataGridViewColumn
+            {
+                Name = "lastname",
+                CellTemplate = new DataGridViewTextBoxCell()
+            };
+
+            firstname = new DataGridViewColumn
+            {
+                Name = "firstname",
+                CellTemplate = new DataGridViewTextBoxCell()
+            };
+
+
             InitializeComponent();
         }
 
@@ -36,8 +60,19 @@ namespace Materials
 
         private void Client_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.Columns.Contains("name"))
+            {
+                dataGridView1.Columns.Remove(name);
+            }
+            else if (dataGridView1.Columns.Contains("firstname"))
+            {
+                dataGridView1.Columns.Remove(firstname);
+                dataGridView1.Columns.Remove(lastname);
+            }
+
             dataGridView1.DataSource = clientBindingSource;
             dataGridView1.Columns["idclient"].Visible = false;
+            
         }
 
         private void Search_Click(object sender, EventArgs e)
@@ -56,34 +91,37 @@ namespace Materials
 
         private void Prices_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.Columns.Contains("name"))
+            {
+                dataGridView1.Columns.Remove(name);
+            }
+            else if (dataGridView1.Columns.Contains("firstname") && dataGridView1.DataSource != clientBindingSource)
+            {
+                dataGridView1.Columns.Remove(firstname);
+                dataGridView1.Columns.Remove(lastname);
+            }
+
             dataGridView1.DataSource = pricesBindingSource;
             dataGridView1.Columns["idsupp"].Visible = false;
-            DataGridViewColumn name = new DataGridViewColumn
-            {
-                Name = "name",
-                CellTemplate = new DataGridViewTextBoxCell()
-            };
+            
             dataGridView1.Columns.Insert(2, name);
 
-            SqlConnection("SELECT piececommand.idsupp, supplier.name FROM piececommand INNER JOIN supplier ON piececommand.idsupp = supplier.idsupp ORDER BY `piececommand`.`idsupp` ASC", "name");
+            SqlConnection("SELECT prices.idsupp, supplier.name FROM prices INNER JOIN supplier ON prices.idsupp = supplier.idsupp ORDER BY `prices`.`idsupp` ASC", "name");
            
         }
 
         private void ClientCommand_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.Columns.Contains("name"))
+            {
+                dataGridView1.Columns.Remove(name);
+            }
+
             dataGridView1.DataSource = clientcommandBindingSource;
             dataGridView1.Columns["idclient"].Visible = false;
-            DataGridViewColumn lastname = new DataGridViewColumn
-            {
-                Name = "lastname",
-                CellTemplate = new DataGridViewTextBoxCell()
-            };
+            
             dataGridView1.Columns.Insert(2, lastname);
-            DataGridViewColumn firstname = new DataGridViewColumn
-            {
-                Name = "firstname",
-                CellTemplate = new DataGridViewTextBoxCell()
-            };
+            
             dataGridView1.Columns.Insert(3, firstname);
 
             SqlConnection("SELECT client_command.idcom, client.lastname FROM client_command INNER JOIN client ON client_command.idclient = client.idclient ORDER BY `client_command`.`idcom` ASC","lastname");
@@ -93,13 +131,19 @@ namespace Materials
 
         private void PieceCommand_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.Columns.Contains("name"))
+            {
+                dataGridView1.Columns.Remove(name);
+            }
+            else if (dataGridView1.Columns.Contains("firstname") && dataGridView1.DataSource != clientBindingSource)
+            {
+                dataGridView1.Columns.Remove(firstname);
+                dataGridView1.Columns.Remove(lastname);
+            }
+
             dataGridView1.DataSource = piececommandBindingSource;
             dataGridView1.Columns["idsupp"].Visible = false;
-            DataGridViewColumn name = new DataGridViewColumn
-            {
-                Name = "name",
-                CellTemplate = new DataGridViewTextBoxCell()
-            };
+ 
             dataGridView1.Columns.Insert(3, name);
 
             SqlConnection("SELECT piececommand.num, supplier.name FROM piececommand INNER JOIN supplier ON piececommand.idsupp = supplier.idsupp ORDER BY `piececommand`.`num` ASC", "name");
@@ -129,5 +173,9 @@ namespace Materials
             conn.Close();
         }
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
