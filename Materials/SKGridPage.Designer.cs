@@ -49,6 +49,7 @@
             this.piececommandTableAdapter = new Materials.mykitboxDataSet3TableAdapters.piececommandTableAdapter();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.SearchLabel = new System.Windows.Forms.Label();
+            this.Prevbtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mykitboxDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).BeginInit();
@@ -196,11 +197,23 @@
             this.SearchLabel.Size = new System.Drawing.Size(0, 17);
             this.SearchLabel.TabIndex = 10;
             // 
+            // Prevbtn
+            // 
+            this.Prevbtn.Location = new System.Drawing.Point(770, 365);
+            this.Prevbtn.Name = "Prevbtn";
+            this.Prevbtn.Size = new System.Drawing.Size(82, 48);
+            this.Prevbtn.TabIndex = 11;
+            this.Prevbtn.Text = "Previous";
+            this.Prevbtn.UseVisualStyleBackColor = true;
+            this.Prevbtn.Click += new System.EventHandler(this.Prevbtn_Click);
+            // 
             // SKGridPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(887, 451);
+            this.Controls.Add(this.Prevbtn);
             this.Controls.Add(this.SearchLabel);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.PieceCommand);
@@ -211,6 +224,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SKGridPage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SKGridPage";
             this.Load += new System.EventHandler(this.SKGridPage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -249,5 +263,6 @@
         private mykitboxDataSet3TableAdapters.piececommandTableAdapter piececommandTableAdapter;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label SearchLabel;
+        private System.Windows.Forms.Button Prevbtn;
     }
 }

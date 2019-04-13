@@ -59,7 +59,7 @@ namespace Materials
 
         private void Client_Click(object sender, EventArgs e)
         {
-            SearchLabel.Text = "Search by a lastname :";
+            SearchLabel.Text = "Search by lastname :";
             if (dataGridView1.Columns.Contains("name"))
             {
                 dataGridView1.Columns.Remove(name);
@@ -77,7 +77,7 @@ namespace Materials
 
         private void Prices_Click(object sender, EventArgs e)
         {
-            SearchLabel.Text = "Search by a code :";
+            SearchLabel.Text = "Search by code :";
             if (dataGridView1.Columns.Contains("name"))
             {
                 dataGridView1.Columns.Remove(name);
@@ -99,7 +99,7 @@ namespace Materials
 
         private void ClientCommand_Click(object sender, EventArgs e)
         {
-            SearchLabel.Text = "Search by a lastname :";
+            SearchLabel.Text = "Search by lastname :";
             if (dataGridView1.Columns.Contains("name"))
             {
                 dataGridView1.Columns.Remove(name);
@@ -119,7 +119,7 @@ namespace Materials
 
         private void PieceCommand_Click(object sender, EventArgs e)
         {
-            SearchLabel.Text = "Search by a code :";
+            SearchLabel.Text = "Search by code :";
             if (dataGridView1.Columns.Contains("name"))
             {
                 dataGridView1.Columns.Remove(name);
@@ -166,6 +166,16 @@ namespace Materials
         {
 
         }
+        private void Prevbtn_Click(object sender, EventArgs e)
+        {
+            System.Threading.Thread monthread = new System.Threading.Thread(new System.Threading.ThreadStart(openSKOrderPage));
+            monthread.Start();
+            this.Close();
+        }
+        public static void openSKOrderPage()
+        {
+            Application.Run(new SKOrdersPage()); //opens the SK's Order Page form
+        }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -202,5 +212,6 @@ namespace Materials
 
             }
         }
+
     }
 }

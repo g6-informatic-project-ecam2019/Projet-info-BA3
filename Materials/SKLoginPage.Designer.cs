@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SKLoginPage));
             this.ConnectBtn = new System.Windows.Forms.Button();
             this.HomeBtn = new System.Windows.Forms.Button();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
@@ -37,21 +38,21 @@
             // 
             // ConnectBtn
             // 
-            this.ConnectBtn.Location = new System.Drawing.Point(127, 132);
+            this.ConnectBtn.Image = ((System.Drawing.Image)(resources.GetObject("ConnectBtn.Image")));
+            this.ConnectBtn.Location = new System.Drawing.Point(151, 132);
             this.ConnectBtn.Name = "ConnectBtn";
-            this.ConnectBtn.Size = new System.Drawing.Size(75, 23);
+            this.ConnectBtn.Size = new System.Drawing.Size(51, 49);
             this.ConnectBtn.TabIndex = 9;
-            this.ConnectBtn.Text = "Connect";
             this.ConnectBtn.UseVisualStyleBackColor = true;
             this.ConnectBtn.Click += new System.EventHandler(this.ConnectBtn_Click);
             // 
             // HomeBtn
             // 
-            this.HomeBtn.Location = new System.Drawing.Point(32, 132);
+            this.HomeBtn.Image = ((System.Drawing.Image)(resources.GetObject("HomeBtn.Image")));
+            this.HomeBtn.Location = new System.Drawing.Point(41, 132);
             this.HomeBtn.Name = "HomeBtn";
-            this.HomeBtn.Size = new System.Drawing.Size(75, 23);
+            this.HomeBtn.Size = new System.Drawing.Size(52, 49);
             this.HomeBtn.TabIndex = 8;
-            this.HomeBtn.Text = "Home";
             this.HomeBtn.UseVisualStyleBackColor = true;
             this.HomeBtn.Click += new System.EventHandler(this.Home_Click);
             // 
@@ -88,6 +89,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(239, 193);
             this.Controls.Add(this.ConnectBtn);
             this.Controls.Add(this.HomeBtn);
