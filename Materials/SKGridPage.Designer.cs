@@ -32,7 +32,6 @@
             this.Client = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.Search = new System.Windows.Forms.Button();
             this.ClientCommand = new System.Windows.Forms.Button();
             this.Prices = new System.Windows.Forms.Button();
             this.mykitboxDataSet = new Materials.mykitboxDataSet();
@@ -48,6 +47,8 @@
             this.mykitboxDataSet3 = new Materials.mykitboxDataSet3();
             this.piececommandBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.piececommandTableAdapter = new Materials.mykitboxDataSet3TableAdapters.piececommandTableAdapter();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.SearchLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mykitboxDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).BeginInit();
@@ -57,6 +58,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pricesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mykitboxDataSet3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.piececommandBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // Client
@@ -74,30 +76,20 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Enabled = false;
             this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(725, 273);
+            this.dataGridView1.Size = new System.Drawing.Size(711, 273);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(761, 332);
+            this.textBox1.Location = new System.Drawing.Point(729, 322);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
+            this.textBox1.Size = new System.Drawing.Size(145, 22);
             this.textBox1.TabIndex = 4;
-            // 
-            // Search
-            // 
-            this.Search.Location = new System.Drawing.Point(761, 361);
-            this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(100, 33);
-            this.Search.TabIndex = 5;
-            this.Search.Text = "Search";
-            this.Search.UseVisualStyleBackColor = true;
-            this.Search.Click += new System.EventHandler(this.Search_Click);
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // ClientCommand
             // 
@@ -185,15 +177,35 @@
             // 
             this.piececommandTableAdapter.ClearBeforeFill = true;
             // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(12, 311);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowTemplate.Height = 24;
+            this.dataGridView2.Size = new System.Drawing.Size(711, 102);
+            this.dataGridView2.TabIndex = 9;
+            // 
+            // SearchLabel
+            // 
+            this.SearchLabel.AutoSize = true;
+            this.SearchLabel.Location = new System.Drawing.Point(727, 291);
+            this.SearchLabel.Name = "SearchLabel";
+            this.SearchLabel.Size = new System.Drawing.Size(0, 17);
+            this.SearchLabel.TabIndex = 10;
+            // 
             // SKGridPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(887, 451);
+            this.Controls.Add(this.SearchLabel);
+            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.PieceCommand);
             this.Controls.Add(this.Prices);
             this.Controls.Add(this.ClientCommand);
-            this.Controls.Add(this.Search);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.Client);
             this.Controls.Add(this.dataGridView1);
@@ -210,6 +222,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pricesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mykitboxDataSet3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.piececommandBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,7 +232,6 @@
         private System.Windows.Forms.Button Client;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button Search;
         private System.Windows.Forms.Button ClientCommand;
         private System.Windows.Forms.Button Prices;
         private mykitboxDataSet mykitboxDataSet;
@@ -235,5 +247,7 @@
         private mykitboxDataSet3 mykitboxDataSet3;
         private System.Windows.Forms.BindingSource piececommandBindingSource;
         private mykitboxDataSet3TableAdapters.piececommandTableAdapter piececommandTableAdapter;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Label SearchLabel;
     }
 }

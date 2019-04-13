@@ -17,7 +17,6 @@ namespace Materials
         private DataGridViewColumn name;
         private DataGridViewColumn lastname;
         private DataGridViewColumn firstname;
-
         public SKGridPage(SKOrdersPage page)
         {
             this.page = page;
@@ -40,8 +39,8 @@ namespace Materials
                 CellTemplate = new DataGridViewTextBoxCell()
             };
 
-
             InitializeComponent();
+            dataGridView2.Visible = false;
         }
 
         private void SKGridPage_Load(object sender, EventArgs e)
@@ -60,6 +59,7 @@ namespace Materials
 
         private void Client_Click(object sender, EventArgs e)
         {
+            SearchLabel.Text = "Search by a lastname :";
             if (dataGridView1.Columns.Contains("name"))
             {
                 dataGridView1.Columns.Remove(name);
@@ -75,22 +75,9 @@ namespace Materials
             
         }
 
-        private void Search_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.DataSource == clientcommandBindingSource)
-            {
-                while (dataGridView1.Rows.Count > 1)
-                {
-                    dataGridView1.Rows.RemoveAt(0);
-                }
-                string searchvalue = textBox1.Text;
-
-            }
-
-        }
-
         private void Prices_Click(object sender, EventArgs e)
         {
+            SearchLabel.Text = "Search by a code :";
             if (dataGridView1.Columns.Contains("name"))
             {
                 dataGridView1.Columns.Remove(name);
@@ -112,6 +99,7 @@ namespace Materials
 
         private void ClientCommand_Click(object sender, EventArgs e)
         {
+            SearchLabel.Text = "Search by a lastname :";
             if (dataGridView1.Columns.Contains("name"))
             {
                 dataGridView1.Columns.Remove(name);
@@ -131,6 +119,7 @@ namespace Materials
 
         private void PieceCommand_Click(object sender, EventArgs e)
         {
+            SearchLabel.Text = "Search by a code :";
             if (dataGridView1.Columns.Contains("name"))
             {
                 dataGridView1.Columns.Remove(name);
@@ -176,6 +165,42 @@ namespace Materials
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.DataSource == clientcommandBindingSource)
+            {
+                dataGridView2.Visible = true;
+                dataGridView2.DataSource = clientBindingSource;
+                dataGridView2.Columns["idclient"].Visible = false;
+                //Search for dgv2
+                DataTable dt = new DataTable();
+                BindingSource bs = (BindingSource)dataGridView2.DataSource;
+                dt = ((DataSet)bs.DataSource).Tables[bs.DataMember];
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = string.Format("lastname LIKE '{0}*'", textBox1.Text);
+                dataGridView2.DataSource = dv.ToTable();
+                //Search for dgv1
+                DataTable dt1 = new DataTable();
+                BindingSource bs1 = (BindingSource)dataGridView1.DataSource;
+                dt = ((DataSet)bs1.DataSource).Tables[bs1.DataMember];
+                DataView dv1 = dt1.DefaultView;
+                dv1.RowFilter = string.Format("lastname LIKE '{0}*'", textBox1.Text);
+                dataGridView2.DataSource = dv1.ToTable();
+            }
+            else if (dataGridView1.DataSource == clientBindingSource)
+            {
+                
+            }
+            else if (dataGridView1.DataSource == pricesBindingSource)
+            {
+
+            }
+            else if (dataGridView1.DataSource == piececommandBindingSource)
+            {
+
+            }
         }
     }
 }
