@@ -32,8 +32,7 @@ namespace Materials
         {
             
             InitializeComponent();
-            
-            
+
         }
         
             
@@ -101,6 +100,7 @@ namespace Materials
 
                     this.stock= new Stock("Server = localhost; Port = 3306; Database = mykitbox; Uid = root; Pwd =");
                     System.GC.Collect();//Tentative de correction de bug quand on back
+                    System.GC.WaitForPendingFinalizers(); 
                 }
                 cupboard1 = new Cupboard(depth, width, angleColor, Number());
                 Door();
@@ -370,32 +370,61 @@ namespace Materials
         }
         private void DataDim()
         {
+
             
-            
-            //height
+                        //height
             int[] dimheightok = stock.existingDimension("height", "Tasseau");
             string[] dimheightokstring = new string[dimheightok.Length];
             for (int i = 0; i < dimheightok.Length; i++)
             {
                 dimheightokstring[i] = Convert.ToString(dimheightok[i]);
             }
+            this.heightBox1.BeginUpdate();
+            this.heightBox1.Items.Clear();
             this.heightBox1.Items.AddRange(dimheightokstring);
+            this.heightBox1.EndUpdate();
+
+            this.heightBox2.BeginUpdate();
+            this.heightBox2.Items.Clear();
             this.heightBox2.Items.AddRange(dimheightokstring);
+            this.heightBox2.EndUpdate();
+
+            this.heightBox3.BeginUpdate();
+            this.heightBox3.Items.Clear();
             this.heightBox3.Items.AddRange(dimheightokstring);
+            this.heightBox3.EndUpdate();
+
+            this.heightBox4.BeginUpdate();
+            this.heightBox4.Items.Clear();
             this.heightBox4.Items.AddRange(dimheightokstring);
+            this.heightBox4.EndUpdate();
+
+            this.heightBox5.BeginUpdate();
+            this.heightBox5.Items.Clear();
             this.heightBox5.Items.AddRange(dimheightokstring);
+            this.heightBox5.EndUpdate();
+
+            this.heightBox6.BeginUpdate();
+            this.heightBox6.Items.Clear();
             this.heightBox6.Items.AddRange(dimheightokstring);
+            this.heightBox6.EndUpdate();
+
+            this.heightBox7.BeginUpdate();
+            this.heightBox7.Items.Clear();
             this.heightBox7.Items.AddRange(dimheightokstring);
+            this.heightBox7.EndUpdate();
 
             //Width
             int[] dimwidthok = stock.existingDimension("width", "Traverse Ar");
             string[] dimwidthokstring = new string[dimwidthok.Length];
             for (int i = 0; i < dimwidthok.Length; i++)
             {
-                Console.WriteLine(dimwidthok[i]);
                 dimwidthokstring[i] = Convert.ToString(dimwidthok[i]);
             }
+            this.widthBox1.BeginUpdate();
+            this.widthBox1.Items.Clear();
             this.widthBox1.Items.AddRange(dimwidthokstring);
+            this.widthBox1.EndUpdate();
 
             //Depth
             int[] dimdepthok = stock.existingDimension("depth", "Traverse GD");
@@ -404,7 +433,10 @@ namespace Materials
             {
                 dimdepthokstring[i] = Convert.ToString(dimdepthok[i]);
             }
+            this.DepthBox1.BeginUpdate();
+            this.DepthBox1.Items.Clear();
             this.DepthBox1.Items.AddRange(dimdepthokstring);
+            this.DepthBox1.EndUpdate();
         }
         private void ConfigurationPage_MouseClick(object sender, MouseEventArgs e)
         {
