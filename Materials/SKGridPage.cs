@@ -60,6 +60,8 @@ namespace Materials
         private void Client_Click(object sender, EventArgs e)
         {
             SearchLabel.Text = "Search by lastname :";
+            textBox1.Text = "";
+            dataGridView2.Visible = false;
             if (dataGridView1.Columns.Contains("name"))
             {
                 dataGridView1.Columns.Remove(name);
@@ -77,7 +79,9 @@ namespace Materials
 
         private void Prices_Click(object sender, EventArgs e)
         {
+            textBox1.Text = "";
             SearchLabel.Text = "Search by code :";
+            dataGridView2.Visible = false;
             if (dataGridView1.Columns.Contains("name"))
             {
                 dataGridView1.Columns.Remove(name);
@@ -99,7 +103,9 @@ namespace Materials
 
         private void ClientCommand_Click(object sender, EventArgs e)
         {
+            textBox1.Text = "";
             SearchLabel.Text = "Search by lastname :";
+            dataGridView2.Visible = false;
             if (dataGridView1.Columns.Contains("name"))
             {
                 dataGridView1.Columns.Remove(name);
@@ -119,7 +125,9 @@ namespace Materials
 
         private void PieceCommand_Click(object sender, EventArgs e)
         {
+            textBox1.Text = "";
             SearchLabel.Text = "Search by code :";
+            dataGridView2.Visible = false;
             if (dataGridView1.Columns.Contains("name"))
             {
                 dataGridView1.Columns.Remove(name);
@@ -179,38 +187,39 @@ namespace Materials
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (dataGridView1.DataSource == clientcommandBindingSource)
+            
+            if (dataGridView1.DataSource == clientBindingSource)
+            {
+                LoadTableChange(dataGridView1, "lastname");
+            }
+            else if (dataGridView1.DataSource == clientcommandBindingSource)
             {
                 dataGridView2.Visible = true;
                 dataGridView2.DataSource = clientBindingSource;
                 dataGridView2.Columns["idclient"].Visible = false;
                 //Search for dgv2
-                DataTable dt = new DataTable();
-                BindingSource bs = (BindingSource)dataGridView2.DataSource;
-                dt = ((DataSet)bs.DataSource).Tables[bs.DataMember];
-                DataView dv = dt.DefaultView;
-                dv.RowFilter = string.Format("lastname LIKE '{0}*'", textBox1.Text);
-                dataGridView2.DataSource = dv.ToTable();
+                LoadTableChange(dataGridView2, "lastname");
                 //Search for dgv1
-                DataTable dt1 = new DataTable();
-                BindingSource bs1 = (BindingSource)dataGridView1.DataSource;
-                dt = ((DataSet)bs1.DataSource).Tables[bs1.DataMember];
-                DataView dv1 = dt1.DefaultView;
-                dv1.RowFilter = string.Format("lastname LIKE '{0}*'", textBox1.Text);
-                dataGridView2.DataSource = dv1.ToTable();
-            }
-            else if (dataGridView1.DataSource == clientBindingSource)
-            {
-                
+                //LoadTableChange(dataGridView1, "lastname");
             }
             else if (dataGridView1.DataSource == pricesBindingSource)
             {
-
+                LoadTableChange(dataGridView1, "code");
             }
             else if (dataGridView1.DataSource == piececommandBindingSource)
             {
-
+                LoadTableChange(dataGridView1, "code");
             }
+        }
+
+        private void LoadTableChange(DataGridView grid, string col)
+        {
+            DataTable dt = new DataTable();
+            BindingSource bs = (BindingSource)grid.DataSource;
+            dt = ((DataSet)bs.DataSource).Tables[bs.DataMember];
+            DataView dv = dt.DefaultView;
+            dv.RowFilter = string.Format("{0} LIKE '{1}*'", col, textBox1.Text);
+            grid.DataSource = dv.ToTable();
         }
 
     }
