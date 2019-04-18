@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.Client = new System.Windows.Forms.Button();
+            this.Client_Pieces = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.ClientCommand = new System.Windows.Forms.Button();
@@ -50,6 +50,9 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.SearchLabel = new System.Windows.Forms.Label();
             this.Prevbtn = new System.Windows.Forms.Button();
+            this.mykitboxDataSet4 = new Materials.mykitboxDataSet4();
+            this.clientpiecescommandBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.client_piecescommandTableAdapter = new Materials.mykitboxDataSet4TableAdapters.client_piecescommandTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mykitboxDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).BeginInit();
@@ -60,17 +63,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.mykitboxDataSet3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.piececommandBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mykitboxDataSet4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientpiecescommandBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // Client
+            // Client_Pieces
             // 
-            this.Client.Location = new System.Drawing.Point(770, 80);
-            this.Client.Name = "Client";
-            this.Client.Size = new System.Drawing.Size(82, 40);
-            this.Client.TabIndex = 2;
-            this.Client.Text = "Client";
-            this.Client.UseVisualStyleBackColor = true;
-            this.Client.Click += new System.EventHandler(this.Client_Click);
+            this.Client_Pieces.Location = new System.Drawing.Point(770, 80);
+            this.Client_Pieces.Name = "Client_Pieces";
+            this.Client_Pieces.Size = new System.Drawing.Size(82, 46);
+            this.Client_Pieces.TabIndex = 2;
+            this.Client_Pieces.Text = "Client Pieces";
+            this.Client_Pieces.UseVisualStyleBackColor = true;
+            this.Client_Pieces.Click += new System.EventHandler(this.Client_Click);
             // 
             // dataGridView1
             // 
@@ -207,6 +212,20 @@
             this.Prevbtn.UseVisualStyleBackColor = true;
             this.Prevbtn.Click += new System.EventHandler(this.Prevbtn_Click);
             // 
+            // mykitboxDataSet4
+            // 
+            this.mykitboxDataSet4.DataSetName = "mykitboxDataSet4";
+            this.mykitboxDataSet4.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // clientpiecescommandBindingSource
+            // 
+            this.clientpiecescommandBindingSource.DataMember = "client_piecescommand";
+            this.clientpiecescommandBindingSource.DataSource = this.mykitboxDataSet4;
+            // 
+            // client_piecescommandTableAdapter
+            // 
+            this.client_piecescommandTableAdapter.ClearBeforeFill = true;
+            // 
             // SKGridPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -220,7 +239,7 @@
             this.Controls.Add(this.Prices);
             this.Controls.Add(this.ClientCommand);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.Client);
+            this.Controls.Add(this.Client_Pieces);
             this.Controls.Add(this.dataGridView1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SKGridPage";
@@ -237,13 +256,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.mykitboxDataSet3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.piececommandBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mykitboxDataSet4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientpiecescommandBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button Client;
+        private System.Windows.Forms.Button Client_Pieces;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button ClientCommand;
@@ -264,5 +285,8 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label SearchLabel;
         private System.Windows.Forms.Button Prevbtn;
+        private mykitboxDataSet4 mykitboxDataSet4;
+        private System.Windows.Forms.BindingSource clientpiecescommandBindingSource;
+        private mykitboxDataSet4TableAdapters.client_piecescommandTableAdapter client_piecescommandTableAdapter;
     }
 }

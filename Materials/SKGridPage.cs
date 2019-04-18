@@ -14,37 +14,51 @@ namespace Materials
     public partial class SKGridPage : Form
     {
         SKOrdersPage page;
-        private DataGridViewColumn name;
-        private DataGridViewColumn lastname;
-        private DataGridViewColumn firstname;
+        private DataTable dt_client;
+        private DataTable dt_prices;
+        private DataTable dt_clientcom;
+        private DataTable dt_com;
+        private DataTable dt_clientpieces;
+
         public SKGridPage(SKOrdersPage page)
         {
             this.page = page;
 
-            name = new DataGridViewColumn
-            {
-                Name = "name",
-                CellTemplate = new DataGridViewTextBoxCell()
-            };
-
-            lastname = new DataGridViewColumn
-            {
-                Name = "lastname",
-                CellTemplate = new DataGridViewTextBoxCell()
-            };
-
-            firstname = new DataGridViewColumn
-            {
-                Name = "firstname",
-                CellTemplate = new DataGridViewTextBoxCell()
-            };
-
             InitializeComponent();
+
+            BindingSource bs_client = clientBindingSource;
+            dt_client = ((DataSet)bs_client.DataSource).Tables[bs_client.DataMember];
+
+            BindingSource bs_prices = pricesBindingSource;
+            dt_prices = ((DataSet)bs_prices.DataSource).Tables[bs_prices.DataMember];
+            dt_prices.Columns.Add("name", typeof(String)).SetOrdinal(2);
+
+            BindingSource bs_clientcom = clientcommandBindingSource;
+            dt_clientcom = ((DataSet)bs_clientcom.DataSource).Tables[bs_clientcom.DataMember];
+            dt_clientcom.Columns.Add("lastname", typeof(String)).SetOrdinal(2);
+            dt_clientcom.Columns.Add("firstname", typeof(String)).SetOrdinal(3);
+
+            BindingSource bs_com = piececommandBindingSource;
+            dt_com = ((DataSet)bs_com.DataSource).Tables[bs_com.DataMember];
+            dt_com.Columns.Add("name", typeof(String)).SetOrdinal(3);
+
+            BindingSource bs_clientpieces = clientpiecescommandBindingSource;
+            dt_clientpieces = ((DataSet)bs_clientpieces.DataSource).Tables[bs_clientpieces.DataMember];
+            dt_clientpieces.Columns.Add("ref", typeof(String)).SetOrdinal(3);
+            dt_clientpieces.Columns.Add("dimension", typeof(String)).SetOrdinal(4);
+            dt_clientpieces.Columns.Add("height", typeof(String)).SetOrdinal(5);
+            dt_clientpieces.Columns.Add("depth", typeof(String)).SetOrdinal(6);
+            dt_clientpieces.Columns.Add("width", typeof(String)).SetOrdinal(7);
+            dt_clientpieces.Columns.Add("color", typeof(String)).SetOrdinal(8);
+            dt_clientpieces.Columns.Add("client_price", typeof(String)).SetOrdinal(9);
+
             dataGridView2.Visible = false;
         }
 
         private void SKGridPage_Load(object sender, EventArgs e)
         {
+            // TODO: cette ligne de code charge les données dans la table 'mykitboxDataSet4.client_piecescommand'. Vous pouvez la déplacer ou la supprimer selon les besoins.
+            this.client_piecescommandTableAdapter.Fill(this.mykitboxDataSet4.client_piecescommand);
             // TODO: cette ligne de code charge les données dans la table 'mykitboxDataSet3.piececommand'. Vous pouvez la déplacer ou la supprimer selon les besoins.
             this.piececommandTableAdapter.Fill(this.mykitboxDataSet3.piececommand);
             // TODO: cette ligne de code charge les données dans la table 'mykitboxDataSet2.prices'. Vous pouvez la déplacer ou la supprimer selon les besoins.
@@ -59,22 +73,22 @@ namespace Materials
 
         private void Client_Click(object sender, EventArgs e)
         {
-            SearchLabel.Text = "Search by lastname :";
+            SearchLabel.Text = "Search by idcom :";
             textBox1.Text = "";
             dataGridView2.Visible = false;
-            if (dataGridView1.Columns.Contains("name"))
-            {
-                dataGridView1.Columns.Remove(name);
-            }
-            else if (dataGridView1.Columns.Contains("firstname"))
-            {
-                dataGridView1.Columns.Remove(firstname);
-                dataGridView1.Columns.Remove(lastname);
-            }
 
-            dataGridView1.DataSource = clientBindingSource;
-            dataGridView1.Columns["idclient"].Visible = false;
-            
+            dataGridView1.DataSource = dt_clientpieces;
+            dataGridView1.Columns["code"].Visible = false;
+
+            SqlConnection("SELECT piece.ref FROM client_piecescommand INNER JOIN piece ON client_piecescommand.code = piece.code", "ref");
+            SqlConnection("SELECT piece.dimension FROM client_piecescommand INNER JOIN piece ON client_piecescommand.code = piece.code", "dimension");
+            SqlConnection("SELECT piece.height FROM client_piecescommand INNER JOIN piece ON client_piecescommand.code = piece.code", "height");
+            SqlConnection("SELECT piece.depth FROM client_piecescommand INNER JOIN piece ON client_piecescommand.code = piece.code", "depth");
+            SqlConnection("SELECT piece.width FROM client_piecescommand INNER JOIN piece ON client_piecescommand.code = piece.code", "width");
+            SqlConnection("SELECT piece.color FROM client_piecescommand INNER JOIN piece ON client_piecescommand.code = piece.code", "color");
+            SqlConnection("SELECT piece.client_price FROM client_piecescommand INNER JOIN piece ON client_piecescommand.code = piece.code", "client_price");
+
+
         }
 
         private void Prices_Click(object sender, EventArgs e)
@@ -82,21 +96,10 @@ namespace Materials
             textBox1.Text = "";
             SearchLabel.Text = "Search by code :";
             dataGridView2.Visible = false;
-            if (dataGridView1.Columns.Contains("name"))
-            {
-                dataGridView1.Columns.Remove(name);
-            }
-            else if (dataGridView1.Columns.Contains("firstname") && dataGridView1.DataSource != clientBindingSource)
-            {
-                dataGridView1.Columns.Remove(firstname);
-                dataGridView1.Columns.Remove(lastname);
-            }
 
-            dataGridView1.DataSource = pricesBindingSource;
+            dataGridView1.DataSource = dt_prices;
             dataGridView1.Columns["idsupp"].Visible = false;
             
-            dataGridView1.Columns.Insert(2, name);
-
             SqlConnection("SELECT prices.idsupp, supplier.name FROM prices INNER JOIN supplier ON prices.idsupp = supplier.idsupp ORDER BY `prices`.`idsupp` ASC", "name");
            
         }
@@ -106,17 +109,9 @@ namespace Materials
             textBox1.Text = "";
             SearchLabel.Text = "Search by lastname :";
             dataGridView2.Visible = false;
-            if (dataGridView1.Columns.Contains("name"))
-            {
-                dataGridView1.Columns.Remove(name);
-            }
-
-            dataGridView1.DataSource = clientcommandBindingSource;
+  
+            dataGridView1.DataSource = dt_clientcom;
             dataGridView1.Columns["idclient"].Visible = false;
-            
-            dataGridView1.Columns.Insert(2, lastname);
-            
-            dataGridView1.Columns.Insert(3, firstname);
 
             SqlConnection("SELECT client_command.idcom, client.lastname FROM client_command INNER JOIN client ON client_command.idclient = client.idclient ORDER BY `client_command`.`idcom` ASC","lastname");
             SqlConnection("SELECT client_command.idcom, client.firstname FROM client_command INNER JOIN client ON client_command.idclient = client.idclient ORDER BY `client_command`.`idcom` ASC","firstname");
@@ -128,20 +123,10 @@ namespace Materials
             textBox1.Text = "";
             SearchLabel.Text = "Search by code :";
             dataGridView2.Visible = false;
-            if (dataGridView1.Columns.Contains("name"))
-            {
-                dataGridView1.Columns.Remove(name);
-            }
-            else if (dataGridView1.Columns.Contains("firstname") && dataGridView1.DataSource != clientBindingSource)
-            {
-                dataGridView1.Columns.Remove(firstname);
-                dataGridView1.Columns.Remove(lastname);
-            }
 
-            dataGridView1.DataSource = piececommandBindingSource;
+            dataGridView1.DataSource = dt_com;
             dataGridView1.Columns["idsupp"].Visible = false;
  
-            dataGridView1.Columns.Insert(3, name);
 
             SqlConnection("SELECT piececommand.num, supplier.name FROM piececommand INNER JOIN supplier ON piececommand.idsupp = supplier.idsupp ORDER BY `piececommand`.`num` ASC", "name");
         }
@@ -187,38 +172,41 @@ namespace Materials
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            
-            if (dataGridView1.DataSource == clientBindingSource)
+            int count = ((DataTable)dataGridView1.DataSource).Columns.Count;
+            if (count == 6)
             {
-                LoadTableChange(dataGridView1, "lastname");
+                LoadTableChange(dataGridView1, "lastname", dt_client);
             }
-            else if (dataGridView1.DataSource == clientcommandBindingSource)
+            else if (count == 8)
             {
                 dataGridView2.Visible = true;
-                dataGridView2.DataSource = clientBindingSource;
+                dataGridView2.DataSource = dt_client;
                 dataGridView2.Columns["idclient"].Visible = false;
                 //Search for dgv2
-                LoadTableChange(dataGridView2, "lastname");
+                LoadTableChange(dataGridView2, "lastname", dt_client);
                 //Search for dgv1
-                //LoadTableChange(dataGridView1, "lastname");
+                LoadTableChange(dataGridView1, "lastname",dt_clientcom);
             }
-            else if (dataGridView1.DataSource == pricesBindingSource)
+            else if (count == 5)
             {
-                LoadTableChange(dataGridView1, "code");
+                LoadTableChange(dataGridView1, "code",dt_prices);
             }
-            else if (dataGridView1.DataSource == piececommandBindingSource)
+            else if (count == 7)
             {
-                LoadTableChange(dataGridView1, "code");
+                LoadTableChange(dataGridView1, "code",dt_com);
+            }
+            else if (count == 10)
+            {
+                LoadTableChange(dataGridView1, "idcom", dt_clientpieces);
             }
         }
 
-        private void LoadTableChange(DataGridView grid, string col)
+        private void LoadTableChange(DataGridView grid, string col, DataTable dt)
         {
-            DataTable dt = new DataTable();
-            BindingSource bs = (BindingSource)grid.DataSource;
-            dt = ((DataSet)bs.DataSource).Tables[bs.DataMember];
-            DataView dv = dt.DefaultView;
-            dv.RowFilter = string.Format("{0} LIKE '{1}*'", col, textBox1.Text);
+            DataView dv = new DataView(dt)
+            {
+                RowFilter = string.Format("Convert({0}, System.String) LIKE '{1}*'", col, textBox1.Text)
+            };
             grid.DataSource = dv.ToTable();
         }
 

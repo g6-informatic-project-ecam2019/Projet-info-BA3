@@ -102,6 +102,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>mykitboxDataSet3.xsd</DependentUpon>
     </Compile>
+    <Compile Include="mykitboxDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>mykitboxDataSet4.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Panel.cs" />
     <Compile Include="Piece.cs" />
     <Compile Include="Program.cs" />
@@ -181,6 +186,17 @@
     </None>
     <None Include="mykitboxDataSet3.xss">
       <DependentUpon>mykitboxDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="mykitboxDataSet4.xsc">
+      <DependentUpon>mykitboxDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="mykitboxDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>mykitboxDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="mykitboxDataSet4.xss">
+      <DependentUpon>mykitboxDataSet4.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
