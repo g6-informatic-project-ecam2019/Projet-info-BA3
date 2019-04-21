@@ -2,8 +2,8 @@
 -- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3305
--- Généré le :  lun. 25 mars 2019 à 15:12
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  Dim 21 avr. 2019 à 08:29
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -37,7 +37,15 @@ CREATE TABLE IF NOT EXISTS `client` (
   `zip` int(15) NOT NULL,
   `phonenumber` int(20) NOT NULL,
   PRIMARY KEY (`idclient`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `client`
+--
+
+INSERT INTO `client` (`idclient`, `firstname`, `lastname`, `adress`, `zip`, `phonenumber`) VALUES
+(1, 'Jean', 'Chatier', 'rue des archers 190', 25250, 489574785),
+(2, 'Philippe', 'Dutron', 'avenue des courtières 40', 1570, 457459875);
 
 -- --------------------------------------------------------
 
@@ -55,7 +63,16 @@ CREATE TABLE IF NOT EXISTS `client_command` (
   `payment_status` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`idcom`),
   KEY `client_command_ibfk_1` (`idclient`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `client_command`
+--
+
+INSERT INTO `client_command` (`idcom`, `idclient`, `date`, `description`, `command_status`, `payment_status`) VALUES
+(1, 1, '2019-04-09 12:40:00', 'Kitbox, 5 boxes', 'Ordered', NULL),
+(2, 1, '2019-04-17 07:00:00', 'Kitbox, 3 boxes', 'Ordered', NULL),
+(3, 2, '2019-04-03 08:03:54', 'Kitbox, 4 boxes', 'Ordered', NULL);
 
 -- --------------------------------------------------------
 
@@ -71,6 +88,18 @@ CREATE TABLE IF NOT EXISTS `client_piecescommand` (
   KEY `client_piecescommand_ibfk_1` (`idcom`),
   KEY `client_piecescommand_ibfk_2` (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `client_piecescommand`
+--
+
+INSERT INTO `client_piecescommand` (`idcom`, `code`, `quantity`) VALUES
+(1, 'COR108NR', 3),
+(1, 'TAS37', 4),
+(1, 'PAG3232BL', 5),
+(2, 'COR108GL', 6),
+(3, 'COR138BL', 2),
+(3, 'TRF120', 5);
 
 -- --------------------------------------------------------
 
@@ -427,7 +456,18 @@ CREATE TABLE IF NOT EXISTS `piececommand` (
   PRIMARY KEY (`num`),
   KEY `piececommand_ibfk_1` (`idsupp`),
   KEY `piececommand_ibfk_2` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `piececommand`
+--
+
+INSERT INTO `piececommand` (`num`, `code`, `idsupp`, `date`, `quantity`, `status`) VALUES
+(1, 'COR108NR', 1, '2019-04-21 08:28:05', 5, 'Ordered'),
+(2, 'TRF120', 1, '2019-04-21 08:28:05', 6, 'Ordered'),
+(3, 'PAG3262BR', 2, '2019-04-21 08:28:26', 12, 'Ordered'),
+(4, 'COR108GL', 2, '2019-04-21 08:28:26', 12, 'Ordered'),
+(5, 'COR108BR', 1, '2019-04-21 08:28:38', 21, 'Ordered');
 
 -- --------------------------------------------------------
 
