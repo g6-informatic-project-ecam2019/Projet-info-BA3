@@ -1,0 +1,3 @@
+#Don't track content of these folders (on Windows)
+.vs\
+Materials.Tests\obj\
