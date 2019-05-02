@@ -53,6 +53,9 @@
             this.mykitboxDataSet4 = new Materials.mykitboxDataSet4();
             this.clientpiecescommandBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.client_piecescommandTableAdapter = new Materials.mykitboxDataSet4TableAdapters.client_piecescommandTableAdapter();
+            this.Modifie = new System.Windows.Forms.Button();
+            this.ApplyMod = new System.Windows.Forms.Button();
+            this.CancelMod = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mykitboxDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).BeginInit();
@@ -82,6 +85,7 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
@@ -188,6 +192,7 @@
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToDeleteRows = false;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView2.Location = new System.Drawing.Point(12, 311);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 24;
@@ -204,7 +209,7 @@
             // 
             // Prevbtn
             // 
-            this.Prevbtn.Location = new System.Drawing.Point(770, 365);
+            this.Prevbtn.Location = new System.Drawing.Point(770, 409);
             this.Prevbtn.Name = "Prevbtn";
             this.Prevbtn.Size = new System.Drawing.Size(82, 48);
             this.Prevbtn.TabIndex = 11;
@@ -226,12 +231,45 @@
             // 
             this.client_piecescommandTableAdapter.ClearBeforeFill = true;
             // 
+            // Modifie
+            // 
+            this.Modifie.Location = new System.Drawing.Point(770, 355);
+            this.Modifie.Name = "Modifie";
+            this.Modifie.Size = new System.Drawing.Size(82, 48);
+            this.Modifie.TabIndex = 12;
+            this.Modifie.Text = "Modifie";
+            this.Modifie.UseVisualStyleBackColor = true;
+            this.Modifie.Click += new System.EventHandler(this.Modifie_Click);
+            // 
+            // ApplyMod
+            // 
+            this.ApplyMod.Location = new System.Drawing.Point(770, 355);
+            this.ApplyMod.Name = "ApplyMod";
+            this.ApplyMod.Size = new System.Drawing.Size(82, 48);
+            this.ApplyMod.TabIndex = 13;
+            this.ApplyMod.Text = "Apply";
+            this.ApplyMod.UseVisualStyleBackColor = true;
+            this.ApplyMod.Click += new System.EventHandler(this.ApplyMod_Click);
+            // 
+            // CancelMod
+            // 
+            this.CancelMod.Location = new System.Drawing.Point(770, 409);
+            this.CancelMod.Name = "CancelMod";
+            this.CancelMod.Size = new System.Drawing.Size(82, 48);
+            this.CancelMod.TabIndex = 14;
+            this.CancelMod.Text = "Cancel";
+            this.CancelMod.UseVisualStyleBackColor = true;
+            this.CancelMod.Click += new System.EventHandler(this.CancelMod_Click);
+            // 
             // SKGridPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(887, 451);
+            this.ClientSize = new System.Drawing.Size(887, 469);
+            this.Controls.Add(this.CancelMod);
+            this.Controls.Add(this.ApplyMod);
+            this.Controls.Add(this.Modifie);
             this.Controls.Add(this.Prevbtn);
             this.Controls.Add(this.SearchLabel);
             this.Controls.Add(this.dataGridView2);
@@ -288,5 +326,8 @@
         private mykitboxDataSet4 mykitboxDataSet4;
         private System.Windows.Forms.BindingSource clientpiecescommandBindingSource;
         private mykitboxDataSet4TableAdapters.client_piecescommandTableAdapter client_piecescommandTableAdapter;
+        private System.Windows.Forms.Button Modifie;
+        private System.Windows.Forms.Button ApplyMod;
+        private System.Windows.Forms.Button CancelMod;
     }
 }

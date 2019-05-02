@@ -52,7 +52,10 @@ namespace Materials
             dt_clientpieces.Columns.Add("color", typeof(String)).SetOrdinal(8);
             dt_clientpieces.Columns.Add("client_price", typeof(String)).SetOrdinal(9);
 
+            CancelMod.Visible = false;
+            ApplyMod.Visible = false;
             dataGridView2.Visible = false;
+            textBox1.Enabled = false;
         }
 
         private void SKGridPage_Load(object sender, EventArgs e)
@@ -73,6 +76,7 @@ namespace Materials
 
         private void Client_Click(object sender, EventArgs e)
         {
+            textBox1.Enabled = true;
             SearchLabel.Text = "Search by idcom :";
             textBox1.Text = "";
             dataGridView2.Visible = false;
@@ -93,6 +97,7 @@ namespace Materials
 
         private void Prices_Click(object sender, EventArgs e)
         {
+            textBox1.Enabled = true;
             textBox1.Text = "";
             SearchLabel.Text = "Search by code :";
             dataGridView2.Visible = false;
@@ -106,6 +111,7 @@ namespace Materials
 
         private void ClientCommand_Click(object sender, EventArgs e)
         {
+            textBox1.Enabled = true;
             textBox1.Text = "";
             SearchLabel.Text = "Search by lastname :";
             dataGridView2.Visible = false;
@@ -120,6 +126,7 @@ namespace Materials
 
         private void PieceCommand_Click(object sender, EventArgs e)
         {
+            textBox1.Enabled = true;
             textBox1.Text = "";
             SearchLabel.Text = "Search by code :";
             dataGridView2.Visible = false;
@@ -210,5 +217,39 @@ namespace Materials
             grid.DataSource = dv.ToTable();
         }
 
+        private void Modifie_Click(object sender, EventArgs e)
+        {
+            CancelMod.Visible = true;
+            ApplyMod.Visible = true;
+            Modifie.Visible = false;
+            Prevbtn.Visible = false;
+            ClientCommand.Enabled = false;
+            Client_Pieces.Enabled = false;
+            Prices.Enabled = false;
+            PieceCommand.Enabled = false;
+            textBox1.Enabled = false;
+        }
+
+        private void ApplyMod_Click(object sender, EventArgs e)
+        {
+            InitDatagrid();
+        }
+
+        private void CancelMod_Click(object sender, EventArgs e)
+        {
+            InitDatagrid();
+        }
+        private void InitDatagrid()
+        {
+            CancelMod.Visible = false;
+            ApplyMod.Visible = false;
+            Modifie.Visible = true;
+            Prevbtn.Visible = true;
+            ClientCommand.Enabled = true;
+            Client_Pieces.Enabled = true;
+            Prices.Enabled = true;
+            PieceCommand.Enabled = true;
+            textBox1.Enabled = true;
+        }
     }
 }
