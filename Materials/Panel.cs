@@ -28,8 +28,8 @@ namespace Materials
             }
             else if (this.position == "HB")
             {
-                this.determDim1 = "depth";
-                this.determDim2 = "width";
+                this.determDim1 = "width";
+                this.determDim2 = "depth";
             }
             else
             {
@@ -44,6 +44,7 @@ namespace Materials
             Description.Add("length", this.length);
             Description.Add("width", this.width);
             Description.Add("color", this.color);
+            Description.Add("code", this.code);
             Description.Add("pos", this.position);
             Description.Add("ref", this.name);
             Description.Add("dim1", this.determDim1);

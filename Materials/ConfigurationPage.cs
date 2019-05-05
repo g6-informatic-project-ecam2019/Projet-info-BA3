@@ -105,13 +105,11 @@ namespace Materials
                 cupboard1 = new Cupboard(depth, width, angleColor, Number());
                 Door();
                 int i;
-                Console.WriteLine(String.Format ("number is {0} :",Number()));
                 for (i = 0; i < Number(); i++)
                 {
                     Console.WriteLine(String.Format("height of box {0} is {1}", i, height[i]));
                     cupboard1.AddBloc(new Box(height[i], panelsColor[i], hasdoor[i], cupboard1, typedoor[i], doorcolor[i]));
                 }
-                Console.WriteLine(String.Format("number is {0} :", Number()));
                 Console.WriteLine("\n cupboard built");
                 configpage = new ConfirmOrderPage(this, cupboard1);
                 configpage.Show();
@@ -134,7 +132,7 @@ namespace Materials
         private void Door()
         {
             int i;
-            for (i=0;i<Number();i++)
+            for (i=0; i < Number(); i++)
             {
                 hasdoor[i] = true;
                 if (door[i] == "No door")

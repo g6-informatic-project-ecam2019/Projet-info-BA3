@@ -30,6 +30,7 @@ namespace Materials
             Description.Add("ref", this.name);
             Description.Add("dim1", this.determDim1);
             Description.Add("dim2", this.determDim2);
+            Description.Add("code", this.code);
             return Description;
         }
     }

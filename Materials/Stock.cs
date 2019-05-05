@@ -162,7 +162,7 @@ namespace Materials
         /*--------------------------------------------------------------------------*/
         public void orderPiece(Piece piece)
         {
-            string code;
+            string code ="";
             int quantity = 0;
             int newQuantity = 0;
             try
@@ -171,24 +171,55 @@ namespace Materials
                 string dimension2 = piece.GetDescription()["dim2"].ToString();
                 if (piece is GlassDoor)
                 {
-                    code = selectPiece2D(piece, dimension1, dimension2, "verre");
+                    try
+                    {
+                        code = selectPiece2D(piece, dimension1, dimension2, "verre");
+                    }
+                    catch(KeyNotFoundException e)
+                    {
+                        Console.WriteLine(piece.GetType());     
+                        Console.WriteLine(e.Source);
+                    }
                 }
                 else
                 {
-                    code = selectPiece2D(piece, dimension1, dimension2, piece.GetDescription()["color"].ToString());
+                    try
+                    {
+                        code = selectPiece2D(piece, dimension1, dimension2, piece.GetDescription()["color"].ToString());
+                    }
+                    catch (KeyNotFoundException e)
+                    {
+                        Console.WriteLine(piece.GetType());
+                        Console.WriteLine(e.Source);
+                    }
                 }
             }
             catch (KeyNotFoundException) //an error is raised if dim1-dim2 are not in piece description => there is only one dim
             {
-                string dimension = piece.GetDescription()["dim"].ToString();
-                code = selectPiece(piece, piece.GetDescription()["dim"].ToString(), piece.GetDescription()["color"].ToString());
+
+                try
+                {
+                    string dimension = piece.GetDescription()["dim"].ToString();
+                }
+                catch(KeyNotFoundException)
+                {
+                    Console.WriteLine(piece.GetType());
+                }
+                try
+                {
+                    code = selectPiece(piece, piece.GetDescription()["dim"].ToString(), piece.GetDescription()["color"].ToString());
+                }
+                catch (KeyNotFoundException)
+                {
+                    code = code = selectPiece(piece, piece.GetDescription()["dim"].ToString(), "");
+                }
             }
             connect();
             this.command.CommandText = String.Format("SELECT * FROM piece WHERE code='{0}'", code);
             reader = command.ExecuteReader();
             while (reader.Read())
             {
-                quantity = (int)reader["virual_quantity"];
+                quantity = (int)reader["virtual_quantity"];
             }
             newQuantity = quantity - 1; //NOTE : newQuantity CAN BE NEGATIVE
             
@@ -220,16 +251,19 @@ namespace Materials
                 for (int p = 0; p < bloc.GetPieces().Length; p++)
                 {
                     Piece piece = bloc.GetPieces()[p];
-                    string code = piece.GetDescription()["code"].ToString();
-                    orderPiece(piece);                //piece is counted as ordered
-                    if (quantities.ContainsKey(code))
+                    if (piece != null)
                     {
-                        quantities[code] += 1;
+                        string code = piece.GetDescription()["code"].ToString();
+                        orderPiece(piece);                //piece is counted as ordered
+                        if (quantities.ContainsKey(code))
+                        {
+                            quantities[code] += 1;
+                        }
+                        else
+                        {
+                            quantities.Add(code, 1);
+                        }
                     }
-                    else
-                    {
-                        quantities.Add(code, 1);
-                    }  
                 } 
             }
             return quantities;
@@ -247,13 +281,22 @@ namespace Materials
             string idClient = "";
             connect();
             command.CommandText = String.Format("SELECT * FROM client WHERE lastname={0}", clientLastName);
-            reader = command.ExecuteReader();
-            while (reader.Read())
+            try
             {
-                if (reader["firstname"].ToString() == clientFirstName)
+                reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    idClient = reader["idclient"].ToString();
+                    if (reader["firstname"].ToString() == clientFirstName)
+                    {
+                        idClient = reader["idclient"].ToString();
+                        Console.WriteLine("Client found ! :)");
+                    }
                 }
+            }
+            catch (MySqlException)
+            {
+                idClient = "";
+                Console.WriteLine("Fail in sql command. Perhaps the client did not exist");
             }
             connection.Close();
             return idClient;
@@ -266,38 +309,44 @@ namespace Materials
          *****************************************************************************/
         public void confirmOrder (string clientFirstName, string clientLastName, string adress, string zip, string phoneNumber, Cupboard cupboard)
         {
+            int idCom = 0;
             connect();
             this.command.CommandText = "SELECT MAX(idcom) FROM client_piecescommand";
-            int idCom = (int)command.ExecuteScalar() + 1;   //id of the command
+            try
+            {
+                idCom = (Int32)command.ExecuteScalar() + 1;   //id of the command
+            }
+            catch (InvalidCastException) //means that there is no command yet in database
+            {
+                idCom = 1;
+            }
             connection.Close();
             string idClient = findClient(clientFirstName, clientLastName);
             if (idClient =="")      //if the client was not found in the db, that means he has to be created
             {
+                connect();
                 command.CommandText = "SELECT MAX(idclient) FROM client";
-                connect();
-                idClient = ((int)command.ExecuteScalar() + 1).ToString();
+                try
+                {
+                    idClient = ((int)command.ExecuteScalar() + 1).ToString();
+                }
+                catch(InvalidCastException) //no client yet in the database
+                {
+                    idClient = "1";
+                }
                 connection.Close();
-                command.CommandText = String.Format("INSERT INTO client(idclient, firstname, lastname, adress, zip, phonenumber) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}');", idClient, clientFirstName, clientLastName, adress, zip, phoneNumber);
                 connect();
+                command.CommandText = String.Format("INSERT INTO client(idclient, firstname, lastname, adress, zip, phonenumber) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}');", idClient, clientFirstName, clientLastName, adress, zip, phoneNumber);
                 command.ExecuteNonQuery();
                 connection.Close();
             }
+            connect();
             command.CommandText = String.Format("INSERT INTO client_command(idcom, idclient, description) VALUES ('{0}', '{1}', '{2}');", idCom, idClient, cupboard.GetDescription());
-
             Dictionary<string, int> pieces = makeOrder(cupboard);
-            int c = 1;
             foreach (string code in pieces.Keys)
             {
-                if (c < pieces.Count)
-                {
-                    command.CommandText += String.Format("INSERT INTO client_piecescommand VALUES ('{0}', '{1}', '{2}');", idCom, code, pieces[code]);
-                }
-                else
-                {
-                    command.CommandText += String.Format("INSERT INTO client_piecescommand VALUES ('{0}', '{1}', '{2}')", idCom, code, pieces[code]); //no ; if it is the last piece => the end of the querry
-                }
+                command.CommandText += String.Format("INSERT INTO client_piecescommand VALUES ('{0}', '{1}', '{2}');", idCom, code, pieces[code]);
             }
-            connect();
             command.ExecuteNonQuery();
             connection.Close();
         }
@@ -338,7 +387,7 @@ namespace Materials
             }
             if (code == "")
             {
-                Console.WriteLine("No fitting piece found.");
+                Console.WriteLine("No fitting piece found.1D");
                 Console.WriteLine(piece.GetDescription()["ref"].ToString());
                 Console.WriteLine(piece.GetDescription()["color"].ToString());
                 Console.WriteLine(piece.GetDescription()["length"].ToString());
@@ -377,11 +426,11 @@ namespace Materials
             }
             if (code == "")
             {
-                Console.WriteLine("No fitting piece found.");
+                Console.WriteLine(length);
+                Console.WriteLine(width);
+                Console.WriteLine("No fitting piece found. 2D");
                 Console.WriteLine(piece.GetDescription()["ref"].ToString());
                 Console.WriteLine(piece.GetDescription()["color"].ToString());
-                Console.WriteLine(piece.GetDescription()["length"].ToString());
-                Console.WriteLine(piece.GetDescription()["width"].ToString());
                 return null;
             }
             connection.Close();
@@ -481,10 +530,10 @@ namespace Materials
                 description.Add("n suppliers", i);
                 connection.Close();
             }
-            foreach (string key in description.Keys)
-            {
-                Console.WriteLine(String.Format("value of {0} is : {1}",key.ToString(), description[key].ToString()));
-            }
+            //foreach (string key in description.Keys)
+            //{
+            //    Console.WriteLine(String.Format("value of {0} is : {1}",key.ToString(), description[key].ToString()));
+            //}
             return description;
         }
 

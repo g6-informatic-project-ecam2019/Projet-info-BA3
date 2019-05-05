@@ -67,11 +67,14 @@ namespace Materials
         private string detailbloc(int num)
         {
             
-            Bloc[] bloc = cupboard.GetBloc();
-            if (num <= bloc.Length)
+            Bloc[] blocs = cupboard.GetBloc();
+            if (num <= blocs.Length)
             {
-                Dictionary<string, Object> Description = bloc[num - 1].GetDescription();
-                return "Bloc " + num + ":                            height: " + Description["height"] + " cm, door: " + Description["door"] + ", color panel: " + Description["panel"];
+                Dictionary<string, Object> Description = blocs[num - 1].GetDescription();
+                return "Bloc " + num + ":                            height: " 
+                               + Description["height"] + " cm, door: " 
+                               + Description["door"] + ", panel\'s color: " 
+                               + Description["panel"];
             }
             else return "";
         }
@@ -137,7 +140,8 @@ namespace Materials
             }
             else
             {
-                
+                Stock stock = new Stock("Server=localhost;Port=3306;Database=mykitbox;Uid=root;Pwd=");
+                stock.confirmOrder("X","X", "X", "0","0", this.cupboard);
                 MessageBox.Show("Confirmed order, go to checkout to pay. Thank you and see you soon !");
                 System.Threading.Thread monthread = new System.Threading.Thread(new System.Threading.ThreadStart(openHomePage));
                 monthread.Start();

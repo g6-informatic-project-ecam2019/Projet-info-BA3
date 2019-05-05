@@ -24,6 +24,7 @@ namespace Materials
             Description.Add("width", this.width);
             Description.Add("type", this.type);
             Description.Add("ref", this.name);
+            Description.Add("code", this.code);
             Description.Add("dim1", this.determDim1);
             Description.Add("dim2", this.determDim2);
             return Description;

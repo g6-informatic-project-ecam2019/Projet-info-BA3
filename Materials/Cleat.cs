@@ -22,6 +22,7 @@ namespace Materials
             Description.Add("length", this.length);
             Description.Add("ref", this.name);
             Description.Add("dim", this.determiningDimension);
+            Description.Add("code", this.code);
             return Description;
         }
     }

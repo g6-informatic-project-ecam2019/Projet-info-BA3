@@ -51,15 +51,20 @@ namespace Materials
 
             if (hasdoor == true)
             {
+                int doorWidth = (width > 62) ? ((width / 2) + 2) : 32; 
                 if (typedoor == "ClassicDoor")
                 {
-                    this.parts[13] = new ClassicDoor(5, this.height - 4, this.doorcolor, this.width);/*classicdoor1*/
-                    this.parts[14] = new ClassicDoor(5, this.height - 4, this.doorcolor, this.width);/*classicdoor2*/
+                    this.parts[13] = new ClassicDoor(5, doorWidth, this.doorcolor, this.height - 4);/*classicdoor1*/
+                    this.parts[14] = new ClassicDoor(5, doorWidth, this.doorcolor, this.height - 4);/*classicdoor2*/
+                }
+                else if (typedoor == "GlassDoor")
+                {
+                    this.parts[13] = new GlassDoor(5, doorWidth, this.height - 4);/*glassdoor1*/
+                    this.parts[14] = new GlassDoor(5, doorWidth, this.height - 4);/*glassdoor2*/
                 }
                 else
                 {
-                    this.parts[13] = new GlassDoor(5, this.height - 4, this.width);/*glassdoor1*/
-                    this.parts[14] = new GlassDoor(5, this.height - 4, this.width);/*glassdoor2*/
+                    Console.WriteLine("Error : no such type of door");
                 }
             }
             for (int p = 0; p < this.parts.Length; p++) //after pieces are built, 
@@ -70,7 +75,7 @@ namespace Materials
                 }
                 else
                 {
-                    if ((p != 13)||(p!= 14)) //if part is null and p is 13 or 14, it just means that there is no door
+                    if ((p != 13) && (p!= 14)) //if part is null and p is 13 or 14, it just means that there is no door
                     {
                         Console.WriteLine("there seem to be a missing piece");
                     }
@@ -112,10 +117,15 @@ namespace Materials
                 {
                     Description.Add("door", this.doorcolor);
                 }
-                else
+                else if (this.typedoor == "GlassDoor")
                 {
                     Description.Add("door","Glass door");
-                }    
+                }  
+                else
+                {
+                    Description.Add("door", "ERROR : door type non-existent");
+                    Console.WriteLine(String.Format("ERROR : WRONG TYPE OF DOOR. \n Current door type is : {0}", this.typedoor));
+                }
             }
             else
             {
