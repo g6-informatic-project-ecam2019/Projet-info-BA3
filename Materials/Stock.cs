@@ -266,6 +266,15 @@ namespace Materials
                     }
                 } 
             }
+            Angle[] angles = cupboard.getAngles();
+            if (angles.Length == 4)
+            {
+                quantities.Add(angles[0].GetDescription()["code"].ToString(), 4);
+            }
+            else
+            {
+                Console.WriteLine("There are not 4 angles in the cupboard, there must have been an issue with addAngles function.");
+            }
             return quantities;
             
 
@@ -309,7 +318,7 @@ namespace Materials
          *****************************************************************************/
         public void confirmOrder (string clientFirstName, string clientLastName, string adress, string zip, string phoneNumber, Cupboard cupboard)
         {
-            int idCom = 0;
+            int idCom = 0;                                                              //first handle the order's identifiers (idcom and idclient)
             connect();
             this.command.CommandText = "SELECT MAX(idcom) FROM client_piecescommand";
             try
@@ -347,7 +356,7 @@ namespace Materials
                 command.ExecuteNonQuery();
                 connection.Close();
             }
-            Dictionary<string, int> pieces = makeOrder(cupboard);
+            Dictionary<string, int> pieces = makeOrder(cupboard);           //then order the pieces
             connect();
             command.CommandText = String.Format("INSERT INTO client_command(idcom, idclient, description) VALUES ('{0}', '{1}', '{2}');", idCom, idClient, cupboard.GetDescription());
             foreach (string code in pieces.Keys)
@@ -463,14 +472,27 @@ namespace Materials
             string code;
             int width = -1;
             int length = (int)piece.GetDescription()["length"];
+            if (piece is Angle) //manage angles' length 
+            {
+                List<int> possibleHeights = existingDimension("height", "Cornieres");
+                int prevCandidateHeight = length;
+                if (!(possibleHeights.Contains(length))) //there is no angle with the right length => take a bigger angle and cut it afterwards
+                {
+                    foreach (int h in possibleHeights)
+                    {
+                        if ((h > length) && (h <= prevCandidateHeight))
+                        {
+                            prevCandidateHeight = h;
+                        }
+                    }
+                    length = prevCandidateHeight;
+                }
+            }
             try
             {
                 width = (int)piece.GetDescription()["width"];
             }
-            catch (KeyNotFoundException)
-            {
-                Console.WriteLine("");
-            }
+            catch (KeyNotFoundException){}
             
             if ((piece is ClassicDoor) || (piece is Panel) || (piece is Angle))
             {
@@ -553,22 +575,22 @@ namespace Materials
          *  Function will not raise any error if determiningPiece is not correct*
          *  but a log will appear                                               *
          ************************************************************************/
-         public int[] existingDimension(string dim, string determiningPiece)
+         public List<int> existingDimension(string dim, string determiningPiece)
          {
-            connect();
-            command.CommandText = String.Format("SELECT * FROM piece WHERE ref='{0}'", determiningPiece); //height of a box is given by cleat's length + 4 cm
-            reader = command.ExecuteReader();
-            int counter = 0;
-            while (reader.Read())
-            {
-                counter++;
-            }
-            connection.Close();
-            if (counter == 0)
-            {
-                Console.WriteLine(String.Format("No piece of that name found. Is this a correct name ? {0}", determiningPiece));
-            }
-            int[] dimensions = new int[counter];
+         //   connect();
+         //   command.CommandText = String.Format("SELECT * FROM piece WHERE ref='{0}'", determiningPiece); //height of a box is given by cleat's length + 4 cm
+         //   reader = command.ExecuteReader();
+         //   int counter = 0;
+         //   while (reader.Read())
+         //   {
+         //       counter++;
+         //   }
+         //   connection.Close();
+         //   if (counter == 0)
+         //   {
+         //       Console.WriteLine(String.Format("No piece of that name found. Is this a correct name ? {0}", determiningPiece));
+         //   }
+            List<int> dimensions = new List<int>();
             List<int> references = new List<int>();
             connect();
             command.CommandText = String.Format("SELECT * FROM piece WHERE ref='{0}'", determiningPiece);
@@ -580,13 +602,13 @@ namespace Materials
                 {
                     try
                     {
-                        if (dim == "height")
+                        if ((dim == "height") && (determiningPiece != "Cornieres"))
                         {
-                            dimensions[i] = (int)reader[dim] + 4;
+                            dimensions.Add((int)reader[dim] + 4);
                         }
                         else
                         {
-                            dimensions[i] = (int)reader[dim];
+                            dimensions.Add((int)reader[dim]);
                         }
                     }
                     catch (KeyNotFoundException)
@@ -609,7 +631,7 @@ namespace Materials
          *  color, once for door color *
          ************************************************************************/
         public List<string> getExistingcolors (Piece piece)
-         {
+        {
             connect();
             string reference = piece.GetDescription()["ref"].ToString();
             command.CommandText = String.Format("SELECT * FROM piece WHERE ref='{0}'", reference); 

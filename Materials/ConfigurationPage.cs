@@ -110,6 +110,7 @@ namespace Materials
                     Console.WriteLine(String.Format("height of box {0} is {1}", i, height[i]));
                     cupboard1.AddBloc(new Box(height[i], panelsColor[i], hasdoor[i], cupboard1, typedoor[i], doorcolor[i]));
                 }
+                cupboard1.AddAngles(stock);
                 Console.WriteLine("\n cupboard built");
                 configpage = new ConfirmOrderPage(this, cupboard1);
                 configpage.Show();
@@ -371,9 +372,9 @@ namespace Materials
 
             
                         //height
-            int[] dimheightok = stock.existingDimension("height", "Tasseau");
-            string[] dimheightokstring = new string[dimheightok.Length];
-            for (int i = 0; i < dimheightok.Length; i++)
+            List<int> dimheightok = stock.existingDimension("height", "Tasseau");
+            string[] dimheightokstring = new string[dimheightok.Count];
+            for (int i = 0; i < dimheightok.Count; i++)
             {
                 dimheightokstring[i] = Convert.ToString(dimheightok[i]);
             }
@@ -413,9 +414,9 @@ namespace Materials
             this.heightBox7.EndUpdate();
 
             //Width
-            int[] dimwidthok = stock.existingDimension("width", "Traverse Ar");
-            string[] dimwidthokstring = new string[dimwidthok.Length];
-            for (int i = 0; i < dimwidthok.Length; i++)
+            List<int> dimwidthok = stock.existingDimension("width", "Traverse Ar");
+            string[] dimwidthokstring = new string[dimwidthok.Count];
+            for (int i = 0; i < dimwidthok.Count; i++)
             {
                 dimwidthokstring[i] = Convert.ToString(dimwidthok[i]);
             }
@@ -425,9 +426,9 @@ namespace Materials
             this.widthBox1.EndUpdate();
 
             //Depth
-            int[] dimdepthok = stock.existingDimension("depth", "Traverse GD");
-            string[] dimdepthokstring = new string[dimdepthok.Length];
-            for (int i = 0; i < dimdepthok.Length; i++)
+            List<int> dimdepthok = stock.existingDimension("depth", "Traverse GD");
+            string[] dimdepthokstring = new string[dimdepthok.Count];
+            for (int i = 0; i < dimdepthok.Count; i++)
             {
                 dimdepthokstring[i] = Convert.ToString(dimdepthok[i]);
             }

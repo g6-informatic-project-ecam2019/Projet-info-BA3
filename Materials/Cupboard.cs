@@ -12,7 +12,7 @@ namespace Materials
         private int width;
         private int depth;
         private Bloc[] configuration;//block lists
-        private Angle[] angles;
+        private Angle[] angles = new Angle[4];
         private int height;
         private float price;
         //private Stock stock = new Stock("Server = localhost; Port = 3306; Database = mykitbox; Uid = root; Pwd =");
@@ -72,11 +72,12 @@ namespace Materials
                 return bloc;
             }
         }
-        public void AddAngles()
+        public void AddAngles(Stock sqlStock)
         {
             for (int i = 0; i < 4; i++)
             {
                 angles[i] = new Angle(this.height, this.angleColor);
+                angles[i].DescriptionRequest(sqlStock);
             }
         }
         public Angle[] getAngles()

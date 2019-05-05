@@ -13,7 +13,6 @@ namespace Materials
 
         public Angle(int length, string color) /*builder*/
         {
-            this.price = price;
             this.length = length;
             this.color = color;
             this.name = "Cornieres";
