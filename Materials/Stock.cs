@@ -280,7 +280,7 @@ namespace Materials
         {
             string idClient = "";
             connect();
-            command.CommandText = String.Format("SELECT * FROM client WHERE lastname={0}", clientLastName);
+            command.CommandText = String.Format("SELECT * FROM client WHERE lastname='{0}'", clientLastName);
             try
             {
                 reader = command.ExecuteReader();
@@ -296,7 +296,7 @@ namespace Materials
             catch (MySqlException)
             {
                 idClient = "";
-                Console.WriteLine("Fail in sql command. Perhaps the client did not exist");
+                Console.WriteLine("Fail in sql command (trying to find a client. Perhaps the client did not exist");
             }
             connection.Close();
             return idClient;
@@ -314,11 +314,17 @@ namespace Materials
             this.command.CommandText = "SELECT MAX(idcom) FROM client_piecescommand";
             try
             {
-                idCom = (Int32)command.ExecuteScalar() + 1;   //id of the command
+                string stepIDCom = command.ExecuteScalar().ToString();
+                Console.WriteLine("id of Command is :");
+                Console.WriteLine(stepIDCom);
+                idCom = Int32.Parse(stepIDCom) + 1;   //id of the command
             }
-            catch (InvalidCastException) //means that there is no command yet in database
+            catch (FormatException ex) //means that there is no command yet in database
             {
                 idCom = 1;
+                Console.WriteLine("no command in the database yet.");
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
             }
             connection.Close();
             string idClient = findClient(clientFirstName, clientLastName);
@@ -330,9 +336,10 @@ namespace Materials
                 {
                     idClient = ((int)command.ExecuteScalar() + 1).ToString();
                 }
-                catch(InvalidCastException) //no client yet in the database
+                catch(InvalidCastException)
                 {
                     idClient = "1";
+                    Console.WriteLine("No client in the database yet.");
                 }
                 connection.Close();
                 connect();
@@ -340,12 +347,13 @@ namespace Materials
                 command.ExecuteNonQuery();
                 connection.Close();
             }
+            Dictionary<string, int> pieces = makeOrder(cupboard);
             connect();
             command.CommandText = String.Format("INSERT INTO client_command(idcom, idclient, description) VALUES ('{0}', '{1}', '{2}');", idCom, idClient, cupboard.GetDescription());
-            Dictionary<string, int> pieces = makeOrder(cupboard);
             foreach (string code in pieces.Keys)
             {
                 command.CommandText += String.Format("INSERT INTO client_piecescommand VALUES ('{0}', '{1}', '{2}');", idCom, code, pieces[code]);
+                command.CommandText += String.Format("UPDATE piece SET real_quantity= real_quantity-{0} WHERE code='{1}';", pieces[code], code);
             }
             command.ExecuteNonQuery();
             connection.Close();

@@ -12,6 +12,7 @@ namespace Materials
         private int width;
         private int depth;
         private Bloc[] configuration;//block lists
+        private Angle[] angles;
         private int height;
         private float price;
         //private Stock stock = new Stock("Server = localhost; Port = 3306; Database = mykitbox; Uid = root; Pwd =");
@@ -40,7 +41,7 @@ namespace Materials
             }
             if (h == 0)/*If more free slot*/
             {
-                Erreur();
+                Console.WriteLine("there must be a size error");
             }
         }
         public void deletBloc()
@@ -71,13 +72,16 @@ namespace Materials
                 return bloc;
             }
         }
-        private string Erreur()/**/
+        public void AddAngles()
         {
-            return "You have a size error";
+            for (int i = 0; i < 4; i++)
+            {
+                angles[i] = new Angle(this.height, this.angleColor);
+            }
         }
-        public void AddAngle()
+        public Angle[] getAngles()
         {
-            
+            return angles;
         }
         public void RemoveBloc(int number)/*To remove a block from the list*/
         {
@@ -98,7 +102,7 @@ namespace Materials
             }
             if (h == 10)
             {
-                Erreur();
+                Console.WriteLine("There must be a size error");
             }
         }
         //private void ComputeHeight() /*Compute the height*/

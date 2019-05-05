@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Materials
 {
-    class Angle : Piece
+    public class Angle : Piece
     {
         private string color;
         private string determiningDimension = "height";
 
-        public Angle(float price, int length, string color) /*builder*/
+        public Angle(int length, string color) /*builder*/
         {
             this.price = price;
             this.length = length;
