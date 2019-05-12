@@ -38,5 +38,6 @@ namespace Materials
             
             this.available = pricestock.isAvailable(this);
         }
+        public virtual void setLength(int newLength) { }
     }
 }

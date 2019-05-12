@@ -29,5 +29,10 @@ namespace Materials
             Description.Add("dim", this.determiningDimension);
             return Description;
         }
+        public override void setLength (int newHeight) //setter for angle's length => height of cupboard might not be available in stock => select another angle
+        {
+            Console.WriteLine(String.Format("WARNING : changing the length of the angles from {0} to {1}", this.length, newHeight));
+            this.length = newHeight;
+        }
     }
 }

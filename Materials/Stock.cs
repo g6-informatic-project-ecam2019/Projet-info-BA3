@@ -177,8 +177,8 @@ namespace Materials
                     }
                     catch(KeyNotFoundException e)
                     {
-                        Console.WriteLine(piece.GetType());     
-                        Console.WriteLine(e.Source);
+                        //Console.WriteLine(piece.GetType());     
+                        //Console.WriteLine(e.Source);
                     }
                 }
                 else
@@ -189,8 +189,8 @@ namespace Materials
                     }
                     catch (KeyNotFoundException e)
                     {
-                        Console.WriteLine(piece.GetType());
-                        Console.WriteLine(e.Source);
+                        //Console.WriteLine(piece.GetType());
+                        //Console.WriteLine(e.Source);
                     }
                 }
             }
@@ -358,7 +358,7 @@ namespace Materials
             }
             Dictionary<string, int> pieces = makeOrder(cupboard);           //then order the pieces
             connect();
-            command.CommandText = String.Format("INSERT INTO client_command(idcom, idclient, description) VALUES ('{0}', '{1}', '{2}');", idCom, idClient, cupboard.GetDescription());
+            command.CommandText = String.Format("INSERT INTO client_command(idcom, idclient, description) VALUES ('{0}', '{1}', '{2}');", idCom, idClient, cupboard.GetDescription().ToString());
             foreach (string code in pieces.Keys)
             {
                 command.CommandText += String.Format("INSERT INTO client_piecescommand VALUES ('{0}', '{1}', '{2}');", idCom, code, pieces[code]);
@@ -404,11 +404,11 @@ namespace Materials
             }
             if (code == "")
             {
+                List<int> possibleHeights = existingDimension("height", "Cornieres");
                 Console.WriteLine("No fitting piece found.1D");
                 Console.WriteLine(piece.GetDescription()["ref"].ToString());
                 Console.WriteLine(piece.GetDescription()["color"].ToString());
                 Console.WriteLine(piece.GetDescription()["length"].ToString());
-                Console.WriteLine(piece.GetDescription()["width"].ToString());
                 return null;
             }
             connection.Close();
@@ -476,16 +476,23 @@ namespace Materials
             {
                 List<int> possibleHeights = existingDimension("height", "Cornieres");
                 int prevCandidateHeight = length;
+                bool firstIter = true;
                 if (!(possibleHeights.Contains(length))) //there is no angle with the right length => take a bigger angle and cut it afterwards
                 {
                     foreach (int h in possibleHeights)
                     {
-                        if ((h > length) && (h <= prevCandidateHeight))
+                        if ((h > length) && firstIter)
+                        {
+                            prevCandidateHeight = h;
+                            firstIter = false;
+                        }
+                        else if ((h > length) && (h <= prevCandidateHeight) && !firstIter) //the angle must be bigger, but as close as possible from the cupboard's height (the smallest value of lenght possible)
                         {
                             prevCandidateHeight = h;
                         }
                     }
                     length = prevCandidateHeight;
+                    piece.setLength(prevCandidateHeight); //effectivly change angle's length (but keep cupboard height identical)
                 }
             }
             try
@@ -515,12 +522,6 @@ namespace Materials
                     code = selectPiece2D(piece, dimension1, dimension2, color);
                 }
                 description.Add("code", code);
-                //description.Add(dimension1, length);
-                if (width >0)
-                {
-                    //description.Add(dimension2, width);
-                }
-                //description.Add(dimension2, width);
                 connect();
                 command.CommandText = String.Format("SELECT * FROM piece INNER JOIN prices ON piece.code=prices.code WHERE piece.code='{0}'", code);
                 //Console.WriteLine(String.Format("code of this piece is {0}", code));

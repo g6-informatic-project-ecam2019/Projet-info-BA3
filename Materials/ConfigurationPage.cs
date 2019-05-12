@@ -19,9 +19,6 @@ namespace Materials
         private string angleColor;
         private string[] panelsColor = new string[7];
         private string[] door = new string[7];
-        private bool[] hasdoor = new bool[7];
-        private string[] typedoor = new string[7];
-        private string[] doorcolor = new string[7];
         public Cupboard cupboard1;
         
         List<System.Windows.Forms.Panel> listPanel = new List<System.Windows.Forms.Panel>();
@@ -80,7 +77,6 @@ namespace Materials
             {
                 MessageBox.Show("The previous block is not configured");
             }
-            
         }
 
         private void MkOrdrBtn_Click(object sender, EventArgs e)
@@ -93,22 +89,18 @@ namespace Materials
                     {
                         cupboard1.RemoveBloc(x);
                     }
-                    
-                    
                     this.cupboard1 = null;//Tentative de correction de bug quand on back
                     this.configpage = null;//Tentative de correction de bug quand on back
-
                     this.stock= new Stock("Server = localhost; Port = 3306; Database = mykitbox; Uid = root; Pwd =");
                     System.GC.Collect();//Tentative de correction de bug quand on back
                     System.GC.WaitForPendingFinalizers(); 
                 }
                 cupboard1 = new Cupboard(depth, width, angleColor, Number());
-                Door();
-                int i;
-                for (i = 0; i < Number(); i++)
+                //Door();
+                for (int i = 0; i < Number(); i++)
                 {
                     Console.WriteLine(String.Format("height of box {0} is {1}", i, height[i]));
-                    cupboard1.AddBloc(new Box(height[i], panelsColor[i], hasdoor[i], cupboard1, typedoor[i], doorcolor[i]));
+                    cupboard1.AddBloc(new Box(height[i], panelsColor[i], cupboard1, door[i]));//hasdoor[i], doorcolor[i]
                 }
                 cupboard1.AddAngles(stock);
                 Console.WriteLine("\n cupboard built");
@@ -130,30 +122,32 @@ namespace Materials
                 totalheight += height[i];
             }
         }
-        private void Door()
-        {
-            int i;
-            for (i=0; i < Number(); i++)
-            {
-                hasdoor[i] = true;
-                if (door[i] == "No door")
-                {
-                    hasdoor[i] = false;
-                    typedoor[i] = null;
-                    doorcolor[i] = null;
-                }
-                else if (door[i] == "Glass")
-                {
-                    typedoor[i] = "GlassDoor";
-                    doorcolor[i] = null;
-                }
-                else
-                {
-                    typedoor[i] = "ClassicDoor";
-                    doorcolor[i] = door[i];
-                }
-            }
-        }
+        //private void Door()
+        //{
+        //    string glass = "GlassDoor";
+        //    string classic = "ClassisDoor";
+        //    int i;
+        //    for (i=0; i < Number(); i++)
+        //    {
+        //        hasdoor[i] = true;
+        //        if (door[i] == "No door")
+        //        {
+        //            hasdoor[i] = false;
+        //            typedoor[i] = null;
+        //            doorcolor[i] = null;
+        //        }
+        //        else if (door[i] == "Glass")
+        //        {
+        //            typedoor[i] = glass;
+        //            doorcolor[i] = null;
+        //        }
+        //        else
+        //        {
+        //            typedoor[i] = classic;
+        //            doorcolor[i] = door[i];
+        //        }
+        //    }
+        //}
         private int Number()
         {
             int i;

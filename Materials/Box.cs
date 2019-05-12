@@ -20,12 +20,13 @@ namespace Materials
         private Piece[] parts = new Piece[15];
         private Stock stock;
 
-        public Box(int height, string pannelsColor, bool hasdoor, Cupboard cupboard, string typedoor, string doorcolor) /*builder*/
+        public Box(int height, string pannelsColor, Cupboard cupboard, string door) /*builder*/
         {
             this.height = height;
             this.pannelsColor = pannelsColor;
-            this.hasdoor = hasdoor;
-            this.doorcolor = doorcolor;
+            this.hasdoor = (door == "No Door") ? false : true;
+            this.doorcolor = ((door == "No Door") || (door == "Glass")) ? null : door;
+            this.typedoor = (door == "Glass") ? "GlassDoor" : "ClassicDoor";
             this.Cupboard = cupboard.GetDescription();
             this.depth = Convert.ToInt32(Cupboard["depth"]);
             this.width = Convert.ToInt32(Cupboard["width"]);
