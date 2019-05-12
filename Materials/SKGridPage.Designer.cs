@@ -95,6 +95,7 @@
             // 
             // textBox1
             // 
+            this.textBox1.Enabled = false;
             this.textBox1.Location = new System.Drawing.Point(729, 322);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(145, 22);
@@ -198,6 +199,7 @@
             this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.Size = new System.Drawing.Size(711, 102);
             this.dataGridView2.TabIndex = 9;
+            this.dataGridView2.Visible = false;
             // 
             // SearchLabel
             // 
@@ -249,6 +251,7 @@
             this.ApplyMod.TabIndex = 13;
             this.ApplyMod.Text = "Apply";
             this.ApplyMod.UseVisualStyleBackColor = true;
+            this.ApplyMod.Visible = false;
             this.ApplyMod.Click += new System.EventHandler(this.ApplyMod_Click);
             // 
             // CancelMod
@@ -259,6 +262,7 @@
             this.CancelMod.TabIndex = 14;
             this.CancelMod.Text = "Cancel";
             this.CancelMod.UseVisualStyleBackColor = true;
+            this.CancelMod.Visible = false;
             this.CancelMod.Click += new System.EventHandler(this.CancelMod_Click);
             // 
             // SKGridPage

@@ -20,6 +20,7 @@ namespace Materials
         private DataTable dt_com;
         private DataTable dt_clientpieces;
         private List<int> RowChanged = new List<int>();
+        int row;
 
         public SKGridPage(SKOrdersPage page)
         {
@@ -53,10 +54,6 @@ namespace Materials
             dt_clientpieces.Columns.Add("color", typeof(String)).SetOrdinal(8);
             dt_clientpieces.Columns.Add("client_price", typeof(String)).SetOrdinal(9);
 
-            CancelMod.Visible = false;
-            ApplyMod.Visible = false;
-            dataGridView2.Visible = false;
-            textBox1.Enabled = false;
         }
 
         private void SKGridPage_Load(object sender, EventArgs e)
@@ -81,9 +78,9 @@ namespace Materials
             SearchLabel.Text = "Search by idcom :";
             textBox1.Text = "";
             dataGridView2.Visible = false;
+            Modifie.Visible = false;
 
             dataGridView1.DataSource = dt_clientpieces;
-            dataGridView1.Columns["code"].Visible = false;
 
             SqlConnection("SELECT piece.ref FROM client_piecescommand INNER JOIN piece ON client_piecescommand.code = piece.code", "ref");
             SqlConnection("SELECT piece.dimension FROM client_piecescommand INNER JOIN piece ON client_piecescommand.code = piece.code", "dimension");
@@ -102,10 +99,11 @@ namespace Materials
             textBox1.Text = "";
             SearchLabel.Text = "Search by code :";
             dataGridView2.Visible = false;
+            Modifie.Visible = true;
 
             dataGridView1.DataSource = dt_prices;
             dataGridView1.Columns["idsupp"].Visible = false;
-            
+
             SqlConnection("SELECT prices.idsupp, supplier.name FROM prices INNER JOIN supplier ON prices.idsupp = supplier.idsupp ORDER BY `prices`.`idsupp` ASC", "name");
            
         }
@@ -115,10 +113,13 @@ namespace Materials
             textBox1.Enabled = true;
             textBox1.Text = "";
             SearchLabel.Text = "Search by lastname :";
-            dataGridView2.Visible = false;
-  
+            dataGridView2.Visible = true;
+            Modifie.Visible = true;
+
             dataGridView1.DataSource = dt_clientcom;
+            dataGridView2.DataSource = dt_client;
             dataGridView1.Columns["idclient"].Visible = false;
+            dataGridView2.Columns["idclient"].Visible = false;
 
             SqlConnection("SELECT client_command.idcom, client.lastname FROM client_command INNER JOIN client ON client_command.idclient = client.idclient ORDER BY `client_command`.`idcom` ASC","lastname");
             SqlConnection("SELECT client_command.idcom, client.firstname FROM client_command INNER JOIN client ON client_command.idclient = client.idclient ORDER BY `client_command`.`idcom` ASC","firstname");
@@ -131,6 +132,7 @@ namespace Materials
             textBox1.Text = "";
             SearchLabel.Text = "Search by code :";
             dataGridView2.Visible = false;
+            Modifie.Visible = false;
 
             dataGridView1.DataSource = dt_com;
             dataGridView1.Columns["idsupp"].Visible = false;
@@ -180,7 +182,6 @@ namespace Materials
             {
                 dataGridView2.Visible = true;
                 dataGridView2.DataSource = dt_client;
-                dataGridView2.Columns["idclient"].Visible = false;
                 //Search for dgv2
                 LoadTableChange(dataGridView2, "lastname", dt_client);
                 //Search for dgv1
@@ -221,43 +222,58 @@ namespace Materials
             PieceCommand.Enabled = false;
             textBox1.Enabled = false;
             dataGridView1.EditMode = DataGridViewEditMode.EditOnKeystroke;
+
+            int count = ((DataTable)dataGridView1.DataSource).Columns.Count;
+            List<string> ColumnNotChanged = new List<string>();
+            if (count == 8)
+            {
+                ColumnNotChanged.Add("command_status");
+                ColumnNotChanged.Add("payment_status");
+                
+                for (int i = 0; i < Convert.ToInt32(dataGridView1.Rows.Count.ToString()) ; i++)
+                {
+                    if (dataGridView1.Rows[i].Cells[7].Value.ToString() == "Payed")
+                    {
+                        dataGridView1.Rows[i].Cells[7].ReadOnly = true;
+                        dataGridView1.Rows[i].Cells[7].Style.BackColor = Color.LightGray;
+                    }
+                    if (dataGridView1.Rows[i].Cells[6].Value.ToString() == "Close")
+                    {
+                        dataGridView1.Rows[i].Cells[6].ReadOnly = true;
+                        dataGridView1.Rows[i].Cells[6].Style.BackColor = Color.LightGray;
+                    }
+
+                }
+            }
+            else if (count == 5)
+            {
+                ColumnNotChanged.Add("supplier_price");
+                ColumnNotChanged.Add("reprieve");
+            }
+
+
+            for (var i = 0; i < ((DataTable)dataGridView1.DataSource).Columns.Count; i++)
+            {
+                if (!ColumnNotChanged.Contains(dataGridView1.Columns[i].Name))
+                {
+                    dataGridView1.Columns[i].ReadOnly = true;
+                    dataGridView1.Columns[i].DefaultCellStyle.BackColor = Color.LightGray;
+                }
+            }
+            
         }
 
         private void ApplyMod_Click(object sender, EventArgs e)
         {
             int count = ((DataTable)dataGridView1.DataSource).Columns.Count;
             if (count == 8)
-            {
-               //client command
+            {            
+                SqlUpdtateStatement(string.Format("UPDATE client_command SET command_status = '{0}', payment_status = '{1}' WHERE idcom = {2} ", dataGridView1.Rows[row].Cells["command_status"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["payment_status"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["idcom"].FormattedValue.ToString()));
+
             }
             else if (count == 5)
             {
-                string connString = "Server=localhost;Port=3306;Database=mykitbox;Uid=root;Pwd=";
-                MySqlConnection conn = new MySqlConnection(connString);
-                MySqlCommand command = conn.CreateCommand();
-                foreach (int row in RowChanged)
-                {
-                    command.CommandText = string.Format("UPDATE prices SET supplier_price = {0}, reprieve = {1} WHERE idsupp = {2} AND code = '{3}'",dataGridView1.Rows[row].Cells["supplier_price"].FormattedValue.ToString().Replace(",","."), dataGridView1.Rows[row].Cells["reprieve"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["idsupp"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["code"].FormattedValue.ToString());
-                    Console.WriteLine(command.CommandText);
-                    try
-                    {
-                        conn.Open();
-                        command.ExecuteNonQuery();
-                    }
-                    catch (Exception x)
-                    {
-                        Console.WriteLine(x.Message);
-                    }
-                    conn.Close();
-                }
-            }
-            else if (count == 7)
-            {
-                //
-            }
-            else if (count == 10)
-            {
-                //Client pieces
+                SqlUpdtateStatement (string.Format("UPDATE prices SET supplier_price = {0}, reprieve = {1} WHERE idsupp = {2} AND code = '{3}'", dataGridView1.Rows[row].Cells["supplier_price"].FormattedValue.ToString().Replace(",", "."), dataGridView1.Rows[row].Cells["reprieve"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["idsupp"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["code"].FormattedValue.ToString()));
             }
 
             InitDatagrid();
@@ -279,6 +295,19 @@ namespace Materials
             PieceCommand.Enabled = true;
             textBox1.Enabled = true;
             dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
+
+            for (var i = 0; i < ((DataTable)dataGridView1.DataSource).Columns.Count; i++)
+            {
+                    dataGridView1.Columns[i].DefaultCellStyle.BackColor = Color.White;
+            }
+            if (dataGridView1.DataSource == dt_clientcom)
+            {
+                for (int i = 0; i < Convert.ToInt32(dataGridView1.Rows.Count.ToString()); i++)
+                {
+                        dataGridView1.Rows[i].Cells[6].Style.BackColor = Color.White;
+                        dataGridView1.Rows[i].Cells[7].Style.BackColor = Color.White;
+                }
+            }
         }
 
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -291,6 +320,27 @@ namespace Materials
                 }
             }
             
+        }
+        private void SqlUpdtateStatement (string com)
+        {
+            string connString = "Server=localhost;Port=3306;Database=mykitbox;Uid=root;Pwd=";
+            MySqlConnection conn = new MySqlConnection(connString);
+            MySqlCommand command = conn.CreateCommand();
+            foreach (int row in RowChanged)
+            {
+                command.CommandText = com;
+                Console.WriteLine(command.CommandText);
+                try
+                {
+                    conn.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception x)
+                {
+                    Console.WriteLine(x.Message);
+                }
+                conn.Close();
+            }
         }
     }
 }
