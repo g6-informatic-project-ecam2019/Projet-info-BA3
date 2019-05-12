@@ -51,8 +51,8 @@ CREATE TABLE IF NOT EXISTS `client_command` (
   `idclient` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `description` varchar(150) NOT NULL,
-  `command_status` varchar(30) NOT NULL DEFAULT 'Ordered',
-  `payment_status` varchar(30) DEFAULT NULL,
+  `command_status` varchar(30) NOT NULL,
+  `payment_status` varchar(30) NOT NULL,
   PRIMARY KEY (`idcom`),
   KEY `client_command_ibfk_1` (`idclient`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
