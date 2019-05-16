@@ -56,6 +56,14 @@
             this.Modifie = new System.Windows.Forms.Button();
             this.ApplyMod = new System.Windows.Forms.Button();
             this.CancelMod = new System.Windows.Forms.Button();
+            this.mykitboxDataSet5 = new Materials.mykitboxDataSet5();
+            this.pieceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pieceTableAdapter = new Materials.mykitboxDataSet5TableAdapters.pieceTableAdapter();
+            this.Pieces = new System.Windows.Forms.Button();
+            this.RowAdd = new System.Windows.Forms.Button();
+            this.RowDelete = new System.Windows.Forms.Button();
+            this.textboxDel = new System.Windows.Forms.TextBox();
+            this.labelDel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mykitboxDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).BeginInit();
@@ -68,13 +76,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mykitboxDataSet4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientpiecescommandBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mykitboxDataSet5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pieceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // Client_Pieces
             // 
-            this.Client_Pieces.Location = new System.Drawing.Point(770, 80);
+            this.Client_Pieces.Location = new System.Drawing.Point(771, 71);
+            this.Client_Pieces.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Client_Pieces.Name = "Client_Pieces";
-            this.Client_Pieces.Size = new System.Drawing.Size(82, 46);
+            this.Client_Pieces.Size = new System.Drawing.Size(83, 46);
             this.Client_Pieces.TabIndex = 2;
             this.Client_Pieces.Text = "Client Pieces";
             this.Client_Pieces.UseVisualStyleBackColor = true;
@@ -87,6 +98,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.Location = new System.Drawing.Point(12, 12);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(711, 273);
@@ -96,7 +108,8 @@
             // textBox1
             // 
             this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(729, 322);
+            this.textBox1.Location = new System.Drawing.Point(729, 345);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(145, 22);
             this.textBox1.TabIndex = 4;
@@ -104,9 +117,10 @@
             // 
             // ClientCommand
             // 
-            this.ClientCommand.Location = new System.Drawing.Point(770, 12);
+            this.ClientCommand.Location = new System.Drawing.Point(771, 12);
+            this.ClientCommand.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ClientCommand.Name = "ClientCommand";
-            this.ClientCommand.Size = new System.Drawing.Size(82, 45);
+            this.ClientCommand.Size = new System.Drawing.Size(83, 46);
             this.ClientCommand.TabIndex = 6;
             this.ClientCommand.Text = "Client Command";
             this.ClientCommand.UseVisualStyleBackColor = true;
@@ -114,9 +128,10 @@
             // 
             // Prices
             // 
-            this.Prices.Location = new System.Drawing.Point(770, 148);
+            this.Prices.Location = new System.Drawing.Point(771, 135);
+            this.Prices.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Prices.Name = "Prices";
-            this.Prices.Size = new System.Drawing.Size(82, 40);
+            this.Prices.Size = new System.Drawing.Size(83, 39);
             this.Prices.TabIndex = 7;
             this.Prices.Text = "Prices";
             this.Prices.UseVisualStyleBackColor = true;
@@ -166,9 +181,10 @@
             // 
             // PieceCommand
             // 
-            this.PieceCommand.Location = new System.Drawing.Point(770, 218);
+            this.PieceCommand.Location = new System.Drawing.Point(771, 254);
+            this.PieceCommand.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PieceCommand.Name = "PieceCommand";
-            this.PieceCommand.Size = new System.Drawing.Size(82, 48);
+            this.PieceCommand.Size = new System.Drawing.Size(83, 48);
             this.PieceCommand.TabIndex = 8;
             this.PieceCommand.Text = "Piece Command";
             this.PieceCommand.UseVisualStyleBackColor = true;
@@ -195,25 +211,27 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView2.Location = new System.Drawing.Point(12, 311);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(711, 102);
+            this.dataGridView2.Size = new System.Drawing.Size(711, 167);
             this.dataGridView2.TabIndex = 9;
             this.dataGridView2.Visible = false;
             // 
             // SearchLabel
             // 
             this.SearchLabel.AutoSize = true;
-            this.SearchLabel.Location = new System.Drawing.Point(727, 291);
+            this.SearchLabel.Location = new System.Drawing.Point(741, 311);
             this.SearchLabel.Name = "SearchLabel";
             this.SearchLabel.Size = new System.Drawing.Size(0, 17);
             this.SearchLabel.TabIndex = 10;
             // 
             // Prevbtn
             // 
-            this.Prevbtn.Location = new System.Drawing.Point(770, 409);
+            this.Prevbtn.Location = new System.Drawing.Point(771, 431);
+            this.Prevbtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Prevbtn.Name = "Prevbtn";
-            this.Prevbtn.Size = new System.Drawing.Size(82, 48);
+            this.Prevbtn.Size = new System.Drawing.Size(83, 48);
             this.Prevbtn.TabIndex = 11;
             this.Prevbtn.Text = "Previous";
             this.Prevbtn.UseVisualStyleBackColor = true;
@@ -235,9 +253,10 @@
             // 
             // Modifie
             // 
-            this.Modifie.Location = new System.Drawing.Point(770, 355);
+            this.Modifie.Location = new System.Drawing.Point(771, 377);
+            this.Modifie.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Modifie.Name = "Modifie";
-            this.Modifie.Size = new System.Drawing.Size(82, 48);
+            this.Modifie.Size = new System.Drawing.Size(83, 48);
             this.Modifie.TabIndex = 12;
             this.Modifie.Text = "Modify";
             this.Modifie.UseVisualStyleBackColor = true;
@@ -245,9 +264,10 @@
             // 
             // ApplyMod
             // 
-            this.ApplyMod.Location = new System.Drawing.Point(770, 355);
+            this.ApplyMod.Location = new System.Drawing.Point(771, 377);
+            this.ApplyMod.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ApplyMod.Name = "ApplyMod";
-            this.ApplyMod.Size = new System.Drawing.Size(82, 48);
+            this.ApplyMod.Size = new System.Drawing.Size(83, 48);
             this.ApplyMod.TabIndex = 13;
             this.ApplyMod.Text = "Apply";
             this.ApplyMod.UseVisualStyleBackColor = true;
@@ -256,21 +276,95 @@
             // 
             // CancelMod
             // 
-            this.CancelMod.Location = new System.Drawing.Point(770, 409);
+            this.CancelMod.Location = new System.Drawing.Point(771, 431);
+            this.CancelMod.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CancelMod.Name = "CancelMod";
-            this.CancelMod.Size = new System.Drawing.Size(82, 48);
+            this.CancelMod.Size = new System.Drawing.Size(83, 48);
             this.CancelMod.TabIndex = 14;
             this.CancelMod.Text = "Cancel";
             this.CancelMod.UseVisualStyleBackColor = true;
             this.CancelMod.Visible = false;
             this.CancelMod.Click += new System.EventHandler(this.CancelMod_Click);
             // 
+            // mykitboxDataSet5
+            // 
+            this.mykitboxDataSet5.DataSetName = "mykitboxDataSet5";
+            this.mykitboxDataSet5.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // pieceBindingSource
+            // 
+            this.pieceBindingSource.DataMember = "piece";
+            this.pieceBindingSource.DataSource = this.mykitboxDataSet5;
+            // 
+            // pieceTableAdapter
+            // 
+            this.pieceTableAdapter.ClearBeforeFill = true;
+            // 
+            // Pieces
+            // 
+            this.Pieces.Location = new System.Drawing.Point(771, 189);
+            this.Pieces.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Pieces.Name = "Pieces";
+            this.Pieces.Size = new System.Drawing.Size(83, 48);
+            this.Pieces.TabIndex = 15;
+            this.Pieces.Text = "Pieces";
+            this.Pieces.UseVisualStyleBackColor = true;
+            this.Pieces.Click += new System.EventHandler(this.Pieces_Click);
+            // 
+            // RowAdd
+            // 
+            this.RowAdd.Location = new System.Drawing.Point(73, 356);
+            this.RowAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.RowAdd.Name = "RowAdd";
+            this.RowAdd.Size = new System.Drawing.Size(83, 48);
+            this.RowAdd.TabIndex = 16;
+            this.RowAdd.Text = "Add a row";
+            this.RowAdd.UseVisualStyleBackColor = true;
+            this.RowAdd.Visible = false;
+            this.RowAdd.Click += new System.EventHandler(this.RowAdd_Click);
+            // 
+            // RowDelete
+            // 
+            this.RowDelete.Location = new System.Drawing.Point(393, 356);
+            this.RowDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.RowDelete.Name = "RowDelete";
+            this.RowDelete.Size = new System.Drawing.Size(83, 48);
+            this.RowDelete.TabIndex = 17;
+            this.RowDelete.Text = "Delete a row";
+            this.RowDelete.UseVisualStyleBackColor = true;
+            this.RowDelete.Visible = false;
+            this.RowDelete.Click += new System.EventHandler(this.RowDelete_Click);
+            // 
+            // textboxDel
+            // 
+            this.textboxDel.Location = new System.Drawing.Point(393, 431);
+            this.textboxDel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textboxDel.Name = "textboxDel";
+            this.textboxDel.Size = new System.Drawing.Size(83, 22);
+            this.textboxDel.TabIndex = 18;
+            this.textboxDel.Visible = false;
+            // 
+            // labelDel
+            // 
+            this.labelDel.AutoSize = true;
+            this.labelDel.Location = new System.Drawing.Point(390, 406);
+            this.labelDel.Name = "labelDel";
+            this.labelDel.Size = new System.Drawing.Size(97, 17);
+            this.labelDel.TabIndex = 19;
+            this.labelDel.Text = "Enter a code :";
+            this.labelDel.Visible = false;
+            // 
             // SKGridPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(887, 469);
+            this.ClientSize = new System.Drawing.Size(887, 498);
+            this.Controls.Add(this.labelDel);
+            this.Controls.Add(this.textboxDel);
+            this.Controls.Add(this.RowDelete);
+            this.Controls.Add(this.RowAdd);
+            this.Controls.Add(this.Pieces);
             this.Controls.Add(this.CancelMod);
             this.Controls.Add(this.ApplyMod);
             this.Controls.Add(this.Modifie);
@@ -283,7 +377,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.Client_Pieces);
             this.Controls.Add(this.dataGridView1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "SKGridPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SKGridPage";
@@ -300,6 +394,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mykitboxDataSet4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientpiecescommandBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mykitboxDataSet5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pieceBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -333,5 +429,13 @@
         private System.Windows.Forms.Button Modifie;
         private System.Windows.Forms.Button ApplyMod;
         private System.Windows.Forms.Button CancelMod;
+        private mykitboxDataSet5 mykitboxDataSet5;
+        private System.Windows.Forms.BindingSource pieceBindingSource;
+        private mykitboxDataSet5TableAdapters.pieceTableAdapter pieceTableAdapter;
+        private System.Windows.Forms.Button Pieces;
+        private System.Windows.Forms.Button RowAdd;
+        private System.Windows.Forms.Button RowDelete;
+        private System.Windows.Forms.TextBox textboxDel;
+        private System.Windows.Forms.Label labelDel;
     }
 }

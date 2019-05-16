@@ -19,6 +19,7 @@ namespace Materials
         private DataTable dt_clientcom;
         private DataTable dt_com;
         private DataTable dt_clientpieces;
+        private DataTable dt_pieces;
         private List<int> RowChanged = new List<int>();
         int row;
 
@@ -54,10 +55,15 @@ namespace Materials
             dt_clientpieces.Columns.Add("color", typeof(String)).SetOrdinal(8);
             dt_clientpieces.Columns.Add("client_price", typeof(String)).SetOrdinal(9);
 
+            BindingSource bs_pieces = pieceBindingSource;
+            dt_pieces = ((DataSet)bs_pieces.DataSource).Tables[bs_pieces.DataMember];
+
         }
 
         private void SKGridPage_Load(object sender, EventArgs e)
         {
+            // TODO: cette ligne de code charge les données dans la table 'mykitboxDataSet5.piece'. Vous pouvez la déplacer ou la supprimer selon les besoins.
+            this.pieceTableAdapter.Fill(this.mykitboxDataSet5.piece);
             // TODO: cette ligne de code charge les données dans la table 'mykitboxDataSet4.client_piecescommand'. Vous pouvez la déplacer ou la supprimer selon les besoins.
             this.client_piecescommandTableAdapter.Fill(this.mykitboxDataSet4.client_piecescommand);
             // TODO: cette ligne de code charge les données dans la table 'mykitboxDataSet3.piececommand'. Vous pouvez la déplacer ou la supprimer selon les besoins.
@@ -124,6 +130,17 @@ namespace Materials
             SqlConnection("SELECT client_command.idcom, client.lastname FROM client_command INNER JOIN client ON client_command.idclient = client.idclient ORDER BY `client_command`.`idcom` ASC","lastname");
             SqlConnection("SELECT client_command.idcom, client.firstname FROM client_command INNER JOIN client ON client_command.idclient = client.idclient ORDER BY `client_command`.`idcom` ASC","firstname");
 
+        }
+
+        private void Pieces_Click(object sender, EventArgs e)
+        {
+            textBox1.Enabled = true;
+            textBox1.Text = "";
+            SearchLabel.Text = "Search by code :";
+            dataGridView2.Visible = false;
+            Modifie.Visible = true;
+
+            dataGridView1.DataSource = dt_pieces;
         }
 
         private void PieceCommand_Click(object sender, EventArgs e)
@@ -199,6 +216,10 @@ namespace Materials
             {
                 LoadTableChange(dataGridView1, "idcom", dt_clientpieces);
             }
+            else if (count == 13)
+            {
+                LoadTableChange(dataGridView1, "code", dt_pieces);
+            }
         }
 
         private void LoadTableChange(DataGridView grid, string col, DataTable dt)
@@ -220,6 +241,7 @@ namespace Materials
             Client_Pieces.Enabled = false;
             Prices.Enabled = false;
             PieceCommand.Enabled = false;
+            Pieces.Enabled = false;
             textBox1.Enabled = false;
             dataGridView1.EditMode = DataGridViewEditMode.EditOnKeystroke;
 
@@ -250,6 +272,21 @@ namespace Materials
                 ColumnNotChanged.Add("supplier_price");
                 ColumnNotChanged.Add("reprieve");
             }
+            else if (count == 13)
+            {
+
+                for (var i = 1; i < ((DataTable)dataGridView1.DataSource).Columns.Count; i++)
+                {
+                    if (dataGridView1.Columns[i].Name != "real_quantity" & dataGridView1.Columns[i].Name != "virtual_quantity" & dataGridView1.Columns[i].Name != "command_quantity")
+                    {
+                        ColumnNotChanged.Add(dataGridView1.Columns[i].Name);
+                    }
+                }
+                RowAdd.Visible = true;
+                RowDelete.Visible = true;
+                textboxDel.Visible = true;
+                labelDel.Visible = true;
+            }
 
 
             for (var i = 0; i < ((DataTable)dataGridView1.DataSource).Columns.Count; i++)
@@ -275,6 +312,11 @@ namespace Materials
             {
                 SqlUpdtateStatement (string.Format("UPDATE prices SET supplier_price = {0}, reprieve = {1} WHERE idsupp = {2} AND code = '{3}'", dataGridView1.Rows[row].Cells["supplier_price"].FormattedValue.ToString().Replace(",", "."), dataGridView1.Rows[row].Cells["reprieve"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["idsupp"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["code"].FormattedValue.ToString()));
             }
+            else if (count == 13)
+            {
+                SqlUpdtateStatement(string.Format("UPDATE piece SET ref = '{0}', dimension = '{1}', height = {2} , depth = {3}, width = {4}, color = '{5}', min_stock = {6}, client_price = {7}, box_number = {8} WHERE code = '{9}'", dataGridView1.Rows[row].Cells["ref"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["dimension"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["height"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["depth"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["width"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["color"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["min_stock"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["client_price"].FormattedValue.ToString().Replace(",", "."), dataGridView1.Rows[row].Cells["box_number"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["code"].FormattedValue.ToString()));
+
+            }
 
             InitDatagrid();
         }
@@ -293,7 +335,12 @@ namespace Materials
             Client_Pieces.Enabled = true;
             Prices.Enabled = true;
             PieceCommand.Enabled = true;
+            Pieces.Enabled = true;
             textBox1.Enabled = true;
+            RowAdd.Visible = false;
+            RowDelete.Visible = false;
+            textboxDel.Visible = false;
+            labelDel.Visible = false;
             dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
 
             for (var i = 0; i < ((DataTable)dataGridView1.DataSource).Columns.Count; i++)
@@ -308,6 +355,7 @@ namespace Materials
                         dataGridView1.Rows[i].Cells[7].Style.BackColor = Color.White;
                 }
             }
+
         }
 
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -341,6 +389,32 @@ namespace Materials
                 }
                 conn.Close();
             }
+        }
+
+        private void RowAdd_Click(object sender, EventArgs e)
+        {
+            dt_pieces.NewRow();
+        }
+
+        private void RowDelete_Click(object sender, EventArgs e)
+        {
+            string connString = "Server=localhost;Port=3306;Database=mykitbox;Uid=root;Pwd=";
+            MySqlConnection conn = new MySqlConnection(connString);
+            MySqlCommand command = conn.CreateCommand();
+            command.CommandText = string.Format("DELETE FROM piece WHERE code = '{0}'", textboxDel.Text);
+            Console.WriteLine(command.CommandText);
+            try
+            {
+                conn.Open();
+                command.ExecuteNonQuery();
+            }
+            catch (Exception x)
+            {
+                Console.WriteLine(x.Message);
+            }
+            conn.Close();
+            InitDatagrid();
+
         }
     }
 }
