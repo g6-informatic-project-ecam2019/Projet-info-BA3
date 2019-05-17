@@ -13,7 +13,6 @@ namespace Materials
 {
     public partial class SKGridPage : Form
     {
-        SKOrdersPage page;
         private DataTable dt_client;
         private DataTable dt_prices;
         private DataTable dt_clientcom;
@@ -21,11 +20,11 @@ namespace Materials
         private DataTable dt_clientpieces;
         private DataTable dt_pieces;
         private List<int> RowChanged = new List<int>();
-        int row;
+        private int row;
+        private PopUpAdd popup = new PopUpAdd();
 
-        public SKGridPage(SKOrdersPage page)
+        public SKGridPage()
         {
-            this.page = page;
 
             InitializeComponent();
 
@@ -325,7 +324,7 @@ namespace Materials
         {
             InitDatagrid();
         }
-        private void InitDatagrid()
+        public void InitDatagrid()
         {
             CancelMod.Visible = false;
             ApplyMod.Visible = false;
@@ -393,7 +392,7 @@ namespace Materials
 
         private void RowAdd_Click(object sender, EventArgs e)
         {
-            dt_pieces.NewRow();
+            popup.ShowDialog();
         }
 
         private void RowDelete_Click(object sender, EventArgs e)

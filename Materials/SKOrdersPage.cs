@@ -31,7 +31,7 @@ namespace Materials
 
         private void button3_Click(object sender, EventArgs e)
         {
-            dataGridPage = new SKGridPage(this);
+            dataGridPage = new SKGridPage();
             dataGridPage.Show();
             this.Hide();
         }

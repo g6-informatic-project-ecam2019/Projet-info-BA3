@@ -72,3 +72,4 @@ C:\Users\User\Documents\GitHub\Projet-info-BA3\Materials\bin\Debug\Google.Protob
 C:\Users\User\Documents\GitHub\Projet-info-BA3\Materials\obj\Debug\Materials.SKGridPage.resources
 D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.Properties.Resources.resources
 C:\Users\Christos\Desktop\Projet-info-BA3\Materials\obj\Debug\Materials.Properties.Resources.resources
+C:\Users\Christos\Desktop\Projet-info-BA3\Materials\obj\Debug\Materials.PopUpAdd.resources
