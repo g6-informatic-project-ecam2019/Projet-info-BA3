@@ -87,10 +87,10 @@ CREATE TABLE IF NOT EXISTS `piece` (
   `depth` int(11) NOT NULL,
   `width` int(11) NOT NULL,
   `color` varchar(30) NOT NULL,
-  `min_stock` int(11) NOT NULL,
+  `min_stock` int(11) NULL,
   `real_quantity` int(11) NOT NULL,
   `virtual_quantity` int(11) NOT NULL,
-  `command_quantity` int(11) NOT NULL,
+  `command_quantity` int(11) NOT NULL DEFAULT 0,
   `client_price` float NOT NULL,
   `box_number` int(2) NOT NULL,
   PRIMARY KEY (`code`)
