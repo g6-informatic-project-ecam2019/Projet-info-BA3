@@ -20,7 +20,7 @@ namespace Materials
         private DataTable dt_clientpieces;
         private DataTable dt_pieces;
         private List<int> RowChanged = new List<int>();
-        private int row;
+        private List<int> RowChanged2 = new List<int>();
         private PopUpAdd popup = new PopUpAdd();
         private MySqlConnection conn;
 
@@ -61,22 +61,28 @@ namespace Materials
             dt_pieces = ((DataSet)bs_pieces.DataSource).Tables[bs_pieces.DataMember];
         }
 
+        /***********************************************************************************************************************
+         * Pre : receive the type of the winform sender (button,label,...) and the event apply to this sender as parameter     *         
+         * Post : Fill the DataSet with the db's data                                                                          *                                                      
+         ***********************************************************************************************************************/      
+        private void LoadData()
+        {
+            //Fill data into 'mykitboxDataSet5.piece'
+            this.pieceTableAdapter.Fill(this.mykitboxDataSet5.piece);
+            //Fill data into 'mykitboxDataSet4.client_piecescommand'
+            this.client_piecescommandTableAdapter.Fill(this.mykitboxDataSet4.client_piecescommand);
+            //Fill data into 'mykitboxDataSet3.piececommand'
+            this.piececommandTableAdapter.Fill(this.mykitboxDataSet3.piececommand);
+            //Fill data into 'mykitboxDataSet2.prices'
+            this.pricesTableAdapter.Fill(this.mykitboxDataSet2.prices);
+            //Fill data into 'mykitboxDataSet1.client_command'.
+            this.client_commandTableAdapter.Fill(this.mykitboxDataSet1.client_command);
+            //Fill data into 'mykitboxDataSet.client'.
+            this.clientTableAdapter.Fill(this.mykitboxDataSet.client);
+        }
         private void SKGridPage_Load(object sender, EventArgs e)
         {
-            // TODO: cette ligne de code charge les données dans la table 'mykitboxDataSet5.piece'. Vous pouvez la déplacer ou la supprimer selon les besoins.
-            this.pieceTableAdapter.Fill(this.mykitboxDataSet5.piece);
-            // TODO: cette ligne de code charge les données dans la table 'mykitboxDataSet4.client_piecescommand'. Vous pouvez la déplacer ou la supprimer selon les besoins.
-            this.client_piecescommandTableAdapter.Fill(this.mykitboxDataSet4.client_piecescommand);
-            // TODO: cette ligne de code charge les données dans la table 'mykitboxDataSet3.piececommand'. Vous pouvez la déplacer ou la supprimer selon les besoins.
-            this.piececommandTableAdapter.Fill(this.mykitboxDataSet3.piececommand);
-            // TODO: cette ligne de code charge les données dans la table 'mykitboxDataSet2.prices'. Vous pouvez la déplacer ou la supprimer selon les besoins.
-            this.pricesTableAdapter.Fill(this.mykitboxDataSet2.prices);
-            // TODO: cette ligne de code charge les données dans la table 'mykitboxDataSet1.client_command'. Vous pouvez la déplacer ou la supprimer selon les besoins.
-            this.client_commandTableAdapter.Fill(this.mykitboxDataSet1.client_command);
-            // TODO: cette ligne de code charge les données dans la table 'mykitboxDataSet.client'. Vous pouvez la déplacer ou la supprimer selon les besoins.
-            this.clientTableAdapter.Fill(this.mykitboxDataSet.client);
-
-
+            LoadData();
         }
 
         /***********************************************************************************************************************
@@ -87,6 +93,7 @@ namespace Materials
         {
             //Initialize the Winform for this button
             textBox1.Enabled = true;
+            textBox1.Visible = true;
             textBox1.Text = "";
             SearchLabel.Text = "Search by lastname :";
             dataGridView2.Visible = true;
@@ -96,20 +103,20 @@ namespace Materials
             dataGridView2.DataSource = dt_client;
             dataGridView1.Columns["idclient"].Visible = false;
             dataGridView2.Columns["idclient"].Visible = false;
-
+            LoadData();
+            //Ask to take values from the db and put them into the datagrid column
             SqlSelect("SELECT client_command.idcom, client.lastname FROM client_command INNER JOIN client ON client_command.idclient = client.idclient ORDER BY `client_command`.`idcom` ASC", "lastname");
             SqlSelect("SELECT client_command.idcom, client.firstname FROM client_command INNER JOIN client ON client_command.idclient = client.idclient ORDER BY `client_command`.`idcom` ASC", "firstname");
-
         }
         private void Client_Click(object sender, EventArgs e)
         {
             //Initialize the Winform for this button
-            textBox1.Enabled = true;
-            SearchLabel.Text = "Search by idcom :";
-            textBox1.Text = "";
+            textBox1.Visible = false;
+            SearchLabel.Text = "";
             dataGridView2.Visible = false;
             Modifie.Visible = false;
             dataGridView1.DataSource = dt_clientpieces;
+            LoadData();
             //Ask to take values from the db and put them into the datagrid column
             SqlSelect("SELECT piece.ref FROM client_piecescommand INNER JOIN piece ON client_piecescommand.code = piece.code", "ref");
             SqlSelect("SELECT piece.dimension FROM client_piecescommand INNER JOIN piece ON client_piecescommand.code = piece.code", "dimension");
@@ -123,12 +130,14 @@ namespace Materials
         {
             //Initialize the Winform for this button
             textBox1.Enabled = true;
+            textBox1.Visible = true;
             textBox1.Text = "";
             SearchLabel.Text = "Search by code :";
             dataGridView2.Visible = false;
             Modifie.Visible = true;
             dataGridView1.DataSource = dt_prices;
             dataGridView1.Columns["idsupp"].Visible = false;
+            LoadData();
             //Ask to take values from the db and put them into the datagrid column
             SqlSelect("SELECT prices.idsupp, supplier.name FROM prices INNER JOIN supplier ON prices.idsupp = supplier.idsupp ORDER BY `prices`.`idsupp` ASC", "name");
         }
@@ -136,22 +145,26 @@ namespace Materials
         {
             //Initialize the Winform for this button
             textBox1.Enabled = true;
+            textBox1.Visible = true;
             textBox1.Text = "";
             SearchLabel.Text = "Search by code :";
             dataGridView2.Visible = false;
             Modifie.Visible = true;
             dataGridView1.DataSource = dt_pieces;
+
+            LoadData();
         }
         private void PieceCommand_Click(object sender, EventArgs e)
         {
             //Initialize the Winform for this button
-            textBox1.Enabled = true;
-            textBox1.Text = "";
-            SearchLabel.Text = "Search by code :";
+            textBox1.Enabled = false;
+            textBox1.Visible = false;
+            SearchLabel.Text = "";
             dataGridView2.Visible = false;
             Modifie.Visible = false;
             dataGridView1.DataSource = dt_com;
             dataGridView1.Columns["idsupp"].Visible = false;
+            LoadData();
             //Ask to take values from the db and put them into the datagrid column
             SqlSelect("SELECT piececommand.num, supplier.name FROM piececommand INNER JOIN supplier ON piececommand.idsupp = supplier.idsupp ORDER BY `piececommand`.`num` ASC", "name");
         }
@@ -218,6 +231,11 @@ namespace Materials
             int count = ((DataTable)dataGridView1.DataSource).Columns.Count;
             if (count == 8)
             {
+                dataGridView2.EditMode = DataGridViewEditMode.EditOnKeystroke;
+                DeleteCommand.Visible = true;
+                textBoxDel2.Visible = true;
+                labelDel2.Visible = true;
+
                 ColumnNotChanged.Add("command_status");
                 ColumnNotChanged.Add("payment_status");
 
@@ -292,6 +310,17 @@ namespace Materials
                 }
             }
         }
+        private void dataGridView2_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            //Put this if to not fill the list during the first filling
+            if (CancelMod.Visible == true)
+            {
+                if (!RowChanged2.Contains(e.RowIndex))
+                {
+                    RowChanged2.Add(e.RowIndex);
+                }
+            }
+        }
 
         /***********************************************************************************************************************
          * Pre : receive the type of the winform sender (button,label,...) and the event apply to this sender as parameter     *         
@@ -303,15 +332,28 @@ namespace Materials
             int count = ((DataTable)dataGridView1.DataSource).Columns.Count;
             if (count == 8)
             {
-                SqlUpdateStatement(string.Format("UPDATE client_command SET command_status = '{0}', payment_status = '{1}' WHERE idcom = {2} ", dataGridView1.Rows[row].Cells["command_status"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["payment_status"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["idcom"].FormattedValue.ToString()));
+                foreach (int row in RowChanged)
+                {
+                    SqlUpdateStatement(string.Format("UPDATE client_command SET command_status = '{0}', payment_status = '{1}' WHERE idcom = {2} ", dataGridView1.Rows[row].Cells["command_status"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["payment_status"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["idcom"].FormattedValue.ToString()));
+                }
+                foreach (int row in RowChanged2)
+                {
+                    SqlUpdateStatement(string.Format("UPDATE client SET firstname ='{0}', lastname ='{1}', adress ='{2}', zip ={3}, phonenumber ={4} WHERE idclient ={5}", dataGridView2.Rows[row].Cells["firstname"].FormattedValue.ToString(), dataGridView2.Rows[row].Cells["lastname"].FormattedValue.ToString(), dataGridView2.Rows[row].Cells["adress"].FormattedValue.ToString(), dataGridView2.Rows[row].Cells["zip"].FormattedValue.ToString(), dataGridView2.Rows[row].Cells["phonenumber"].FormattedValue.ToString(), dataGridView2.Rows[row].Cells["idclient"].FormattedValue.ToString()));
+                }
             }
             else if (count == 5)
             {
-                SqlUpdateStatement(string.Format("UPDATE prices SET supplier_price = {0}, reprieve = {1} WHERE idsupp = {2} AND code = '{3}'", dataGridView1.Rows[row].Cells["supplier_price"].FormattedValue.ToString().Replace(",", "."), dataGridView1.Rows[row].Cells["reprieve"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["idsupp"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["code"].FormattedValue.ToString()));
+                foreach (int row in RowChanged)
+                {
+                    SqlUpdateStatement(string.Format("UPDATE prices SET supplier_price = {0}, reprieve = {1} WHERE idsupp = {2} AND code = '{3}'", dataGridView1.Rows[row].Cells["supplier_price"].FormattedValue.ToString().Replace(",", "."), dataGridView1.Rows[row].Cells["reprieve"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["idsupp"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["code"].FormattedValue.ToString()));
+                }
             }
             else if (count == 13)
             {
-                SqlUpdateStatement(string.Format("UPDATE piece SET ref = '{0}', dimension = '{1}', height = {2} , depth = {3}, width = {4}, color = '{5}', min_stock = {6}, client_price = {7}, box_number = {8} WHERE code = '{9}'", dataGridView1.Rows[row].Cells["ref"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["dimension"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["height"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["depth"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["width"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["color"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["min_stock"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["client_price"].FormattedValue.ToString().Replace(",", "."), dataGridView1.Rows[row].Cells["box_number"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["code"].FormattedValue.ToString()));
+                foreach (int row in RowChanged)
+                {
+                    SqlUpdateStatement(string.Format("UPDATE piece SET ref = '{0}', dimension = '{1}', height = {2} , depth = {3}, width = {4}, color = '{5}', min_stock = {6}, client_price = {7}, box_number = {8} WHERE code = '{9}'", dataGridView1.Rows[row].Cells["ref"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["dimension"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["height"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["depth"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["width"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["color"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["min_stock"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["client_price"].FormattedValue.ToString().Replace(",", "."), dataGridView1.Rows[row].Cells["box_number"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["code"].FormattedValue.ToString()));
+                }
             }
 
             InitDatagrid();
@@ -338,16 +380,22 @@ namespace Materials
             textboxDel.Visible = false;
             labelDel.Visible = false;
             dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
-            this.pieceTableAdapter.Fill(this.mykitboxDataSet5.piece);
             textBox1.Text = "";
+            this.pieceTableAdapter.Fill(this.mykitboxDataSet5.piece);
             //Put the color of the columns as white (initial color)
             for (var i = 0; i < ((DataTable)dataGridView1.DataSource).Columns.Count; i++)
             {
                 dataGridView1.Columns[i].DefaultCellStyle.BackColor = Color.White;
             }
+
+            int count = ((DataTable)dataGridView1.DataSource).Columns.Count;
             //Put the changed cells color as white (initial color) 
-            if (dataGridView1.DataSource == dt_clientcom)
+            if (count == 8)
             {
+                dataGridView2.EditMode = DataGridViewEditMode.EditProgrammatically;
+                DeleteCommand.Visible = false;
+                textBoxDel2.Visible = false;
+                labelDel2.Visible = false;
                 for (int i = 0; i < Convert.ToInt32(dataGridView1.Rows.Count.ToString()); i++)
                 {
                     //Column = payment_status and command_status
@@ -363,7 +411,12 @@ namespace Materials
         }
         private void RowDelete_Click(object sender, EventArgs e)
         {
-            PopUpDel popupdel = new PopUpDel(textboxDel.Text);
+            PopUpDel popupdel = new PopUpDel(textboxDel.Text,"Do you want to delete the piece :");
+            popupdel.ShowDialog();
+        }
+        private void DeleteCommand_Click(object sender, EventArgs e)
+        {
+            PopUpDel popupdel = new PopUpDel(textBoxDel2.Text, "Do you want to delete the command :",dataGridView1.DataSource);
             popupdel.ShowDialog();
         }
 
@@ -371,7 +424,7 @@ namespace Materials
          * Pre : /                                                                                                             *         
          * Post : make the connection to the database                                                                          *                                                                                                               
          ***********************************************************************************************************************/
-        private void SqlConnection()
+        public void SqlConnection()
         {
             string connString = "Server=localhost;Port=3306;Database=mykitbox;Uid=root;Pwd=";
             conn = new MySqlConnection(connString);
@@ -416,13 +469,10 @@ namespace Materials
             SqlConnection();
             MySqlCommand command = conn.CreateCommand();
             //Update the database for each modified row
-            foreach (int row in RowChanged)
-            {
-                command.CommandText = com;
-                command.ExecuteNonQuery();
-                //Close the databsse connection
-                conn.Close();
-            }
+            command.CommandText = com;
+            command.ExecuteNonQuery();
+            //Close the databsse connection
+            conn.Close();
         }
 
         private void Prevbtn_Click(object sender, EventArgs e)
@@ -435,5 +485,7 @@ namespace Materials
         {
             Application.Run(new SKOrdersPage()); //opens the SK's Order Page form
         }
+
+
     }
 }

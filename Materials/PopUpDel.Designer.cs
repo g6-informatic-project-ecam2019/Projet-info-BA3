@@ -40,22 +40,21 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(294, 25);
+            this.label1.Size = new System.Drawing.Size(0, 25);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Do you want to delete the piece :";
             // 
             // code
             // 
             this.code.AutoSize = true;
             this.code.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.code.Location = new System.Drawing.Point(125, 56);
+            this.code.Location = new System.Drawing.Point(182, 61);
             this.code.Name = "code";
             this.code.Size = new System.Drawing.Size(0, 24);
             this.code.TabIndex = 1;
             // 
             // yes
             // 
-            this.yes.Location = new System.Drawing.Point(32, 109);
+            this.yes.Location = new System.Drawing.Point(63, 109);
             this.yes.Name = "yes";
             this.yes.Size = new System.Drawing.Size(93, 42);
             this.yes.TabIndex = 2;
@@ -65,7 +64,7 @@
             // 
             // no
             // 
-            this.no.Location = new System.Drawing.Point(183, 109);
+            this.no.Location = new System.Drawing.Point(245, 109);
             this.no.Name = "no";
             this.no.Size = new System.Drawing.Size(93, 42);
             this.no.TabIndex = 3;
@@ -78,7 +77,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(321, 182);
+            this.ClientSize = new System.Drawing.Size(399, 182);
             this.Controls.Add(this.no);
             this.Controls.Add(this.yes);
             this.Controls.Add(this.code);

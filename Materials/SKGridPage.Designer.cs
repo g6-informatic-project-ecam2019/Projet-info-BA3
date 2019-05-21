@@ -64,6 +64,9 @@
             this.RowDelete = new System.Windows.Forms.Button();
             this.textboxDel = new System.Windows.Forms.TextBox();
             this.labelDel = new System.Windows.Forms.Label();
+            this.DeleteCommand = new System.Windows.Forms.Button();
+            this.textBoxDel2 = new System.Windows.Forms.TextBox();
+            this.labelDel2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mykitboxDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).BeginInit();
@@ -101,7 +104,7 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(711, 273);
+            this.dataGridView1.Size = new System.Drawing.Size(711, 290);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             // 
@@ -210,13 +213,14 @@
             this.dataGridView2.AllowUserToDeleteRows = false;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridView2.Location = new System.Drawing.Point(12, 311);
+            this.dataGridView2.Location = new System.Drawing.Point(12, 345);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(711, 167);
+            this.dataGridView2.Size = new System.Drawing.Size(711, 228);
             this.dataGridView2.TabIndex = 9;
             this.dataGridView2.Visible = false;
+            this.dataGridView2.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellValueChanged);
             // 
             // SearchLabel
             // 
@@ -313,31 +317,31 @@
             // 
             // RowAdd
             // 
-            this.RowAdd.Location = new System.Drawing.Point(73, 356);
+            this.RowAdd.Location = new System.Drawing.Point(682, 493);
             this.RowAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RowAdd.Name = "RowAdd";
             this.RowAdd.Size = new System.Drawing.Size(83, 48);
             this.RowAdd.TabIndex = 16;
-            this.RowAdd.Text = "Add a row";
+            this.RowAdd.Text = "Add a piece";
             this.RowAdd.UseVisualStyleBackColor = true;
             this.RowAdd.Visible = false;
             this.RowAdd.Click += new System.EventHandler(this.RowAdd_Click);
             // 
             // RowDelete
             // 
-            this.RowDelete.Location = new System.Drawing.Point(393, 356);
+            this.RowDelete.Location = new System.Drawing.Point(771, 493);
             this.RowDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RowDelete.Name = "RowDelete";
             this.RowDelete.Size = new System.Drawing.Size(83, 48);
             this.RowDelete.TabIndex = 17;
-            this.RowDelete.Text = "Delete a row";
+            this.RowDelete.Text = "Delete a piece";
             this.RowDelete.UseVisualStyleBackColor = true;
             this.RowDelete.Visible = false;
             this.RowDelete.Click += new System.EventHandler(this.RowDelete_Click);
             // 
             // textboxDel
             // 
-            this.textboxDel.Location = new System.Drawing.Point(393, 431);
+            this.textboxDel.Location = new System.Drawing.Point(771, 562);
             this.textboxDel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textboxDel.Name = "textboxDel";
             this.textboxDel.Size = new System.Drawing.Size(83, 22);
@@ -347,19 +351,53 @@
             // labelDel
             // 
             this.labelDel.AutoSize = true;
-            this.labelDel.Location = new System.Drawing.Point(390, 406);
+            this.labelDel.Location = new System.Drawing.Point(768, 543);
             this.labelDel.Name = "labelDel";
             this.labelDel.Size = new System.Drawing.Size(97, 17);
             this.labelDel.TabIndex = 19;
             this.labelDel.Text = "Enter a code :";
             this.labelDel.Visible = false;
             // 
+            // DeleteCommand
+            // 
+            this.DeleteCommand.Location = new System.Drawing.Point(771, 493);
+            this.DeleteCommand.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DeleteCommand.Name = "DeleteCommand";
+            this.DeleteCommand.Size = new System.Drawing.Size(83, 48);
+            this.DeleteCommand.TabIndex = 20;
+            this.DeleteCommand.Text = "Delete a command";
+            this.DeleteCommand.UseVisualStyleBackColor = true;
+            this.DeleteCommand.Visible = false;
+            this.DeleteCommand.Click += new System.EventHandler(this.DeleteCommand_Click);
+            // 
+            // textBoxDel2
+            // 
+            this.textBoxDel2.Location = new System.Drawing.Point(771, 562);
+            this.textBoxDel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxDel2.Name = "textBoxDel2";
+            this.textBoxDel2.Size = new System.Drawing.Size(83, 22);
+            this.textBoxDel2.TabIndex = 21;
+            this.textBoxDel2.Visible = false;
+            // 
+            // labelDel2
+            // 
+            this.labelDel2.AutoSize = true;
+            this.labelDel2.Location = new System.Drawing.Point(768, 543);
+            this.labelDel2.Name = "labelDel2";
+            this.labelDel2.Size = new System.Drawing.Size(103, 17);
+            this.labelDel2.TabIndex = 22;
+            this.labelDel2.Text = "Enter a idcom :";
+            this.labelDel2.Visible = false;
+            // 
             // SKGridPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(887, 498);
+            this.ClientSize = new System.Drawing.Size(887, 595);
+            this.Controls.Add(this.labelDel2);
+            this.Controls.Add(this.textBoxDel2);
+            this.Controls.Add(this.DeleteCommand);
             this.Controls.Add(this.labelDel);
             this.Controls.Add(this.textboxDel);
             this.Controls.Add(this.RowDelete);
@@ -437,5 +475,8 @@
         private System.Windows.Forms.Button RowDelete;
         private System.Windows.Forms.TextBox textboxDel;
         private System.Windows.Forms.Label labelDel;
+        private System.Windows.Forms.Button DeleteCommand;
+        private System.Windows.Forms.TextBox textBoxDel2;
+        private System.Windows.Forms.Label labelDel2;
     }
 }
