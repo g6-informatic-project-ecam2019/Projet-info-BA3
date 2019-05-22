@@ -42,6 +42,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 25);
             this.label1.TabIndex = 0;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // code
             // 
@@ -51,6 +52,7 @@
             this.code.Name = "code";
             this.code.Size = new System.Drawing.Size(0, 24);
             this.code.TabIndex = 1;
+            this.code.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // yes
             // 
@@ -64,7 +66,7 @@
             // 
             // no
             // 
-            this.no.Location = new System.Drawing.Point(245, 109);
+            this.no.Location = new System.Drawing.Point(246, 109);
             this.no.Name = "no";
             this.no.Size = new System.Drawing.Size(93, 42);
             this.no.TabIndex = 3;
@@ -77,12 +79,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(399, 182);
+            this.ClientSize = new System.Drawing.Size(399, 162);
             this.Controls.Add(this.no);
             this.Controls.Add(this.yes);
             this.Controls.Add(this.code);
             this.Controls.Add(this.label1);
             this.Name = "PopUpDel";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PopUpDel";
             this.ResumeLayout(false);
             this.PerformLayout();

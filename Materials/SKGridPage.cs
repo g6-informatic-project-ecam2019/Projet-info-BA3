@@ -21,7 +21,6 @@ namespace Materials
         private DataTable dt_pieces;
         private List<int> RowChanged = new List<int>();
         private List<int> RowChanged2 = new List<int>();
-        private PopUpAdd popup = new PopUpAdd();
         private MySqlConnection conn;
 
         /***************************************************************************
@@ -324,7 +323,7 @@ namespace Materials
 
         /***********************************************************************************************************************
          * Pre : receive the type of the winform sender (button,label,...) and the event apply to this sender as parameter     *         
-         * Post : Call SqlUpdateStatement to update the values into the db and call the Initial mode after that               *                                                                                                         
+         * Post : Call SqlUpdateStatement to update the values into the db and call the Initial mode after that                *                                                                                                         
          ***********************************************************************************************************************/
         private void ApplyMod_Click(object sender, EventArgs e)
         {
@@ -405,19 +404,31 @@ namespace Materials
             }
         }
 
+        /***********************************************************************************************************************
+         * Pre : receive the type of the winform sender (button,label,...) and the event apply to this sender as parameter     *         
+         * Post : Call the Add Pop Up and call the initial datagrid when the popup is closed                                   *                                                                                                         
+         ***********************************************************************************************************************/
         private void RowAdd_Click(object sender, EventArgs e)
         {
+            PopUpAdd popup = new PopUpAdd();
             popup.ShowDialog();
+            this.InitDatagrid();
         }
+        /***********************************************************************************************************************
+         * Pre : receive the type of the winform sender (button,label,...) and the event apply to this sender as parameter     *         
+         * Post : Call the Delete Pop Up and call the initial datagrid when the popup is closed                                *                                                                                                         
+         ***********************************************************************************************************************/
         private void RowDelete_Click(object sender, EventArgs e)
         {
-            PopUpDel popupdel = new PopUpDel(textboxDel.Text,"Do you want to delete the piece :");
-            popupdel.ShowDialog();
+            PopUpDel popUpDel = new PopUpDel(textboxDel.Text,"Do you want to delete the piece :");
+            popUpDel.ShowDialog();
+            this.InitDatagrid();
         }
         private void DeleteCommand_Click(object sender, EventArgs e)
         {
-            PopUpDel popupdel = new PopUpDel(textBoxDel2.Text, "Do you want to delete the command :",dataGridView1.DataSource);
-            popupdel.ShowDialog();
+            PopUpDel popUpDel2 = new PopUpDel(textBoxDel2.Text, "Do you want to delete the command :");
+            popUpDel2.ShowDialog();
+            this.InitDatagrid();
         }
 
         /***********************************************************************************************************************

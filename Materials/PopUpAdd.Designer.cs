@@ -61,7 +61,7 @@
             this.Apply.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Apply.Name = "Apply";
             this.Apply.Size = new System.Drawing.Size(83, 48);
-            this.Apply.TabIndex = 9;
+            this.Apply.TabIndex = 42;
             this.Apply.Text = "Apply";
             this.Apply.UseVisualStyleBackColor = true;
             this.Apply.Click += new System.EventHandler(this.Apply_Click);
@@ -262,7 +262,7 @@
             this.Cancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(83, 48);
-            this.Cancel.TabIndex = 42;
+            this.Cancel.TabIndex = 43;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
             this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
@@ -272,7 +272,7 @@
             this.reference.Location = new System.Drawing.Point(138, 151);
             this.reference.Name = "reference";
             this.reference.Size = new System.Drawing.Size(100, 22);
-            this.reference.TabIndex = 43;
+            this.reference.TabIndex = 11;
             // 
             // PopUpAdd
             // 
