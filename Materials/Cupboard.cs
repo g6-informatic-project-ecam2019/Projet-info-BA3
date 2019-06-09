@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Materials
 {
     public class Cupboard
     {
-        private string angleColor; /*Demander à bernard*/
+        /*Need to ask Bernard*/
+        private string angleColor;
         private int width;
         private int depth;
         private Bloc[] configuration;//block lists
@@ -24,13 +22,17 @@ namespace Materials
             this.angleColor = angleColor;
             this.configuration = new Bloc[number];
         }
-        public void AddBloc(Bloc bloc)/*Allows adding a block to the list*/
+
+        /*Allows adding a block to the list*/
+        public void AddBloc(Bloc bloc)
         {
             int i;
             int h = 0;
-            for (i = 0; i < this.configuration.Length; i++)/*Browse the list*/
+            /*Browses the list*/
+            for (i = 0; i < this.configuration.Length; i++)
             {
-                if (this.configuration[i] == null)/*when there is a free slot we add*/
+                /*If there is an available slot, the element is added*/
+                if (this.configuration[i] == null)
                 {
                     this.configuration[i] = bloc;
                     h = i;
@@ -39,15 +41,18 @@ namespace Materials
                     break;
                 }
             }
-            if (h == 0)/*If more free slot*/
+            /*If more available slots*/
+            if (h == 0)
             {
-                Console.WriteLine("there must be a size error");
+                Console.WriteLine("There must be a size error");
             }
         }
-        public void deletBloc()
+
+        public void DeletBloc()
         {
             configuration = null;
         }
+
         public bool BlocStock(int num)
         {
             Piece[] pieces = configuration[num - 1].GetPieces();
@@ -60,6 +65,7 @@ namespace Materials
             }
             return true;
         }
+
         public Bloc[] GetBloc()
         {
             if (configuration.Length != 0)
@@ -72,6 +78,7 @@ namespace Materials
                 return bloc;
             }
         }
+
         public void AddAngles(Stock sqlStock)
         {
             for (int i = 0; i < 4; i++)
@@ -80,11 +87,14 @@ namespace Materials
                 angles[i].DescriptionRequest(sqlStock);
             }
         }
-        public Angle[] getAngles()
+
+        public Angle[] GetAngles()
         {
             return angles;
         }
-        public void RemoveBloc(int number)/*To remove a block from the list*/
+
+        /*To remove a block from the list*/
+        public void RemoveBloc(int number)
         {
             int i;
             int h = 10;
@@ -106,34 +116,37 @@ namespace Materials
                 Console.WriteLine("There must be a size error");
             }
         }
-        //private void ComputeHeight() /*Compute the height*/
-        //{
-        //    int i;
-        //    int h = 10;
-        //    for (i = 0; i < this.configuration.Length; i++)
-        //    {
-        //        if (this.configuration[i] != null)
-        //        {
-        //            this.height += (int)this.configuration[i].GetDescription()["height"];
-        //            h = i;
-        //        }
-        //    }
-        //    if (h == 10)
-        //    {
-        //        this.height = 0;
-        //    }
-        //    AddAngle();
-        //    Console.WriteLine(String.Format("total height of cupboard is : {0}", this.height));
-        //}
-        
+        /*Compute the height*/
+        /*private void ComputeHeight()
+        {
+            int i;
+            int h = 10;
+            for (i = 0; i < this.configuration.Length; i++)
+            {
+                if (this.configuration[i] != null)
+                {
+                    this.height += (int)this.configuration[i].GetDescription()["height"];
+                    h = i;
+                }
+            }
+            if (h == 10)
+            {
+                this.height = 0;
+            }
+            AddAngle();
+            Console.WriteLine(String.Format("total height of cupboard is : {0}", this.height));
+        }*/
+
         public Dictionary<string, Object> GetDescription() /*Returns a dico of the whole description*/
         {
-            Dictionary<string, Object> Description = new Dictionary<string, Object>();
-            Description.Add("height", this.height);
-            Description.Add("depth", this.depth);
-            Description.Add("width", this.width);
-            Description.Add("price", this.price);
-            Description.Add("angleColor", this.angleColor);
+            Dictionary<string, Object> Description = new Dictionary<string, Object>
+            {
+                { "height", this.height },
+                { "depth", this.depth },
+                { "width", this.width },
+                { "price", this.price },
+                { "angleColor", this.angleColor }
+            };
             return Description;
         }
         public float GetPrice()/*compute the price*/

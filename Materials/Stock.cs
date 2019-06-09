@@ -266,7 +266,7 @@ namespace Materials
                     }
                 } 
             }
-            Angle[] angles = cupboard.getAngles();
+            Angle[] angles = cupboard.GetAngles();
             if (angles.Length == 4)
             {
                 quantities.Add(angles[0].GetDescription()["code"].ToString(), 4);
