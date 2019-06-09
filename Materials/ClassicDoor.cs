@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Materials
 {
-    class ClassicDoor : Door /*Inheritance of the abstract class door, the classic door*/
+    /*Inheritance of the abstract class door, the classic door*/
+    class ClassicDoor : Door
     {
-        
         private string color;
+
         public ClassicDoor(float price, int length, string color, int width) /*builder*/
         {
             this.price = price;
@@ -19,18 +20,22 @@ namespace Materials
             this.type = "ClassicDoor";
             this.name = "porte";
         }
-        public override Dictionary<string, Object> GetDescription()/*Returns a dictionary with all panel information*/
+
+        /*Returns a dictionary with all panel information*/
+        public override Dictionary<string, Object> GetDescription()
         {
-            Dictionary<string, Object> Description = new Dictionary<string, Object>();
-            Description.Add("price", this.price);
-            Description.Add("length", this.length);
-            Description.Add("width", this.width);
-            Description.Add("color", this.color);
-            Description.Add("type", this.type);
-            Description.Add("ref", this.name);
-            Description.Add("dim1", this.determDim1);
-            Description.Add("dim2", this.determDim2);
-            Description.Add("code", this.code);
+            Dictionary<string, Object> Description = new Dictionary<string, Object>
+            {
+                { "price", this.price },
+                { "length", this.length },
+                { "width", this.width },
+                { "color", this.color },
+                { "type", this.type },
+                { "reference", this.name },
+                { "dimension1", this.determDim1 },
+                { "dimension2", this.determDim2 },
+                { "code", this.code }
+            };
             return Description;
         }
     }

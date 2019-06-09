@@ -6,23 +6,30 @@ using System.Threading.Tasks;
 
 namespace Materials
 {
-    class Cleat : Piece  /* Class that groups all cleats*/
+    /* Class that groups all cleats*/
+    class Cleat : Piece
     {
         private string determiningDimension = "height";
-        public Cleat(float price, int length) /*builder*/
+
+        /*Builder*/
+        public Cleat(float price, int length)
         {
             this.price = price;
             this.length =  length;
             this.name = "Tasseau";
         }
-        public override Dictionary<string, Object> GetDescription()/*Returns a dictionary with all panel information*/
+
+        /*Returns a dictionary with all panel information*/
+        public override Dictionary<string, Object> GetDescription()
         {
-            Dictionary<string, Object> Description = new Dictionary<string, Object>();
-            Description.Add("price", this.price);
-            Description.Add("length", this.length);
-            Description.Add("ref", this.name);
-            Description.Add("dim", this.determiningDimension);
-            Description.Add("code", this.code);
+            Dictionary<string, Object> Description = new Dictionary<string, Object>
+            {
+                { "price", this.price },
+                { "length", this.length },
+                { "reference", this.name },
+                { "dimension", this.determiningDimension },
+                { "code", this.code }
+            };
             return Description;
         }
     }
