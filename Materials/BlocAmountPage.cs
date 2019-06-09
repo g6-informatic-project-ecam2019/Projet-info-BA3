@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Materials
@@ -21,31 +14,30 @@ namespace Materials
             configpage = new ConfigurationPage();
         }
 
-        private void homeBtn_Click(object sender, EventArgs e)
+        private void HomeBtn_Click(object sender, EventArgs e)
         {
-            System.Threading.Thread monthread = new System.Threading.Thread(new System.Threading.ThreadStart(openHomePage));
+            System.Threading.Thread monthread = new System.Threading.Thread(new System.Threading.ThreadStart(OpenHomePage));
             monthread.Start();
             this.Close();
         }
-        public static void openHomePage()
+        public static void OpenHomePage()
         {
             Application.Run(new HomePage()); //opens the Home form
         }
 
-        private void nextBtn_Click(object sender, EventArgs e)
+        private void NextBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
             configpage.ShowDialog();
-
         }
 
-        private void blocsTrackBar_Scroll(object sender, EventArgs e)
+        private void BlocsTrackBar_Scroll(object sender, EventArgs e)
         {
             label2.Text = "" + blocsTrackBar.Value;
             number = blocsTrackBar.Value; 
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void Label2_Click(object sender, EventArgs e)
         {
             
         }

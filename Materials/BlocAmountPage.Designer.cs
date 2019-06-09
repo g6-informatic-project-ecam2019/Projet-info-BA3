@@ -53,7 +53,7 @@
             this.homeBtn.TabIndex = 2;
             this.homeBtn.Text = "HOME";
             this.homeBtn.UseVisualStyleBackColor = true;
-            this.homeBtn.Click += new System.EventHandler(this.homeBtn_Click);
+            this.homeBtn.Click += new System.EventHandler(this.HomeBtn_Click);
             // 
             // nextBtn
             // 
@@ -63,7 +63,7 @@
             this.nextBtn.TabIndex = 3;
             this.nextBtn.Text = "Next";
             this.nextBtn.UseVisualStyleBackColor = true;
-            this.nextBtn.Click += new System.EventHandler(this.nextBtn_Click);
+            this.nextBtn.Click += new System.EventHandler(this.NextBtn_Click);
             // 
             // blocsTrackBar
             // 
@@ -75,7 +75,7 @@
             this.blocsTrackBar.Size = new System.Drawing.Size(96, 56);
             this.blocsTrackBar.TabIndex = 37;
             this.blocsTrackBar.Value = 1;
-            this.blocsTrackBar.Scroll += new System.EventHandler(this.blocsTrackBar_Scroll);
+            this.blocsTrackBar.Scroll += new System.EventHandler(this.BlocsTrackBar_Scroll);
             // 
             // label2
             // 
@@ -84,7 +84,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 17);
             this.label2.TabIndex = 38;
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.label2.Click += new System.EventHandler(this.Label2_Click);
             // 
             // BlocAmountPage
             // 
