@@ -11,14 +11,16 @@ namespace Materials
         private string color;
         private string determiningDimension = "height";
 
-        public Angle(int length, string color) /*builder*/
+        /*Builder*/
+        public Angle(int length, string color)
         {
             this.length = length;
             this.color = color;
             this.name = "Cornieres";
         }
 
-        public override Dictionary<string, Object> GetDescription()/*Returns a dictionary with all panel information*/
+        /*Returns a dictionary with all panel information*/
+        public override Dictionary<string, Object> GetDescription()
         {
             Dictionary<string, Object> Description = new Dictionary<string, Object>();
             Description.Add("price", this.price);
@@ -29,7 +31,10 @@ namespace Materials
             Description.Add("dim", this.determiningDimension);
             return Description;
         }
-        public override void setLength (int newHeight) //setter for angle's length => height of cupboard might not be available in stock => select another angle
+
+        /*Setter for angle's length
+         * Height of cupboard might not be available in stock => select another angle*/
+        public override void setLength (int newHeight)
         {
             Console.WriteLine(String.Format("WARNING : changing the length of the angles from {0} to {1}", this.length, newHeight));
             this.length = newHeight;
