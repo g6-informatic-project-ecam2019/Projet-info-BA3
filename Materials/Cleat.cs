@@ -26,8 +26,8 @@ namespace Materials
             {
                 { "price", this.price },
                 { "length", this.length },
-                { "reference", this.name },
-                { "dimension", this.determiningDimension },
+                { "ref", this.name },
+                { "dim", this.determiningDimension },
                 { "code", this.code }
             };
             return Description;

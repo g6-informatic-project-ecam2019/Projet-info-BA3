@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Materials
 {
-    class Panel : Piece /*Class that groups all panels*/
+    /*Class that groups all panels*/
+    class Panel : Piece
     {
         private string color;
         private int width;
         private string position;
-        private string determDim1;
-        private string determDim2;
-        public Panel(float price, int length, string color, int width, string position) /*builder*/
+        private string determiningDimension1;
+        private string determiningDimension2;
+
+        /*Builder*/
+        public Panel(float price, int length, string color, int width, string position)
         {
             this.price = price;
             this.length = length;
@@ -23,32 +23,36 @@ namespace Materials
             this.name = String.Format("Panneau {0}", this.position);
             if (this.position == "GD")
             {
-                this.determDim1 = "height";
-                this.determDim2 = "depth";
+                this.determiningDimension1 = "height";
+                this.determiningDimension2 = "depth";
             }
             else if (this.position == "HB")
             {
-                this.determDim1 = "width";
-                this.determDim2 = "depth";
+                this.determiningDimension1 = "width";
+                this.determiningDimension2 = "depth";
             }
             else
             {
-                this.determDim1 = "height";
-                this.determDim2 = "width";
+                this.determiningDimension1 = "height";
+                this.determiningDimension2 = "width";
             }
         }
-        public override Dictionary<string, Object> GetDescription()/*Returns a dictionary with all panel information*/
+
+        /*Returns a dictionary with all panel information*/
+        public override Dictionary<string, Object> GetDescription()
         {
-            Dictionary<string, Object> Description = new Dictionary<string, Object>();
-            Description.Add("price", this.price);
-            Description.Add("length", this.length);
-            Description.Add("width", this.width);
-            Description.Add("color", this.color);
-            Description.Add("code", this.code);
-            Description.Add("pos", this.position);
-            Description.Add("ref", this.name);
-            Description.Add("dim1", this.determDim1);
-            Description.Add("dim2", this.determDim2);
+            Dictionary<string, Object> Description = new Dictionary<string, Object>
+            {
+                { "price", this.price },
+                { "length", this.length },
+                { "width", this.width },
+                { "color", this.color },
+                { "code", this.code },
+                { "position", this.position },
+                { "ref", this.name },
+                { "dim1", this.determiningDimension1 },
+                { "dim2", this.determiningDimension2 }
+            };
             return Description;
         }
     }

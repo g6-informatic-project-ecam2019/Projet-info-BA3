@@ -31,9 +31,9 @@ namespace Materials
                 { "width", this.width },
                 { "color", this.color },
                 { "type", this.type },
-                { "reference", this.name },
-                { "dimension1", this.determDim1 },
-                { "dimension2", this.determDim2 },
+                { "ref", this.name },
+                { "dim1", this.determiningDimension1 },
+                { "dim2", this.determiningDimension2 },
                 { "code", this.code }
             };
             return Description;

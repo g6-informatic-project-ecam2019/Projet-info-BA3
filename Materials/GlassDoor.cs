@@ -1,41 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Materials
 {
-    class GlassDoor : Door /*/Inheritance of the abstract class door, the glass door*/
+    /*Inheritance of the abstract class door*/
+    class GlassDoor : Door
     {
-        public GlassDoor(float price, int length, int width) //builder
+        /*Builder*/
+        public GlassDoor(float price, int length, int width)
         {
             this.price = price;
             this.length = length;
             this.width = width;
-            this.type = "GlassDoor"; /*Door type information(glassdoor or classicdoor)*/
+            /*Door type information(glass door or classic door)*/
+            this.type = "GlassDoor";
             this.name = "porte";
         }
-        public override Dictionary<string, Object> GetDescription()/*Returns a dictionary with all panel information*/
+
+        /*Returns a dictionary with all panel information*/
+        public override Dictionary<string, Object> GetDescription()
         {
-            Dictionary<string, Object> Description = new Dictionary<string, Object>();
-            Description.Add("price", this.price);
-            Description.Add("length", this.length);
-            Description.Add("width", this.width);
-            Description.Add("type", this.type);
-            Description.Add("ref", this.name);
-            Description.Add("code", this.code);
-            Description.Add("dim1", this.determDim1);
-            Description.Add("dim2", this.determDim2);
+            Dictionary<string, Object> Description = new Dictionary<string, Object>
+            {
+                { "price", this.price },
+                { "length", this.length },
+                { "width", this.width },
+                { "type", this.type },
+                { "ref", this.name },
+                { "code", this.code },
+                { "dim1", this.determiningDimension1 },
+                { "dim2", this.determiningDimension2 }
+            };
             return Description;
         }
-        public bool Dimention(int lenght)/*Check if the dimension is in the list, so add the measures in the list.*/
-        {
-            List<int> dimentionIOS = new List<int>();
 
-            foreach (int i in dimentionIOS)
+        /*Checks if the dimension is in the list
+         * If so, adds the measures in the list.*/
+        public bool Dimension(int lenght)
+        {
+            List<int> dimensionIOS = new List<int>();
+
+            foreach (int i in dimensionIOS)
             {
-                if (dimentionIOS[i] == lenght)
+                if (dimensionIOS[i] == lenght)
                 {
                     return true;
                 }

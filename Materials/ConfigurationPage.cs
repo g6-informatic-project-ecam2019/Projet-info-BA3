@@ -366,7 +366,7 @@ namespace Materials
 
             
                         //height
-            List<int> dimheightok = stock.existingDimension("height", "Tasseau");
+            List<int> dimheightok = stock.ExistingDimension("height", "Tasseau");
             string[] dimheightokstring = new string[dimheightok.Count];
             for (int i = 0; i < dimheightok.Count; i++)
             {
@@ -408,7 +408,7 @@ namespace Materials
             this.heightBox7.EndUpdate();
 
             //Width
-            List<int> dimwidthok = stock.existingDimension("width", "Traverse Ar");
+            List<int> dimwidthok = stock.ExistingDimension("width", "Traverse Ar");
             string[] dimwidthokstring = new string[dimwidthok.Count];
             for (int i = 0; i < dimwidthok.Count; i++)
             {
@@ -420,7 +420,7 @@ namespace Materials
             this.widthBox1.EndUpdate();
 
             //Depth
-            List<int> dimdepthok = stock.existingDimension("depth", "Traverse GD");
+            List<int> dimdepthok = stock.ExistingDimension("depth", "Traverse GD");
             string[] dimdepthokstring = new string[dimdepthok.Count];
             for (int i = 0; i < dimdepthok.Count; i++)
             {

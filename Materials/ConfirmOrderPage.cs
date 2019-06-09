@@ -141,7 +141,7 @@ namespace Materials
             else
             {
                 Stock stock = new Stock("Server=localhost;Port=3306;Database=mykitbox;Uid=root;Pwd=");
-                stock.confirmOrder("X","X", "X", "0","0", this.cupboard);
+                stock.ConfirmOrder("X","X", "X", "0","0", this.cupboard);
                 MessageBox.Show("Confirmed order, go to checkout to pay. Thank you and see you soon !");
                 System.Threading.Thread monthread = new System.Threading.Thread(new System.Threading.ThreadStart(openHomePage));
                 monthread.Start();

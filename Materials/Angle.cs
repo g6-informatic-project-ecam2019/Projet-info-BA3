@@ -31,7 +31,7 @@ namespace Materials
 
         /*Setter for angle's length
          * Height of cupboard might not be available in stock => select another angle*/
-        public override void setLength (int newHeight)
+        public override void SetLength (int newHeight)
         {
             Console.WriteLine(String.Format("WARNING : changing the length of the angles from {0} to {1}", this.length, newHeight));
             this.length = newHeight;

@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Materials
 {
-    abstract class Door : Piece /*Abstract class for all types of doors*/
+    /*Abstract class for all types of door*/
+    abstract class Door : Piece
     {
+        /*Variable that contains either glassdoor or classicdoor*/
         protected int width;
-        protected string type;/*Variable that contains either glassdoor or classicdoor*/
+        protected string type;
         public override abstract Dictionary<string, Object> GetDescription();
-        protected string determDim1 = "width";
-        protected string determDim2 = "height";
+        protected string determiningDimension1 = "width";
+        protected string determiningDimension2 = "height";
     }
 }

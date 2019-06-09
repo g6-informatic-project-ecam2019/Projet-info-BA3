@@ -58,7 +58,7 @@ namespace Materials
             Piece[] pieces = configuration[num - 1].GetPieces();
             for(int i = 0; i < pieces.Length; i++)
             {
-                if (!(pieces[num-1].isAvailable()) )
+                if (!(pieces[num-1].IsAvailable()) )
                 {
                     return false;
                 }
@@ -113,7 +113,7 @@ namespace Materials
             }
             if (h == 10)
             {
-                Console.WriteLine("There must be a size error");
+                Console.WriteLine("There must have a size error");
             }
         }
         /*Compute the height*/
@@ -137,7 +137,8 @@ namespace Materials
             Console.WriteLine(String.Format("total height of cupboard is : {0}", this.height));
         }*/
 
-        public Dictionary<string, Object> GetDescription() /*Returns a dico of the whole description*/
+        /*Returns a dictionnary of the whole description*/
+        public Dictionary<string, Object> GetDescription()
         {
             Dictionary<string, Object> Description = new Dictionary<string, Object>
             {
@@ -149,7 +150,9 @@ namespace Materials
             };
             return Description;
         }
-        public float GetPrice()/*compute the price*/
+
+        /*Computes the price*/
+        public float GetPrice()
         {
             return this.price;
         }
