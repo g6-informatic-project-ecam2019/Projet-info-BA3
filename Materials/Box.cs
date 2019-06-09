@@ -152,7 +152,6 @@ namespace Materials
             {
                 Description.Add("door", "No door");
             }
-
             return Description;
         }
     }

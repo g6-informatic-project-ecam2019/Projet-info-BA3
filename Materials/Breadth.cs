@@ -6,27 +6,34 @@ using System.Threading.Tasks;
 
 namespace Materials
 {
-    class Breadth : Piece  /* Class that groups all breadths*/
+    /* Class that groups all breadths*/
+    class Breadth : Piece
     {
-        private string pos;
+        private string position;
         private string determiningDimension;
-        public Breadth(float price, int length, string pos)/*builder*/
+
+        /*Builder*/
+        public Breadth(float price, int length, string pos)
         {
             this.price = price;
             this.length = length;
-            this.pos = pos;
-            this.name = String.Format("Traverse {0}", pos);
-            this.determiningDimension = ((this.pos == "Av") || (this.pos == "Ar")) ? "width" : "depth";
+            this.position = position;
+            this.name = String.Format("Traverse {0}", position);
+            this.determiningDimension = ((this.position == "Av") || (this.position == "Ar")) ? "width" : "depth";
         }
-        public override Dictionary<string, Object> GetDescription()/*Returns a dictionary with all panel information*/
+
+        /*Returns a dictionary with all panel information*/
+        public override Dictionary<string, Object> GetDescription()
         {
-            Dictionary<string, Object> Description = new Dictionary<string, Object>();
-            Description.Add("price", this.price);
-            Description.Add("length", this.length);
-            Description.Add("pos", this.pos);
-            Description.Add("ref", this.name);
-            Description.Add("dim", this.determiningDimension);
-            Description.Add("code", this.code);
+            Dictionary<string, Object> Description = new Dictionary<string, Object>
+            {
+                { "price", this.price },
+                { "length", this.length },
+                { "position", this.position },
+                { "reference", this.name },
+                { "dimension", this.determiningDimension },
+                { "code", this.code }
+            };
             return Description;
         }
     }
