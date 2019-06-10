@@ -24,7 +24,7 @@ namespace Materials {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class mykitboxDataSet3 : global::System.Data.DataSet {
         
-        private piececommandDataTable tablepiececommand;
+        private partcommandDataTable tablepartcommand;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -54,8 +54,8 @@ namespace Materials {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["piececommand"] != null)) {
-                    base.Tables.Add(new piececommandDataTable(ds.Tables["piececommand"]));
+                if ((ds.Tables["partcommand"] != null)) {
+                    base.Tables.Add(new partcommandDataTable(ds.Tables["partcommand"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace Materials {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public piececommandDataTable piececommand {
+        public partcommandDataTable partcommand {
             get {
-                return this.tablepiececommand;
+                return this.tablepartcommand;
             }
         }
         
@@ -152,8 +152,8 @@ namespace Materials {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["piececommand"] != null)) {
-                    base.Tables.Add(new piececommandDataTable(ds.Tables["piececommand"]));
+                if ((ds.Tables["partcommand"] != null)) {
+                    base.Tables.Add(new partcommandDataTable(ds.Tables["partcommand"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace Materials {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tablepiececommand = ((piececommandDataTable)(base.Tables["piececommand"]));
+            this.tablepartcommand = ((partcommandDataTable)(base.Tables["partcommand"]));
             if ((initTable == true)) {
-                if ((this.tablepiececommand != null)) {
-                    this.tablepiececommand.InitVars();
+                if ((this.tablepartcommand != null)) {
+                    this.tablepartcommand.InitVars();
                 }
             }
         }
@@ -204,13 +204,13 @@ namespace Materials {
             this.Namespace = "http://tempuri.org/mykitboxDataSet3.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tablepiececommand = new piececommandDataTable();
-            base.Tables.Add(this.tablepiececommand);
+            this.tablepartcommand = new partcommandDataTable();
+            base.Tables.Add(this.tablepartcommand);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializepiececommand() {
+        private bool ShouldSerializepartcommand() {
             return false;
         }
         
@@ -270,14 +270,14 @@ namespace Materials {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void piececommandRowChangeEventHandler(object sender, piececommandRowChangeEvent e);
+        public delegate void partcommandRowChangeEventHandler(object sender, partcommandRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class piececommandDataTable : global::System.Data.TypedTableBase<piececommandRow> {
+        public partial class partcommandDataTable : global::System.Data.TypedTableBase<partcommandRow> {
             
             private global::System.Data.DataColumn columnnum;
             
@@ -293,8 +293,8 @@ namespace Materials {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public piececommandDataTable() {
-                this.TableName = "piececommand";
+            public partcommandDataTable() {
+                this.TableName = "partcommand";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -302,7 +302,7 @@ namespace Materials {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal piececommandDataTable(global::System.Data.DataTable table) {
+            internal partcommandDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -319,7 +319,7 @@ namespace Materials {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected piececommandDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected partcommandDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -383,34 +383,34 @@ namespace Materials {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public piececommandRow this[int index] {
+            public partcommandRow this[int index] {
                 get {
-                    return ((piececommandRow)(this.Rows[index]));
+                    return ((partcommandRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event piececommandRowChangeEventHandler piececommandRowChanging;
+            public event partcommandRowChangeEventHandler partcommandRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event piececommandRowChangeEventHandler piececommandRowChanged;
+            public event partcommandRowChangeEventHandler partcommandRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event piececommandRowChangeEventHandler piececommandRowDeleting;
+            public event partcommandRowChangeEventHandler partcommandRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event piececommandRowChangeEventHandler piececommandRowDeleted;
+            public event partcommandRowChangeEventHandler partcommandRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddpiececommandRow(piececommandRow row) {
+            public void AddpartcommandRow(partcommandRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public piececommandRow AddpiececommandRow(string code, int idsupp, System.DateTime date, int quantity, string status) {
-                piececommandRow rowpiececommandRow = ((piececommandRow)(this.NewRow()));
+            public partcommandRow AddpartcommandRow(string code, int idsupp, System.DateTime date, int quantity, string status) {
+                partcommandRow rowpartcommandRow = ((partcommandRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         code,
@@ -418,22 +418,22 @@ namespace Materials {
                         date,
                         quantity,
                         status};
-                rowpiececommandRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowpiececommandRow);
-                return rowpiececommandRow;
+                rowpartcommandRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowpartcommandRow);
+                return rowpartcommandRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public piececommandRow FindBynum(int num) {
-                return ((piececommandRow)(this.Rows.Find(new object[] {
+            public partcommandRow FindBynum(int num) {
+                return ((partcommandRow)(this.Rows.Find(new object[] {
                             num})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                piececommandDataTable cln = ((piececommandDataTable)(base.Clone()));
+                partcommandDataTable cln = ((partcommandDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -441,7 +441,7 @@ namespace Materials {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new piececommandDataTable();
+                return new partcommandDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -488,28 +488,28 @@ namespace Materials {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public piececommandRow NewpiececommandRow() {
-                return ((piececommandRow)(this.NewRow()));
+            public partcommandRow NewpartcommandRow() {
+                return ((partcommandRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new piececommandRow(builder);
+                return new partcommandRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(piececommandRow);
+                return typeof(partcommandRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.piececommandRowChanged != null)) {
-                    this.piececommandRowChanged(this, new piececommandRowChangeEvent(((piececommandRow)(e.Row)), e.Action));
+                if ((this.partcommandRowChanged != null)) {
+                    this.partcommandRowChanged(this, new partcommandRowChangeEvent(((partcommandRow)(e.Row)), e.Action));
                 }
             }
             
@@ -517,8 +517,8 @@ namespace Materials {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.piececommandRowChanging != null)) {
-                    this.piececommandRowChanging(this, new piececommandRowChangeEvent(((piececommandRow)(e.Row)), e.Action));
+                if ((this.partcommandRowChanging != null)) {
+                    this.partcommandRowChanging(this, new partcommandRowChangeEvent(((partcommandRow)(e.Row)), e.Action));
                 }
             }
             
@@ -526,8 +526,8 @@ namespace Materials {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.piececommandRowDeleted != null)) {
-                    this.piececommandRowDeleted(this, new piececommandRowChangeEvent(((piececommandRow)(e.Row)), e.Action));
+                if ((this.partcommandRowDeleted != null)) {
+                    this.partcommandRowDeleted(this, new partcommandRowChangeEvent(((partcommandRow)(e.Row)), e.Action));
                 }
             }
             
@@ -535,14 +535,14 @@ namespace Materials {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.piececommandRowDeleting != null)) {
-                    this.piececommandRowDeleting(this, new piececommandRowChangeEvent(((piececommandRow)(e.Row)), e.Action));
+                if ((this.partcommandRowDeleting != null)) {
+                    this.partcommandRowDeleting(this, new partcommandRowChangeEvent(((partcommandRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemovepiececommandRow(piececommandRow row) {
+            public void RemovepartcommandRow(partcommandRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -569,7 +569,7 @@ namespace Materials {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "piececommandDataTable";
+                attribute2.FixedValue = "partcommandDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -613,25 +613,25 @@ namespace Materials {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class piececommandRow : global::System.Data.DataRow {
+        public partial class partcommandRow : global::System.Data.DataRow {
             
-            private piececommandDataTable tablepiececommand;
+            private partcommandDataTable tablepartcommand;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal piececommandRow(global::System.Data.DataRowBuilder rb) : 
+            internal partcommandRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tablepiececommand = ((piececommandDataTable)(this.Table));
+                this.tablepartcommand = ((partcommandDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public int num {
                 get {
-                    return ((int)(this[this.tablepiececommand.numColumn]));
+                    return ((int)(this[this.tablepartcommand.numColumn]));
                 }
                 set {
-                    this[this.tablepiececommand.numColumn] = value;
+                    this[this.tablepartcommand.numColumn] = value;
                 }
             }
             
@@ -639,10 +639,10 @@ namespace Materials {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string code {
                 get {
-                    return ((string)(this[this.tablepiececommand.codeColumn]));
+                    return ((string)(this[this.tablepartcommand.codeColumn]));
                 }
                 set {
-                    this[this.tablepiececommand.codeColumn] = value;
+                    this[this.tablepartcommand.codeColumn] = value;
                 }
             }
             
@@ -650,10 +650,10 @@ namespace Materials {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public int idsupp {
                 get {
-                    return ((int)(this[this.tablepiececommand.idsuppColumn]));
+                    return ((int)(this[this.tablepartcommand.idsuppColumn]));
                 }
                 set {
-                    this[this.tablepiececommand.idsuppColumn] = value;
+                    this[this.tablepartcommand.idsuppColumn] = value;
                 }
             }
             
@@ -661,10 +661,10 @@ namespace Materials {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public System.DateTime date {
                 get {
-                    return ((global::System.DateTime)(this[this.tablepiececommand.dateColumn]));
+                    return ((global::System.DateTime)(this[this.tablepartcommand.dateColumn]));
                 }
                 set {
-                    this[this.tablepiececommand.dateColumn] = value;
+                    this[this.tablepartcommand.dateColumn] = value;
                 }
             }
             
@@ -672,10 +672,10 @@ namespace Materials {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public int quantity {
                 get {
-                    return ((int)(this[this.tablepiececommand.quantityColumn]));
+                    return ((int)(this[this.tablepartcommand.quantityColumn]));
                 }
                 set {
-                    this[this.tablepiececommand.quantityColumn] = value;
+                    this[this.tablepartcommand.quantityColumn] = value;
                 }
             }
             
@@ -683,10 +683,10 @@ namespace Materials {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string status {
                 get {
-                    return ((string)(this[this.tablepiececommand.statusColumn]));
+                    return ((string)(this[this.tablepartcommand.statusColumn]));
                 }
                 set {
-                    this[this.tablepiececommand.statusColumn] = value;
+                    this[this.tablepartcommand.statusColumn] = value;
                 }
             }
         }
@@ -695,22 +695,22 @@ namespace Materials {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class piececommandRowChangeEvent : global::System.EventArgs {
+        public class partcommandRowChangeEvent : global::System.EventArgs {
             
-            private piececommandRow eventRow;
+            private partcommandRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public piececommandRowChangeEvent(piececommandRow row, global::System.Data.DataRowAction action) {
+            public partcommandRowChangeEvent(partcommandRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public piececommandRow Row {
+            public partcommandRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -738,7 +738,7 @@ namespace Materials.mykitboxDataSet3TableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class piececommandTableAdapter : global::System.ComponentModel.Component {
+    public partial class partcommandTableAdapter : global::System.ComponentModel.Component {
         
         private global::MySql.Data.MySqlClient.MySqlDataAdapter _adapter;
         
@@ -752,7 +752,7 @@ namespace Materials.mykitboxDataSet3TableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public piececommandTableAdapter() {
+        public partcommandTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -849,7 +849,7 @@ namespace Materials.mykitboxDataSet3TableAdapters {
             this._adapter = new global::MySql.Data.MySqlClient.MySqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "piececommand";
+            tableMapping.DataSetTable = "partcommand";
             tableMapping.ColumnMappings.Add("num", "num");
             tableMapping.ColumnMappings.Add("code", "code");
             tableMapping.ColumnMappings.Add("idsupp", "idsupp");
@@ -859,7 +859,7 @@ namespace Materials.mykitboxDataSet3TableAdapters {
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM `piececommand` WHERE ((`num` = @p1) AND (`code` = @p2) AND (`idsupp` " +
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM `partcommand` WHERE ((`num` = @p1) AND (`code` = @p2) AND (`idsupp` " +
                 "= @p3) AND (`date` = @p4) AND (`quantity` = @p5) AND (`status` = @p6))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
@@ -912,7 +912,7 @@ namespace Materials.mykitboxDataSet3TableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `piececommand` (`code`, `idsupp`, `date`, `quantity`, `status`) VALUE" +
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `partcommand` (`code`, `idsupp`, `date`, `quantity`, `status`) VALUE" +
                 "S (@p1, @p2, @p3, @p4, @p5)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
@@ -952,7 +952,7 @@ namespace Materials.mykitboxDataSet3TableAdapters {
             this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE `piececommand` SET `code` = @p1, `idsupp` = @p2, `date` = @p3, `quantity` " +
+            this._adapter.UpdateCommand.CommandText = "UPDATE `partcommand` SET `code` = @p1, `idsupp` = @p2, `date` = @p3, `quantity` " +
                 "= @p4, `status` = @p5 WHERE ((`num` = @p6) AND (`code` = @p7) AND (`idsupp` = @p" +
                 "8) AND (`date` = @p9) AND (`quantity` = @p10) AND (`status` = @p11))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
@@ -1054,7 +1054,7 @@ namespace Materials.mykitboxDataSet3TableAdapters {
             this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[1];
             this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT `num`, `code`, `idsupp`, `date`, `quantity`, `status` FROM `piececommand`";
+            this._commandCollection[0].CommandText = "SELECT `num`, `code`, `idsupp`, `date`, `quantity`, `status` FROM `partcommand`";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1062,7 +1062,7 @@ namespace Materials.mykitboxDataSet3TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(mykitboxDataSet3.piececommandDataTable dataTable) {
+        public virtual int Fill(mykitboxDataSet3.partcommandDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1075,9 +1075,9 @@ namespace Materials.mykitboxDataSet3TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual mykitboxDataSet3.piececommandDataTable GetData() {
+        public virtual mykitboxDataSet3.partcommandDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            mykitboxDataSet3.piececommandDataTable dataTable = new mykitboxDataSet3.piececommandDataTable();
+            mykitboxDataSet3.partcommandDataTable dataTable = new mykitboxDataSet3.partcommandDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1085,7 +1085,7 @@ namespace Materials.mykitboxDataSet3TableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(mykitboxDataSet3.piececommandDataTable dataTable) {
+        public virtual int Update(mykitboxDataSet3.partcommandDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
@@ -1093,7 +1093,7 @@ namespace Materials.mykitboxDataSet3TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(mykitboxDataSet3 dataSet) {
-            return this.Adapter.Update(dataSet, "piececommand");
+            return this.Adapter.Update(dataSet, "partcommand");
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1249,7 +1249,7 @@ namespace Materials.mykitboxDataSet3TableAdapters {
         
         private UpdateOrderOption _updateOrder;
         
-        private piececommandTableAdapter _piececommandTableAdapter;
+        private partcommandTableAdapter _partcommandTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -1271,12 +1271,12 @@ namespace Materials.mykitboxDataSet3TableAdapters {
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public piececommandTableAdapter piececommandTableAdapter {
+        public partcommandTableAdapter partcommandTableAdapter {
             get {
-                return this._piececommandTableAdapter;
+                return this._partcommandTableAdapter;
             }
             set {
-                this._piececommandTableAdapter = value;
+                this._partcommandTableAdapter = value;
             }
         }
         
@@ -1299,9 +1299,9 @@ namespace Materials.mykitboxDataSet3TableAdapters {
                 if ((this._connection != null)) {
                     return this._connection;
                 }
-                if (((this._piececommandTableAdapter != null) 
-                            && (this._piececommandTableAdapter.Connection != null))) {
-                    return this._piececommandTableAdapter.Connection;
+                if (((this._partcommandTableAdapter != null) 
+                            && (this._partcommandTableAdapter.Connection != null))) {
+                    return this._partcommandTableAdapter.Connection;
                 }
                 return null;
             }
@@ -1316,7 +1316,7 @@ namespace Materials.mykitboxDataSet3TableAdapters {
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
-                if ((this._piececommandTableAdapter != null)) {
+                if ((this._partcommandTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -1330,12 +1330,12 @@ namespace Materials.mykitboxDataSet3TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateUpdatedRows(mykitboxDataSet3 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._piececommandTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.piececommand.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._partcommandTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.partcommand.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._piececommandTableAdapter.Update(updatedRows));
+                    result = (result + this._partcommandTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -1349,11 +1349,11 @@ namespace Materials.mykitboxDataSet3TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateInsertedRows(mykitboxDataSet3 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._piececommandTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.piececommand.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._partcommandTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.partcommand.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._piececommandTableAdapter.Update(addedRows));
+                    result = (result + this._partcommandTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -1367,11 +1367,11 @@ namespace Materials.mykitboxDataSet3TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateDeletedRows(mykitboxDataSet3 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._piececommandTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.piececommand.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._partcommandTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.partcommand.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._piececommandTableAdapter.Update(deletedRows));
+                    result = (result + this._partcommandTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -1414,8 +1414,8 @@ namespace Materials.mykitboxDataSet3TableAdapters {
             if ((dataSet.HasChanges() == false)) {
                 return 0;
             }
-            if (((this._piececommandTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._piececommandTableAdapter.Connection) == false))) {
+            if (((this._partcommandTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._partcommandTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("Tous les TableAdapters managés par un TableAdapterManager doivent utiliser la mêm" +
                         "e chaîne de connexion.");
             }
@@ -1453,13 +1453,13 @@ namespace Materials.mykitboxDataSet3TableAdapters {
             try {
                 // ---- Prepare for update -----------
                 //
-                if ((this._piececommandTableAdapter != null)) {
-                    revertConnections.Add(this._piececommandTableAdapter, this._piececommandTableAdapter.Connection);
-                    this._piececommandTableAdapter.Connection = ((global::MySql.Data.MySqlClient.MySqlConnection)(workConnection));
-                    this._piececommandTableAdapter.Transaction = ((global::MySql.Data.MySqlClient.MySqlTransaction)(workTransaction));
-                    if (this._piececommandTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._piececommandTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._piececommandTableAdapter.Adapter);
+                if ((this._partcommandTableAdapter != null)) {
+                    revertConnections.Add(this._partcommandTableAdapter, this._partcommandTableAdapter.Connection);
+                    this._partcommandTableAdapter.Connection = ((global::MySql.Data.MySqlClient.MySqlConnection)(workConnection));
+                    this._partcommandTableAdapter.Transaction = ((global::MySql.Data.MySqlClient.MySqlTransaction)(workTransaction));
+                    if (this._partcommandTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._partcommandTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._partcommandTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -1520,9 +1520,9 @@ namespace Materials.mykitboxDataSet3TableAdapters {
                 if (workConnOpened) {
                     workConnection.Close();
                 }
-                if ((this._piececommandTableAdapter != null)) {
-                    this._piececommandTableAdapter.Connection = ((global::MySql.Data.MySqlClient.MySqlConnection)(revertConnections[this._piececommandTableAdapter]));
-                    this._piececommandTableAdapter.Transaction = null;
+                if ((this._partcommandTableAdapter != null)) {
+                    this._partcommandTableAdapter.Connection = ((global::MySql.Data.MySqlClient.MySqlConnection)(revertConnections[this._partcommandTableAdapter]));
+                    this._partcommandTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];
