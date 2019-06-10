@@ -25,7 +25,7 @@ namespace Materials
 
         /***************************************************************************************************************************************************************
          * Pre : values of the textboxes are not empty + receive the type of the winform sender (button,label,...) and the event apply to this sender as parameter     *                                                                  
-         * Post : delete a piece into the database                                                                                                                    *
+         * Post : delete a part into the database                                                                                                                    *
          * Raise : label pop if there is an error in the textbox value or if the database is not connected                                                             *
          ***************************************************************************************************************************************************************/
         private void yes_Click(object sender, EventArgs e)
@@ -35,7 +35,7 @@ namespace Materials
             sk.SqlConnection();
             //Creation of the Sql command
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = string.Format("DELETE FROM piece WHERE code = '{0}'", codedb);
+            command.CommandText = string.Format("DELETE FROM part WHERE code = '{0}'", codedb);
 
             try
             {

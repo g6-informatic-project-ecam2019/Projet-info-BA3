@@ -55,10 +55,10 @@ namespace Materials
 
         public bool BlocStock(int num)
         {
-            Piece[] pieces = configuration[num - 1].GetPieces();
-            for(int i = 0; i < pieces.Length; i++)
+            Part[] parts = configuration[num - 1].GetParts();
+            for(int i = 0; i < parts.Length; i++)
             {
-                if (!(pieces[num-1].IsAvailable()) )
+                if (!(parts[num-1].IsAvailable()) )
                 {
                     return false;
                 }

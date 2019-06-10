@@ -22,7 +22,7 @@ namespace Materials
 
         /***************************************************************************************************************************************************************
          * Pre : values of the textboxes are not empty + receive the type of the winform sender (button,label,...) and the event apply to this sender as parameter     *                                                                  
-         * Post : add a new piece into the database                                                                                                                    *
+         * Post : add a new part into the database                                                                                                                    *
          * Raise : label pop if there is an error in the textbox value or if the database is not connected                                                             *
          ***************************************************************************************************************************************************************/
         private void Apply_Click(object sender, EventArgs e)
@@ -32,7 +32,7 @@ namespace Materials
             sk.SqlConnection();
             //Creation of the Sql command
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = string.Format("INSERT INTO `piece`(`code`, `ref`, `dimension`, `height`, `depth`, `width`, `color`, `min_stock`, `real_quantity`, `virtual_quantity`, `client_price`, `box_number`) VALUES('{0}','{1}','{2}',{3},{4},{5},'{6}',{7},{8},{9},{10},{11})", code.Text, reference.Text, dimension.Text, height.Text, depth.Text, width.Text, color.Text, min_stock.Text, quantity.Text, quantity.Text, price.Text.Replace(",", "."), box_number.Text);
+            command.CommandText = string.Format("INSERT INTO `part`(`code`, `ref`, `dimension`, `height`, `depth`, `width`, `color`, `min_stock`, `real_quantity`, `virtual_quantity`, `client_price`, `box_number`) VALUES('{0}','{1}','{2}',{3},{4},{5},'{6}',{7},{8},{9},{10},{11})", code.Text, reference.Text, dimension.Text, height.Text, depth.Text, width.Text, color.Text, min_stock.Text, quantity.Text, quantity.Text, price.Text.Replace(",", "."), box_number.Text);
 
             try
             {

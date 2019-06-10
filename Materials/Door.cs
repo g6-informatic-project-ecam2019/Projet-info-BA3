@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Materials
 {
     /*Abstract class for all types of door*/
-    abstract class Door : Piece
+    abstract class Door : Part
     {
         /*Variable that contains either glassdoor or classicdoor*/
         protected int width;

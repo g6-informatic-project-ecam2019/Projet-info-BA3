@@ -17,8 +17,8 @@ namespace Materials
         private DataTable dt_prices;
         private DataTable dt_clientcom;
         private DataTable dt_com;
-        private DataTable dt_clientpieces;
-        private DataTable dt_pieces;
+        private DataTable dt_clientparts;
+        private DataTable dt_parts;
         private List<int> RowChanged = new List<int>();
         private List<int> RowChanged2 = new List<int>();
         private MySqlConnection conn;
@@ -43,21 +43,21 @@ namespace Materials
             dt_clientcom.Columns.Add("lastname", typeof(String)).SetOrdinal(2);
             dt_clientcom.Columns.Add("firstname", typeof(String)).SetOrdinal(3);
 
-            BindingSource bs_com = piececommandBindingSource;
+            BindingSource bs_com = partcommandBindingSource;
             dt_com = ((DataSet)bs_com.DataSource).Tables[bs_com.DataMember];
             dt_com.Columns.Add("name", typeof(String)).SetOrdinal(3);
 
-            BindingSource bs_clientpieces = clientpiecescommandBindingSource;
-            dt_clientpieces = ((DataSet)bs_clientpieces.DataSource).Tables[bs_clientpieces.DataMember];
+            BindingSource bs_clientparts = clientpartscommandBindingSource;
+            dt_clientparts = ((DataSet)bs_clientparts.DataSource).Tables[bs_clientparts.DataMember];
 
             string[] names = {"ref","dimension","height","depth","width","color","client_price"};
             for (var i = 3; i < 10; i++)
             {
-                dt_clientpieces.Columns.Add(names[i-3], typeof(String)).SetOrdinal(i);
+                dt_clientparts.Columns.Add(names[i-3], typeof(String)).SetOrdinal(i);
             }
 
-            BindingSource bs_pieces = pieceBindingSource;
-            dt_pieces = ((DataSet)bs_pieces.DataSource).Tables[bs_pieces.DataMember];
+            BindingSource bs_parts = partBindingSource;
+            dt_parts = ((DataSet)bs_parts.DataSource).Tables[bs_parts.DataMember];
         }
 
         /***********************************************************************************************************************
@@ -66,12 +66,12 @@ namespace Materials
          ***********************************************************************************************************************/      
         private void LoadData()
         {
-            //Fill data into 'mykitboxDataSet5.piece'
-            this.pieceTableAdapter.Fill(this.mykitboxDataSet5.piece);
-            //Fill data into 'mykitboxDataSet4.client_piecescommand'
-            this.client_piecescommandTableAdapter.Fill(this.mykitboxDataSet4.client_piecescommand);
-            //Fill data into 'mykitboxDataSet3.piececommand'
-            this.piececommandTableAdapter.Fill(this.mykitboxDataSet3.piececommand);
+            //Fill data into 'mykitboxDataSet5.part'
+            this.partTableAdapter.Fill(this.mykitboxDataSet5.part);
+            //Fill data into 'mykitboxDataSet4.client_partscommand'
+            this.client_partscommandTableAdapter.Fill(this.mykitboxDataSet4.client_partscommand);
+            //Fill data into 'mykitboxDataSet3.partcommand'
+            this.partcommandTableAdapter.Fill(this.mykitboxDataSet3.partcommand);
             //Fill data into 'mykitboxDataSet2.prices'
             this.pricesTableAdapter.Fill(this.mykitboxDataSet2.prices);
             //Fill data into 'mykitboxDataSet1.client_command'.
@@ -114,16 +114,16 @@ namespace Materials
             SearchLabel.Text = "";
             dataGridView2.Visible = false;
             Modifie.Visible = false;
-            dataGridView1.DataSource = dt_clientpieces;
+            dataGridView1.DataSource = dt_clientparts;
             LoadData();
             //Ask to take values from the db and put them into the datagrid column
-            SqlSelect("SELECT piece.ref FROM client_piecescommand INNER JOIN piece ON client_piecescommand.code = piece.code", "ref");
-            SqlSelect("SELECT piece.dimension FROM client_piecescommand INNER JOIN piece ON client_piecescommand.code = piece.code", "dimension");
-            SqlSelect("SELECT piece.height FROM client_piecescommand INNER JOIN piece ON client_piecescommand.code = piece.code", "height");
-            SqlSelect("SELECT piece.depth FROM client_piecescommand INNER JOIN piece ON client_piecescommand.code = piece.code", "depth");
-            SqlSelect("SELECT piece.width FROM client_piecescommand INNER JOIN piece ON client_piecescommand.code = piece.code", "width");
-            SqlSelect("SELECT piece.color FROM client_piecescommand INNER JOIN piece ON client_piecescommand.code = piece.code", "color");
-            SqlSelect("SELECT piece.client_price FROM client_piecescommand INNER JOIN piece ON client_piecescommand.code = piece.code", "client_price");
+            SqlSelect("SELECT part.ref FROM client_partscommand INNER JOIN part ON client_partscommand.code = part.code", "ref");
+            SqlSelect("SELECT part.dimension FROM client_partscommand INNER JOIN part ON client_partscommand.code = part.code", "dimension");
+            SqlSelect("SELECT part.height FROM client_partscommand INNER JOIN part ON client_partscommand.code = part.code", "height");
+            SqlSelect("SELECT part.depth FROM client_partscommand INNER JOIN part ON client_partscommand.code = part.code", "depth");
+            SqlSelect("SELECT part.width FROM client_partscommand INNER JOIN part ON client_partscommand.code = part.code", "width");
+            SqlSelect("SELECT part.color FROM client_partscommand INNER JOIN part ON client_partscommand.code = part.code", "color");
+            SqlSelect("SELECT part.client_price FROM client_partscommand INNER JOIN part ON client_partscommand.code = part.code", "client_price");
         }
         private void Prices_Click(object sender, EventArgs e)
         {
@@ -140,7 +140,7 @@ namespace Materials
             //Ask to take values from the db and put them into the datagrid column
             SqlSelect("SELECT prices.idsupp, supplier.name FROM prices INNER JOIN supplier ON prices.idsupp = supplier.idsupp ORDER BY `prices`.`idsupp` ASC", "name");
         }
-        private void Pieces_Click(object sender, EventArgs e)
+        private void Parts_Click(object sender, EventArgs e)
         {
             //Initialize the Winform for this button
             textBox1.Enabled = true;
@@ -149,11 +149,11 @@ namespace Materials
             SearchLabel.Text = "Search by code :";
             dataGridView2.Visible = false;
             Modifie.Visible = true;
-            dataGridView1.DataSource = dt_pieces;
+            dataGridView1.DataSource = dt_parts;
 
             LoadData();
         }
-        private void PieceCommand_Click(object sender, EventArgs e)
+        private void PartCommand_Click(object sender, EventArgs e)
         {
             //Initialize the Winform for this button
             textBox1.Enabled = false;
@@ -165,7 +165,7 @@ namespace Materials
             dataGridView1.Columns["idsupp"].Visible = false;
             LoadData();
             //Ask to take values from the db and put them into the datagrid column
-            SqlSelect("SELECT piececommand.num, supplier.name FROM piececommand INNER JOIN supplier ON piececommand.idsupp = supplier.idsupp ORDER BY `piececommand`.`num` ASC", "name");
+            SqlSelect("SELECT partcommand.num, supplier.name FROM partcommand INNER JOIN supplier ON partcommand.idsupp = supplier.idsupp ORDER BY `partcommand`.`num` ASC", "name");
         }
 
         /***********************************************************************************************************************
@@ -187,7 +187,7 @@ namespace Materials
             }
             else if (count == 13)
             {
-                LoadTableChange(dataGridView1, "code", dt_pieces);
+                LoadTableChange(dataGridView1, "code", dt_parts);
             }
         }
         /***********************************************************************************************************************
@@ -217,10 +217,10 @@ namespace Materials
             Modifie.Visible = false;
             Prevbtn.Visible = false;
             ClientCommand.Enabled = false;
-            Client_Pieces.Enabled = false;
+            Client_Parts.Enabled = false;
             Prices.Enabled = false;
-            PieceCommand.Enabled = false;
-            Pieces.Enabled = false;
+            PartCommand.Enabled = false;
+            Parts.Enabled = false;
             textBox1.Enabled = false;
             dataGridView1.EditMode = DataGridViewEditMode.EditOnKeystroke;
             //List of name of the columns that we want to change values
@@ -351,7 +351,7 @@ namespace Materials
             {
                 foreach (int row in RowChanged)
                 {
-                    SqlUpdateStatement(string.Format("UPDATE piece SET ref = '{0}', dimension = '{1}', height = {2} , depth = {3}, width = {4}, color = '{5}', min_stock = {6}, client_price = {7}, box_number = {8} WHERE code = '{9}'", dataGridView1.Rows[row].Cells["ref"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["dimension"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["height"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["depth"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["width"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["color"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["min_stock"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["client_price"].FormattedValue.ToString().Replace(",", "."), dataGridView1.Rows[row].Cells["box_number"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["code"].FormattedValue.ToString()));
+                    SqlUpdateStatement(string.Format("UPDATE part SET ref = '{0}', dimension = '{1}', height = {2} , depth = {3}, width = {4}, color = '{5}', min_stock = {6}, client_price = {7}, box_number = {8} WHERE code = '{9}'", dataGridView1.Rows[row].Cells["ref"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["dimension"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["height"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["depth"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["width"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["color"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["min_stock"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["client_price"].FormattedValue.ToString().Replace(",", "."), dataGridView1.Rows[row].Cells["box_number"].FormattedValue.ToString(), dataGridView1.Rows[row].Cells["code"].FormattedValue.ToString()));
                 }
             }
 
@@ -369,10 +369,10 @@ namespace Materials
             Modifie.Visible = true;
             Prevbtn.Visible = true;
             ClientCommand.Enabled = true;
-            Client_Pieces.Enabled = true;
+            Client_Parts.Enabled = true;
             Prices.Enabled = true;
-            PieceCommand.Enabled = true;
-            Pieces.Enabled = true;
+            PartCommand.Enabled = true;
+            Parts.Enabled = true;
             textBox1.Enabled = true;
             RowAdd.Visible = false;
             RowDelete.Visible = false;
@@ -380,7 +380,7 @@ namespace Materials
             labelDel.Visible = false;
             dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
             textBox1.Text = "";
-            this.pieceTableAdapter.Fill(this.mykitboxDataSet5.piece);
+            this.partTableAdapter.Fill(this.mykitboxDataSet5.part);
             //Put the color of the columns as white (initial color)
             for (var i = 0; i < ((DataTable)dataGridView1.DataSource).Columns.Count; i++)
             {
@@ -420,7 +420,7 @@ namespace Materials
          ***********************************************************************************************************************/
         private void RowDelete_Click(object sender, EventArgs e)
         {
-            PopUpDel popUpDel = new PopUpDel(textboxDel.Text,"Do you want to delete the piece :");
+            PopUpDel popUpDel = new PopUpDel(textboxDel.Text,"Do you want to delete the part :");
             popUpDel.ShowDialog();
             this.InitDatagrid();
         }

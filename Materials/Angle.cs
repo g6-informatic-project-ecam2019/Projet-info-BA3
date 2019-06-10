@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Materials
 {
-    public class Angle : Piece
+    public class Angle : Part
     {
         private string color;
         private string determiningDimension = "height";

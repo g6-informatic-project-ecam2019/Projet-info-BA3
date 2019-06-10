@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Materials
 {
     /* Class that groups all breadths*/
-    class Breadth : Piece
+    class Breadth : Part
     {
         private string position;
         private string determiningDimension;

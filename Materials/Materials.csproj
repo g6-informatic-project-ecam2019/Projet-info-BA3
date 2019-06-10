@@ -97,21 +97,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>mykitboxDataSet2.xsd</DependentUpon>
     </Compile>
-    <Compile Include="mykitboxDataSet3.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>mykitboxDataSet3.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="mykitboxDataSet4.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>mykitboxDataSet4.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="mykitboxDataSet51.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>mykitboxDataSet51.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Panel.cs" />
     <Compile Include="Piece.cs" />
     <Compile Include="PopUpAdd.cs">
@@ -198,7 +183,6 @@
     </None>
     <None Include="mykitboxDataSet3.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>mykitboxDataSet3.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="mykitboxDataSet3.xss">
@@ -209,7 +193,6 @@
     </None>
     <None Include="mykitboxDataSet4.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>mykitboxDataSet4.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="mykitboxDataSet4.xss">
@@ -220,7 +203,6 @@
     </None>
     <None Include="mykitboxDataSet51.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>mykitboxDataSet51.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="mykitboxDataSet51.xss">
@@ -256,6 +238,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SKGridPage.resx">
       <DependentUpon>SKGridPage.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SKLoginPage.resx">
       <DependentUpon>SKLoginPage.cs</DependentUpon>

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Materials
 {
     /*Class that groups all panels*/
-    class Panel : Piece
+    class Panel : Part
     {
         private string color;
         private int width;

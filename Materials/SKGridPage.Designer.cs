@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.Client_Pieces = new System.Windows.Forms.Button();
+            this.Client_Parts = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.ClientCommand = new System.Windows.Forms.Button();
@@ -43,23 +43,23 @@
             this.mykitboxDataSet2 = new Materials.mykitboxDataSet2();
             this.pricesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pricesTableAdapter = new Materials.mykitboxDataSet2TableAdapters.pricesTableAdapter();
-            this.PieceCommand = new System.Windows.Forms.Button();
+            this.PartCommand = new System.Windows.Forms.Button();
             this.mykitboxDataSet3 = new Materials.mykitboxDataSet3();
-            this.piececommandBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.piececommandTableAdapter = new Materials.mykitboxDataSet3TableAdapters.piececommandTableAdapter();
+            this.partcommandBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.partcommandTableAdapter = new Materials.mykitboxDataSet3TableAdapters.partcommandTableAdapter();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.SearchLabel = new System.Windows.Forms.Label();
             this.Prevbtn = new System.Windows.Forms.Button();
             this.mykitboxDataSet4 = new Materials.mykitboxDataSet4();
-            this.clientpiecescommandBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.client_piecescommandTableAdapter = new Materials.mykitboxDataSet4TableAdapters.client_piecescommandTableAdapter();
+            this.clientpartscommandBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.client_partscommandTableAdapter = new Materials.mykitboxDataSet4TableAdapters.client_partscommandTableAdapter();
             this.Modifie = new System.Windows.Forms.Button();
             this.ApplyMod = new System.Windows.Forms.Button();
             this.CancelMod = new System.Windows.Forms.Button();
             this.mykitboxDataSet5 = new Materials.mykitboxDataSet5();
-            this.pieceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pieceTableAdapter = new Materials.mykitboxDataSet5TableAdapters.pieceTableAdapter();
-            this.Pieces = new System.Windows.Forms.Button();
+            this.partBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.partTableAdapter = new Materials.mykitboxDataSet5TableAdapters.partTableAdapter();
+            this.Parts = new System.Windows.Forms.Button();
             this.RowAdd = new System.Windows.Forms.Button();
             this.RowDelete = new System.Windows.Forms.Button();
             this.textboxDel = new System.Windows.Forms.TextBox();
@@ -75,24 +75,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.mykitboxDataSet2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pricesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mykitboxDataSet3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.piececommandBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.partcommandBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mykitboxDataSet4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientpiecescommandBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientpartscommandBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mykitboxDataSet5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pieceBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.partBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // Client_Pieces
+            // Client_Parts
             // 
-            this.Client_Pieces.Location = new System.Drawing.Point(771, 71);
-            this.Client_Pieces.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Client_Pieces.Name = "Client_Pieces";
-            this.Client_Pieces.Size = new System.Drawing.Size(83, 46);
-            this.Client_Pieces.TabIndex = 2;
-            this.Client_Pieces.Text = "Client Pieces";
-            this.Client_Pieces.UseVisualStyleBackColor = true;
-            this.Client_Pieces.Click += new System.EventHandler(this.Client_Click);
+            this.Client_Parts.Location = new System.Drawing.Point(771, 71);
+            this.Client_Parts.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Client_Parts.Name = "Client_Parts";
+            this.Client_Parts.Size = new System.Drawing.Size(83, 46);
+            this.Client_Parts.TabIndex = 2;
+            this.Client_Parts.Text = "Client Parts";
+            this.Client_Parts.UseVisualStyleBackColor = true;
+            this.Client_Parts.Click += new System.EventHandler(this.Client_Click);
             // 
             // dataGridView1
             // 
@@ -182,30 +182,30 @@
             // 
             this.pricesTableAdapter.ClearBeforeFill = true;
             // 
-            // PieceCommand
+            // PartCommand
             // 
-            this.PieceCommand.Location = new System.Drawing.Point(771, 254);
-            this.PieceCommand.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.PieceCommand.Name = "PieceCommand";
-            this.PieceCommand.Size = new System.Drawing.Size(83, 48);
-            this.PieceCommand.TabIndex = 8;
-            this.PieceCommand.Text = "Piece Command";
-            this.PieceCommand.UseVisualStyleBackColor = true;
-            this.PieceCommand.Click += new System.EventHandler(this.PieceCommand_Click);
+            this.PartCommand.Location = new System.Drawing.Point(771, 254);
+            this.PartCommand.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PartCommand.Name = "PartCommand";
+            this.PartCommand.Size = new System.Drawing.Size(83, 48);
+            this.PartCommand.TabIndex = 8;
+            this.PartCommand.Text = "Part Command";
+            this.PartCommand.UseVisualStyleBackColor = true;
+            this.PartCommand.Click += new System.EventHandler(this.PartCommand_Click);
             // 
             // mykitboxDataSet3
             // 
             this.mykitboxDataSet3.DataSetName = "mykitboxDataSet3";
             this.mykitboxDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // piececommandBindingSource
+            // partcommandBindingSource
             // 
-            this.piececommandBindingSource.DataMember = "piececommand";
-            this.piececommandBindingSource.DataSource = this.mykitboxDataSet3;
+            this.partcommandBindingSource.DataMember = "partcommand";
+            this.partcommandBindingSource.DataSource = this.mykitboxDataSet3;
             // 
-            // piececommandTableAdapter
+            // partcommandTableAdapter
             // 
-            this.piececommandTableAdapter.ClearBeforeFill = true;
+            this.partcommandTableAdapter.ClearBeforeFill = true;
             // 
             // dataGridView2
             // 
@@ -246,14 +246,14 @@
             this.mykitboxDataSet4.DataSetName = "mykitboxDataSet4";
             this.mykitboxDataSet4.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // clientpiecescommandBindingSource
+            // clientpartscommandBindingSource
             // 
-            this.clientpiecescommandBindingSource.DataMember = "client_piecescommand";
-            this.clientpiecescommandBindingSource.DataSource = this.mykitboxDataSet4;
+            this.clientpartscommandBindingSource.DataMember = "client_partscommand";
+            this.clientpartscommandBindingSource.DataSource = this.mykitboxDataSet4;
             // 
-            // client_piecescommandTableAdapter
+            // client_partscommandTableAdapter
             // 
-            this.client_piecescommandTableAdapter.ClearBeforeFill = true;
+            this.client_partscommandTableAdapter.ClearBeforeFill = true;
             // 
             // Modifie
             // 
@@ -295,25 +295,25 @@
             this.mykitboxDataSet5.DataSetName = "mykitboxDataSet5";
             this.mykitboxDataSet5.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // pieceBindingSource
+            // partBindingSource
             // 
-            this.pieceBindingSource.DataMember = "piece";
-            this.pieceBindingSource.DataSource = this.mykitboxDataSet5;
+            this.partBindingSource.DataMember = "part";
+            this.partBindingSource.DataSource = this.mykitboxDataSet5;
             // 
-            // pieceTableAdapter
+            // partTableAdapter
             // 
-            this.pieceTableAdapter.ClearBeforeFill = true;
+            this.partTableAdapter.ClearBeforeFill = true;
             // 
-            // Pieces
+            // Parts
             // 
-            this.Pieces.Location = new System.Drawing.Point(771, 189);
-            this.Pieces.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Pieces.Name = "Pieces";
-            this.Pieces.Size = new System.Drawing.Size(83, 48);
-            this.Pieces.TabIndex = 15;
-            this.Pieces.Text = "Pieces";
-            this.Pieces.UseVisualStyleBackColor = true;
-            this.Pieces.Click += new System.EventHandler(this.Pieces_Click);
+            this.Parts.Location = new System.Drawing.Point(771, 189);
+            this.Parts.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Parts.Name = "Parts";
+            this.Parts.Size = new System.Drawing.Size(83, 48);
+            this.Parts.TabIndex = 15;
+            this.Parts.Text = "Parts";
+            this.Parts.UseVisualStyleBackColor = true;
+            this.Parts.Click += new System.EventHandler(this.Parts_Click);
             // 
             // RowAdd
             // 
@@ -322,7 +322,7 @@
             this.RowAdd.Name = "RowAdd";
             this.RowAdd.Size = new System.Drawing.Size(83, 48);
             this.RowAdd.TabIndex = 16;
-            this.RowAdd.Text = "Add a piece";
+            this.RowAdd.Text = "Add a part";
             this.RowAdd.UseVisualStyleBackColor = true;
             this.RowAdd.Visible = false;
             this.RowAdd.Click += new System.EventHandler(this.RowAdd_Click);
@@ -334,7 +334,7 @@
             this.RowDelete.Name = "RowDelete";
             this.RowDelete.Size = new System.Drawing.Size(83, 48);
             this.RowDelete.TabIndex = 17;
-            this.RowDelete.Text = "Delete a piece";
+            this.RowDelete.Text = "Delete a part";
             this.RowDelete.UseVisualStyleBackColor = true;
             this.RowDelete.Visible = false;
             this.RowDelete.Click += new System.EventHandler(this.RowDelete_Click);
@@ -402,18 +402,18 @@
             this.Controls.Add(this.textboxDel);
             this.Controls.Add(this.RowDelete);
             this.Controls.Add(this.RowAdd);
-            this.Controls.Add(this.Pieces);
+            this.Controls.Add(this.Parts);
             this.Controls.Add(this.CancelMod);
             this.Controls.Add(this.ApplyMod);
             this.Controls.Add(this.Modifie);
             this.Controls.Add(this.Prevbtn);
             this.Controls.Add(this.SearchLabel);
             this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.PieceCommand);
+            this.Controls.Add(this.PartCommand);
             this.Controls.Add(this.Prices);
             this.Controls.Add(this.ClientCommand);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.Client_Pieces);
+            this.Controls.Add(this.Client_Parts);
             this.Controls.Add(this.dataGridView1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "SKGridPage";
@@ -428,19 +428,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.mykitboxDataSet2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pricesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mykitboxDataSet3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.piececommandBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.partcommandBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mykitboxDataSet4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientpiecescommandBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientpartscommandBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mykitboxDataSet5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pieceBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.partBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button Client_Pieces;
+        private System.Windows.Forms.Button Client_Parts;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button ClientCommand;
@@ -454,23 +454,23 @@
         private mykitboxDataSet2 mykitboxDataSet2;
         private System.Windows.Forms.BindingSource pricesBindingSource;
         private mykitboxDataSet2TableAdapters.pricesTableAdapter pricesTableAdapter;
-        private System.Windows.Forms.Button PieceCommand;
+        private System.Windows.Forms.Button PartCommand;
         private mykitboxDataSet3 mykitboxDataSet3;
-        private System.Windows.Forms.BindingSource piececommandBindingSource;
-        private mykitboxDataSet3TableAdapters.piececommandTableAdapter piececommandTableAdapter;
+        private System.Windows.Forms.BindingSource partcommandBindingSource;
+        private mykitboxDataSet3TableAdapters.partcommandTableAdapter partcommandTableAdapter;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label SearchLabel;
         private System.Windows.Forms.Button Prevbtn;
         private mykitboxDataSet4 mykitboxDataSet4;
-        private System.Windows.Forms.BindingSource clientpiecescommandBindingSource;
-        private mykitboxDataSet4TableAdapters.client_piecescommandTableAdapter client_piecescommandTableAdapter;
+        private System.Windows.Forms.BindingSource clientpartscommandBindingSource;
+        private mykitboxDataSet4TableAdapters.client_partscommandTableAdapter client_partscommandTableAdapter;
         private System.Windows.Forms.Button Modifie;
         private System.Windows.Forms.Button ApplyMod;
         private System.Windows.Forms.Button CancelMod;
         private mykitboxDataSet5 mykitboxDataSet5;
-        private System.Windows.Forms.BindingSource pieceBindingSource;
-        private mykitboxDataSet5TableAdapters.pieceTableAdapter pieceTableAdapter;
-        private System.Windows.Forms.Button Pieces;
+        private System.Windows.Forms.BindingSource partBindingSource;
+        private mykitboxDataSet5TableAdapters.partTableAdapter partTableAdapter;
+        private System.Windows.Forms.Button Parts;
         private System.Windows.Forms.Button RowAdd;
         private System.Windows.Forms.Button RowDelete;
         private System.Windows.Forms.TextBox textboxDel;

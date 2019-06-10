@@ -21,7 +21,7 @@ namespace Materials
             this.connString = connString; //"Server=localhost;Port=3306;Database=mykitbox;Uid=root;Pwd="
             //connection = new MySqlConnection(this.connString);
             //command = connection.CreateCommand();
-            //command.CommandText = "SELECT * FROM pieces WHERE ref='Porte'"; //this is a "select" command, replace tableName and number
+            //command.CommandText = "SELECT * FROM parts WHERE ref='Porte'"; //this is a "select" command, replace tableName and number
             Connect();
             connection.Close();
         }
@@ -44,7 +44,7 @@ namespace Materials
          * Pre : receives a part as parameter                                      *
          * Post : returns true if the part is available, false otherwise          *
          ***************************************************************************/
-        public bool IsAvailable (Piece piece)
+        public bool IsAvailable (Part part)
         {
             string dimension1 = "";
             string dimension2 = "";
@@ -54,29 +54,29 @@ namespace Materials
             int width = -1;
             try
             {
-                dimension1 = piece.GetDescription()["dim1"].ToString();
-                dimension2 = piece.GetDescription()["dim2"].ToString();
-                length = (int)piece.GetDescription()["length"];
-                width = (int)piece.GetDescription()["width"];
+                dimension1 = part.GetDescription()["dim1"].ToString();
+                dimension2 = part.GetDescription()["dim2"].ToString();
+                length = (int)part.GetDescription()["length"];
+                width = (int)part.GetDescription()["width"];
             }
             catch (KeyNotFoundException)
             {
-                dimension = piece.GetDescription()["dimension"].ToString();
-                length = (int)piece.GetDescription()["length"];
+                dimension = part.GetDescription()["dimension"].ToString();
+                length = (int)part.GetDescription()["length"];
             }
             try
             {
-                color = piece.GetDescription()["color"].ToString();
+                color = part.GetDescription()["color"].ToString();
             }
             catch (KeyNotFoundException)
             {
-                if (piece is GlassDoor)
+                if (part is GlassDoor)
                 {
                     color = "verre";
                 }
             }
             Connect();
-            command.CommandText = String.Format("SELECT * FROM piece WHERE ref='{0}'", piece.GetDescription()["ref"]);
+            command.CommandText = String.Format("SELECT * FROM part WHERE ref='{0}'", part.GetDescription()["ref"]);
             reader = command.ExecuteReader();
             while (reader.Read())
             {
@@ -149,31 +149,31 @@ namespace Materials
 
         /*--------------------------------------------------------------------------*/
         /*When the storekeeper refills the stock*/
-        public void RefillStock (Piece[] piece)
+        public void RefillStock (Part[] part)
         {
             Connect();
             connection.Close();
         }
 
         /*--------------------------------------------------------------------------*/
-        public void OrderPiece(Piece piece)
+        public void OrderPart(Part part)
         {
             string code ="";
             int quantity = 0;
             int newQuantity = 0;
             try
             {
-                string dimension1 = piece.GetDescription()["dim1"].ToString();
-                string dimension2 = piece.GetDescription()["dim2"].ToString();
-                if (piece is GlassDoor)
+                string dimension1 = part.GetDescription()["dim1"].ToString();
+                string dimension2 = part.GetDescription()["dim2"].ToString();
+                if (part is GlassDoor)
                 {
                     try
                     {
-                        code = SelectPiece2D(piece, dimension1, dimension2, "verre");
+                        code = SelectPart2D(part, dimension1, dimension2, "verre");
                     }
                     catch(KeyNotFoundException e)
                     {
-                        //Console.WriteLine(piece.GetType());     
+                        //Console.WriteLine(part.GetType());     
                         //Console.WriteLine(e.Source);
                     }
                 }
@@ -181,37 +181,37 @@ namespace Materials
                 {
                     try
                     {
-                        code = SelectPiece2D(piece, dimension1, dimension2, piece.GetDescription()["color"].ToString());
+                        code = SelectPart2D(part, dimension1, dimension2, part.GetDescription()["color"].ToString());
                     }
                     catch (KeyNotFoundException e)
                     {
-                        //Console.WriteLine(piece.GetType());
+                        //Console.WriteLine(part.GetType());
                         //Console.WriteLine(e.Source);
                     }
                 }
             }
-            catch (KeyNotFoundException) //an error is raised if dim1-dim2 are not in piece description => there is only one dim
+            catch (KeyNotFoundException) //an error is raised if dim1-dim2 are not in part description => there is only one dim
             {
 
                 try
                 {
-                    string dimension = piece.GetDescription()["dimension"].ToString();
+                    string dimension = part.GetDescription()["dimension"].ToString();
                 }
                 catch(KeyNotFoundException)
                 {
-                    Console.WriteLine(piece.GetType());
+                    Console.WriteLine(part.GetType());
                 }
                 try
                 {
-                    code = SelectPiece(piece, piece.GetDescription()["dimension"].ToString(), piece.GetDescription()["color"].ToString());
+                    code = SelectPart(part, part.GetDescription()["dimension"].ToString(), part.GetDescription()["color"].ToString());
                 }
                 catch (KeyNotFoundException)
                 {
-                    code = code = SelectPiece(piece, piece.GetDescription()["dimension"].ToString(), "");
+                    code = code = SelectPart(part, part.GetDescription()["dimension"].ToString(), "");
                 }
             }
             Connect();
-            this.command.CommandText = String.Format("SELECT * FROM piece WHERE code='{0}'", code);
+            this.command.CommandText = String.Format("SELECT * FROM part WHERE code='{0}'", code);
             reader = command.ExecuteReader();
             while (reader.Read())
             {
@@ -224,7 +224,7 @@ namespace Materials
             Connect();
 
             //NOTE : virtual quantity CAN BE NEGATIVE
-            this.command.CommandText = String.Format("UPDATE piece SET virtual_quantity='{0}' WHERE code='{1}'",  newQuantity, code);
+            this.command.CommandText = String.Format("UPDATE part SET virtual_quantity='{0}' WHERE code='{1}'",  newQuantity, code);
             int l = command.ExecuteNonQuery(); 
             if (l != 1) 
             {
@@ -241,19 +241,19 @@ namespace Materials
         public Dictionary<string, int>  MakeOrder(Cupboard cupboard)
         {
             
-            /*Maximum number of arts in a cupboard is (7 boxes * 15 pieces) + 4 angles = 109*/
+            /*Maximum number of arts in a cupboard is (7 boxes * 15 parts) + 4 angles = 109*/
             Dictionary<string, int> quantities = new Dictionary<string, int>();
             for (int b = 0; b < cupboard.GetBloc().Length; b++)
             {
                 Bloc bloc = cupboard.GetBloc()[b];
-                for (int p = 0; p < bloc.GetPieces().Length; p++)
+                for (int p = 0; p < bloc.GetParts().Length; p++)
                 {
-                    Piece piece = bloc.GetPieces()[p];
-                    if (piece != null)
+                    Part part = bloc.GetParts()[p];
+                    if (part != null)
                     {
-                        string code = piece.GetDescription()["code"].ToString();
-                        /*Piece is counted as ordered*/
-                        OrderPiece(piece);
+                        string code = part.GetDescription()["code"].ToString();
+                        /*Part is counted as ordered*/
+                        OrderPart(part);
                         if (quantities.ContainsKey(code))
                         {
                             quantities[code] += 1;
@@ -318,7 +318,7 @@ namespace Materials
             /*First handles the order's identifiers (idcom and idclient)*/
             int idCom = 0;
             Connect();
-            this.command.CommandText = "SELECT MAX(idcom) FROM client_piecescommand";
+            this.command.CommandText = "SELECT MAX(idcom) FROM client_partscommand";
             try
             {
                 string stepIDCom = command.ExecuteScalar().ToString();
@@ -358,13 +358,13 @@ namespace Materials
                 connection.Close();
             }
             //Orders the parts
-            Dictionary<string, int> pieces = MakeOrder(cupboard);
+            Dictionary<string, int> parts = MakeOrder(cupboard);
             Connect();
             command.CommandText = String.Format("INSERT INTO client_command(idcom, idclient, description) VALUES ('{0}', '{1}', '{2}');", idCom, idClient, cupboard.GetDescription().ToString());
-            foreach (string code in pieces.Keys)
+            foreach (string code in parts.Keys)
             {
-                command.CommandText += String.Format("INSERT INTO client_piecescommand VALUES ('{0}', '{1}', '{2}');", idCom, code, pieces[code]);
-                command.CommandText += String.Format("UPDATE piece SET real_quantity= real_quantity-{0} WHERE code='{1}';", pieces[code], code);
+                command.CommandText += String.Format("INSERT INTO client_partscommand VALUES ('{0}', '{1}', '{2}');", idCom, code, parts[code]);
+                command.CommandText += String.Format("UPDATE part SET real_quantity= real_quantity-{0} WHERE code='{1}';", parts[code], code);
             }
             command.ExecuteNonQuery();
             connection.Close();
@@ -378,16 +378,16 @@ namespace Materials
          * Post : returns the unique code of the wanted part                         *
          * Raise : raises an error if the part has is a door or a panel              *
          *****************************************************************************/
-        private string SelectPiece(Piece piece, string dimension, string color)
+        private string SelectPart(Part part, string dimension, string color)
         {
             Connect();
             string code = "";
-            int length = (int)piece.GetDescription()["length"];
-            if ((piece is Door) || (piece is Panel))
+            int length = (int)part.GetDescription()["length"];
+            if ((part is Door) || (part is Panel))
             {
                 throw new ArgumentException("The part cannot be a door nor a panel in this function");
             }
-            this.command.CommandText = String.Format("SELECT * FROM piece WHERE ref='{0}'", piece.GetDescription()["ref"].ToString());
+            this.command.CommandText = String.Format("SELECT * FROM part WHERE ref='{0}'", part.GetDescription()["ref"].ToString());
 
             reader = command.ExecuteReader();
             /*Retrieves all information about the part, and puts them in the description dictionnary*/
@@ -409,23 +409,23 @@ namespace Materials
             {
                 List<int> possibleHeights = ExistingDimension("height", "Cornieres");
                 Console.WriteLine("No fitting part found.1D");
-                Console.WriteLine(piece.GetDescription()["ref"].ToString());
-                Console.WriteLine(piece.GetDescription()["color"].ToString());
-                Console.WriteLine(piece.GetDescription()["length"].ToString());
+                Console.WriteLine(part.GetDescription()["ref"].ToString());
+                Console.WriteLine(part.GetDescription()["color"].ToString());
+                Console.WriteLine(part.GetDescription()["length"].ToString());
                 return null;
             }
             connection.Close();
             return code;
         }
 
-        /*Same as SelectPiece() but with 2 main dimensions*/
-        private string SelectPiece2D (Piece piece, string dimension1, string dimension2, string color)
+        /*Same as SelectPart() but with 2 main dimensions*/
+        private string SelectPart2D (Part part, string dimension1, string dimension2, string color)
         {
             Connect();
             string code = "";
-            int length = (int)piece.GetDescription()["length"];
-            int width = (int)piece.GetDescription()["width"];
-            command.CommandText = String.Format("SELECT * FROM piece WHERE ref='{0}'", piece.GetDescription()["ref"].ToString());
+            int length = (int)part.GetDescription()["length"];
+            int width = (int)part.GetDescription()["width"];
+            command.CommandText = String.Format("SELECT * FROM part WHERE ref='{0}'", part.GetDescription()["ref"].ToString());
             reader = command.ExecuteReader();
             //Retrieves all information about the part, and puts them in the description dictionnary
             while (reader.Read()) 
@@ -451,8 +451,8 @@ namespace Materials
                 Console.WriteLine(length);
                 Console.WriteLine(width);
                 Console.WriteLine("No fitting part found. 2D");
-                Console.WriteLine(piece.GetDescription()["ref"].ToString());
-                Console.WriteLine(piece.GetDescription()["color"].ToString());
+                Console.WriteLine(part.GetDescription()["ref"].ToString());
+                Console.WriteLine(part.GetDescription()["color"].ToString());
                 return null;
             }
             connection.Close();
@@ -465,20 +465,20 @@ namespace Materials
          *          Dictionnary contains the following keys : height, depth, width   *
          *          color, code, client price, supplier price  (there may be more    *
          *          than one) and n suppliers, the number of suppliers that offer    *
-         *          the piece. The dimension(s) are present -or not- following the   *
-         *          piece's type                                                     *
-         * Uses the piece characteristics to find the piece in the DB                *
+         *          the part. The dimension(s) are present -or not- following the   *
+         *          part's type                                                     *
+         * Uses the part characteristics to find the part in the DB                *
          *****************************************************************************/
-        public Dictionary <string, Object> GetPieceDescription (Piece piece)
+        public Dictionary <string, Object> GetPartDescription (Part part)
         {
             
             Dictionary<string, Object> description = new Dictionary<string, Object>();
             string color="";
             string code;
             int width = -1;
-            int length = (int)piece.GetDescription()["length"];
+            int length = (int)part.GetDescription()["length"];
             /*Manages angles' length*/
-            if (piece is Angle) 
+            if (part is Angle) 
             {
                 List<int> possibleHeights = ExistingDimension("height", "Cornieres");
                 int prevCandidateHeight = length;
@@ -501,39 +501,39 @@ namespace Materials
                     }
                     length = prevCandidateHeight;
                     /*Effectivly changes angle's length (but keep cupboard height identical)*/
-                    piece.SetLength(prevCandidateHeight);
+                    part.SetLength(prevCandidateHeight);
                 }
             }
             try
             {
-                width = (int)piece.GetDescription()["width"];
+                width = (int)part.GetDescription()["width"];
             }
             catch (KeyNotFoundException){}
             
-            if ((piece is ClassicDoor) || (piece is Panel) || (piece is Angle))
+            if ((part is ClassicDoor) || (part is Panel) || (part is Angle))
             {
-                color = piece.GetDescription()["color"].ToString();
+                color = part.GetDescription()["color"].ToString();
                 description.Add("color", color);
             }
 
-            //Since the determining dimension in DB differs following the type of piece, we have to make a different criterea for each type
+            //Since the determining dimension in DB differs following the type of part, we have to make a different criterea for each type
             try
             {
-                string dimension1 = piece.GetDescription()["dim1"].ToString();
-                string dimension2 = piece.GetDescription()["dim2"].ToString();
+                string dimension1 = part.GetDescription()["dim1"].ToString();
+                string dimension2 = part.GetDescription()["dim2"].ToString();
 
-                if (piece is GlassDoor)
+                if (part is GlassDoor)
                 {
-                    code = SelectPiece2D (piece, dimension1, dimension2, "Verre");
+                    code = SelectPart2D (part, dimension1, dimension2, "Verre");
                 }
                 else
                 {
-                    code = SelectPiece2D(piece, dimension1, dimension2, color);
+                    code = SelectPart2D(part, dimension1, dimension2, color);
                 }
                 description.Add("code", code);
                 Connect();
-                command.CommandText = String.Format("SELECT * FROM piece INNER JOIN prices ON piece.code=prices.code WHERE piece.code='{0}'", code);
-                //Console.WriteLine(String.Format("code of this piece is {0}", code));
+                command.CommandText = String.Format("SELECT * FROM part INNER JOIN prices ON part.code=prices.code WHERE part.code='{0}'", code);
+                //Console.WriteLine(String.Format("code of this part is {0}", code));
                 reader = command.ExecuteReader();
                 int i = 0;
                 /*Retrieves all information about the part and puts them in the description dictionnary*/
@@ -550,18 +550,18 @@ namespace Materials
                 description.Add("n suppliers", i);
                 connection.Close();
             }
-            /*An error is raised if dim1-dim2 are not in piece description => there is only one dimension*/
+            /*An error is raised if dim1-dim2 are not in part description => there is only one dimension*/
             catch (KeyNotFoundException)
             {
-                string dimension = piece.GetDescription()["dim"].ToString();
-                code = SelectPiece(piece, piece.GetDescription()["dim"].ToString(), color);
-                //Console.WriteLine(String.Format("code of this piece is {0}", code));
+                string dimension = part.GetDescription()["dim"].ToString();
+                code = SelectPart(part, part.GetDescription()["dim"].ToString(), color);
+                //Console.WriteLine(String.Format("code of this part is {0}", code));
                 description.Add("code", code);
                 Connect();
-                this.command.CommandText = String.Format("SELECT * FROM piece INNER JOIN prices ON piece.code=prices.code WHERE piece.code='{0}'", code);
+                this.command.CommandText = String.Format("SELECT * FROM part INNER JOIN prices ON part.code=prices.code WHERE part.code='{0}'", code);
                 reader = command.ExecuteReader();
                 int i = 0;
-                while (reader.Read()) //retrieve all informations about the piece, and put them in the description dictionnary
+                while (reader.Read()) //retrieve all informations about the part, and put them in the description dictionnary
                 {
                     if (i == 0)
                     {
@@ -581,17 +581,17 @@ namespace Materials
         }
 
         /************************************************************************
-         * Pre : recieve the dimension (string) to list and the piece (string)  *
+         * Pre : recieve the dimension (string) to list and the part (string)  *
          *       that sets it                                                   *
          * Post : returns available heights for boxes                           *
          * Raise : uncorrect dimension name will raise an error                 *
-         *  Function will not raise any error if determiningPiece is not correct*
+         *  Function will not raise any error if determiningPart is not correct*
          *  but a log will appear                                               *
          ************************************************************************/
-         public List<int> ExistingDimension(string dim, string determiningPiece)
+         public List<int> ExistingDimension(string dim, string determiningPart)
          {
          //   connect();
-         //   command.CommandText = String.Format("SELECT * FROM piece WHERE ref='{0}'", determiningPiece); //height of a box is given by cleat's length + 4 cm
+         //   command.CommandText = String.Format("SELECT * FROM part WHERE ref='{0}'", determiningPart); //height of a box is given by cleat's length + 4 cm
          //   reader = command.ExecuteReader();
          //   int counter = 0;
          //   while (reader.Read())
@@ -601,12 +601,12 @@ namespace Materials
          //   connection.Close();
          //   if (counter == 0)
          //   {
-         //       Console.WriteLine(String.Format("No piece of that name found. Is this a correct name ? {0}", determiningPiece));
+         //       Console.WriteLine(String.Format("No part of that name found. Is this a correct name ? {0}", determiningPart));
          //   }
             List<int> dimensions = new List<int>();
             List<int> references = new List<int>();
             Connect();
-            command.CommandText = String.Format("SELECT * FROM piece WHERE ref='{0}'", determiningPiece);
+            command.CommandText = String.Format("SELECT * FROM part WHERE ref='{0}'", determiningPart);
             reader = command.ExecuteReader();
             int i = 0;
             while (reader.Read())
@@ -615,7 +615,7 @@ namespace Materials
                 {
                     try
                     {
-                        if ((dim == "height") && (determiningPiece != "Cornieres"))
+                        if ((dim == "height") && (determiningPart != "Cornieres"))
                         {
                             dimensions.Add((int)reader[dim] + 4);
                         }
@@ -637,17 +637,17 @@ namespace Materials
          }
 
         /************************************************************************
-         * Pre : recieve the piece as a parameter                               *
-         * Post : returns all available colors for that piece                   *
+         * Pre : recieve the part as a parameter                               *
+         * Post : returns all available colors for that part                   *
          * Raise :                                                              *
-         *  Function should be used once for each type of piece ; once for panel*
+         *  Function should be used once for each type of part ; once for panel*
          *  color, once for door color *
          ************************************************************************/
-        public List<string> GetExistingcolors (Piece piece)
+        public List<string> GetExistingcolors (Part part)
         {
             Connect();
-            string reference = piece.GetDescription()["ref"].ToString();
-            command.CommandText = String.Format("SELECT * FROM piece WHERE ref='{0}'", reference); 
+            string reference = part.GetDescription()["ref"].ToString();
+            command.CommandText = String.Format("SELECT * FROM part WHERE ref='{0}'", reference); 
             reader = command.ExecuteReader();
             int counter = 0;
             while (reader.Read())
@@ -657,11 +657,11 @@ namespace Materials
             connection.Close();
             if (counter == 0)
             {
-                Console.WriteLine(String.Format("No piece of that name found. Is this a correct name ? {0}", reference));
+                Console.WriteLine(String.Format("No part of that name found. Is this a correct name ? {0}", reference));
             }
             List<string> colors = new List<string>();
             Connect();
-            command.CommandText = String.Format("SELECT * FROM piece WHERE ref='{0}'", reference);
+            command.CommandText = String.Format("SELECT * FROM part WHERE ref='{0}'", reference);
             reader = command.ExecuteReader();
             int i = 0;
             while (reader.Read())

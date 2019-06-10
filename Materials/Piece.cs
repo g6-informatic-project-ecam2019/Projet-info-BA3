@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Materials
 {
     /*Abstract class that groups all the parts*/
-    public abstract class Piece
+    public abstract class Part
     {
         protected float price;
         protected int length;
@@ -31,11 +31,11 @@ namespace Materials
 
         public void DescriptionRequest(Stock pricestock)
         {
-            //Console.WriteLine(String.Format("name of this piece is {0}", this.name));
-            this.code = pricestock.GetPieceDescription(this)["code"].ToString();
-            //Console.WriteLine(String.Format("code of this piece is {0}", code));
-            SetPrice((float)pricestock.GetPieceDescription(this)["client price"]);
-            Console.WriteLine(String.Format("piece : {0}", this.code));
+            //Console.WriteLine(String.Format("name of this part is {0}", this.name));
+            this.code = pricestock.GetPartDescription(this)["code"].ToString();
+            //Console.WriteLine(String.Format("code of this part is {0}", code));
+            SetPrice((float)pricestock.GetPartDescription(this)["client price"]);
+            Console.WriteLine(String.Format("part : {0}", this.code));
             Console.WriteLine(this.price);
             Console.WriteLine("\n");
             

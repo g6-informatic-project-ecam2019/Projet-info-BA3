@@ -7,7 +7,7 @@ namespace Materials
     {
         Dictionary<string, Object> GetDescription();
         float GetPrice();
-        void BuildPieces();
-        Piece[] GetPieces();
+        void BuildParts();
+        Part[] GetParts();
     }
 }

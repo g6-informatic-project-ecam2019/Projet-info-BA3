@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Materials
 {
     /* Class that groups all cleats*/
-    class Cleat : Piece
+    class Cleat : Part
     {
         private string determiningDimension = "height";
 

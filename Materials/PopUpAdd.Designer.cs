@@ -81,7 +81,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(406, 51);
             this.label1.TabIndex = 21;
-            this.label1.Text = "ADD A NEW PIECE";
+            this.label1.Text = "ADD A NEW PART";
             // 
             // label2
             // 

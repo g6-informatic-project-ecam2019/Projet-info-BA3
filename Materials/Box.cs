@@ -14,7 +14,7 @@ namespace Materials
         private string doorcolor;
         private Dictionary<string, Object> Cupboard;
         private float price;
-        private Piece[] parts = new Piece[15];
+        private Part[] parts = new Part[15];
         private Stock stock;
 
         /*Builder*/
@@ -29,12 +29,12 @@ namespace Materials
             this.depth = Convert.ToInt32(Cupboard["depth"]);
             this.width = Convert.ToInt32(Cupboard["width"]);
             this.stock = new Stock("Server=localhost;Port=3306;Database=mykitbox;Uid=root;Pwd=");
-            BuildPieces();
+            BuildParts();
             ComputePrice();
         }
 
         /* !!!!!!!!!!!!!!!!! CORRECTION TO BE MADE 5 LINES BELOW !!!!!!!!!!!!!!!!!!!!!!!!!! */
-        public void BuildPieces()
+        public void BuildParts()
         {
             for (int i = 0; i < 4; i++)
             {
@@ -111,7 +111,7 @@ namespace Materials
             }
         }
 
-        public Piece[] GetPieces()
+        public Part[] GetParts()
         {
             return parts;
         }
