@@ -46,13 +46,13 @@ namespace Materials
             Dictionary<string, Object> Description = cupboard.GetDescription();
             this.price = (float)Description["price"];
         }
-        private string detailpriceBloc(int num)
+        private string detailpriceBlock(int num)
         {
-            Bloc[] bloc = cupboard.GetBloc();
-            if (num <= bloc.Length)
+            Block[] block = cupboard.GetBlock();
+            if (num <= block.Length)
             {
-                Dictionary<string, Object> Description = bloc[num - 1].GetDescription();
-                if (cupboard.BlocStock(num))
+                Dictionary<string, Object> Description = block[num - 1].GetDescription();
+                if (cupboard.BlockStock(num))
                 {
                     return "In stock" + "    Price: " + Description["price"] + "€";
                 }
@@ -64,14 +64,14 @@ namespace Materials
             }
             else return "";
         }
-        private string detailbloc(int num)
+        private string detailblock(int num)
         {
             
-            Bloc[] blocs = cupboard.GetBloc();
-            if (num <= blocs.Length)
+            Block[] blocks = cupboard.GetBlock();
+            if (num <= blocks.Length)
             {
-                Dictionary<string, Object> Description = blocs[num - 1].GetDescription();
-                return "Bloc " + num + ":                            height: " 
+                Dictionary<string, Object> Description = blocks[num - 1].GetDescription();
+                return "Block " + num + ":                            height: " 
                                + Description["height"] + " cm, door: " 
                                + Description["door"] + ", panel\'s color: " 
                                + Description["panel"];
@@ -79,14 +79,14 @@ namespace Materials
             else return "";
         }
                
-        private string detailpriceBlocNoStock(int num)
+        private string detailpriceBlockNoStock(int num)
         {
             
-            Bloc[] bloc = cupboard.GetBloc();
-            if (num <= bloc.Length)
+            Block[] block = cupboard.GetBlock();
+            if (num <= block.Length)
             {
-                Dictionary<string, Object> Description = bloc[num - 1].GetDescription();
-                if (cupboard.BlocStock(num))
+                Dictionary<string, Object> Description = block[num - 1].GetDescription();
+                if (cupboard.BlockStock(num))
                 {
                     return "Box " + num + " " + "in stock" + " Price: " + Description["price"] + "€";
                 }
@@ -103,31 +103,31 @@ namespace Materials
         {
             detailprice();
             panelOut.Visible = false;
-            textBox1.Text = detailbloc(1);
-            textBox2.Text = detailbloc(2);
-            textBox3.Text = detailbloc(3);
-            textBox4.Text = detailbloc(4);
-            textBox5.Text = detailbloc(5);
-            textBox6.Text = detailbloc(6);
-            textBox7.Text = detailbloc(7);
-            PrixBox1.Text = detailpriceBloc(1);
-            prixBox2.Text = detailpriceBloc(2);
-            PrixBox3.Text = detailpriceBloc(3);
-            PrixBox4.Text = detailpriceBloc(4);
-            PrixBox5.Text = detailpriceBloc(5);
-            PrixBox6.Text = detailpriceBloc(6);
-            PrixBox7.Text = detailpriceBloc(7);
+            textBox1.Text = detailblock(1);
+            textBox2.Text = detailblock(2);
+            textBox3.Text = detailblock(3);
+            textBox4.Text = detailblock(4);
+            textBox5.Text = detailblock(5);
+            textBox6.Text = detailblock(6);
+            textBox7.Text = detailblock(7);
+            PrixBox1.Text = detailpriceBlock(1);
+            prixBox2.Text = detailpriceBlock(2);
+            PrixBox3.Text = detailpriceBlock(3);
+            PrixBox4.Text = detailpriceBlock(4);
+            PrixBox5.Text = detailpriceBlock(5);
+            PrixBox6.Text = detailpriceBlock(6);
+            PrixBox7.Text = detailpriceBlock(7);
             BoxTotalheight.Text = detailheight();
             BoxWidth.Text = detailwidth();
             BoxDepth.Text = detaildepth();
             BoxTotalPrice.Text = price.ToString();
-            textBox1Out.Text = detailpriceBlocNoStock(1);
-            textBox2Out.Text = detailpriceBlocNoStock(2);
-            textBox3Out.Text = detailpriceBlocNoStock(3);
-            textBox4Out.Text = detailpriceBlocNoStock(4);
-            textBox5Out.Text = detailpriceBlocNoStock(5);
-            textBox6Out.Text = detailpriceBlocNoStock(6);
-            textBox7Out.Text = detailpriceBlocNoStock(7);
+            textBox1Out.Text = detailpriceBlockNoStock(1);
+            textBox2Out.Text = detailpriceBlockNoStock(2);
+            textBox3Out.Text = detailpriceBlockNoStock(3);
+            textBox4Out.Text = detailpriceBlockNoStock(4);
+            textBox5Out.Text = detailpriceBlockNoStock(5);
+            textBox6Out.Text = detailpriceBlockNoStock(6);
+            textBox7Out.Text = detailpriceBlockNoStock(7);
             textBoxTotalPayment.Text = Convert.ToString(this.price);
             textBoxAdvance.Text = Convert.ToString(this.price *0.30);
             textBox8.Text = Convert.ToString((this.price)-(this.price * 0.30));
@@ -169,10 +169,10 @@ namespace Materials
         }
         private bool Stock()
         {
-            Bloc[] bloc = cupboard.GetBloc();
-            for (int i = 0; i < bloc.Length; i++)
+            Block[] block = cupboard.GetBlock();
+            for (int i = 0; i < block.Length; i++)
             {
-                if (!(cupboard.BlocStock(i + 1)))
+                if (!(cupboard.BlockStock(i + 1)))
                 {
                     return false;
                 }

@@ -3,12 +3,12 @@ using System.Windows.Forms;
 
 namespace Materials
 {
-    public partial class BlocAmountPage : Form
+    public partial class BlockAmountPage : Form
     {
         public int number;
         
         ConfigurationPage configpage;
-        public BlocAmountPage()
+        public BlockAmountPage()
         {
             InitializeComponent();
             configpage = new ConfigurationPage();
@@ -31,10 +31,10 @@ namespace Materials
             configpage.ShowDialog();
         }
 
-        private void BlocsTrackBar_Scroll(object sender, EventArgs e)
+        private void BlocksTrackBar_Scroll(object sender, EventArgs e)
         {
-            label2.Text = "" + blocsTrackBar.Value;
-            number = blocsTrackBar.Value; 
+            label2.Text = "" + blocksTrackBar.Value;
+            number = blocksTrackBar.Value; 
         }
 
         private void Label2_Click(object sender, EventArgs e)

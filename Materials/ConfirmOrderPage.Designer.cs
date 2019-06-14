@@ -149,7 +149,7 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(199, 57);
             this.textBox1.TabIndex = 80;
-            this.textBox1.Text = "Bloc 1:                            height: 42 cm, door: No door, color panel: whi" +
+            this.textBox1.Text = "Block 1:                            height: 42 cm, door: No door, color panel: whi" +
     "te";
             // 
             // textBox2
@@ -161,7 +161,7 @@
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(199, 57);
             this.textBox2.TabIndex = 81;
-            this.textBox2.Text = "Bloc 2:                            height: 42 cm, door: No door, color panel: whi" +
+            this.textBox2.Text = "Block 2:                            height: 42 cm, door: No door, color panel: whi" +
     "te";
             // 
             // textBox3
@@ -173,7 +173,7 @@
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(199, 57);
             this.textBox3.TabIndex = 82;
-            this.textBox3.Text = "Bloc 3:                            height: 42 cm, door: No door, color panel: whi" +
+            this.textBox3.Text = "Block 3:                            height: 42 cm, door: No door, color panel: whi" +
     "te";
             // 
             // textBox6
@@ -185,7 +185,7 @@
             this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(199, 57);
             this.textBox6.TabIndex = 85;
-            this.textBox6.Text = "Bloc 6:                            height: 42 cm, door: No door, color panel: whi" +
+            this.textBox6.Text = "Block 6:                            height: 42 cm, door: No door, color panel: whi" +
     "te";
             // 
             // textBox5
@@ -197,7 +197,7 @@
             this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(199, 57);
             this.textBox5.TabIndex = 84;
-            this.textBox5.Text = "Bloc 5:                            height: 42 cm, door: No door, color panel: whi" +
+            this.textBox5.Text = "Block 5:                            height: 42 cm, door: No door, color panel: whi" +
     "te";
             // 
             // textBox4
@@ -209,7 +209,7 @@
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(199, 57);
             this.textBox4.TabIndex = 83;
-            this.textBox4.Text = "Bloc 4:                            height: 42 cm, door: No door, color panel: whi" +
+            this.textBox4.Text = "Block 4:                            height: 42 cm, door: No door, color panel: whi" +
     "te";
             // 
             // textBox7
@@ -221,7 +221,7 @@
             this.textBox7.ReadOnly = true;
             this.textBox7.Size = new System.Drawing.Size(199, 57);
             this.textBox7.TabIndex = 86;
-            this.textBox7.Text = "Bloc 7:                            height: 42 cm, door: No door, color panel: whi" +
+            this.textBox7.Text = "Block 7:                            height: 42 cm, door: No door, color panel: whi" +
     "te";
             // 
             // label3

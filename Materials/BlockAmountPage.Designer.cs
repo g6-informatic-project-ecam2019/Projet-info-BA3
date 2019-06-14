@@ -1,6 +1,6 @@
 ﻿namespace Materials
 {
-    partial class BlocAmountPage
+    partial class BlockAmountPage
     {
         /// <summary>
         /// Required designer variable.
@@ -31,9 +31,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.homeBtn = new System.Windows.Forms.Button();
             this.nextBtn = new System.Windows.Forms.Button();
-            this.blocsTrackBar = new System.Windows.Forms.TrackBar();
+            this.blocksTrackBar = new System.Windows.Forms.TrackBar();
             this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.blocsTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.blocksTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -43,7 +43,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(111, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Number of blocs";
+            this.label1.Text = "Number of blocks";
             // 
             // homeBtn
             // 
@@ -65,17 +65,17 @@
             this.nextBtn.UseVisualStyleBackColor = true;
             this.nextBtn.Click += new System.EventHandler(this.NextBtn_Click);
             // 
-            // blocsTrackBar
+            // blocksTrackBar
             // 
-            this.blocsTrackBar.Location = new System.Drawing.Point(138, 32);
-            this.blocsTrackBar.Margin = new System.Windows.Forms.Padding(2);
-            this.blocsTrackBar.Maximum = 7;
-            this.blocsTrackBar.Minimum = 1;
-            this.blocsTrackBar.Name = "blocsTrackBar";
-            this.blocsTrackBar.Size = new System.Drawing.Size(96, 56);
-            this.blocsTrackBar.TabIndex = 37;
-            this.blocsTrackBar.Value = 1;
-            this.blocsTrackBar.Scroll += new System.EventHandler(this.BlocsTrackBar_Scroll);
+            this.blocksTrackBar.Location = new System.Drawing.Point(138, 32);
+            this.blocksTrackBar.Margin = new System.Windows.Forms.Padding(2);
+            this.blocksTrackBar.Maximum = 7;
+            this.blocksTrackBar.Minimum = 1;
+            this.blocksTrackBar.Name = "blocksTrackBar";
+            this.blocksTrackBar.Size = new System.Drawing.Size(96, 56);
+            this.blocksTrackBar.TabIndex = 37;
+            this.blocksTrackBar.Value = 1;
+            this.blocksTrackBar.Scroll += new System.EventHandler(this.BlocksTrackBar_Scroll);
             // 
             // label2
             // 
@@ -86,20 +86,20 @@
             this.label2.TabIndex = 38;
             this.label2.Click += new System.EventHandler(this.Label2_Click);
             // 
-            // BlocAmountPage
+            // BlockAmountPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 163);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.blocsTrackBar);
+            this.Controls.Add(this.blocksTrackBar);
             this.Controls.Add(this.nextBtn);
             this.Controls.Add(this.homeBtn);
             this.Controls.Add(this.label1);
-            this.Name = "BlocAmountPage";
+            this.Name = "BlockAmountPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Blocs";
-            ((System.ComponentModel.ISupportInitialize)(this.blocsTrackBar)).EndInit();
+            this.Text = "Blocks";
+            ((System.ComponentModel.ISupportInitialize)(this.blocksTrackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -110,7 +110,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button homeBtn;
         private System.Windows.Forms.Button nextBtn;
-        private System.Windows.Forms.TrackBar blocsTrackBar;
+        private System.Windows.Forms.TrackBar blocksTrackBar;
         private System.Windows.Forms.Label label2;
     }
 }

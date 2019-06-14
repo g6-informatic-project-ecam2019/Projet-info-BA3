@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Materials
 {
-    public interface Bloc
+    public interface Block
     {
         Dictionary<string, Object> GetDescription();
         float GetPrice();

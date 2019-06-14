@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Materials
 {
-    class Box : Bloc
+    class Box : Block
     {
         private string pannelsColor;
         private int height;

@@ -32,7 +32,7 @@
             this.label24 = new System.Windows.Forms.Label();
             this.MkOrdrBtn = new System.Windows.Forms.Button();
             this.textBoxx5 = new System.Windows.Forms.TextBox();
-            this.PrevBlocBtn = new System.Windows.Forms.Button();
+            this.PrevBlockBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.heightBox1 = new System.Windows.Forms.ComboBox();
             this.widthBox1 = new System.Windows.Forms.ComboBox();
@@ -123,7 +123,7 @@
             this.label64 = new System.Windows.Forms.Label();
             this.label65 = new System.Windows.Forms.Label();
             this.label66 = new System.Windows.Forms.Label();
-            this.NextBlocBtn = new System.Windows.Forms.Button();
+            this.NextBlockBtn = new System.Windows.Forms.Button();
             this.HomeBtn = new System.Windows.Forms.Button();
             this.CopyBox1 = new System.Windows.Forms.Button();
             this.CopyBox2 = new System.Windows.Forms.Button();
@@ -203,7 +203,7 @@
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(95, 17);
             this.label24.TabIndex = 44;
-            this.label24.Text = "Bloc selection";
+            this.label24.Text = "Block selection";
             // 
             // MkOrdrBtn
             // 
@@ -223,17 +223,17 @@
             this.textBoxx5.ReadOnly = true;
             this.textBoxx5.Size = new System.Drawing.Size(158, 23);
             this.textBoxx5.TabIndex = 46;
-            this.textBoxx5.Click += new System.EventHandler(this.ModifBloc5_Click);
+            this.textBoxx5.Click += new System.EventHandler(this.ModifBlock5_Click);
             // 
-            // PrevBlocBtn
+            // PrevBlockBtn
             // 
-            this.PrevBlocBtn.Location = new System.Drawing.Point(494, 360);
-            this.PrevBlocBtn.Name = "PrevBlocBtn";
-            this.PrevBlocBtn.Size = new System.Drawing.Size(116, 23);
-            this.PrevBlocBtn.TabIndex = 43;
-            this.PrevBlocBtn.Text = "Previous Bloc";
-            this.PrevBlocBtn.UseVisualStyleBackColor = true;
-            this.PrevBlocBtn.Click += new System.EventHandler(this.PrevBlocBtn_Click);
+            this.PrevBlockBtn.Location = new System.Drawing.Point(494, 360);
+            this.PrevBlockBtn.Name = "PrevBlockBtn";
+            this.PrevBlockBtn.Size = new System.Drawing.Size(116, 23);
+            this.PrevBlockBtn.TabIndex = 43;
+            this.PrevBlockBtn.Text = "Previous Block";
+            this.PrevBlockBtn.UseVisualStyleBackColor = true;
+            this.PrevBlockBtn.Click += new System.EventHandler(this.PrevBlockBtn_Click);
             // 
             // panel1
             // 
@@ -358,7 +358,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 19);
             this.label3.TabIndex = 31;
-            this.label3.Text = "Bloc 1";
+            this.label3.Text = "Block 1";
             // 
             // DoorBox1
             // 
@@ -571,7 +571,7 @@
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(49, 19);
             this.label27.TabIndex = 31;
-            this.label27.Text = "Bloc 3";
+            this.label27.Text = "Block 3";
             // 
             // DoorBox3
             // 
@@ -769,7 +769,7 @@
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(49, 19);
             this.label38.TabIndex = 31;
-            this.label38.Text = "Bloc 4";
+            this.label38.Text = "Block 4";
             // 
             // DoorBox4
             // 
@@ -967,7 +967,7 @@
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(49, 19);
             this.label49.TabIndex = 31;
-            this.label49.Text = "Bloc 5";
+            this.label49.Text = "Block 5";
             // 
             // DoorBox5
             // 
@@ -1165,7 +1165,7 @@
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(49, 19);
             this.label60.TabIndex = 31;
-            this.label60.Text = "Bloc 6";
+            this.label60.Text = "Block 6";
             // 
             // DoorBox6
             // 
@@ -1239,15 +1239,15 @@
             this.label66.TabIndex = 6;
             this.label66.Text = "Height";
             // 
-            // NextBlocBtn
+            // NextBlockBtn
             // 
-            this.NextBlocBtn.Location = new System.Drawing.Point(663, 360);
-            this.NextBlocBtn.Name = "NextBlocBtn";
-            this.NextBlocBtn.Size = new System.Drawing.Size(116, 23);
-            this.NextBlocBtn.TabIndex = 40;
-            this.NextBlocBtn.Text = "Next Bloc";
-            this.NextBlocBtn.UseVisualStyleBackColor = true;
-            this.NextBlocBtn.Click += new System.EventHandler(this.NextBlocBtn_Click);
+            this.NextBlockBtn.Location = new System.Drawing.Point(663, 360);
+            this.NextBlockBtn.Name = "NextBlockBtn";
+            this.NextBlockBtn.Size = new System.Drawing.Size(116, 23);
+            this.NextBlockBtn.TabIndex = 40;
+            this.NextBlockBtn.Text = "Next Block";
+            this.NextBlockBtn.UseVisualStyleBackColor = true;
+            this.NextBlockBtn.Click += new System.EventHandler(this.NextBlockBtn_Click);
             // 
             // HomeBtn
             // 
@@ -1460,7 +1460,7 @@
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(49, 19);
             this.label12.TabIndex = 31;
-            this.label12.Text = "Bloc 2";
+            this.label12.Text = "Block 2";
             // 
             // DoorBox2
             // 
@@ -1659,7 +1659,7 @@
             this.label71.Name = "label71";
             this.label71.Size = new System.Drawing.Size(49, 19);
             this.label71.TabIndex = 31;
-            this.label71.Text = "Bloc 7";
+            this.label71.Text = "Block 7";
             // 
             // DoorBox7
             // 
@@ -1741,7 +1741,7 @@
             this.textBoxx6.ReadOnly = true;
             this.textBoxx6.Size = new System.Drawing.Size(158, 23);
             this.textBoxx6.TabIndex = 68;
-            this.textBoxx6.Click += new System.EventHandler(this.ModifBloc6_Click);
+            this.textBoxx6.Click += new System.EventHandler(this.ModifBlock6_Click);
             // 
             // textBoxx7
             // 
@@ -1751,7 +1751,7 @@
             this.textBoxx7.ReadOnly = true;
             this.textBoxx7.Size = new System.Drawing.Size(158, 23);
             this.textBoxx7.TabIndex = 69;
-            this.textBoxx7.Click += new System.EventHandler(this.ModifBloc7_Click);
+            this.textBoxx7.Click += new System.EventHandler(this.ModifBlock7_Click);
             // 
             // textBoxx4
             // 
@@ -1761,7 +1761,7 @@
             this.textBoxx4.ReadOnly = true;
             this.textBoxx4.Size = new System.Drawing.Size(158, 23);
             this.textBoxx4.TabIndex = 70;
-            this.textBoxx4.Click += new System.EventHandler(this.ModifBloc4_Click);
+            this.textBoxx4.Click += new System.EventHandler(this.ModifBlock4_Click);
             // 
             // textBoxx3
             // 
@@ -1771,7 +1771,7 @@
             this.textBoxx3.ReadOnly = true;
             this.textBoxx3.Size = new System.Drawing.Size(158, 23);
             this.textBoxx3.TabIndex = 71;
-            this.textBoxx3.Click += new System.EventHandler(this.ModifBloc3_Click);
+            this.textBoxx3.Click += new System.EventHandler(this.ModifBlock3_Click);
             // 
             // textBoxx2
             // 
@@ -1781,7 +1781,7 @@
             this.textBoxx2.ReadOnly = true;
             this.textBoxx2.Size = new System.Drawing.Size(158, 23);
             this.textBoxx2.TabIndex = 72;
-            this.textBoxx2.Click += new System.EventHandler(this.ModifBloc2_Click);
+            this.textBoxx2.Click += new System.EventHandler(this.ModifBlock2_Click);
             // 
             // textBoxx1
             // 
@@ -1791,7 +1791,7 @@
             this.textBoxx1.ReadOnly = true;
             this.textBoxx1.Size = new System.Drawing.Size(158, 23);
             this.textBoxx1.TabIndex = 73;
-            this.textBoxx1.Click += new System.EventHandler(this.ModifBloc1_Click);
+            this.textBoxx1.Click += new System.EventHandler(this.ModifBlock1_Click);
             // 
             // label78
             // 
@@ -1954,8 +1954,8 @@
             this.Controls.Add(this.label24);
             this.Controls.Add(this.MkOrdrBtn);
             this.Controls.Add(this.textBoxx5);
-            this.Controls.Add(this.PrevBlocBtn);
-            this.Controls.Add(this.NextBlocBtn);
+            this.Controls.Add(this.PrevBlockBtn);
+            this.Controls.Add(this.NextBlockBtn);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel4);
@@ -1992,7 +1992,7 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button MkOrdrBtn;
         private System.Windows.Forms.TextBox textBoxx5;
-        private System.Windows.Forms.Button PrevBlocBtn;
+        private System.Windows.Forms.Button PrevBlockBtn;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox DoorBox1;
@@ -2003,7 +2003,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label WidthTxt;
-        private System.Windows.Forms.Button NextBlocBtn;
+        private System.Windows.Forms.Button NextBlockBtn;
         private System.Windows.Forms.Button HomeBtn;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;

@@ -9,7 +9,7 @@ namespace Materials
         private string angleColor;
         private int width;
         private int depth;
-        private Bloc[] configuration;//block lists
+        private Block[] configuration;//block lists
         private Angle[] angles = new Angle[4];
         private int height;
         private float price;
@@ -20,11 +20,11 @@ namespace Materials
             this.depth = depth;
             this.width = width;
             this.angleColor = angleColor;
-            this.configuration = new Bloc[number];
+            this.configuration = new Block[number];
         }
 
         /*Allows adding a block to the list*/
-        public void AddBloc(Bloc bloc)
+        public void AddBlock(Block block)
         {
             int i;
             int h = 0;
@@ -34,10 +34,10 @@ namespace Materials
                 /*If there is an available slot, the element is added*/
                 if (this.configuration[i] == null)
                 {
-                    this.configuration[i] = bloc;
+                    this.configuration[i] = block;
                     h = i;
-                    this.height += (int) bloc.GetDescription()["height"];
-                    this.price += bloc.GetPrice();
+                    this.height += (int) block.GetDescription()["height"];
+                    this.price += block.GetPrice();
                     break;
                 }
             }
@@ -48,12 +48,12 @@ namespace Materials
             }
         }
 
-        public void DeletBloc()
+        public void DeletBlock()
         {
             configuration = null;
         }
 
-        public bool BlocStock(int num)
+        public bool BlockStock(int num)
         {
             Part[] parts = configuration[num - 1].GetParts();
             for(int i = 0; i < parts.Length; i++)
@@ -66,7 +66,7 @@ namespace Materials
             return true;
         }
 
-        public Bloc[] GetBloc()
+        public Block[] GetBlock()
         {
             if (configuration.Length != 0)
             {
@@ -74,8 +74,8 @@ namespace Materials
             }
             else//Test
             {
-                Bloc[] bloc = new Bloc[7];
-                return bloc;
+                Block[] block = new Block[7];
+                return block;
             }
         }
 
@@ -94,7 +94,7 @@ namespace Materials
         }
 
         /*To remove a block from the list*/
-        public void RemoveBloc(int number)
+        public void RemoveBlock(int number)
         {
             int i;
             int h = 10;

@@ -40,7 +40,7 @@ namespace Materials
             this.Close();
             
         }
-        private void PrevBlocBtn_Click(object sender, EventArgs e)
+        private void PrevBlockBtn_Click(object sender, EventArgs e)
         {
             Refrechmesure();
             Number();
@@ -56,7 +56,7 @@ namespace Materials
             TextBox(Number());
         }
         
-        private void NextBlocBtn_Click(object sender, EventArgs e)
+        private void NextBlockBtn_Click(object sender, EventArgs e)
         {
             Refrechmesure();
             Number();
@@ -87,7 +87,7 @@ namespace Materials
                 {
                     for(int x = 0; x < 7; x++)
                     {
-                        cupboard1.RemoveBloc(x);
+                        cupboard1.RemoveBlock(x);
                     }
                     this.cupboard1 = null;//Tentative de correction de bug quand on back
                     this.configpage = null;//Tentative de correction de bug quand on back
@@ -100,7 +100,7 @@ namespace Materials
                 for (int i = 0; i < Number(); i++)
                 {
                     Console.WriteLine(String.Format("height of box {0} is {1}", i, height[i]));
-                    cupboard1.AddBloc(new Box(height[i], panelsColor[i], cupboard1, door[i]));//hasdoor[i], doorcolor[i]
+                    cupboard1.AddBlock(new Box(height[i], panelsColor[i], cupboard1, door[i]));//hasdoor[i], doorcolor[i]
                 }
                 cupboard1.AddAngles(stock);
                 Console.WriteLine("\n cupboard built");
@@ -436,7 +436,7 @@ namespace Materials
             
         }
         
-        private void ModifBloc1_Click(object sender, EventArgs e)
+        private void ModifBlock1_Click(object sender, EventArgs e)
         {
 
             for (int i = 0; i < listPanel.Count; i++)
@@ -447,7 +447,7 @@ namespace Materials
             index = 0;
         }
 
-        private void ModifBloc2_Click(object sender, EventArgs e)
+        private void ModifBlock2_Click(object sender, EventArgs e)
         {
             if(height[0]!=0)
             {
@@ -464,7 +464,7 @@ namespace Materials
             }
         }
 
-        private void ModifBloc3_Click(object sender, EventArgs e)
+        private void ModifBlock3_Click(object sender, EventArgs e)
         {
             if (height[1] != 0)
             {
@@ -482,7 +482,7 @@ namespace Materials
             
         }
 
-        private void ModifBloc4_Click(object sender, EventArgs e)
+        private void ModifBlock4_Click(object sender, EventArgs e)
         {
             if (height[2] != 0)
             {
@@ -499,7 +499,7 @@ namespace Materials
             }
         }
 
-        private void ModifBloc5_Click(object sender, EventArgs e)
+        private void ModifBlock5_Click(object sender, EventArgs e)
         {
             if (height[3] != 0)
             {
@@ -516,7 +516,7 @@ namespace Materials
             }
 
         }
-        private void ModifBloc6_Click(object sender, EventArgs e)
+        private void ModifBlock6_Click(object sender, EventArgs e)
         {
             if (height[4] != 0)
             {
@@ -533,7 +533,7 @@ namespace Materials
             }
         }
 
-        private void ModifBloc7_Click(object sender, EventArgs e)
+        private void ModifBlock7_Click(object sender, EventArgs e)
         {
             if (height[5] != 0)
             {
@@ -563,7 +563,7 @@ namespace Materials
             }
             if (i == 1)
             {
-                textBoxx1.Text ="Bloc 1: "+this.height[0]+"cm";
+                textBoxx1.Text ="Block 1: "+this.height[0]+"cm";
                 textBoxx2.Text = "";
                 textBoxx3.Text = "";
                 textBoxx4.Text = "";
@@ -573,8 +573,8 @@ namespace Materials
             }
             if (i == 2)
             {
-                textBoxx1.Text = "Bloc 1: " + this.height[0] + "cm";
-                textBoxx2.Text = "Bloc 2: " + this.height[1] + "cm";
+                textBoxx1.Text = "Block 1: " + this.height[0] + "cm";
+                textBoxx2.Text = "Block 2: " + this.height[1] + "cm";
                 textBoxx3.Text = "";
                 textBoxx4.Text = "";
                 textBoxx5.Text = "";
@@ -583,9 +583,9 @@ namespace Materials
             }
             if (i == 3)
             {
-                textBoxx1.Text = "Bloc 1: " + this.height[0] + "cm";
-                textBoxx2.Text = "Bloc 2: " + this.height[1] + "cm";
-                textBoxx3.Text = "Bloc 3: " + this.height[2] + "cm";
+                textBoxx1.Text = "Block 1: " + this.height[0] + "cm";
+                textBoxx2.Text = "Block 2: " + this.height[1] + "cm";
+                textBoxx3.Text = "Block 3: " + this.height[2] + "cm";
                 textBoxx4.Text = "";
                 textBoxx5.Text = "";
                 textBoxx6.Text = "";
@@ -593,43 +593,43 @@ namespace Materials
             }
             if (i == 4)
             {
-                textBoxx1.Text = "Bloc 1: " + this.height[0] + "cm";
-                textBoxx2.Text = "Bloc 2: " + this.height[1] + "cm";
-                textBoxx3.Text = "Bloc 3: " + this.height[2] + "cm";
-                textBoxx4.Text = "Bloc 4: " + this.height[3] + "cm";
+                textBoxx1.Text = "Block 1: " + this.height[0] + "cm";
+                textBoxx2.Text = "Block 2: " + this.height[1] + "cm";
+                textBoxx3.Text = "Block 3: " + this.height[2] + "cm";
+                textBoxx4.Text = "Block 4: " + this.height[3] + "cm";
                 textBoxx5.Text = "";
                 textBoxx6.Text = "";
                 textBoxx7.Text = "";
             }
             if (i == 5)
             {
-                textBoxx1.Text = "Bloc 1: " + this.height[0] + "cm";
-                textBoxx2.Text = "Bloc 2: " + this.height[1] + "cm";
-                textBoxx3.Text = "Bloc 3: " + this.height[2] + "cm";
-                textBoxx4.Text = "Bloc 4: " + this.height[3] + "cm";
-                textBoxx5.Text = "Bloc 5: " + this.height[4] + "cm";
+                textBoxx1.Text = "Block 1: " + this.height[0] + "cm";
+                textBoxx2.Text = "Block 2: " + this.height[1] + "cm";
+                textBoxx3.Text = "Block 3: " + this.height[2] + "cm";
+                textBoxx4.Text = "Block 4: " + this.height[3] + "cm";
+                textBoxx5.Text = "Block 5: " + this.height[4] + "cm";
                 textBoxx6.Text = "";
                 textBoxx7.Text = "";
             }
             if (i == 6)
             {
-                textBoxx1.Text = "Bloc 1: " + this.height[0] + "cm";
-                textBoxx2.Text = "Bloc 2: " + this.height[1] + "cm";
-                textBoxx3.Text = "Bloc 3: " + this.height[2] + "cm";
-                textBoxx4.Text = "Bloc 4: " + this.height[3] + "cm";
-                textBoxx5.Text = "Bloc 5: " + this.height[4] + "cm";
-                textBoxx6.Text = "Bloc 6: " + this.height[5] + "cm";
+                textBoxx1.Text = "Block 1: " + this.height[0] + "cm";
+                textBoxx2.Text = "Block 2: " + this.height[1] + "cm";
+                textBoxx3.Text = "Block 3: " + this.height[2] + "cm";
+                textBoxx4.Text = "Block 4: " + this.height[3] + "cm";
+                textBoxx5.Text = "Block 5: " + this.height[4] + "cm";
+                textBoxx6.Text = "Block 6: " + this.height[5] + "cm";
                 textBoxx7.Text = "";
             }
             if (i == 7)
             {
-                textBoxx1.Text = "Bloc 1: " + this.height[0] + "cm";
-                textBoxx2.Text = "Bloc 2: " + this.height[1] + "cm";
-                textBoxx3.Text = "Bloc 3: " + this.height[2] + "cm";
-                textBoxx4.Text = "Bloc 4: " + this.height[3] + "cm";
-                textBoxx5.Text = "Bloc 5: " + this.height[4] + "cm";
-                textBoxx6.Text = "Bloc 6: " + this.height[5] + "cm";
-                textBoxx7.Text = "Bloc 7: " + this.height[6] + "cm";
+                textBoxx1.Text = "Block 1: " + this.height[0] + "cm";
+                textBoxx2.Text = "Block 2: " + this.height[1] + "cm";
+                textBoxx3.Text = "Block 3: " + this.height[2] + "cm";
+                textBoxx4.Text = "Block 4: " + this.height[3] + "cm";
+                textBoxx5.Text = "Block 5: " + this.height[4] + "cm";
+                textBoxx6.Text = "Block 6: " + this.height[5] + "cm";
+                textBoxx7.Text = "Block 7: " + this.height[6] + "cm";
             }
             TotalHeight();
             texttotalheigth.Text = Convert.ToString(totalheight);
@@ -695,7 +695,7 @@ namespace Materials
             }
             else
             {
-                MessageBox.Show("Bloc "+(i+1)+" is not configured");
+                MessageBox.Show("Block "+(i+1)+" is not configured");
             }
         }
         private void CopyBox1_Click(object sender, EventArgs e)

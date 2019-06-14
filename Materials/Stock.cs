@@ -243,12 +243,12 @@ namespace Materials
             
             /*Maximum number of arts in a cupboard is (7 boxes * 15 parts) + 4 angles = 109*/
             Dictionary<string, int> quantities = new Dictionary<string, int>();
-            for (int b = 0; b < cupboard.GetBloc().Length; b++)
+            for (int b = 0; b < cupboard.GetBlock().Length; b++)
             {
-                Bloc bloc = cupboard.GetBloc()[b];
-                for (int p = 0; p < bloc.GetParts().Length; p++)
+                Block block = cupboard.GetBlock()[b];
+                for (int p = 0; p < block.GetParts().Length; p++)
                 {
-                    Part part = bloc.GetParts()[p];
+                    Part part = block.GetParts()[p];
                     if (part != null)
                     {
                         string code = part.GetDescription()["code"].ToString();
