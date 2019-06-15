@@ -28,7 +28,7 @@ namespace Materials
         {
             if (maskedTextBox1.Text == "12345")
             {
-                System.Threading.Thread monthread = new System.Threading.Thread(new System.Threading.ThreadStart(openSKOrdersPage));
+                System.Threading.Thread monthread = new System.Threading.Thread(new System.Threading.ThreadStart(openSKGridPage));
                 monthread.Start();
                 this.Close();
             }
@@ -42,9 +42,9 @@ namespace Materials
         {
             Application.Run(new HomePage()); //opens the Home form
         }
-        public static void openSKOrdersPage()
+        public static void openSKGridPage()
         {
-            Application.Run(new SKOrdersPage()); //opens the Orders form
+            Application.Run(new SKGridPage()); //opens the Orders form
         }
     }
 }
