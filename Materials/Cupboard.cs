@@ -53,13 +53,14 @@ namespace Materials
             configuration = null;
         }
 
-        public bool BlockStock(int num)
+        public bool BlockStock(int num, Stock sqlstock)
         {
             Part[] parts = configuration[num - 1].GetParts();
             for(int i = 0; i < parts.Length; i++)
             {
-                if (!(parts[num-1].IsAvailable()) )
+                if (!(parts[i].IsAvailable(sqlstock)) )
                 {
+                    Console.WriteLine("out of stock !");
                     return false;
                 }
             }

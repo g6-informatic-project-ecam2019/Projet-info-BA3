@@ -22,8 +22,9 @@ namespace Materials
             return this.price;
         }
 
-        public bool IsAvailable()
+        public bool IsAvailable(Stock pricestock)
         {
+            this.available = pricestock.IsAvailable(this);
             return available;
         }
 
