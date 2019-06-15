@@ -22,8 +22,8 @@ namespace Materials
         {
             this.height = height;
             this.pannelsColor = pannelsColor;
-            this.hasdoor = (door == "No Door") ? false : true;
-            this.doorcolor = ((door == "No Door") || (door == "Glass")) ? null : door;
+            this.hasdoor = (door == "No door") ? false : true;
+            this.doorcolor = ((door == "No door") || (door == "Glass")) ? null : door;
             this.typedoor = (door == "Glass") ? "GlassDoor" : "ClassicDoor";
             this.Cupboard = cupboard.GetDescription();
             this.depth = Convert.ToInt32(Cupboard["depth"]);
@@ -33,7 +33,6 @@ namespace Materials
             ComputePrice();
         }
 
-        /* !!!!!!!!!!!!!!!!! CORRECTION TO BE MADE 5 LINES BELOW !!!!!!!!!!!!!!!!!!!!!!!!!! */
         public void BuildParts()
         {
             for (int i = 0; i < 4; i++)

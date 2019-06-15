@@ -58,11 +58,14 @@ namespace Materials
             Part[] parts = configuration[num - 1].GetParts();
             for(int i = 0; i < parts.Length; i++)
             {
-                if (!(parts[i].IsAvailable(sqlstock)) )
-                {
-                    Console.WriteLine("out of stock !");
-                    return false;
+                if (parts[i] != null){
+                    if (!(parts[i].IsAvailable(sqlstock)))
+                    {
+                        Console.WriteLine("out of stock !");
+                        return false;
+                    }
                 }
+                
             }
             return true;
         }
