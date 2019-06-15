@@ -87,7 +87,6 @@ C:\Users\mat_3\Documents\GitHub\Projet-info-BA3\Materials\obj\Debug\Materials.cs
 C:\Users\mat_3\Documents\GitHub\Projet-info-BA3\Materials\obj\Debug\Materials.exe
 C:\Users\mat_3\Documents\GitHub\Projet-info-BA3\Materials\obj\Debug\Materials.pdb
 D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.csprojAssemblyReference.cache
-D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.BlockAmountPage.resources
 D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.ConfigurationPage.resources
 D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.ConfirmOrderPage.resources
 D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.HomePage.resources
@@ -96,9 +95,16 @@ D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.
 D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.Properties.Resources.resources
 D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.SKGridPage.resources
 D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.SKLoginPage.resources
-D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.SKOrdersPage.resources
 D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.csproj.GenerateResource.cache
 D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.csproj.CoreCompileInputs.cache
 D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.BlockAmountPage.resources
 D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.PopUpAdd.resources
 D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.PopUpDel.resources
+D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\bin\Debug\Materials.exe.config
+D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\bin\Debug\Materials.exe
+D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\bin\Debug\Materials.pdb
+D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\bin\Debug\MySql.Data.dll
+D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\bin\Debug\Google.Protobuf.dll
+D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.csproj.CopyComplete
+D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.exe
+D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.pdb

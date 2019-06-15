@@ -415,7 +415,7 @@ namespace Materials
                 List<int> possibleHeights = ExistingDimension("height", "Cornieres");
                 Console.WriteLine("No fitting part found.1D");
                 Console.WriteLine(part.GetDescription()["ref"].ToString());
-                Console.WriteLine(part.GetDescription()["color"].ToString());
+                //Console.WriteLine(part.GetDescription()["color"].ToString());
                 Console.WriteLine(part.GetDescription()["length"].ToString());
                 return null;
             }
