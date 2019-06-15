@@ -61,7 +61,7 @@ namespace Materials
             }
             catch (KeyNotFoundException)
             {
-                dimension = part.GetDescription()["dimension"].ToString();
+                dimension = part.GetDescription()["dim"].ToString();
                 length = (int)part.GetDescription()["length"];
             }
             try
@@ -195,7 +195,7 @@ namespace Materials
 
                 try
                 {
-                    string dimension = part.GetDescription()["dimension"].ToString();
+                    string dimension = part.GetDescription()["dim"].ToString();
                 }
                 catch(KeyNotFoundException)
                 {
@@ -203,11 +203,11 @@ namespace Materials
                 }
                 try
                 {
-                    code = SelectPart(part, part.GetDescription()["dimension"].ToString(), part.GetDescription()["color"].ToString());
+                    code = SelectPart(part, part.GetDescription()["dim"].ToString(), part.GetDescription()["color"].ToString());
                 }
                 catch (KeyNotFoundException)
                 {
-                    code = code = SelectPart(part, part.GetDescription()["dimension"].ToString(), "");
+                    code = SelectPart(part, part.GetDescription()["dim"].ToString(), "");
                 }
             }
             Connect();
