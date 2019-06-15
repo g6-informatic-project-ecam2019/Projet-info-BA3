@@ -35,9 +35,9 @@ namespace Materials
             {
                 connection.Open();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                DialogResult dialog =  MessageBox.Show("Unabled to connect to the database, please check your connection", "Error",MessageBoxButtons.OK);
+                DialogResult dialog =  MessageBox.Show(String.Format("Unabled to connect to the database, please check your connection. \n Error is : {0}",ex), "Error", MessageBoxButtons.OK);
                 if (dialog == DialogResult.OK)
                 {
                     this.Connect();
