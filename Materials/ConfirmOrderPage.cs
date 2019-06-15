@@ -14,6 +14,7 @@ namespace Materials
     {
         private string Lname;
         private string Fname;
+        private Stock stock = new Stock("Server=localhost;Port=3306;Database=mykitbox;Uid=root;Pwd=");
         ConfigurationPage configpage;
         Cupboard cupboard;
         float price=0;
@@ -48,7 +49,6 @@ namespace Materials
         }
         private string detailpriceBlock(int num)
         {
-            Stock stock = new Stock("Server=localhost;Port=3306;Database=mykitbox;Uid=root;Pwd=");
             Block[] block = cupboard.GetBlock();
             if (num <= block.Length)
             {
@@ -82,7 +82,6 @@ namespace Materials
                
         private string detailpriceBlockNoStock(int num)
         {
-            Stock stock = new Stock("Server=localhost;Port=3306;Database=mykitbox;Uid=root;Pwd=");
             Block[] block = cupboard.GetBlock();
             if (num <= block.Length)
             {
@@ -135,7 +134,6 @@ namespace Materials
         }
         private void buttonConfirm_Click(object sender, EventArgs e)
         {
-            Stock stock = new Stock("Server=localhost;Port=3306;Database=mykitbox;Uid=root;Pwd=");
             if (!(Stock(stock)))
             {
                 panelOut.Visible = true;
@@ -192,6 +190,7 @@ namespace Materials
         {
             Lname = textBoxLname.Text;
             Fname = textBoxFname.Text;
+            stock.ConfirmOrder(Fname, Lname, "X", "0", "0", this.cupboard);
             MessageBox.Show("Confirmed preorder, go to checkout to pay. Thank you "+Fname+" "+Lname+" and see you soon !");
             System.Threading.Thread monthread = new System.Threading.Thread(new System.Threading.ThreadStart(openHomePage));
             monthread.Start();
