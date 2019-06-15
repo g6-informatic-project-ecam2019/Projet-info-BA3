@@ -97,6 +97,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>mykitboxDataSet2.xsd</DependentUpon>
     </Compile>
+    <Compile Include="mykitboxDataSet31.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>mykitboxDataSet31.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="mykitboxDataSet41.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>mykitboxDataSet41.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="mykitboxDataSet52.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>mykitboxDataSet52.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Panel.cs" />
     <Compile Include="Part.cs" />
     <Compile Include="PopUpAdd.cs">
@@ -188,6 +203,17 @@
     <None Include="mykitboxDataSet3.xss">
       <DependentUpon>mykitboxDataSet3.xsd</DependentUpon>
     </None>
+    <None Include="mykitboxDataSet31.xsc">
+      <DependentUpon>mykitboxDataSet31.xsd</DependentUpon>
+    </None>
+    <None Include="mykitboxDataSet31.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>mykitboxDataSet31.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="mykitboxDataSet31.xss">
+      <DependentUpon>mykitboxDataSet31.xsd</DependentUpon>
+    </None>
     <None Include="mykitboxDataSet4.xsc">
       <DependentUpon>mykitboxDataSet4.xsd</DependentUpon>
     </None>
@@ -198,6 +224,17 @@
     <None Include="mykitboxDataSet4.xss">
       <DependentUpon>mykitboxDataSet4.xsd</DependentUpon>
     </None>
+    <None Include="mykitboxDataSet41.xsc">
+      <DependentUpon>mykitboxDataSet41.xsd</DependentUpon>
+    </None>
+    <None Include="mykitboxDataSet41.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>mykitboxDataSet41.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="mykitboxDataSet41.xss">
+      <DependentUpon>mykitboxDataSet41.xsd</DependentUpon>
+    </None>
     <None Include="mykitboxDataSet51.xsc">
       <DependentUpon>mykitboxDataSet51.xsd</DependentUpon>
     </None>
@@ -207,6 +244,17 @@
     </None>
     <None Include="mykitboxDataSet51.xss">
       <DependentUpon>mykitboxDataSet51.xsd</DependentUpon>
+    </None>
+    <None Include="mykitboxDataSet52.xsc">
+      <DependentUpon>mykitboxDataSet52.xsd</DependentUpon>
+    </None>
+    <None Include="mykitboxDataSet52.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>mykitboxDataSet52.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="mykitboxDataSet52.xss">
+      <DependentUpon>mykitboxDataSet52.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
