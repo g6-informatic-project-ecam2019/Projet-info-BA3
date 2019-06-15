@@ -14,6 +14,9 @@ namespace Materials
     {
         private string Lname;
         private string Fname;
+        private string adress;
+        private string zip;
+        private string phoneNumber;
         private Stock stock = new Stock("Server=localhost;Port=3306;Database=mykitbox;Uid=root;Pwd=");
         ConfigurationPage configpage;
         Cupboard cupboard;
@@ -190,11 +193,20 @@ namespace Materials
         {
             Lname = textBoxLname.Text;
             Fname = textBoxFname.Text;
-            stock.ConfirmOrder(Fname, Lname, "X", "0", "0", this.cupboard);
-            MessageBox.Show("Confirmed preorder, go to checkout to pay. Thank you "+Fname+" "+Lname+" and see you soon !");
-            System.Threading.Thread monthread = new System.Threading.Thread(new System.Threading.ThreadStart(openHomePage));
-            monthread.Start();
-            this.Close();
+            adress = textBoxAdress.Text;
+            phoneNumber = textBoxPhone.Text;
+            zip = textBoxZip.Text;
+            if ((Lname == "")||(Fname == "") || (adress == "") || (phoneNumber == "") || (zip == "")){
+                MessageBox.Show("There seem to be a missing information.\n Please make sure to fill all fields", "Error", MessageBoxButtons.OK);
+            }
+            else
+            {
+                stock.ConfirmOrder(Fname, Lname, adress, phoneNumber, zip, this.cupboard);
+                MessageBox.Show("Confirmed preorder, go to checkout to pay. Thank you " + Fname + " " + Lname + " and see you soon !");
+                System.Threading.Thread mythread = new System.Threading.Thread(new System.Threading.ThreadStart(openHomePage));
+                mythread.Start();
+                this.Close();
+            }
         }
     }
 }
