@@ -17,7 +17,7 @@ namespace Materials
         {
             this.price = price;
             this.length = length;
-            this.position = pos;
+            this.position = position;
             this.name = String.Format("Traverse {0}", position);
             this.determiningDimension = ((this.position == "Av") || (this.position == "Ar")) ? "width" : "depth";
         }

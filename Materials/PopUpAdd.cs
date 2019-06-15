@@ -40,16 +40,13 @@ namespace Materials
                 conn.Open();
                 command.ExecuteNonQuery();
                 conn.Close();
+                this.Close();
             }
             catch (Exception)
             {
                 //Raise the error
-                MessageBox.Show("Incorrect Values, please do enter correct values", "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Incorrect values, please do enter correct values", "Error", MessageBoxButtons.OK);
             }
-            //Close the database connection
-
-            this.Close();
-
         }
         
         private void Cancel_Click(object sender, EventArgs e)

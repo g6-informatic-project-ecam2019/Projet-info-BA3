@@ -488,12 +488,21 @@ namespace Materials
         private void SqlUpdateStatement(string com)
         {
             SqlConnection();
-            MySqlCommand command = conn.CreateCommand();
-            //Update the database for each modified row
-            command.CommandText = com;
-            command.ExecuteNonQuery();
-            //Close the databsse connection
-            conn.Close();
+            try
+            {
+                MySqlCommand command = conn.CreateCommand();
+                //Update the database for each modified row
+                command.CommandText = com;
+                command.ExecuteNonQuery();
+                //Close the databsse connection
+                conn.Close();
+            }
+            catch (Exception)
+            {
+                //Raise the error
+                MessageBox.Show("The modified value is not correct, please do enter a correct value !", "Error", MessageBoxButtons.OK);
+            }
+
         }
 
         private void Prevbtn_Click(object sender, EventArgs e)

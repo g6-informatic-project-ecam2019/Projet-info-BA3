@@ -49,7 +49,6 @@ namespace Materials
                 //Raise the error
                 MessageBox.Show("Value not Find, please enter a correct value", "Error",MessageBoxButtons.OK);
             }
-            //Close the database connection
 
             this.Close();
         }

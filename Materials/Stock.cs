@@ -165,7 +165,8 @@ namespace Materials
             {
                 string dimension1 = part.GetDescription()["dim1"].ToString();
                 string dimension2 = part.GetDescription()["dim2"].ToString();
-                if (part is GlassDoor){
+                if (part is GlassDoor)
+                {
                     try
                     {
                         code = SelectPart2D(part, dimension1, dimension2, "verre");
@@ -409,6 +410,7 @@ namespace Materials
                 List<int> possibleHeights = ExistingDimension("height", "Cornieres");
                 Console.WriteLine("No fitting part found.1D");
                 Console.WriteLine(part.GetDescription()["ref"].ToString());
+                Console.WriteLine(part.GetDescription()["color"].ToString());
                 Console.WriteLine(part.GetDescription()["length"].ToString());
                 return null;
             }

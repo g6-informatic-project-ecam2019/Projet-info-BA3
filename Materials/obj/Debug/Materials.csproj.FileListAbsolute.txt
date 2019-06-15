@@ -35,6 +35,7 @@ D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Mater
 D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.ConfirmOrderPage.resources
 D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.HomePage.resources
 D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.SKLoginPage.resources
+D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.SKOrdersPage.resources
 D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.csproj.GenerateResource.cache
 D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.csproj.CoreCompileInputs.cache
 D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.exe
@@ -98,5 +99,6 @@ D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.
 D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.SKOrdersPage.resources
 D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.csproj.GenerateResource.cache
 D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.csproj.CoreCompileInputs.cache
+D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.BlockAmountPage.resources
 D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.PopUpAdd.resources
 D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.PopUpDel.resources
