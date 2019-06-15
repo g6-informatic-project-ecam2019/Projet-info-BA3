@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 15 juin 2019 à 09:56
+-- Généré le :  sam. 15 juin 2019 à 12:10
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `client` (
 --
 
 INSERT INTO `client` (`idclient`, `firstname`, `lastname`, `adress`, `zip`, `phonenumber`) VALUES
-(1, 'Jean', 'Chatier', 'rue des archers 190', 25250, 489574785),
+(1, 'Jean', 'Chatier', 'rue des archers 190', 2525, 489574785),
 (2, 'Philippe', 'Dutron', 'avenue des courtières 40', 1570, 457459875);
 
 -- --------------------------------------------------------
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `client_command` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `description` varchar(150) NOT NULL,
   `command_status` varchar(30) NOT NULL DEFAULT 'Ordered',
-  `payment_status` varchar(30) NOT NULL,
+  `payment_status` varchar(30) NOT NULL DEFAULT 'Payed',
   PRIMARY KEY (`idcom`),
   KEY `client_command_ibfk_1` (`idclient`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
@@ -490,7 +490,7 @@ CREATE TABLE IF NOT EXISTS `prices` (
 --
 
 INSERT INTO `prices` (`idsupp`, `code`, `supplier_price`, `reprieve`) VALUES
-(1, 'COR36BL', 0.3, 3),
+(1, 'COR36BL', 0.3, 2),
 (1, 'COR46BL', 0.37, 12),
 (1, 'COR56BL', 0.46, 3),
 (1, 'COR72BL', 0.54, 12),
