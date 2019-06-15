@@ -50,12 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Angle.cs" />
-    <Compile Include="Bloc.cs" />
-    <Compile Include="BlocAmountPage.cs">
+    <Compile Include="Block.cs" />
+    <Compile Include="BlockAmountPage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BlocAmountPage.Designer.cs">
-      <DependentUpon>BlocAmountPage.cs</DependentUpon>
+    <Compile Include="BlockAmountPage.Designer.cs">
+      <DependentUpon>BlockAmountPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Box.cs" />
     <Compile Include="Breadth.cs" />
@@ -98,7 +98,7 @@
       <DependentUpon>mykitboxDataSet2.xsd</DependentUpon>
     </Compile>
     <Compile Include="Panel.cs" />
-    <Compile Include="Piece.cs" />
+    <Compile Include="Part.cs" />
     <Compile Include="PopUpAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,8 +214,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="BlocAmountPage.resx">
-      <DependentUpon>BlocAmountPage.cs</DependentUpon>
+    <EmbeddedResource Include="BlockAmountPage.resx">
+      <DependentUpon>BlockAmountPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConfigurationPage.resx">
       <DependentUpon>ConfigurationPage.cs</DependentUpon>
