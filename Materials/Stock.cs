@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 namespace Materials
 {
@@ -34,9 +35,13 @@ namespace Materials
             {
                 connection.Open();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine(ex.Message);
+                DialogResult dialog =  MessageBox.Show("Unabled to connect to the database, please check your connection", "Error",MessageBoxButtons.OK);
+                if (dialog == DialogResult.OK)
+                {
+                    this.Connect();
+                }
             }
         }
 
