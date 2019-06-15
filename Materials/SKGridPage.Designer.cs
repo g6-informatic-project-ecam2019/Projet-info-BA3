@@ -104,7 +104,7 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(711, 290);
+            this.dataGridView1.Size = new System.Drawing.Size(711, 316);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             // 
@@ -257,6 +257,7 @@
             // 
             // Modifie
             // 
+            this.Modifie.Enabled = false;
             this.Modifie.Location = new System.Drawing.Point(771, 377);
             this.Modifie.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Modifie.Name = "Modifie";
@@ -317,10 +318,10 @@
             // 
             // RowAdd
             // 
-            this.RowAdd.Location = new System.Drawing.Point(682, 493);
+            this.RowAdd.Location = new System.Drawing.Point(729, 493);
             this.RowAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RowAdd.Name = "RowAdd";
-            this.RowAdd.Size = new System.Drawing.Size(83, 48);
+            this.RowAdd.Size = new System.Drawing.Size(57, 48);
             this.RowAdd.TabIndex = 16;
             this.RowAdd.Text = "Add a part";
             this.RowAdd.UseVisualStyleBackColor = true;
@@ -329,7 +330,7 @@
             // 
             // RowDelete
             // 
-            this.RowDelete.Location = new System.Drawing.Point(771, 493);
+            this.RowDelete.Location = new System.Drawing.Point(792, 493);
             this.RowDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RowDelete.Name = "RowDelete";
             this.RowDelete.Size = new System.Drawing.Size(83, 48);

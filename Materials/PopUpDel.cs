@@ -33,23 +33,23 @@ namespace Materials
             //Connection to the databse
             SKGridPage sk = new SKGridPage();
             sk.SqlConnection();
-            //Creation of the Sql command
-            MySqlCommand command = conn.CreateCommand();
-            command.CommandText = string.Format("DELETE FROM part WHERE code = '{0}'", codedb);
 
             try
             {
+                //Creation of the Sql command
+                MySqlCommand command = conn.CreateCommand();
+                command.CommandText = string.Format("DELETE FROM part WHERE code = '{0}'", codedb);
                 //Open the database connection and execute the command
                 conn.Open();
                 command.ExecuteNonQuery();
+                conn.Close();
             }
-            catch (Exception x)
+            catch (Exception)
             {
                 //Raise the error
-                Console.WriteLine(x.Message);
+                MessageBox.Show("Value not Find, please enter a correct value", "Error",MessageBoxButtons.OK);
             }
             //Close the database connection
-            conn.Close();
 
             this.Close();
         }

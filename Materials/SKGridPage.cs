@@ -92,11 +92,11 @@ namespace Materials
         {
             //Initialize the Winform for this button
             textBox1.Enabled = true;
-            textBox1.Visible = true;
             textBox1.Text = "";
             SearchLabel.Text = "Search by lastname :";
             dataGridView2.Visible = true;
-            Modifie.Visible = true;
+            Modifie.Enabled = true;
+            dataGridView1.Height = 250;
 
             dataGridView1.DataSource = dt_clientcom;
             dataGridView2.DataSource = dt_client;
@@ -110,11 +110,13 @@ namespace Materials
         private void Client_Click(object sender, EventArgs e)
         {
             //Initialize the Winform for this button
-            textBox1.Visible = false;
-            SearchLabel.Text = "";
+            textBox1.Enabled = true;
+            textBox1.Text = "";
+            SearchLabel.Text = "Search by idcom :";
             dataGridView2.Visible = false;
-            Modifie.Visible = false;
+            Modifie.Enabled = false;
             dataGridView1.DataSource = dt_clientparts;
+            dataGridView1.Height = 460;
             LoadData();
             //Ask to take values from the db and put them into the datagrid column
             SqlSelect("SELECT part.ref FROM client_partscommand INNER JOIN part ON client_partscommand.code = part.code", "ref");
@@ -129,13 +131,13 @@ namespace Materials
         {
             //Initialize the Winform for this button
             textBox1.Enabled = true;
-            textBox1.Visible = true;
             textBox1.Text = "";
             SearchLabel.Text = "Search by code :";
             dataGridView2.Visible = false;
-            Modifie.Visible = true;
+            Modifie.Enabled = true;
             dataGridView1.DataSource = dt_prices;
             dataGridView1.Columns["idsupp"].Visible = false;
+            dataGridView1.Height = 460;
             LoadData();
             //Ask to take values from the db and put them into the datagrid column
             SqlSelect("SELECT prices.idsupp, supplier.name FROM prices INNER JOIN supplier ON prices.idsupp = supplier.idsupp ORDER BY `prices`.`idsupp` ASC", "name");
@@ -144,25 +146,25 @@ namespace Materials
         {
             //Initialize the Winform for this button
             textBox1.Enabled = true;
-            textBox1.Visible = true;
             textBox1.Text = "";
             SearchLabel.Text = "Search by code :";
             dataGridView2.Visible = false;
-            Modifie.Visible = true;
+            Modifie.Enabled = true;
             dataGridView1.DataSource = dt_parts;
-
+            dataGridView1.Height = 460;
             LoadData();
         }
         private void PartCommand_Click(object sender, EventArgs e)
         {
             //Initialize the Winform for this button
-            textBox1.Enabled = false;
-            textBox1.Visible = false;
-            SearchLabel.Text = "";
+            textBox1.Enabled = true;
+            textBox1.Text = "";
+            SearchLabel.Text = "Search by code :";
             dataGridView2.Visible = false;
-            Modifie.Visible = false;
+            Modifie.Enabled = false;
             dataGridView1.DataSource = dt_com;
             dataGridView1.Columns["idsupp"].Visible = false;
+            dataGridView1.Height = 460;
             LoadData();
             //Ask to take values from the db and put them into the datagrid column
             SqlSelect("SELECT partcommand.num, supplier.name FROM partcommand INNER JOIN supplier ON partcommand.idsupp = supplier.idsupp ORDER BY `partcommand`.`num` ASC", "name");
@@ -176,6 +178,7 @@ namespace Materials
         {
             //Count the number of column to make the difference
             int count = ((DataTable)dataGridView1.DataSource).Columns.Count;
+            Console.WriteLine(count);
             if (count == 8)
             {
                 LoadTableChange(dataGridView1, "lastname", dt_clientcom);
@@ -184,6 +187,14 @@ namespace Materials
             else if (count == 5)
             {
                 LoadTableChange(dataGridView1, "code", dt_prices);
+            }
+            else if (count == 7)
+            {
+                LoadTableChange(dataGridView1, "code", dt_com);
+            }
+            else if (count == 10)
+            {
+                LoadTableChange(dataGridView1, "idcom", dt_clientparts);
             }
             else if (count == 13)
             {
@@ -366,20 +377,19 @@ namespace Materials
             //Initialize the tools
             CancelMod.Visible = false;
             ApplyMod.Visible = false;
-            Modifie.Visible = true;
             Prevbtn.Visible = true;
             ClientCommand.Enabled = true;
             Client_Parts.Enabled = true;
             Prices.Enabled = true;
             PartCommand.Enabled = true;
             Parts.Enabled = true;
-            textBox1.Enabled = true;
             RowAdd.Visible = false;
             RowDelete.Visible = false;
             textboxDel.Visible = false;
             labelDel.Visible = false;
             dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
             textBox1.Text = "";
+            Modifie.Visible = true;
             this.partTableAdapter.Fill(this.mykitboxDataSet5.part);
             //Put the color of the columns as white (initial color)
             for (var i = 0; i < ((DataTable)dataGridView1.DataSource).Columns.Count; i++)
