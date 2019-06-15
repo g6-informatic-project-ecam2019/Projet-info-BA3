@@ -2,8 +2,8 @@
 -- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3305
--- Généré le :  lun. 25 mars 2019 à 15:12
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  sam. 15 juin 2019 à 09:59
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `client_command` (
   `idclient` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `description` varchar(150) NOT NULL,
-  `command_status` varchar(30) NOT NULL DEFAULT "Ordered",
+  `command_status` varchar(30) NOT NULL DEFAULT 'Ordered',
   `payment_status` varchar(30) NOT NULL,
   PRIMARY KEY (`idcom`),
   KEY `client_command_ibfk_1` (`idclient`)
@@ -60,11 +60,11 @@ CREATE TABLE IF NOT EXISTS `client_command` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `client_piecescommand`
+-- Structure de la table `client_partscommand`
 --
 
-DROP TABLE IF EXISTS `client_piecescommand`;
-CREATE TABLE IF NOT EXISTS `client_piecescommand` (
+DROP TABLE IF EXISTS `client_partscommand`;
+CREATE TABLE IF NOT EXISTS `client_partscommand` (
   `idcom` int(11) NOT NULL,
   `code` varchar(20) NOT NULL,
   `quantity` int(11) NOT NULL,
@@ -75,11 +75,11 @@ CREATE TABLE IF NOT EXISTS `client_piecescommand` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `piece`
+-- Structure de la table `part`
 --
 
-DROP TABLE IF EXISTS `piece`;
-CREATE TABLE IF NOT EXISTS `piece` (
+DROP TABLE IF EXISTS `part`;
+CREATE TABLE IF NOT EXISTS `part` (
   `code` varchar(20) NOT NULL,
   `ref` varchar(20) NOT NULL,
   `dimension` varchar(20) NOT NULL,
@@ -87,20 +87,20 @@ CREATE TABLE IF NOT EXISTS `piece` (
   `depth` int(11) NOT NULL,
   `width` int(11) NOT NULL,
   `color` varchar(30) NOT NULL,
-  `min_stock` int(11) NULL,
+  `min_stock` int(11) DEFAULT NULL,
   `real_quantity` int(11) NOT NULL,
   `virtual_quantity` int(11) NOT NULL,
-  `command_quantity` int(11) NOT NULL DEFAULT 0,
+  `command_quantity` int(11) NOT NULL DEFAULT '0',
   `client_price` float NOT NULL,
   `box_number` int(2) NOT NULL,
   PRIMARY KEY (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `piece`
+-- Déchargement des données de la table `part`
 --
 
-INSERT INTO `piece` (`code`, `ref`, `dimension`, `height`, `depth`, `width`, `color`, `min_stock`, `real_quantity`, `virtual_quantity`, `command_quantity`, `client_price`, `box_number`) VALUES
+INSERT INTO `part` (`code`, `ref`, `dimension`, `height`, `depth`, `width`, `color`, `min_stock`, `real_quantity`, `virtual_quantity`, `command_quantity`, `client_price`, `box_number`) VALUES
 ('COR100BLDEC', 'Cornieres', '100(h)decoupee', 100, 0, 0, 'White', 32, 85, 85, 0, 1.72, 4),
 ('COR100BRDEC', 'Cornieres', '100(h)decoupee', 100, 0, 0, 'Brown', 32, 84, 84, 0, 1.38, 4),
 ('COR100GLDEC', 'Cornieres', '100(h)decoupee', 100, 0, 0, 'Galvanized', 32, 84, 84, 0, 1.72, 4),
@@ -413,11 +413,11 @@ INSERT INTO `piece` (`code`, `ref`, `dimension`, `height`, `depth`, `width`, `co
 -- --------------------------------------------------------
 
 --
--- Structure de la table `piececommand`
+-- Structure de la table `partcommand`
 --
 
-DROP TABLE IF EXISTS `piececommand`;
-CREATE TABLE IF NOT EXISTS `piececommand` (
+DROP TABLE IF EXISTS `partcommand`;
+CREATE TABLE IF NOT EXISTS `partcommand` (
   `num` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(20) NOT NULL,
   `idsupp` int(11) NOT NULL,
@@ -1102,25 +1102,25 @@ ALTER TABLE `client_command`
   ADD CONSTRAINT `client_command_ibfk_1` FOREIGN KEY (`idclient`) REFERENCES `client` (`idclient`) ON DELETE CASCADE;
 
 --
--- Contraintes pour la table `client_piecescommand`
+-- Contraintes pour la table `client_partscommand`
 --
-ALTER TABLE `client_piecescommand`
-  ADD CONSTRAINT `client_piecescommand_ibfk_1` FOREIGN KEY (`idcom`) REFERENCES `client_command` (`idcom`) ON DELETE CASCADE,
-  ADD CONSTRAINT `client_piecescommand_ibfk_2` FOREIGN KEY (`code`) REFERENCES `piece` (`code`) ON DELETE CASCADE;
+ALTER TABLE `client_partscommand`
+  ADD CONSTRAINT `client_partscommand_ibfk_1` FOREIGN KEY (`idcom`) REFERENCES `client_command` (`idcom`) ON DELETE CASCADE,
+  ADD CONSTRAINT `client_partscommand_ibfk_2` FOREIGN KEY (`code`) REFERENCES `part` (`code`) ON DELETE CASCADE;
 
 --
--- Contraintes pour la table `piececommand`
+-- Contraintes pour la table `partcommand`
 --
-ALTER TABLE `piececommand`
-  ADD CONSTRAINT `piececommand_ibfk_1` FOREIGN KEY (`idsupp`) REFERENCES `supplier` (`idsupp`) ON DELETE CASCADE,
-  ADD CONSTRAINT `piececommand_ibfk_2` FOREIGN KEY (`code`) REFERENCES `piece` (`code`) ON DELETE CASCADE;
+ALTER TABLE `partcommand`
+  ADD CONSTRAINT `partcommand_ibfk_1` FOREIGN KEY (`idsupp`) REFERENCES `supplier` (`idsupp`) ON DELETE CASCADE,
+  ADD CONSTRAINT `partcommand_ibfk_2` FOREIGN KEY (`code`) REFERENCES `part` (`code`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `prices`
 --
 ALTER TABLE `prices`
   ADD CONSTRAINT `prices_ibfk_1` FOREIGN KEY (`idsupp`) REFERENCES `supplier` (`idsupp`) ON DELETE CASCADE,
-  ADD CONSTRAINT `prices_ibfk_2` FOREIGN KEY (`code`) REFERENCES `piece` (`code`) ON DELETE CASCADE;
+  ADD CONSTRAINT `prices_ibfk_2` FOREIGN KEY (`code`) REFERENCES `part` (`code`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
