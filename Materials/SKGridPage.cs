@@ -22,6 +22,8 @@ namespace Materials
         private List<int> RowChanged = new List<int>();
         private List<int> RowChanged2 = new List<int>();
         private MySqlConnection conn;
+        private  List<string> codemiss = new List<string>();
+
 
         /***************************************************************************
          * Pre : /                                                                 *
@@ -58,6 +60,8 @@ namespace Materials
 
             BindingSource bs_parts = partBindingSource;
             dt_parts = ((DataSet)bs_parts.DataSource).Tables[bs_parts.DataMember];
+
+            CheckStock();
         }
 
         /***********************************************************************************************************************
@@ -83,7 +87,41 @@ namespace Materials
         {
             LoadData();
         }
+        /***********************************************************************************************************************
+         * Pre : /                                                                                                             *         
+         * Post : Fill the list with the code of the part which the quantity are below of the threshold                        *                                                      
+         ***********************************************************************************************************************/
+        private void CheckStock()
+        {
+            SqlConnection();
+            MySqlCommand command = conn.CreateCommand();
+            command.CommandText = "SELECT code,real_quantity,min_stock from part";
+            List<string> codelist = new List<string>();
+            List<int> quantitylist = new List<int>();
+            List<int> minstocklist = new List<int>();
+            //Read the command et put the values into the column
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                codelist.Add(reader["code"].ToString());
+                quantitylist.Add((int)reader["real_quantity"]);
+                minstocklist.Add((int)reader["min_stock"]);
+            }
+            //Close the databsse connection
+            conn.Close();
+            //Check if there is part to command
+            int count = 0;
+            foreach (object min in minstocklist)
+            {
+                if ((int)min >= quantitylist[count])
+                {
+                    codemiss.Add(codelist[count]);
+                }
+                count += 1;
+            }
+            MessageBox.Show("Quantity below threshold :\n" + string.Join(Environment.NewLine, codemiss),"Quantity Missing Alert");
 
+        }
         /***********************************************************************************************************************
          * Pre : receive the type of the winform sender (button,label,...) and the event apply to this sender as parameter     *         
          * Post : Call SqlSelect to put values into the right column                                                       *                                                      
@@ -153,6 +191,15 @@ namespace Materials
             dataGridView1.DataSource = dt_parts;
             dataGridView1.Height = 460;
             LoadData();
+
+            //Set the font color to red for the cell who the quantity are below of the threshold
+            for (int i = 0; i < Convert.ToInt32(dataGridView1.Rows.Count.ToString()); i++)
+            {
+                if (codemiss.Contains(dataGridView1.Rows[i].Cells[0].Value))
+                {
+                    dataGridView1.Rows[i].Cells[0].Style.ForeColor = Color.Red;
+                }
+            }
         }
         private void PartCommand_Click(object sender, EventArgs e)
         {

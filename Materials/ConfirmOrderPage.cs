@@ -14,7 +14,6 @@ namespace Materials
     {
         private string Lname;
         private string Fname;
-        private Stock stock = new Stock("Server=localhost;Port=3306;Database=mykitbox;Uid=root;Pwd=");
         ConfigurationPage configpage;
         Cupboard cupboard;
         float price=0;
@@ -53,7 +52,7 @@ namespace Materials
             if (num <= block.Length)
             {
                 Dictionary<string, Object> Description = block[num - 1].GetDescription();
-                if (cupboard.BlockStock(num, stock))
+                if (cupboard.BlockStock(num))
                 {
                     return "In stock" + "    Price: " + Description["price"] + "€";
                 }
@@ -82,11 +81,12 @@ namespace Materials
                
         private string detailpriceBlockNoStock(int num)
         {
+            
             Block[] block = cupboard.GetBlock();
             if (num <= block.Length)
             {
                 Dictionary<string, Object> Description = block[num - 1].GetDescription();
-                if (cupboard.BlockStock((num),stock))
+                if (cupboard.BlockStock(num))
                 {
                     return "Box " + num + " " + "in stock" + " Price: " + Description["price"] + "€";
                 }
@@ -134,12 +134,13 @@ namespace Materials
         }
         private void buttonConfirm_Click(object sender, EventArgs e)
         {
-            if (!(Stock(stock)))
+            if (!(Stock()))
             {
                 panelOut.Visible = true;
             }
             else
             {
+                Stock stock = new Stock("Server=localhost;Port=3306;Database=mykitbox;Uid=root;Pwd=");
                 stock.ConfirmOrder("X","X", "X", "0","0", this.cupboard);
                 MessageBox.Show("Confirmed order, go to checkout to pay. Thank you and see you soon !");
                 System.Threading.Thread monthread = new System.Threading.Thread(new System.Threading.ThreadStart(openHomePage));
@@ -166,12 +167,12 @@ namespace Materials
             this.Close();
             //this.Hide();
         }
-        private bool Stock(Stock stock)
+        private bool Stock()
         {
             Block[] block = cupboard.GetBlock();
             for (int i = 0; i < block.Length; i++)
             {
-                if (!(cupboard.BlockStock((i + 1), stock)))
+                if (!(cupboard.BlockStock(i + 1)))
                 {
                     return false;
                 }
@@ -190,7 +191,6 @@ namespace Materials
         {
             Lname = textBoxLname.Text;
             Fname = textBoxFname.Text;
-            stock.ConfirmOrder(Fname, Lname, "X", "0", "0", this.cupboard);
             MessageBox.Show("Confirmed preorder, go to checkout to pay. Thank you "+Fname+" "+Lname+" and see you soon !");
             System.Threading.Thread monthread = new System.Threading.Thread(new System.Threading.ThreadStart(openHomePage));
             monthread.Start();

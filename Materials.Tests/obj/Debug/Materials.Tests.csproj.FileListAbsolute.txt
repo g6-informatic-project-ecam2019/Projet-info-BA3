@@ -42,4 +42,3 @@ D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials.Tests\obj\Debug
 D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials.Tests\obj\Debug\Materials.Tests.csproj.CopyComplete
 D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials.Tests\obj\Debug\Materials.Tests.dll
 D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials.Tests\obj\Debug\Materials.Tests.pdb
-D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials.Tests\obj\Debug\Materials.Tests.csprojAssemblyReference.cache

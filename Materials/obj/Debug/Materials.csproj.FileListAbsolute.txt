@@ -108,3 +108,22 @@ D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\bin\Debug\Google.Pro
 D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.csproj.CopyComplete
 D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.exe
 D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.pdb
+C:\Users\Christos\Desktop\x\Materials\bin\Debug\Materials.exe.config
+C:\Users\Christos\Desktop\x\Materials\bin\Debug\Materials.exe
+C:\Users\Christos\Desktop\x\Materials\bin\Debug\Materials.pdb
+C:\Users\Christos\Desktop\x\Materials\bin\Debug\MySql.Data.dll
+C:\Users\Christos\Desktop\x\Materials\bin\Debug\Google.Protobuf.dll
+C:\Users\Christos\Desktop\x\Materials\obj\Debug\Materials.csprojAssemblyReference.cache
+C:\Users\Christos\Desktop\x\Materials\obj\Debug\Materials.ConfigurationPage.resources
+C:\Users\Christos\Desktop\x\Materials\obj\Debug\Materials.ConfirmOrderPage.resources
+C:\Users\Christos\Desktop\x\Materials\obj\Debug\Materials.HomePage.resources
+C:\Users\Christos\Desktop\x\Materials\obj\Debug\Materials.PopUpAdd.resources
+C:\Users\Christos\Desktop\x\Materials\obj\Debug\Materials.PopUpDel.resources
+C:\Users\Christos\Desktop\x\Materials\obj\Debug\Materials.Properties.Resources.resources
+C:\Users\Christos\Desktop\x\Materials\obj\Debug\Materials.SKGridPage.resources
+C:\Users\Christos\Desktop\x\Materials\obj\Debug\Materials.SKLoginPage.resources
+C:\Users\Christos\Desktop\x\Materials\obj\Debug\Materials.csproj.GenerateResource.cache
+C:\Users\Christos\Desktop\x\Materials\obj\Debug\Materials.csproj.CoreCompileInputs.cache
+C:\Users\Christos\Desktop\x\Materials\obj\Debug\Materials.csproj.CopyComplete
+C:\Users\Christos\Desktop\x\Materials\obj\Debug\Materials.exe
+C:\Users\Christos\Desktop\x\Materials\obj\Debug\Materials.pdb
