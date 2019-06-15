@@ -60,7 +60,6 @@ C:\Users\Christos\Desktop\Projet-info-BA3\Materials\obj\Debug\Materials.ConfirmO
 C:\Users\Christos\Desktop\Projet-info-BA3\Materials\obj\Debug\Materials.HomePage.resources
 C:\Users\Christos\Desktop\Projet-info-BA3\Materials\obj\Debug\Materials.SKGridPage.resources
 C:\Users\Christos\Desktop\Projet-info-BA3\Materials\obj\Debug\Materials.SKLoginPage.resources
-C:\Users\Christos\Desktop\Projet-info-BA3\Materials\obj\Debug\Materials.SKOrdersPage.resources
 C:\Users\Christos\Desktop\Projet-info-BA3\Materials\obj\Debug\Materials.csproj.GenerateResource.cache
 C:\Users\Christos\Desktop\Projet-info-BA3\Materials\obj\Debug\Materials.csproj.CoreCompileInputs.cache
 C:\Users\Christos\Desktop\Projet-info-BA3\Materials\obj\Debug\Materials.csproj.CopyComplete
@@ -100,7 +99,6 @@ D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.
 D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.SKOrdersPage.resources
 D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.csproj.GenerateResource.cache
 D:\Bureau\ECAM\BA3\Projet informatique\projetInfo\Materials\obj\Debug\Materials.csproj.CoreCompileInputs.cache
-C:\Users\Christos\Desktop\Projet-info-BA3\Materials\obj\Debug\Materials.BlockAmountPage.resources
 D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.BlockAmountPage.resources
 D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.PopUpAdd.resources
 D:\Bureau\ECAM\BA3\Projet informatique\Projet-info-BA3\Materials\obj\Debug\Materials.PopUpDel.resources

@@ -494,7 +494,7 @@ namespace Materials
         }
         public static void openSKOrderPage()
         {
-            Application.Run(new SKOrdersPage()); //opens the SK's Order Page form
+            Application.Run(new SKLoginPage()); //opens the SK's Order Page form
         }
 
 
