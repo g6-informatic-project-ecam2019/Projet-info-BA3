@@ -62,21 +62,129 @@ namespace Materials
             Number();
             StaticMesure();
             TextBox(Number());
-            if (height[index]!=0 )
+            switch (index)
             {
-                if (index < 6)
-                {
-                    for (int i = 0; i < 7; i++)
+                case 0:
+                    if ((height[index] != 0) && (PanelColorBox1.Text != "") && (DoorBox1.Text != "") && (angleColor != ""))
                     {
-                        listPanel[i].Visible = false;
+                        if (index < 6)
+                        {
+                            for (int i = 0; i < 7; i++)
+                            {
+                                listPanel[i].Visible = false;
+                            }
+                            listPanel[++index].Visible = true;
+                        }
                     }
-                    listPanel[++index].Visible = true;
-                }
+                    else
+                    {
+                        MessageBox.Show("The previous block is not configured");
+                    }
+                    break;
+                case 1:
+                    if ((height[index] != 0) && (PanelColorBox2.Text != "") && (DoorBox2.Text != ""))
+                    {
+                        if (index < 6)
+                        {
+                            for (int i = 0; i < 7; i++)
+                            {
+                                listPanel[i].Visible = false;
+                            }
+                            listPanel[++index].Visible = true;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("The previous block is not configured");
+                    }
+                    break;
+                case 2:
+                    if ((height[index] != 0) && (PanelColorBox3.Text != "") && (DoorBox3.Text != ""))
+                    {
+                        if (index < 6)
+                        {
+                            for (int i = 0; i < 7; i++)
+                            {
+                                listPanel[i].Visible = false;
+                            }
+                            listPanel[++index].Visible = true;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("The previous block is not configured");
+                    }
+                    break;
+                case 3:
+                    if ((height[index] != 0) && (PanelColorBox4.Text != "") && (DoorBox4.Text != ""))
+                    {
+                        if (index < 6)
+                        {
+                            for (int i = 0; i < 7; i++)
+                            {
+                                listPanel[i].Visible = false;
+                            }
+                            listPanel[++index].Visible = true;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("The previous block is not configured");
+                    }
+                    break;
+                case 4:
+                    if ((height[index] != 0) && (PanelColorBox5.Text != "") && (DoorBox5.Text != ""))
+                    {
+                        if (index < 6)
+                        {
+                            for (int i = 0; i < 7; i++)
+                            {
+                                listPanel[i].Visible = false;
+                            }
+                            listPanel[++index].Visible = true;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("The previous block is not configured");
+                    }
+                    break;
+                case 5:
+                    if ((height[index] != 0) && (PanelColorBox6.Text != "") && (DoorBox6.Text != ""))
+                    {
+                        if (index < 6)
+                        {
+                            for (int i = 0; i < 7; i++)
+                            {
+                                listPanel[i].Visible = false;
+                            }
+                            listPanel[++index].Visible = true;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("The previous block is not configured");
+                    }
+                    break;
+                case 6:
+                    if ((height[index] != 0) && (PanelColorBox7.Text != "") && (DoorBox7.Text != ""))
+                    {
+                        if (index < 6)
+                        {
+                            for (int i = 0; i < 7; i++)
+                            {
+                                listPanel[i].Visible = false;
+                            }
+                            listPanel[++index].Visible = true;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("The previous block is not configured");
+                    }
+                    break;
             }
-            else
-            {
-                MessageBox.Show("The previous block is not configured");
-            }
+            
         }
 
         private void MkOrdrBtn_Click(object sender, EventArgs e)
@@ -448,7 +556,7 @@ namespace Materials
 
         private void ModifBlock2_Click(object sender, EventArgs e)
         {
-            if(height[0]!=0)
+            if((height[0]!=0) && (PanelColorBox2.Text != "") && (DoorBox2.Text != ""))
             {
                 for (int i = 0; i < listPanel.Count; i++)
                 {
@@ -465,7 +573,7 @@ namespace Materials
 
         private void ModifBlock3_Click(object sender, EventArgs e)
         {
-            if (height[1] != 0)
+            if ((height[1] != 0) && (PanelColorBox3.Text != "") && (DoorBox3.Text != ""))
             {
                 for (int i = 0; i < listPanel.Count; i++)
                 {
@@ -483,7 +591,7 @@ namespace Materials
 
         private void ModifBlock4_Click(object sender, EventArgs e)
         {
-            if (height[2] != 0)
+            if ((height[2] != 0) && (PanelColorBox4.Text != "") && (DoorBox4.Text != ""))
             {
                 for (int i = 0; i < listPanel.Count; i++)
                 {
@@ -500,7 +608,7 @@ namespace Materials
 
         private void ModifBlock5_Click(object sender, EventArgs e)
         {
-            if (height[3] != 0)
+            if ((height[3] != 0) && (PanelColorBox5.Text != "") && (DoorBox5.Text != ""))
             {
                 for (int i = 0; i < listPanel.Count; i++)
                 {
@@ -517,7 +625,7 @@ namespace Materials
         }
         private void ModifBlock6_Click(object sender, EventArgs e)
         {
-            if (height[4] != 0)
+            if ((height[4] != 0) && (PanelColorBox6.Text != "") && (DoorBox6.Text != ""))
             {
                 for (int i = 0; i < listPanel.Count; i++)
                 {
@@ -534,7 +642,7 @@ namespace Materials
 
         private void ModifBlock7_Click(object sender, EventArgs e)
         {
-            if (height[5] != 0)
+            if ((height[5] != 0) && (PanelColorBox7.Text != "") && (DoorBox7.Text != ""))
             {
                 for (int i = 0; i < listPanel.Count; i++)
                 {
