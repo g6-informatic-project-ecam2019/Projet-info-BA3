@@ -162,7 +162,7 @@ namespace Materials
             dataGridView1.Height = 460;
             LoadData();
             //Ask to take values from the db and put them into the datagrid column
-            SqlSelect("SELECT part.ref FROM client_partscommand INNER JOIN part ON client_partscommand.code = part.code", "ref");
+            SqlSelect("SELECT part.ref FROM client_partscommand INNER JOIN part ON client_partscommand.code = part.code order by idcom ASC", "ref");
             SqlSelect("SELECT part.dimension FROM client_partscommand INNER JOIN part ON client_partscommand.code = part.code", "dimension");
             SqlSelect("SELECT part.height FROM client_partscommand INNER JOIN part ON client_partscommand.code = part.code", "height");
             SqlSelect("SELECT part.depth FROM client_partscommand INNER JOIN part ON client_partscommand.code = part.code", "depth");
