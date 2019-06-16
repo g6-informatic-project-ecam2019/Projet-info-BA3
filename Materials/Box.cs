@@ -28,7 +28,7 @@ namespace Materials
             this.Cupboard = cupboard.GetDescription();
             this.depth = Convert.ToInt32(Cupboard["depth"]);
             this.width = Convert.ToInt32(Cupboard["width"]);
-            this.stock = new Stock("Server=localhost;Port=3306;Database=mykitbox;Uid=root;Pwd=");
+            this.stock = new Stock("Server=localhost;Port=3306;Database=mykitbox;Uid=root;Pwd=; Connect Timeout=60");
             BuildParts();
             ComputePrice();
         }

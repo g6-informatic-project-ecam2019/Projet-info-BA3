@@ -17,7 +17,7 @@ namespace Materials
         private string adress;
         private string zip;
         private string phoneNumber;
-        private Stock stock = new Stock("Server=localhost;Port=3306;Database=mykitbox;Uid=root;Pwd=");
+        private Stock stock = new Stock("Server=localhost;Port=3306;Database=mykitbox;Uid=root;Pwd=; Connect Timeout=60");
         ConfigurationPage configpage;
         Cupboard cupboard;
         float price=0;

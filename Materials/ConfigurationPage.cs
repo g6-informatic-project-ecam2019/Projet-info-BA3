@@ -24,7 +24,7 @@ namespace Materials
         List<System.Windows.Forms.Panel> listPanel = new List<System.Windows.Forms.Panel>();
         int index=0;
         private ConfirmOrderPage configpage;
-        private Stock stock=new Stock("Server = localhost; Port = 3306; Database = mykitbox; Uid = root; Pwd =");
+        private Stock stock=new Stock("Server = localhost; Port = 3306; Database = mykitbox; Uid = root; Pwd =; Connect Timeout=60");
         public ConfigurationPage()
         {
             
@@ -91,7 +91,6 @@ namespace Materials
                     }
                     this.cupboard1 = null;//Tentative de correction de bug quand on back
                     this.configpage = null;//Tentative de correction de bug quand on back
-                    this.stock= new Stock("Server = localhost; Port = 3306; Database = mykitbox; Uid = root; Pwd =");
                     System.GC.Collect();//Tentative de correction de bug quand on back
                     System.GC.WaitForPendingFinalizers(); 
                 }
