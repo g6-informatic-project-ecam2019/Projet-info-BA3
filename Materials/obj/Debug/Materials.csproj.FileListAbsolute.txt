@@ -127,3 +127,22 @@ C:\Users\Christos\Desktop\x\Materials\obj\Debug\Materials.csproj.CoreCompileInpu
 C:\Users\Christos\Desktop\x\Materials\obj\Debug\Materials.csproj.CopyComplete
 C:\Users\Christos\Desktop\x\Materials\obj\Debug\Materials.exe
 C:\Users\Christos\Desktop\x\Materials\obj\Debug\Materials.pdb
+D:\Bureau\ECAM\BA3\Projet informatique\debugProjet\Materials\bin\Debug\Materials.exe.config
+D:\Bureau\ECAM\BA3\Projet informatique\debugProjet\Materials\bin\Debug\Materials.exe
+D:\Bureau\ECAM\BA3\Projet informatique\debugProjet\Materials\bin\Debug\Materials.pdb
+D:\Bureau\ECAM\BA3\Projet informatique\debugProjet\Materials\bin\Debug\MySql.Data.dll
+D:\Bureau\ECAM\BA3\Projet informatique\debugProjet\Materials\bin\Debug\Google.Protobuf.dll
+D:\Bureau\ECAM\BA3\Projet informatique\debugProjet\Materials\obj\Debug\Materials.csprojAssemblyReference.cache
+D:\Bureau\ECAM\BA3\Projet informatique\debugProjet\Materials\obj\Debug\Materials.ConfigurationPage.resources
+D:\Bureau\ECAM\BA3\Projet informatique\debugProjet\Materials\obj\Debug\Materials.ConfirmOrderPage.resources
+D:\Bureau\ECAM\BA3\Projet informatique\debugProjet\Materials\obj\Debug\Materials.HomePage.resources
+D:\Bureau\ECAM\BA3\Projet informatique\debugProjet\Materials\obj\Debug\Materials.PopUpAdd.resources
+D:\Bureau\ECAM\BA3\Projet informatique\debugProjet\Materials\obj\Debug\Materials.PopUpDel.resources
+D:\Bureau\ECAM\BA3\Projet informatique\debugProjet\Materials\obj\Debug\Materials.Properties.Resources.resources
+D:\Bureau\ECAM\BA3\Projet informatique\debugProjet\Materials\obj\Debug\Materials.SKGridPage.resources
+D:\Bureau\ECAM\BA3\Projet informatique\debugProjet\Materials\obj\Debug\Materials.SKLoginPage.resources
+D:\Bureau\ECAM\BA3\Projet informatique\debugProjet\Materials\obj\Debug\Materials.csproj.GenerateResource.cache
+D:\Bureau\ECAM\BA3\Projet informatique\debugProjet\Materials\obj\Debug\Materials.csproj.CoreCompileInputs.cache
+D:\Bureau\ECAM\BA3\Projet informatique\debugProjet\Materials\obj\Debug\Materials.csproj.CopyComplete
+D:\Bureau\ECAM\BA3\Projet informatique\debugProjet\Materials\obj\Debug\Materials.exe
+D:\Bureau\ECAM\BA3\Projet informatique\debugProjet\Materials\obj\Debug\Materials.pdb

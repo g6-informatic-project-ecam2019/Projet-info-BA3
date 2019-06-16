@@ -16,7 +16,10 @@ namespace Materials
         {
             this.price = price;
         }
-
+        public void setCode(string code)
+        {
+            this.code = code;
+        }
         public float GetPrice()
         {
             return this.price;
@@ -32,14 +35,6 @@ namespace Materials
 
         public void DescriptionRequest(Stock pricestock)
         {
-            //Console.WriteLine(String.Format("name of this part is {0}", this.name));
-            this.code = pricestock.GetPartDescription(this)["code"].ToString();
-            //Console.WriteLine(String.Format("code of this part is {0}", code));
-            SetPrice((float)pricestock.GetPartDescription(this)["client price"]);
-            Console.WriteLine(String.Format("part : {0}", this.code));
-            Console.WriteLine(this.price);
-            Console.WriteLine("\n");
-            
             this.available = pricestock.IsAvailable(this);
         }
 

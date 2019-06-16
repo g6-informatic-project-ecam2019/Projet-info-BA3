@@ -15,6 +15,7 @@ namespace Materials
         private Dictionary<string, Object> Cupboard;
         private float price;
         private Part[] parts = new Part[15];
+        private Dictionary<string, Dictionary<string, Object>> boxDescription = new Dictionary<string, Dictionary<string, object>>();
         private Stock stock;
 
         /*Builder*/
@@ -30,6 +31,7 @@ namespace Materials
             this.width = Convert.ToInt32(Cupboard["width"]);
             this.stock = new Stock("Server=localhost;Port=3306;Database=mykitbox;Uid=root;Pwd=; Connect Timeout=60");
             BuildParts();
+            descriptionRequest(this.stock);
             ComputePrice();
         }
 
@@ -96,7 +98,36 @@ namespace Materials
             }
             ComputePrice();
         }
-
+        public void descriptionRequest(Stock stock)
+        {
+            Dictionary<string, int> numberOfPieces = new Dictionary<string, int>() { { "Tasseau", 4 }, { "Panneau GD", 2 }, { "Panneau HB", 2 }, { "Panneau Ar", 1 }, { "Traverse GD", 2 }, { "Traverse Av", 1 }, { "Traverse Ar", 1 }, { "Porte", 2 } };
+            Dictionary<string, Object>[] boxDescr = stock.getBoxDescription(this, numberOfPieces);
+            //foreach (string piece in boxDescr.Keys)
+            //{
+            //    foreach (Piece part in this.parts)
+            //    {
+            //        string[] refParsed = piece.Split('_');
+            //        if (part.GetDescription()["ref"].ToString() == refParsed[0])
+            //        {
+            //            part.SetPrice((float)boxDescr[piece]["client price"]);
+            //            part.setCode(boxDescr[piece]["code"].ToString());
+            //        }
+            //    }
+            //}
+            for (int i = 0; i < boxDescr.Length; i++)
+            {
+                foreach (Part part in this.parts)
+                {
+                    if (part.GetDescription()["ref"].ToString() == boxDescr[i]["ref"].ToString())
+                    {
+                        part.SetPrice((float)boxDescr[i]["client price"]);
+                        part.setCode(boxDescr[i]["code"].ToString());
+                        Console.WriteLine(String.Format("piece : {0}", part.GetDescription()["ref"]));
+                        Console.WriteLine(String.Format("price of the piece is : {0}", part.GetPrice()));
+                    }
+                }
+            }
+        }
         private void ComputePrice()
         {
             int i;

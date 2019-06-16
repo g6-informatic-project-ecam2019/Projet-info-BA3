@@ -124,7 +124,7 @@ namespace Materials
          *           ordered part                                                   *                                                        
          *--------------------------------------------------------------------------*/
         public void OrderPart(Part part){
-            string code ="";
+            /*string code ="";
             int quantity = 0;
             int newQuantity = 0;
             try {
@@ -132,13 +132,13 @@ namespace Materials
                 string dimension2 = part.GetDescription()["dim2"].ToString();
                 if (part is GlassDoor) {
                     try {
-                        code = SelectPart2D(part, dimension1, dimension2, "verre");
+                        code = SelectPart2D(part, dimension1, dimension2, "verre", boxDescription[countPiece], reader);
                     }
                     catch (KeyNotFoundException) {}
                 }
                 else {
                     try{
-                        code = SelectPart2D(part, dimension1, dimension2, part.GetDescription()["color"].ToString());
+                        code = SelectPart2D(part, dimension1, dimension2, part.GetDescription()["color"].ToString(), boxDescription[countPiece], reader);
                     }
                     catch (KeyNotFoundException) {}
                 }
@@ -151,10 +151,10 @@ namespace Materials
                     Console.WriteLine(part.GetType());
                 }
                 try {
-                    code = SelectPart(part, part.GetDescription()["dim"].ToString(), part.GetDescription()["color"].ToString());
+                    code = SelectPart(part, part.GetDescription()["dim"].ToString(), part.GetDescription()["color"].ToString(), boxDescription[countPiece], reader);
                 }
                 catch (KeyNotFoundException) {
-                    code = SelectPart(part, part.GetDescription()["dim"].ToString(), "");
+                    code = SelectPart(part, part.GetDescription()["dim"].ToString(), "", boxDescription[countPiece], reader);
                 }
             }
             Connect();
@@ -175,7 +175,7 @@ namespace Materials
             if (l != 1) {
                 Console.WriteLine(String.Format("WARNING : database was not edited correctly : {0} lines were modified instead of one.", l));
             }
-            connection.Close();
+            connection.Close();*/
         }
 
         /*****************************************************************************
@@ -303,70 +303,97 @@ namespace Materials
          * Post : returns the unique code of the wanted part                         *
          * Raise : raises an error if the part has is a door or a panel              *
          *****************************************************************************/
-        private string SelectPart(Part part, string dimension, string color) {
-            Connect();
-            string code = "";
-            int length = (int)part.GetDescription()["length"];
-            if ((part is Door) || (part is Panel)) {
-                throw new ArgumentException("The part cannot be a door nor a panel in this function");
-            }
-            this.command.CommandText = String.Format("SELECT * FROM part WHERE ref='{0}'", part.GetDescription()["ref"].ToString());
 
-            reader = command.ExecuteReader();
-            /*Retrieves all information about the part, and puts them in the description dictionnary*/
-            while (reader.Read()) {
-                if ((int)reader[dimension] == length) {
-                    if (color == "") {
-                        code = reader["code"].ToString();
+        private string SelectPart(Part piece, string dimension, string color, Dictionary<string, Object> description, MySqlDataReader reader)
+        {
+            int length = (int)piece.GetDescription()["length"];
+            string code = "";
+            if ((int)reader[dimension] == length)
+            {
+                Console.WriteLine("MATCH LENGHT!");
+                if (color == "")
+                {
+                    try
+                    {
+                        description.Add("code", reader["code"].ToString());
+                        Console.WriteLine("Piece found!");
                     }
-                    else if (reader["color"].ToString() == color) {
-                        code = reader["code"].ToString();
+                    catch (ArgumentException)
+                    {
+                        Console.WriteLine("Already added");
+                    }
+                }
+                else if (reader["color"].ToString() == color)
+                {
+                    try
+                    {
+                        description.Add("code", reader["code"].ToString());
+                    }
+                    catch (ArgumentException)
+                    {
+                        Console.WriteLine("Already added");
                     }
                 }
             }
-            if (code == "") {
-                List<int> possibleHeights = ExistingDimension("height", "Cornieres");
-                Console.WriteLine("No fitting part found.1D");
-                Console.WriteLine(part.GetDescription()["ref"].ToString());
-                //Console.WriteLine(part.GetDescription()["color"].ToString());
-                Console.WriteLine(part.GetDescription()["length"].ToString());
-                return null;
-            }
-            connection.Close();
+
+            //if (code == "")
+            //{
+            //    Console.WriteLine("No fitting piece found.");
+            //    Console.WriteLine(piece.GetDescription()["ref"].ToString());
+            //  //Console.WriteLine(piece.GetDescription()["color"].ToString());
+            //    Console.WriteLine(piece.GetDescription()["length"].ToString());
+            //    Console.WriteLine(piece.GetDescription()["width"].ToString());
+            //    return null;
+            //}
             return code;
         }
 
-        /*Same as SelectPart() but with 2 main dimensions*/
-        private string SelectPart2D (Part part, string dimension1, string dimension2, string color) {
-            Connect();
+        /*same as selectPiece(), but with 2 main dimensions*/
+        private string SelectPart2D(Part piece, string dimension1, string dimension2, string color, Dictionary<string, Object> description, MySqlDataReader rdr)
+        {
             string code = "";
-            int length = (int)part.GetDescription()["length"];
-            int width = (int)part.GetDescription()["width"];
-            command.CommandText = String.Format("SELECT * FROM part WHERE ref='{0}'", part.GetDescription()["ref"].ToString());
-            reader = command.ExecuteReader();
-            //Retrieves all information about the part, and puts them in the description dictionnary
-            while (reader.Read()) {
-                if ((int)reader[dimension1] == length) {
-                    if ((int)reader[dimension2] == width) {
-                        /*Part has no color specified*/
-                        if (color == "") {
-                            code = reader["code"].ToString();
+            int length = (int)piece.GetDescription()["length"];
+            int width = (int)piece.GetDescription()["width"];
+            command.CommandText = String.Format("SELECT * FROM part WHERE ref='{0}'", piece.GetDescription()["ref"].ToString());
+            if ((int)rdr[dimension1] == length)
+            {
+                if ((int)rdr[dimension2] == width)
+                {
+                    if (color == "") //piece has no color specified
+                    {
+                        try
+                        {
+                            description.Add("code", rdr["code"].ToString());
+                            Console.WriteLine("Piece found!");
                         }
-                        else if (reader["color"].ToString() == color) {
-                            code = reader["code"].ToString();
+                        catch (ArgumentException)
+                        {
+                            Console.WriteLine("Already added");
+                        }
+                    }
+                    else if (rdr["color"].ToString() == color)
+                    {
+                        try
+                        {
+                            description.Add("code", rdr["code"].ToString());
+                            Console.WriteLine("piece found!");
+                        }
+                        catch (ArgumentException)
+                        {
+                            Console.WriteLine("Already added");
                         }
                     }
                 }
             }
-            if (code == "") {
-                Console.WriteLine(length);
-                Console.WriteLine(width);
-                Console.WriteLine("No fitting part found. 2D");
-                Console.WriteLine(part.GetDescription()["ref"].ToString());
-                Console.WriteLine(part.GetDescription()["color"].ToString());
-                return null;
-            }
-            connection.Close();
+            //if (code == "")
+            //{
+            //    Console.WriteLine("No fitting piece found.");
+            //    Console.WriteLine(piece.GetDescription()["ref"].ToString());
+            //    Console.WriteLine(piece.GetDescription()["color"].ToString());
+            //    Console.WriteLine(piece.GetDescription()["length"].ToString());
+            //    Console.WriteLine(piece.GetDescription()["width"].ToString());
+            //    return null;
+            //}
             return code;
         }
 
@@ -380,93 +407,120 @@ namespace Materials
          *          part's type                                                      *
          * Uses the part characteristics to find the part in the DB                  *
          *****************************************************************************/
-        public Dictionary <string, Object> GetPartDescription (Part part) {
-            Dictionary<string, Object> description = new Dictionary<string, Object>();
-            string color="";
-            string code;
-            int width = -1;
-            int length = (int)part.GetDescription()["length"];
-            /*Manages angles' length*/
-            if (part is Angle) {
-                List<int> possibleHeights = ExistingDimension("height", "Cornieres");
-                int prevCandidateHeight = length;
-                bool firstIter = true;
-                /*There is no angle with the right length => takes a bigger angle and cuts it afterwards*/
-                if (!(possibleHeights.Contains(length))) {
-                    foreach (int h in possibleHeights) {
-                        if ((h > length) && firstIter) {
-                            prevCandidateHeight = h;
-                            firstIter = false;
-                        }
-                        /*The angle must be bigger, but as close as possible from the cupboard's height (the smallest value of lenght possible)*/
-                        else if ((h > length) && (h <= prevCandidateHeight) && !firstIter) {
-                            prevCandidateHeight = h;
-                        }
-                    }
-                    length = prevCandidateHeight;
-                    /*Effectivly changes angle's length (but keep cupboard height identical)*/
-                    part.SetLength(prevCandidateHeight);
-                }
-            }
-            try {
-                width = (int)part.GetDescription()["width"];
-            }
-            catch (KeyNotFoundException){}
-            
-            if ((part is ClassicDoor) || (part is Panel) || (part is Angle)) {
-                color = part.GetDescription()["color"].ToString();
-                description.Add("color", color);
-            }
+      
 
-            //Since the determining dimension in DB differs following the type of part, we have to make a different criterea for each type
-            try {
-                string dimension1 = part.GetDescription()["dim1"].ToString();
-                string dimension2 = part.GetDescription()["dim2"].ToString();
+        public Dictionary<string, Object>[] getBoxDescription(Block bloc, Dictionary<string, int> numberOfPieces)
+        {
+            Dictionary<string, Object>[] boxDescription = new Dictionary<string, Object>[bloc.GetParts().Length];
+            List<string> piecesRefs = new List<string>();
+            for (int i = 0; i < boxDescription.Length; i++)
+            {
+                boxDescription[i] = new Dictionary<string, Object>();
+            }
+            Connect();
+            string addRefs = "";
+            foreach (Part piece in bloc.GetParts())
+            {
+                if (!(piecesRefs.Contains(piece.GetDescription()["ref"].ToString())))
+                {
+                    piecesRefs.Add(piece.GetDescription()["ref"].ToString());
+                    addRefs += String.Format("'{0}', ", piece.GetDescription()["ref"]);
+                }
 
-                if (part is GlassDoor) {
-                    code = SelectPart2D (part, dimension1, dimension2, "Verre");
-                }
-                else {
-                    code = SelectPart2D(part, dimension1, dimension2, color);
-                }
-                description.Add("code", code);
-                Connect();
-                command.CommandText = String.Format("SELECT * FROM part INNER JOIN prices ON part.code=prices.code WHERE part.code='{0}'", code);
-                //Console.WriteLine(String.Format("code of this part is {0}", code));
-                reader = command.ExecuteReader();
-                int i = 0;
-                /*Retrieves all information about the part and puts them in the description dictionnary*/
-                while (reader.Read()) {
-                    if (i==0) {
-                        /*Code is a unique identifier*/
-                        description.Add("client price", (float)reader["client_price"]);
-                    }
-                    i++;
-                    description.Add(String.Format("supplier price {0}", i), (float)reader["supplier_price"]);
-                }
-                description.Add("n suppliers", i);
-                connection.Close();
             }
-            /*An error is raised if dim1-dim2 are not in part description => there is only one dimension*/
-            catch (KeyNotFoundException) {
-                string dimension = part.GetDescription()["dim"].ToString();
-                code = SelectPart(part, part.GetDescription()["dim"].ToString(), color);
-                description.Add("code", code);
-                Connect();
-                this.command.CommandText = String.Format("SELECT * FROM part INNER JOIN prices ON part.code=prices.code WHERE part.code='{0}'", code);
-                reader = command.ExecuteReader();
-                int i = 0;
-                while (reader.Read()){ //retrieve all informations about the part, and put them in the description dictionnary
-                    if (i == 0){
-                        description.Add("client price", (float)reader["client_price"]); //code is a unique identifier
+            addRefs = addRefs.Substring(0, addRefs.Length - 2); //remove blank space and coma at the end of addRefs
+            this.command.CommandText += String.Format("SELECT * FROM part INNER JOIN prices ON part.code=prices.code WHERE part.ref IN ({0});", addRefs);
+            Console.WriteLine(command.CommandText);
+            reader = command.ExecuteReader();
+            int countSup = 0;
+            int countPiece = 0;
+            string previousCode = "";
+            while (reader.Read())
+            {
+                string reference = reader["ref"].ToString();
+                Part p = new Cleat((float)0.5, -1); //little hack to have an assigned variable p 
+                foreach (Part piece in bloc.GetParts())
+                {
+                    if (piece.GetDescription()["ref"].ToString() == reference)
+                    {
+                        p = piece;
                     }
-                    i++;
-                    description.Add(String.Format("supplier price {0}", i), (float)reader["supplier_price"]);
                 }
-                description.Add("n suppliers", i);
-                connection.Close();
+                //if ((int)p.GetDescription()["length"]==-1)
+                //{
+                //    p = null;
+                //}
+                string code = "";
+                try
+                {
+                    //Console.WriteLine(String.Format("Dim 1 : {0} \n Dim 2 : {1} \n Color : {2} \n count piece : {3}", p.GetDescription()["dim1"].ToString(), p.GetDescription()["dim2"].ToString(), p.GetDescription()["color"].ToString(), boxDescription[countPiece]));
+                    code = SelectPart2D(p, p.GetDescription()["dim1"].ToString(), p.GetDescription()["dim2"].ToString(), p.GetDescription()["color"].ToString(), boxDescription[countPiece], reader);
+                }
+                catch (KeyNotFoundException)
+                {
+                    try
+                    {
+                        //Console.WriteLine(String.Format("Dim : {0} \n Color : {1} \n count piece : {2}", p.GetDescription()["dim"].ToString(), p.GetDescription()["color"].ToString(), boxDescription[countPiece]));
+                        code = SelectPart(p, p.GetDescription()["dim"].ToString(), p.GetDescription()["color"].ToString(), boxDescription[countPiece], reader);
+                    }
+                    catch (KeyNotFoundException)
+                    {
+                        //Console.WriteLine(String.Format("Dim : {0} \n count piece : {1}", p.GetDescription()["dim"].ToString(), boxDescription[countPiece]));
+                        code = SelectPart(p, p.GetDescription()["dim"].ToString(), "", boxDescription[countPiece], reader);
+                    }
+                }
+                Console.WriteLine(code);
+                int npieces = 0;
+                try
+                {
+                    npieces = numberOfPieces[reference];
+                }
+                catch (KeyNotFoundException)
+                {
+                    Console.WriteLine("\n FAIL ! \n");
+                    Console.WriteLine(reference);
+                    npieces = 2;
+                }
+                if (code != "")
+                {
+                    if (code != previousCode)
+                    {
+                        int cp = 0;
+                        while (cp < npieces)
+                        {
+                            if (countSup == 0)
+                            {
+                                boxDescription[countPiece].Add("client price", (float)reader["client_price"]); //code is a unique identifier
+                                boxDescription[countPiece].Add("n suppliers", 0);
+                            }
+                            boxDescription[countPiece].Add("ref", reference);
+                            boxDescription[countPiece].Add(String.Format("supplier price {0}", countSup), (float)reader["supplier_price"]);
+                            countSup++;
+                            boxDescription[countPiece]["n suppliers"] = countSup;
+                            countPiece++;
+                        }
+                    }
+                    previousCode = code;
+                }
             }
-            return description;
+            for (int i = 0; i < boxDescription.Length; i++)
+            {
+                try
+                {
+                    //Console.WriteLine(String.Format("Piece : {0}", boxDescription[i]["ref"]));
+                    foreach (string carac in boxDescription[i].Keys)
+                    {
+                        Console.WriteLine(String.Format("Carac : {0}  ; Value : {1}", carac, boxDescription[i][carac]));
+                    }
+                    Console.WriteLine("\n");
+                }
+                catch (KeyNotFoundException)
+                {
+                    //Console.WriteLine("Key not found!");
+                    //Console.WriteLine(boxDescription[i].Count);
+                }
+            }
+            return boxDescription;
         }
 
         /************************************************************************
@@ -477,7 +531,7 @@ namespace Materials
          *  Function will not raise any error if determiningPart is not correct *
          *  but a message will appear in the console                            *
          ************************************************************************/
-         public List<int> ExistingDimension(string dim, string determiningPart)
+        public List<int> ExistingDimension(string dim, string determiningPart)
          {
             List<int> dimensions = new List<int>();
             List<int> references = new List<int>();
@@ -538,6 +592,20 @@ namespace Materials
             }
             connection.Close();
             return colors;
+        }
+        /**/
+        public int sizeOfTable(string table)
+        {
+            Connect();
+            command.CommandText = String.Format("SELECT * FROM {0}", table);
+            reader = command.ExecuteReader();
+            int counter = 0;
+            while (reader.Read())
+            {
+                counter++;
+            }
+            connection.Close();
+            return counter;
         }
     }
 }
