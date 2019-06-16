@@ -44,7 +44,7 @@ namespace Materials
         }
         public static void openSKGridPage()
         {
-            Application.Run(new SKGridPage()); //opens the Orders form
+            Application.Run(new SKGridPage("y")); //opens the Orders form
         }
     }
 }

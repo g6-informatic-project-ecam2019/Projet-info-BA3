@@ -29,7 +29,7 @@ namespace Materials
          * Pre : /                                                                 *
          * Post : initialize the datatables to put into the datagridview           *
          ***************************************************************************/
-        public SKGridPage()
+        public SKGridPage(string firstExec)
         {
             InitializeComponent();
 
@@ -60,8 +60,10 @@ namespace Materials
 
             BindingSource bs_parts = partBindingSource;
             dt_parts = ((DataSet)bs_parts.DataSource).Tables[bs_parts.DataMember];
-
-            CheckStock();
+            if (firstExec == "y")
+            {
+                CheckStock();
+            }
         }
 
         /***********************************************************************************************************************

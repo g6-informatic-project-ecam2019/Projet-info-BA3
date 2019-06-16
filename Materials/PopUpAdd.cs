@@ -28,7 +28,7 @@ namespace Materials
         private void Apply_Click(object sender, EventArgs e)
         {
             //Connection to the databse
-            SKGridPage sk = new SKGridPage();
+            SKGridPage sk = new SKGridPage("n");
             sk.SqlConnection();
             
             try
