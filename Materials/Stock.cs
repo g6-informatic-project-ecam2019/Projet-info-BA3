@@ -68,8 +68,14 @@ namespace Materials
                 }
             }
             //retrieve part infos in the part table => if real quantity is null, then part is not available
-            Connect(); 
-            command.CommandText = String.Format("SELECT * FROM part WHERE ref='{0}'", part.GetDescription()["ref"]);
+            Connect();
+            Connect();
+            if (dimension1 != ""){
+                command.CommandText = String.Format("SELECT {0}, {1}, color, real_quantity FROM part WHERE ref='{2}'", dimension1, dimension2, part.GetDescription()["ref"]);
+            }
+            else{
+                command.CommandText = String.Format("SELECT {0}, color, real_quantity FROM part WHERE ref='{1}'", dimension, part.GetDescription()["ref"]);
+            }
             reader = command.ExecuteReader();
             while (reader.Read()){
                 if (dimension1 != ""){ //part is in two dimensions (e.g. a panel or a door)
@@ -158,7 +164,7 @@ namespace Materials
                 }
             }
             Connect();
-            this.command.CommandText = String.Format("SELECT * FROM part WHERE code='{0}'", code);
+            this.command.CommandText = String.Format("SELECT virtual_quantity FROM part WHERE code='{0}'", code);
             reader = command.ExecuteReader();
             while (reader.Read()) {
                 quantity = (int)reader["virtual_quantity"];
@@ -223,7 +229,7 @@ namespace Materials
         public string FindClient (string clientFirstName, string clientLastName) {
             string idClient = "";
             Connect();
-            command.CommandText = String.Format("SELECT * FROM client WHERE lastname='{0}'", clientLastName);
+            command.CommandText = String.Format("SELECT firstname, idclient FROM client WHERE lastname='{0}'", clientLastName);
             try {
                 reader = command.ExecuteReader();
                 while (reader.Read()) {
@@ -310,7 +316,7 @@ namespace Materials
             if ((part is Door) || (part is Panel)) {
                 throw new ArgumentException("The part cannot be a door nor a panel in this function");
             }
-            this.command.CommandText = String.Format("SELECT * FROM part WHERE ref='{0}'", part.GetDescription()["ref"].ToString());
+            this.command.CommandText = String.Format("SELECT code, color, {0} FROM part WHERE ref='{1}'", dimension, part.GetDescription()["ref"].ToString());
 
             reader = command.ExecuteReader();
             /*Retrieves all information about the part, and puts them in the description dictionnary*/
@@ -342,7 +348,7 @@ namespace Materials
             string code = "";
             int length = (int)part.GetDescription()["length"];
             int width = (int)part.GetDescription()["width"];
-            command.CommandText = String.Format("SELECT * FROM part WHERE ref='{0}'", part.GetDescription()["ref"].ToString());
+            command.CommandText = String.Format("SELECT code, color, {0}, {1} FROM part WHERE ref='{2}'", dimension1, dimension2, part.GetDescription()["ref"].ToString());
             reader = command.ExecuteReader();
             //Retrieves all information about the part, and puts them in the description dictionnary
             while (reader.Read()) {
@@ -431,7 +437,7 @@ namespace Materials
                 }
                 description.Add("code", code);
                 Connect();
-                command.CommandText = String.Format("SELECT * FROM part INNER JOIN prices ON part.code=prices.code WHERE part.code='{0}'", code);
+                command.CommandText = String.Format("SELECT client_price, supplier_price FROM part INNER JOIN prices ON part.code=prices.code WHERE part.code='{0}'", code);
                 //Console.WriteLine(String.Format("code of this part is {0}", code));
                 reader = command.ExecuteReader();
                 int i = 0;
@@ -453,7 +459,7 @@ namespace Materials
                 code = SelectPart(part, part.GetDescription()["dim"].ToString(), color);
                 description.Add("code", code);
                 Connect();
-                this.command.CommandText = String.Format("SELECT * FROM part INNER JOIN prices ON part.code=prices.code WHERE part.code='{0}'", code);
+                this.command.CommandText = String.Format("SELECT client_price, supplier_price FROM part INNER JOIN prices ON part.code=prices.code WHERE part.code='{0}'", code);
                 reader = command.ExecuteReader();
                 int i = 0;
                 while (reader.Read()){ //retrieve all informations about the part, and put them in the description dictionnary
@@ -470,7 +476,7 @@ namespace Materials
         }
 
         /************************************************************************
-         * Pre : recieve the dimension (string) to list and the part (string)   *
+         * Pre : Recieves the dimension (string) to list and the part (string)  *
          *       that sets it                                                   *
          * Post : returns available heights for boxes                           *
          * Raise : uncorrect dimension name will raise an error                 *
@@ -482,7 +488,7 @@ namespace Materials
             List<int> dimensions = new List<int>();
             List<int> references = new List<int>();
             Connect();
-            command.CommandText = String.Format("SELECT * FROM part WHERE ref='{0}'", determiningPart);
+            command.CommandText = String.Format("SELECT {0} FROM part WHERE ref='{1}'", dim, determiningPart);
             reader = command.ExecuteReader();
             int i = 0;
             while (reader.Read()){
@@ -516,7 +522,7 @@ namespace Materials
         public List<string> GetExistingcolors (Part part) {
             Connect();
             string reference = part.GetDescription()["ref"].ToString();
-            command.CommandText = String.Format("SELECT * FROM part WHERE ref='{0}'", reference); 
+            command.CommandText = String.Format("SELECT code FROM part WHERE ref='{0}'", reference);
             reader = command.ExecuteReader();
             int counter = 0;
             while (reader.Read()) {
@@ -528,7 +534,7 @@ namespace Materials
             }
             List<string> colors = new List<string>();
             Connect();
-            command.CommandText = String.Format("SELECT * FROM part WHERE ref='{0}'", reference);
+            command.CommandText = String.Format("SELECT color FROM part WHERE ref='{0}'", reference);
             reader = command.ExecuteReader();
             int i = 0;
             while (reader.Read()) {
